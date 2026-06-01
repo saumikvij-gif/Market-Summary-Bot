@@ -1,0 +1,62 @@
+# .github/workflows/market_summary.yml
+#
+# Runs the market summary script every weekday at 21:30 UTC (after NYSE close).
+# The generated markdown is committed back to the repo automatically.
+#
+# Required secret:
+#   ANTHROPIC_API_KEY  →  Settings → Secrets and variables → Actions → New secret
+
+name: Daily Market Summary
+
+on:
+  # ── Scheduled trigger: Mon–Fri at 21:30 UTC (≈ 5:30 PM ET, after market close)
+  schedule:
+    - cron: "30 21 * * 1-5"
+
+  # ── Manual trigger (useful for testing)
+  workflow_dispatch:
+
+jobs:
+  market-summary:
+    name: Generate Market Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: write   # needed to commit the summary back to the repo
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python ─────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      # ── 3. Install dependencies ───────────────────────────────────────────────
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install yfinance anthropic
+
+      # ── 4. Run the script ─────────────────────────────────────────────────────
+      - name: Run market summary script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OUTPUT_FILE: summaries/market_summary_${{ github.run_id }}.md
+        run: |
+          mkdir -p summaries
+          python market_summary.py
+
+      # ── 5. Commit & push the generated summary ────────────────────────────────
+      - name: Commit summary to repository
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add summaries/
+          git diff --staged --quiet || git commit -m "chore: add market summary $(date +'%Y-%m-%d') [skip ci]"
+          git push
