@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install yfinance anthropic
+          pip install -r requirements.txt
 
       # ── 4. Run the script ─────────────────────────────────────────────────────
       - name: Run market summary script
