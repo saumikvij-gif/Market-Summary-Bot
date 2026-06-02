@@ -15,10 +15,19 @@ Optional:
 """
 
 import os
+import sys
 import json
 import datetime
 import anthropic
 import yfinance as yf
+from dotenv import load_dotenv
+
+# Load environment variables from a local .env file if present (no-op in CI)
+load_dotenv()
+
+# Ensure UTF-8 console output so symbols like ▲/▼ don't crash on Windows (cp1252)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -73,8 +82,9 @@ def fetch_quote(ticker_symbol: str) -> dict:
 
     return {
         "price":      round(float(latest_close),  2),
-        "change":     round(float(change),         2),
-        "pct_change": round(float(pct_change),     2),
+        # `or 0.0` normalizes -0.0 (falsy) to 0.0 so tiny negatives don't render as "+-0.00"
+        "change":     round(float(change),         2) or 0.0,
+        "pct_change": round(float(pct_change),     2) or 0.0,
     }
 
 
@@ -166,7 +176,7 @@ def generate_summary(data_block: str) -> str:
 def save_output(data_block: str, summary: str) -> None:
     today = datetime.date.today().strftime("%B %d, %Y")
     content = f"# Daily Market Summary — {today}\n\n{summary}\n\n---\n\n{data_block}"
-    with open(OUTPUT_FILE, "w") as f:
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"\n✅ Summary saved to {OUTPUT_FILE}")
 
