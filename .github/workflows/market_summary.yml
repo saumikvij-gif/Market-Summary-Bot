@@ -47,9 +47,10 @@ jobs:
       - name: Run market summary script
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          OUTPUT_FILE: summaries/market_summary_${{ github.run_id }}.md
         run: |
           mkdir -p summaries
+          # One report per day — file it by date so re-runs overwrite the same day.
+          export OUTPUT_FILE="summaries/market_summary_$(date -u +'%Y-%m-%d').md"
           python market_summary.py
 
       # ── 5. Commit & push the generated summary ────────────────────────────────

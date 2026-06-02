@@ -251,6 +251,14 @@ def main():
     print_to_console(data_block, summary)
     save_output(data_block, summary)
 
+    # Record this run for historical trend tracking (never block on DB errors).
+    try:
+        import database
+        database.save_run(market_data, summary)
+        print("📊 Run recorded to market_data.db")
+    except Exception as exc:
+        print(f"  ⚠️  Could not record run to database: {exc}")
+
 
 if __name__ == "__main__":
     main()

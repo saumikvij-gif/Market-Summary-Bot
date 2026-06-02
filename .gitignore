@@ -11,6 +11,9 @@ env/
 # Generated output (local runs; the Actions workflow commits to summaries/)
 market_summary.md
 
+# Local SQLite history database
+market_data.db
+
 # OS
 .DS_Store
 Thumbs.db
