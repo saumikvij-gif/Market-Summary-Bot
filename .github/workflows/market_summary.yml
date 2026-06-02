@@ -54,10 +54,11 @@ jobs:
           python market_summary.py
 
       # ── 5. Commit & push the generated summary ────────────────────────────────
-      - name: Commit summary to repository
+      - name: Commit summary and history to repository
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add summaries/
-          git diff --staged --quiet || git commit -m "chore: add market summary $(date +'%Y-%m-%d') [skip ci]"
+          # Commit the dated summary and the updated trend database.
+          git add summaries/ market_data.db
+          git diff --staged --quiet || git commit -m "chore: add market summary $(date -u +'%Y-%m-%d') [skip ci]"
           git push
