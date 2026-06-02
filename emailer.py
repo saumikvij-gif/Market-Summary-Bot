@@ -36,8 +36,11 @@ def _config() -> dict | None:
     """Collect SMTP config from the environment, or None if not fully set."""
     host = os.environ.get("SMTP_HOST")
     user = os.environ.get("SMTP_USER")
-    password = os.environ.get("SMTP_PASSWORD")
-    to = os.environ.get("EMAIL_TO")
+    # Gmail shows app passwords as "abcd efgh ijkl mnop"; strip spaces so a
+    # copy-paste with the display spaces still authenticates.
+    password = (os.environ.get("SMTP_PASSWORD") or "").replace(" ", "")
+    # Default the recipient to the sending account if EMAIL_TO isn't set.
+    to = os.environ.get("EMAIL_TO") or user
     if not (host and user and password and to):
         return None
     return {
