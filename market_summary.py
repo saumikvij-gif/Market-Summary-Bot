@@ -169,14 +169,66 @@ def fetch_news_block() -> str:
         return ""
 
 
-def generate_summary(data_block: str, news_block: str = "") -> str:
-    """Send the formatted market data (and optional news) to Claude."""
+# Tool schema that forces Claude to return structured, machine-readable output.
+REPORT_TOOL = {
+    "name": "submit_market_report",
+    "description": "Submit the daily market summary and structured sentiment.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "summary_markdown": {
+                "type": "string",
+                "description": (
+                    "The market summary in markdown. Use '## ' subheadings, no "
+                    "top-level '# ' title. Do NOT include a News & Sentiment "
+                    "section — that is rendered separately from the fields below."
+                ),
+            },
+            "sentiment": {
+                "type": "string",
+                "enum": ["Bullish", "Bearish", "Neutral"],
+                "description": "Overall market sentiment.",
+            },
+            "confidence": {
+                "type": "string",
+                "enum": ["Low", "Medium", "High"],
+                "description": "Confidence in the sentiment call.",
+            },
+            "score": {
+                "type": "integer",
+                "description": (
+                    "Sentiment as a number from -100 (extremely bearish) to "
+                    "+100 (extremely bullish); 0 is neutral."
+                ),
+            },
+            "themes": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "3-5 key themes driving the sentiment.",
+            },
+            "drivers": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Specific headlines that most influenced the read.",
+            },
+        },
+        "required": ["summary_markdown", "sentiment", "confidence", "score", "themes"],
+    },
+}
+
+
+def generate_report(data_block: str, news_block: str = "") -> dict:
+    """Send market data (and optional news) to Claude; return a structured report.
+
+    Uses tool-use so the sentiment fields are reliable rather than scraped from
+    prose. Returns a dict matching REPORT_TOOL's input_schema.
+    """
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     user_message = (
-        "Here is today's market data. Please write a concise market summary "
+        "Here is today's market data. Write a concise market summary "
         "(around 300–400 words) covering the key themes, notable movers, and "
-        "any cross-asset signals worth highlighting.\n\n"
+        "any cross-asset signals worth highlighting, then assess sentiment.\n\n"
         + data_block
     )
 
@@ -187,23 +239,44 @@ def generate_summary(data_block: str, news_block: str = "") -> str:
             "action, and note that Reddit communities use sarcasm and slang — "
             "interpret tone accordingly. If there are any Federal Reserve / "
             "monetary policy or interest-rate developments, call them out "
-            "explicitly, as they are especially important for markets.\n\n"
-            "After the main summary, ADD a dedicated section titled "
-            "'## News & Sentiment' that states an overall market sentiment "
-            "(Bullish, Bearish, or Neutral) with a confidence level, lists 3–5 "
-            "key themes from the news, and names the specific headlines driving "
-            "your read.\n\n"
+            "explicitly in the summary, as they are especially important.\n\n"
             + news_block
         )
 
     message = client.messages.create(
         model="claude-sonnet-4-5",
-        max_tokens=1024,
+        max_tokens=1500,
         system=SYSTEM_PROMPT,
+        tools=[REPORT_TOOL],
+        tool_choice={"type": "tool", "name": "submit_market_report"},
         messages=[{"role": "user", "content": user_message}],
     )
 
-    return message.content[0].text
+    for block in message.content:
+        if block.type == "tool_use":
+            return block.input
+    raise RuntimeError("Claude did not return a structured report.")
+
+
+def render_sentiment_section(report: dict) -> str:
+    """Build the '## News & Sentiment' markdown from the structured fields."""
+    lines = [
+        "## News & Sentiment",
+        "",
+        f"**Overall Sentiment:** {report.get('sentiment', '—')} "
+        f"(Confidence: {report.get('confidence', '—')}, "
+        f"Score: {report.get('score', 0):+d})",
+        "",
+    ]
+    themes = report.get("themes") or []
+    if themes:
+        lines.append("**Key Themes:**")
+        lines.extend(f"{i}. {t}" for i, t in enumerate(themes, 1))
+        lines.append("")
+    drivers = report.get("drivers") or []
+    if drivers:
+        lines.append("**Driving Headlines:** " + "; ".join(drivers))
+    return "\n".join(lines).rstrip()
 
 
 # ── Output ─────────────────────────────────────────────────────────────────────
@@ -246,7 +319,11 @@ def main():
     news_block = fetch_news_block()
 
     print("\nGenerating AI summary with Claude…")
-    summary = generate_summary(data_block, news_block)
+    report = generate_report(data_block, news_block)
+
+    # Assemble the full document: prose + a sentiment section rendered from the
+    # same structured fields we store in the DB (single source of truth).
+    summary = report["summary_markdown"].rstrip() + "\n\n" + render_sentiment_section(report)
 
     print_to_console(data_block, summary)
     save_output(data_block, summary)
@@ -254,10 +331,30 @@ def main():
     # Record this run for historical trend tracking (never block on DB errors).
     try:
         import database
-        database.save_run(market_data, summary)
+        database.save_run(
+            market_data, summary,
+            sentiment=report.get("sentiment"),
+            confidence=report.get("confidence"),
+            score=report.get("score"),
+        )
         print("📊 Run recorded to market_data.db")
     except Exception as exc:
         print(f"  ⚠️  Could not record run to database: {exc}")
+
+    # Generate trend charts from the accumulated history (never block on errors).
+    chart_paths = []
+    try:
+        import charts
+        chart_paths = charts.generate_all()
+    except Exception as exc:
+        print(f"  ⚠️  Could not generate charts: {exc}")
+
+    # Email the summary + charts if delivery is configured (opt-in, fail-safe).
+    try:
+        import emailer
+        emailer.send_summary(summary, chart_paths)
+    except Exception as exc:
+        print(f"  ⚠️  Could not send email: {exc}")
 
 
 if __name__ == "__main__":

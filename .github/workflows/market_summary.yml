@@ -47,6 +47,13 @@ jobs:
       - name: Run market summary script
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Email delivery (optional — leave secrets unset to skip sending).
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: |
           mkdir -p summaries
           # One report per day — file it by date so re-runs overwrite the same day.
@@ -58,7 +65,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Commit the dated summary and the updated trend database.
-          git add summaries/ market_data.db
+          # Commit the dated summary, the updated trend database, and charts.
+          git add summaries/ market_data.db charts/
           git diff --staged --quiet || git commit -m "chore: add market summary $(date -u +'%Y-%m-%d') [skip ci]"
           git push

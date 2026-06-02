@@ -56,10 +56,15 @@ def init_db() -> None:
                 run_date   TEXT PRIMARY KEY,
                 sentiment  TEXT,
                 confidence TEXT,
+                score      INTEGER,
                 summary    TEXT
             );
             """
         )
+        # Add the score column to pre-existing databases that lack it.
+        cols = [r["name"] for r in conn.execute("PRAGMA table_info(summaries)")]
+        if "score" not in cols:
+            conn.execute("ALTER TABLE summaries ADD COLUMN score INTEGER")
 
 
 # ── Writing ──────────────────────────────────────────────────────────────────
@@ -80,13 +85,20 @@ def parse_sentiment(summary: str) -> tuple:
     return match.group(1).strip(" *"), match.group(2).strip(" *")
 
 
-def save_run(market_data: dict, summary: str, run_date: str = None) -> None:
-    """Persist one run's quotes and summary. Re-running the same day overwrites."""
+def save_run(market_data: dict, summary: str, run_date: str = None,
+             sentiment: str = None, confidence: str = None,
+             score: int = None) -> None:
+    """Persist one run's quotes and summary. Re-running the same day overwrites.
+
+    If sentiment/confidence aren't supplied (structured), fall back to scraping
+    them from the summary text.
+    """
     init_db()
     if run_date is None:
         run_date = datetime.date.today().isoformat()
 
-    sentiment, confidence = parse_sentiment(summary)
+    if sentiment is None and confidence is None:
+        sentiment, confidence = parse_sentiment(summary)
 
     with connect() as conn:
         for section, instruments in market_data.items():
@@ -102,8 +114,8 @@ def save_run(market_data: dict, summary: str, run_date: str = None) -> None:
                 )
         conn.execute(
             "INSERT OR REPLACE INTO summaries "
-            "(run_date, sentiment, confidence, summary) VALUES (?, ?, ?, ?)",
-            (run_date, sentiment, confidence, summary),
+            "(run_date, sentiment, confidence, score, summary) VALUES (?, ?, ?, ?, ?)",
+            (run_date, sentiment, confidence, score, summary),
         )
 
 
@@ -159,7 +171,7 @@ def backfill_prices(days: int = 10) -> int:
 def sentiment_history(limit: int = 14) -> list:
     with connect() as conn:
         rows = conn.execute(
-            "SELECT run_date, sentiment, confidence FROM summaries "
+            "SELECT run_date, sentiment, confidence, score FROM summaries "
             "ORDER BY run_date DESC LIMIT ?",
             (limit,),
         ).fetchall()
@@ -189,7 +201,8 @@ def print_report(name: str = "S&P 500") -> None:
     for r in rows:
         sentiment = r["sentiment"] or "—"
         conf = f" ({r['confidence']})" if r["confidence"] else ""
-        print(f"  {r['run_date']}  {sentiment}{conf}")
+        score = f"  [{r['score']:+d}]" if r["score"] is not None else ""
+        print(f"  {r['run_date']}  {sentiment}{conf}{score}")
 
     print(f"\n{name} price history")
     print("─" * 50)
