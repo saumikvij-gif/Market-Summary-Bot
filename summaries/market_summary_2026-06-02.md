@@ -2,36 +2,34 @@
 
 ## Market Overview
 
-U.S. equities posted mixed results on June 2, with the S&P 500 and Nasdaq 100 advancing modestly while small-caps lagged. The S&P 500 climbed 0.26% to close at 7,599.96, and the Nasdaq 100 gained 0.60%, driven by select mega-cap technology stocks. The Dow Jones inched up 0.09%, while the Russell 2000 declined 0.47%, highlighting a divergence between large and small-cap performance. The VIX edged higher by 1.06% to 16.22, suggesting marginally elevated caution despite the modest equity gains.
+U.S. equities closed mixed on June 2nd, with major indices diverging sharply along growth-value lines. The S&P 500 edged up 0.26% to 7,599.96, while the Nasdaq 100 jumped 0.60% on the back of surging semiconductor stocks. The Dow Jones barely moved (+0.09%), and the Russell 2000 declined 0.47%, reflecting broad risk-off sentiment among smaller-cap names. The VIX ticked up 0.75% to 16.17, suggesting modest uptick in hedging demand despite the headline gains.
 
-## Semiconductor Surge and Tech Divergence
+## AI Infrastructure and Mega-Cap Dispersion
 
-The standout performer was **Nvidia**, which surged 6.26% following comments from CEO Jensen Huang at Computex, where he described Marvell Technology as "the next trillion-dollar company." Marvell itself reportedly jumped 16% in after-hours trading. **Microsoft** also rallied 2.28%, benefiting from renewed AI optimism. However, the tech sector experienced significant dispersion: **Meta** plunged 5.07%, **Tesla** fell 4.57%, **Amazon** dropped 3.47%, and **Apple** declined 1.84%. The divergence underscores selective positioning within tech, as investors rotate toward AI infrastructure plays while taking profits in consumer-facing mega-caps.
+The session was dominated by sharp divergence within mega-cap technology. Nvidia led the charge with a +6.26% surge after CEO Jensen Huang called Marvell Technology "the next trillion-dollar company" at Computex, sparking enthusiasm across the AI chip ecosystem. Marvell itself reportedly surged 16% overnight. Microsoft also gained 2.28%, benefiting from the AI infrastructure narrative.
 
-## Alphabet's $80 Billion Capital Raise
+In stark contrast, social media and e-commerce giants suffered significant losses. Meta plunged 5.07%, Amazon fell 3.47%, and Tesla dropped 4.57%, while Apple declined 1.84%. Alphabet's modest 1.04% decline masks an important development: the company announced plans to raise $80 billion via equity offerings to fund AI infrastructure buildout, reportedly backed by Berkshire Hathaway under new CEO Greg Abel. This massive capital raise signals escalating competition in the AI arms race.
 
-**Alphabet** announced plans to raise $80 billion through equity offerings to fund AI expansion, reportedly backed by Berkshire Hathaway. The stock fell 1.04%, as investors weighed the dilutive impact against long-term AI investment potential. The move signals the capital intensity required to compete in the AI arms race and may set a precedent for other tech giants.
+## Geopolitical Risk and Commodities
 
-## Commodities and Cross-Asset Signals
+Gold surged 1.77% to $4,554.60, reflecting safe-haven demand amid reports that Iran has stopped U.S. negotiations and vowed to "completely" block the Strait of Hormuz—a critical chokepoint for global oil supply. Paradoxically, crude oil fell 1.52% to $90.76, possibly on recession concerns offsetting supply fears. Bitcoin dropped 2.80%, extending its risk-off move alongside growth stocks.
 
-**Gold** surged 1.77% to $4,554.60, reflecting safe-haven demand amid geopolitical tensions. Reports surfaced that Iran vowed to "completely" block the Strait of Hormuz, raising energy security concerns. Paradoxically, **crude oil** fell 1.63% to $90.66, possibly on demand concerns or technical profit-taking. **Bitcoin** declined 2.75% to $69,357.58, moving in tandem with risk-off sentiment in speculative assets.
+## Cross-Asset Signals
 
-## Other Developments
-
-Federal Reserve meeting minutes from April were released, though no immediate policy shifts were signaled. Labor market data awaited later in the week may provide further guidance on rate expectations. Meanwhile, short-seller Andrew Left was convicted of securities fraud, marking a notable legal milestone in market regulation.
+The combination of rising gold, falling oil, higher VIX, and small-cap underperformance suggests investors are positioning defensively despite AI-driven optimism in select tech names. Currency markets were flat, with minimal movement in EUR/USD, USD/JPY, and GBP/USD, indicating wait-and-see positioning ahead of upcoming labor market data. The conviction Andrew Left verdict for securities fraud underscores ongoing regulatory scrutiny of market participants.
 
 ## News & Sentiment
 
-**Overall Sentiment:** Neutral (Confidence: Medium, Score: +10)
+**Overall Sentiment:** Neutral (Confidence: Medium, Score: +5)
 
 **Key Themes:**
-1. AI infrastructure rally driving selective tech outperformance
-2. Tech sector divergence with notable weakness in consumer-facing mega-caps
-3. Geopolitical tensions supporting gold amid Strait of Hormuz threats
-4. Alphabet's $80 billion equity raise highlights AI capital intensity
-5. Small-cap underperformance and modest VIX uptick signal cautious undertones
+1. AI infrastructure arms race driving mega-cap divergence
+2. Geopolitical tensions in Middle East boosting safe-haven demand
+3. Defensive positioning across small-caps and commodities despite tech strength
+4. Massive capital raises signaling escalating AI competition
+5. Regulatory scrutiny intensifying with Andrew Left conviction
 
-**Driving Headlines:** Nvidia surges 6.26% after Jensen Huang calls Marvell 'next trillion-dollar company' at Computex; Alphabet falls 1.04% on $80 billion equity raise to fund AI expansion; Iran vows to 'completely' block Strait of Hormuz, gold rallies 1.77%; Meta (-5.07%), Tesla (-4.57%), Amazon (-3.47%) lead mega-cap tech declines; Russell 2000 drops 0.47% as small-caps underperform large-cap indices
+**Driving Headlines:** Nvidia CEO Jensen Huang calls Marvell Technology 'next trillion-dollar company' at Computex; Alphabet announces $80 billion equity offering to fund AI buildout with Berkshire backing; Iran vows to 'completely' block Strait of Hormuz amid stalled U.S. negotiations; Short seller Andrew Left found guilty of securities fraud; Gold surges while oil falls in mixed commodity signal
 
 ---
 
@@ -42,7 +40,7 @@ Federal Reserve meeting minutes from April were released, though no immediate po
 - Nasdaq 100: 30,513.86  ▲ +180.68 (+0.60%)
 - Dow Jones: 51,078.88  ▲ +46.42 (+0.09%)
 - Russell 2000: 2,905.76  ▼ -13.58 (-0.47%)
-- VIX: 16.22  ▲ +0.17 (+1.06%)
+- VIX: 16.17  ▲ +0.12 (+0.75%)
 
 ### Key Stocks
 - Apple: 306.31  ▼ -5.75 (-1.84%)
@@ -55,8 +53,8 @@ Federal Reserve meeting minutes from April were released, though no immediate po
 
 ### Commodities & Crypto
 - Gold: 4,554.60  ▲ +79.40 (+1.77%)
-- Crude Oil: 90.66  ▼ -1.50 (-1.63%)
-- Bitcoin: 69,357.58  ▼ -1,962.20 (-2.75%)
+- Crude Oil: 90.76  ▼ -1.40 (-1.52%)
+- Bitcoin: 69,325.81  ▼ -1,993.96 (-2.80%)
 
 ### FX Rates
 - EUR/USD: 1.16  ▼ +0.00 (+-0.02%)
