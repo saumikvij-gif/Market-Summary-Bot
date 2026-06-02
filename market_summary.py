@@ -148,10 +148,29 @@ You are a professional financial analyst writing a concise daily market summary.
 Your summaries are clear, insightful, and suitable for a general but financially
 literate audience. Highlight notable moves, potential drivers, and any interesting
 cross-asset relationships. Keep the tone neutral and factual. Use markdown.
+
+Do NOT include a top-level "# " title or document heading — start directly with
+the first section (use "## " subheadings). A title is added separately.
 """
 
-def generate_summary(data_block: str) -> str:
-    """Send the formatted market data to Claude and return the summary text."""
+def fetch_news_block() -> str:
+    """Pull current financial news/Reddit headlines as a text block.
+
+    Imports the headline gatherer from reddit_news. Returns an empty string if
+    anything goes wrong, so a news outage never blocks the market summary.
+    """
+    try:
+        import reddit_news
+        # Keep it light — a few headlines per source is enough context.
+        headlines = reddit_news.gather_headlines(limit=4)
+        return reddit_news.build_headline_block(headlines)
+    except Exception as exc:
+        print(f"  ⚠️  Could not fetch news headlines: {exc}")
+        return ""
+
+
+def generate_summary(data_block: str, news_block: str = "") -> str:
+    """Send the formatted market data (and optional news) to Claude."""
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     user_message = (
@@ -160,6 +179,22 @@ def generate_summary(data_block: str) -> str:
         "any cross-asset signals worth highlighting.\n\n"
         + data_block
     )
+
+    if news_block.strip():
+        user_message += (
+            "\n\nHere are today's financial news headlines and Reddit "
+            "finance-community post titles. Use them to explain the price "
+            "action, and note that Reddit communities use sarcasm and slang — "
+            "interpret tone accordingly. If there are any Federal Reserve / "
+            "monetary policy or interest-rate developments, call them out "
+            "explicitly, as they are especially important for markets.\n\n"
+            "After the main summary, ADD a dedicated section titled "
+            "'## News & Sentiment' that states an overall market sentiment "
+            "(Bullish, Bearish, or Neutral) with a confidence level, lists 3–5 "
+            "key themes from the news, and names the specific headlines driving "
+            "your read.\n\n"
+            + news_block
+        )
 
     message = client.messages.create(
         model="claude-sonnet-4-5",
@@ -207,8 +242,11 @@ def main():
     print("\nBuilding data summary…")
     data_block = build_data_block(market_data)
 
+    print("\nFetching financial news headlines…")
+    news_block = fetch_news_block()
+
     print("\nGenerating AI summary with Claude…")
-    summary = generate_summary(data_block)
+    summary = generate_summary(data_block, news_block)
 
     print_to_console(data_block, summary)
     save_output(data_block, summary)
