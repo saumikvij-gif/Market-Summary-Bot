@@ -43,12 +43,14 @@ def _config() -> dict | None:
     to = os.environ.get("EMAIL_TO") or user
     if not (host and user and password and to):
         return None
+    # Use `or` (not get-with-default) so an empty string — which is what an
+    # undefined GitHub secret expands to — falls back correctly.
     return {
         "host": host,
-        "port": int(os.environ.get("SMTP_PORT", "587")),
+        "port": int(os.environ.get("SMTP_PORT") or 587),
         "user": user,
         "password": password,
-        "from": os.environ.get("EMAIL_FROM", user),
+        "from": os.environ.get("EMAIL_FROM") or user,
         "to": [addr.strip() for addr in to.split(",") if addr.strip()],
     }
 
