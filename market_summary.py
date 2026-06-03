@@ -117,11 +117,12 @@ def format_section(title: str, data: dict) -> str:
         if "error" in q:
             lines.append(f"- {name}: N/A")
         else:
-            sign  = "+" if q["change"] >= 0 else ""
+            # `:+` gives each value its own correct sign, so a near-zero change
+            # paired with a negative percent can't render as "+-0.04%".
             lines.append(
                 f"- {name}: {q['price']:,.2f}  "
-                f"{arrow(q['pct_change'])} {sign}{q['change']:,.2f} "
-                f"({sign}{q['pct_change']:.2f}%)"
+                f"{arrow(q['pct_change'])} {q['change']:+,.2f} "
+                f"({q['pct_change']:+.2f}%)"
             )
     return "\n".join(lines)
 

@@ -44,6 +44,10 @@ EQUITY_VS_VIX = (0.70, 0.30)
 POS_THRESHOLD = 0.05
 NEG_THRESHOLD = -0.05
 
+# Require at least this many Fed keyword hits before the tone score can reach
+# full scale — keeps a single stray match from swinging fed_score to ±1.
+FED_FULL_SCALE_HITS = 4
+
 # Keyword lexicon for Fed tone. Hawkish (tightening) is bearish for equities;
 # dovish (easing) is bullish.
 HAWKISH = ["hike", "raise rates", "tighten", "restrictive", "inflation",
@@ -128,8 +132,9 @@ def fed_component(fed_titles: list) -> dict:
         hawk += sum(1 for w in HAWKISH if w in low)
         dov += sum(1 for w in DOVISH if w in low)
     total = hawk + dov
-    # Dovish is bullish (+), hawkish is bearish (−).
-    score = ((dov - hawk) / total) if total else 0.0
+    # Dovish is bullish (+), hawkish is bearish (−). Divide by at least
+    # FED_FULL_SCALE_HITS so a lone keyword yields a muted score, not ±1.
+    score = _clamp((dov - hawk) / max(total, FED_FULL_SCALE_HITS)) if total else 0.0
     return {"score": round(score, 4), "detail": {"hawkish": hawk, "dovish": dov}}
 
 
