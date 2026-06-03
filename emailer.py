@@ -133,5 +133,5 @@ def send_report(pdf_path: str, date_str: str) -> bool:
     )
     with open(pdf_path, "rb") as f:
         msg.add_attachment(f.read(), maintype="application", subtype="pdf",
-                           filename=os.path.basename(pdf_path))
+                           filename=f"Market Summary {date_str}.pdf")
     return _send(cfg, msg)
