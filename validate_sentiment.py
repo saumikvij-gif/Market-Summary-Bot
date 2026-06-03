@@ -48,7 +48,6 @@ def _pct_by_date(name: str) -> dict:
 
 
 def main() -> None:
-    database.ensure_loaded()
     sp = _pct_by_date("S&P 500")
     nq = _pct_by_date("Nasdaq 100")
     vix = _pct_by_date("VIX")

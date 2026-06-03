@@ -122,10 +122,9 @@ def chart_index_trends(limit: int = INDEX_CHART_DAYS) -> str | None:
 
 def generate_all() -> list:
     """Generate every chart; return the list of paths actually written."""
-    if not (os.path.exists(database.DB_PATH) or os.path.exists(database.QUOTES_CSV)):
+    if not os.path.exists(database.QUOTES_CSV):
         print("No history yet — run market_summary.py at least once first.")
         return []
-    database.ensure_loaded()  # rebuild DB cache from CSV on a fresh checkout
     _ensure_dir()
     paths = [chart_sentiment_trend(), chart_index_trends()]
     written = [p for p in paths if p]
