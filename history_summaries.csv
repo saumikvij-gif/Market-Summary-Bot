@@ -43,35 +43,45 @@ _Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX +1.8%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Tigress Financial Lifts NVIDIA (NVDA) Price Target, Keeps Strong Buy Rating
 - 🔴 Most bearish (-0.94): Palo Alto Networks’ earnings show AI brings new urgency to cybersecurity, but stock still dips"
-2026-06-03,Slightly Bullish,22,"## Market Overview
+2026-06-03,Neutral,2,"## Market Overview
 
-U.S. equities extended their winning streak on Wednesday, with the S&P 500 notching its ninth consecutive daily gain—a rare feat that pushed the index up 0.13% to 7,609.78. Strength was broad-based, with the Russell 2000 leading major benchmarks with a 0.90% advance, while the Nasdaq 100 and Dow Jones rose 0.48% and 0.45%, respectively. The VIX declined 1.74% to 15.77, reflecting subdued near-term volatility expectations even as cross-currents in mega-cap tech created notable dispersion.
+U.S. equities declined on June 3, with the S&P 500 down 0.52%, the Dow falling 0.79%, and the Russell 2000 losing 0.96%. The Nasdaq 100 showed relative resilience, dropping just 0.27% as tech sector performance diverged sharply. The VIX edged up 2.09% to 16.10, reflecting modestly elevated caution amid uneven sector performance.
 
-## Big Tech Divergence and AI Sentiment
+## Fed and Macro Backdrop
 
-Mega-cap tech stocks exhibited sharp bifurcation. Apple surged 2.90% following unspecified catalysts, while Microsoft suffered a steep 4.17% decline and Alphabet fell 3.86%. Headlines suggest investor rotation within AI beneficiaries: enthusiasm around Broadcom's upcoming earnings—described as potentially more significant than any ""Magnificent Seven"" report this quarter—may be siphoning capital from Alphabet amid concerns over ""relentless AI spending."" Nvidia CEO Jensen Huang's endorsement of Marvell Technology as a potential ""next trillion-dollar company"" drove Marvell up 25% in premarket trading, underscoring the broadening of AI infrastructure plays beyond chip giants. Goldman Sachs CEO David Solomon's characterization of markets as in ""greed mode"" captures the speculative fervor.
+The Federal Reserve released minutes from recent FOMC meetings and discount rate discussions, though no immediate policy changes were announced. The 10-year Treasury yield rose 3 basis points to 4.48%, while the 2-year remained flat at 3.84%, suggesting investors are processing persistent inflation concerns. Crude oil surged 2.14% to $95.77, reflecting ongoing geopolitical tensions and supply concerns—a development that could complicate the Fed's inflation outlook. Gold dipped 0.33%, while Bitcoin fell 0.73% to $66,216, as some analysts noted crypto investors ""rage quitting"" amid the AI-driven equity rally.
 
-## SpaceX IPO and Valuation Skepticism
+## Tech Sector Bifurcation
 
-SpaceX dominated headlines with reports of a planned IPO pricing at $135 per share, targeting a $1.75 trillion valuation. However, Morningstar's $780 billion fair value estimate—less than half the IPO target—sparked debate over frothy valuations in the private-to-public pipeline. Reddit communities expressed deep skepticism, with references to an ""epic rugpull"" and warnings about 401(k) exposure.
+A notable divide emerged within technology. Hyperscalers struggled, with Microsoft down 3.27%, Amazon off 2.38%, and Nvidia declining 3.06%. This weakness weighed on the broader AI infrastructure narrative. Conversely, semiconductor and memory stocks showed strength: AMD gained 1.96%, Intel surged 3.96%, and SanDisk jumped 4.27%. Meta stood out with a 3.16% gain, bolstered by RBC Capital reiterating its bullish stance on the company's AI opportunities. Marvell Technology reportedly soared in premarket trading after Nvidia's Jensen Huang called it a potential ""next trillion-dollar company.""
 
-## Commodities and Fed Backdrop
+The Memory (DRAM/NAND/HBM) sector rallied 3.08% with 100% breadth, signaling robust demand amid AI memory shortages. Reports highlighted SK Hynix plans to double wafer capacity, underscoring supply constraints.
 
-Crude oil jumped 2.60% to $94.56 on geopolitical tensions (""Iran jitters persist""), while gold added 0.74% as a hedge. The dollar strengthened on the oil-driven hawkish sentiment. Meanwhile, Federal Reserve meeting minutes from April and March were released, though no explicit policy shifts were indicated. Bitcoin remained flat at $66,601 amid reports of Strategy (MSTR) selling coins for the first time since 2022, triggering investor concern.
+## Standout Movers and Cross-Asset Themes
 
-## Bottom Line
+Among top gainers, Navitas Semiconductor led with an 18.60% surge, followed by Abivax (+15.11%), TG Therapeutics (+10.00%), and IPG Photonics (+9.78%). Victoria's Secret spiked roughly 40% after a strong earnings beat, defying consumer weakness concerns.
 
-Despite headline index strength, the ""breadth paradox"" noted by MarketWatch—narrow leadership amid a nine-day rally—and valuation extremes relative to 1929 levels warrant caution. Rotation within tech and anticipation around key earnings (Broadcom) are the dominant near-term drivers.
+The SaaS sector lagged significantly, down 5.34%, as valuations faced pressure amid rising yields and concerns about profitability. Banking also underperformed (-2.01%), reflecting rate-flattening dynamics and economic uncertainty.
 
-## Market Sentiment Dashboard
+Cross-asset signals suggest a rotation within tech—away from high-valuation hyperscalers toward hardware and memory beneficiaries of AI infrastructure spending. Rising oil prices and a stronger dollar (EUR/USD and GBP/USD both down ~0.20%) add to inflation worries, potentially constraining Fed easing expectations. The yen hovered near 160 against the dollar, prompting warnings from Japanese officials about potential intervention.
 
-**Overall Score:** +0.22  →  **Slightly Bullish**
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.02  →  **Neutral**
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 50% | +0.14 |
-| News headlines | 35% | +0.38 |
-| Reddit | 10% | +0.03 |
-| Fed tone | 5% | +0.25 |
+| Market data | 50% | -0.06 |
+| News headlines | 35% | +0.13 |
+| Reddit | 5% | +0.07 |
+| Fed (rate expectations) | 10% | -0.01 |
 
-_Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX -1.7%. News headlines read bullish. Reddit sentiment is neutral. Fed tone appears dovish. Overall market sentiment: Slightly Bullish._"
+_Equities fell with Nasdaq -0.3%, S&P 500 -0.5%, VIX +2.1%. Sector breadth: 7/11 sectors up. 10Y yield +0.7%. News headlines read slightly bullish. Reddit sentiment is neutral. Fed-policy expectations tightened (2Y Treasury +0.00%). Fresh Fed communications read neutral. Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.94): Old Dominion’s May update shows an improving LTL market
+- 🔴 Most bearish (-0.96): Morocco stocks lower at close of trade; Moroccan All Shares down 0.11%"
