@@ -14,7 +14,9 @@ Optional:
 """
 
 import os
+import re
 import sys
+import html
 import datetime
 import requests
 import feedparser
@@ -97,10 +99,41 @@ def fetch_feed(url: str, limit: int = LIMIT) -> list:
         entries.append({
             "title": title,
             "link":  (e.get("link") or "").strip(),
+            "summary": _clean_summary(e.get("summary") or e.get("description") or ""),
         })
         if len(entries) >= limit:
             break
     return entries
+
+
+def _clean_summary(raw: str, max_len: int = 280) -> str:
+    """Strip HTML tags/entities from an RSS summary and truncate."""
+    text = re.sub(r"<[^>]+>", " ", raw)          # drop tags
+    text = html.unescape(text)                    # decode &amp; etc.
+    text = re.sub(r"\s+", " ", text).strip()      # collapse whitespace
+    if len(text) > max_len:
+        text = text[:max_len].rsplit(" ", 1)[0] + "…"
+    return text
+
+
+def get_top_news(count: int = 5, per_source: int = 2) -> list:
+    """Top news articles (title + summary) across the news outlets, round-robin.
+
+    Returns a list of {source, title, summary, link}. Reddit/Fed feeds are
+    excluded — outlet feeds carry real article summaries.
+    """
+    outlets = {k: v for k, v in NEWS_FEEDS.items() if "fed" not in k.lower()}
+    per_outlet = {name: fetch_feed(url, limit=per_source)
+                  for name, url in outlets.items()}
+    news, i = [], 0
+    while len(news) < count and any(i < len(v) for v in per_outlet.values()):
+        for name, entries in per_outlet.items():
+            if i < len(entries) and len(news) < count:
+                e = entries[i]
+                news.append({"source": name, "title": e["title"],
+                             "summary": e.get("summary", ""), "link": e["link"]})
+        i += 1
+    return news
 
 
 # ── Output ─────────────────────────────────────────────────────────────────────

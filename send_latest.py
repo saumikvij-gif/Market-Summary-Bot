@@ -1,10 +1,10 @@
 """
 send_latest.py
 --------------
-Emails the most recently generated market summary (and the trend charts) without
-regenerating anything. This decouples delivery from generation: the summary is
-produced right after the US market close, but the email is sent later (e.g. at
-9 AM Hong Kong time) by scheduling this script separately.
+Emails the most recently generated briefing PDF without regenerating anything.
+This decouples delivery from generation: the PDF is produced right after the US
+market close, but the email is sent later (e.g. at 9 AM Hong Kong time) by
+scheduling this script separately.
 
 Reads SMTP_* / EMAIL_TO from the environment (see emailer.py).
 
@@ -26,33 +26,31 @@ load_dotenv()
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-SUMMARY_GLOB = "summaries/market_summary_*.md"
-CHART_PATHS = ["charts/index_trends.png", "charts/sentiment_trend.png"]
+PDF_GLOB = "summaries/market_summary_*.pdf"
 
 # Don't email a briefing older than this — if generation has been failing we'd
 # otherwise silently resend stale data. Override with STALE_MAX_DAYS.
 STALE_MAX_DAYS = int(os.environ.get("STALE_MAX_DAYS") or 4)
 
 
-def latest_summary_path() -> str | None:
-    """Return the path of the newest dated summary file, or None.
+def latest_pdf_path() -> str | None:
+    """Return the path of the newest dated briefing PDF, or None.
 
     Picks the file with the greatest YYYY-MM-DD in its name (ISO dates sort
-    correctly), ignoring any older run-id-style filenames. Falls back to the
-    root market_summary.md if no dated files exist.
+    correctly). Falls back to the root market_summary.pdf if no dated file exists.
     """
     best_path, best_date = None, None
-    for path in glob.glob(SUMMARY_GLOB):
+    for path in glob.glob(PDF_GLOB):
         m = re.search(r"(\d{4}-\d{2}-\d{2})", os.path.basename(path))
         if m and (best_date is None or m.group(1) > best_date):
             best_date, best_path = m.group(1), path
     if best_path:
         return best_path
-    return "market_summary.md" if os.path.exists("market_summary.md") else None
+    return "market_summary.pdf" if os.path.exists("market_summary.pdf") else None
 
 
 def summary_age_days(path: str) -> int | None:
-    """Days between the date in the summary filename and today (UTC); None if no date."""
+    """Days between the date in the filename and today (UTC); None if no date."""
     m = re.search(r"(\d{4}-\d{2}-\d{2})", os.path.basename(path))
     if not m:
         return None
@@ -62,24 +60,24 @@ def summary_age_days(path: str) -> int | None:
 
 
 def main() -> None:
-    path = latest_summary_path()
+    path = latest_pdf_path()
     if not path:
-        print("No summary file found to email.")
+        print("No briefing PDF found to email.")
         sys.exit(1)
 
     # Stale guard: refuse to silently resend an old briefing (generation likely failing).
     age = summary_age_days(path)
     if age is not None and age > STALE_MAX_DAYS:
-        print(f"Latest summary ({path}) is {age} days old (> {STALE_MAX_DAYS}); "
+        print(f"Latest briefing ({path}) is {age} days old (> {STALE_MAX_DAYS}); "
               f"not emailing stale data. Check the generate workflow.")
         sys.exit(1)
 
-    print(f"Emailing latest summary: {path}")
-    with open(path, encoding="utf-8") as f:
-        summary = f.read()
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", os.path.basename(path))
+    date_str = (datetime.date.fromisoformat(m.group(1)).strftime("%B %d, %Y")
+                if m else datetime.date.today().strftime("%B %d, %Y"))
 
-    charts = [p for p in CHART_PATHS if os.path.exists(p)]
-    if emailer.send_summary(summary, charts):
+    print(f"Emailing latest briefing: {path}")
+    if emailer.send_report(path, date_str):
         return
     # Configured-but-failed (or not configured) — surface as a job failure.
     print("Email was not sent.")

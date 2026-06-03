@@ -96,13 +96,42 @@ def send_summary(summary_markdown: str, chart_paths: list = None) -> bool:
         with open(path, "rb") as f:
             html_part.add_related(f.read(), maintype="image", subtype="png", cid=f"<{cid}>")
 
+    return _send(cfg, msg)
+
+
+def _send(cfg: dict, msg: EmailMessage) -> bool:
     try:
         with smtplib.SMTP(cfg["host"], cfg["port"], timeout=30) as server:
             server.starttls()
             server.login(cfg["user"], cfg["password"])
             server.send_message(msg)
-        print(f"📧 Emailed summary to {', '.join(cfg['to'])}")
+        print(f"📧 Emailed to {', '.join(cfg['to'])}")
         return True
     except Exception as exc:
         print(f"  ⚠️  Could not send email: {exc}")
         return False
+
+
+def send_report(pdf_path: str, date_str: str) -> bool:
+    """Email the briefing PDF as a downloadable attachment. Returns True if sent."""
+    cfg = _config()
+    if cfg is None:
+        print("  ℹ️  Email not configured (SMTP_* / EMAIL_TO unset) — skipping send.")
+        return False
+    if not (pdf_path and os.path.exists(pdf_path)):
+        print("  ⚠️  No PDF to email.")
+        return False
+
+    msg = EmailMessage()
+    msg["Subject"] = f"Daily Market Summary — {date_str}"
+    msg["From"] = cfg["from"]
+    msg["To"] = ", ".join(cfg["to"])
+    msg.set_content(
+        f"Your daily market summary for {date_str} is attached as a PDF.\n\n"
+        "It includes the sentiment dashboard, top gainers, top news, the market "
+        "snapshot, and the trend charts."
+    )
+    with open(pdf_path, "rb") as f:
+        msg.add_attachment(f.read(), maintype="application", subtype="pdf",
+                           filename=os.path.basename(pdf_path))
+    return _send(cfg, msg)

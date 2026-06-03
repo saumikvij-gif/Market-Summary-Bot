@@ -324,7 +324,8 @@ def main():
     data_block = build_data_block(market_data)
 
     print("\nFetching top market gainers…")
-    gainers_block = format_top_gainers(fetch_top_gainers(5))
+    gainers = fetch_top_gainers(5)
+    gainers_block = format_top_gainers(gainers)
     if gainers_block:
         data_block += "\n" + gainers_block + "\n"
 
@@ -336,6 +337,14 @@ def main():
         news_block = reddit_news.build_headline_block(headlines)
     except Exception:
         pass
+
+    # Top news with summaries, for the briefing's Top News section.
+    top_news = []
+    try:
+        import reddit_news
+        top_news = reddit_news.get_top_news(5)
+    except Exception as exc:
+        print(f"  ⚠️  Could not fetch top news: {exc}")
 
     # Compute the quantitative sentiment dashboard (reproducible, NLP-based).
     # This is the score of record — it drives the DB and the daily chart.
@@ -400,10 +409,31 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not generate charts: {exc}")
 
-    # Email the summary + charts if delivery is configured (opt-in, fail-safe).
+    # Build the downloadable PDF briefing (full report in one file).
+    pdf_path = os.path.splitext(OUTPUT_FILE)[0] + ".pdf"
+    today_pretty = datetime.date.today().strftime("%B %d, %Y")
+    stale_note = ("" if (is_fresh or not session_date) else
+                  f"No US trading session on {today}. Figures are from the last "
+                  f"session ({session_date}).")
+    try:
+        import report as report_module
+        prose = report.get("summary_markdown", "") if report else ""
+        html = report_module.build_html(
+            today_pretty, prose, gainers, top_news, dashboard or {},
+            market_data, chart_paths, stale_note=stale_note)
+        if report_module.write_pdf(html, pdf_path):
+            print(f"📄 PDF briefing written to {pdf_path}")
+        else:
+            pdf_path = None
+            print("  ⚠️  PDF generation reported an error.")
+    except Exception as exc:
+        pdf_path = None
+        print(f"  ⚠️  Could not build PDF: {exc}")
+
+    # Email the PDF as a downloadable attachment (opt-in, fail-safe).
     try:
         import emailer
-        emailer.send_summary(summary, chart_paths)
+        emailer.send_report(pdf_path, today_pretty)
     except Exception as exc:
         print(f"  ⚠️  Could not send email: {exc}")
 

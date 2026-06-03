@@ -13,6 +13,7 @@ env/
 
 # Generated output (local runs; the Actions workflow commits to summaries/)
 market_summary.md
+market_summary.pdf
 
 # Local SQLite cache — rebuilt from the committed history_*.csv source of truth
 market_data.db
