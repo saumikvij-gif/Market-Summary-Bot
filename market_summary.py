@@ -64,6 +64,28 @@ FX = {
     "GBP/USD": "GBPUSD=X",
 }
 
+# The 11 SPDR sector ETFs — used to measure market breadth (how broadly sectors
+# are participating), a key input to the enriched market sentiment component.
+SECTORS = {
+    "Technology":        "XLK",
+    "Financials":        "XLF",
+    "Health Care":       "XLV",
+    "Energy":            "XLE",
+    "Consumer Disc.":    "XLY",
+    "Consumer Staples":  "XLP",
+    "Industrials":       "XLI",
+    "Utilities":         "XLU",
+    "Materials":         "XLB",
+    "Real Estate":       "XLRE",
+    "Communication Svc": "XLC",
+}
+
+# Interest-rate signal — the 10-year US Treasury yield (rising yields are a
+# headwind for equities, falling a tailwind, broadly).
+RATES = {
+    "10Y Treasury Yield": "^TNX",
+}
+
 # Base path for the run's output; the PDF briefing is derived from its stem.
 OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "market_summary.pdf")
 
@@ -143,8 +165,10 @@ def fetch_all_data() -> dict:
     sections = {
         "indices":    INDICES,
         "stocks":     STOCKS,
+        "sectors":    SECTORS,
         "commodities":COMMODITIES,
         "fx":         FX,
+        "rates":      RATES,
     }
     result = {}
     for section, tickers in sections.items():
@@ -183,12 +207,16 @@ def build_data_block(market_data: dict) -> str:
     label_map = {
         "indices":    "Major Indices",
         "stocks":     "Key Stocks",
+        "sectors":    "Sector Performance",
         "commodities":"Commodities & Crypto",
         "fx":         "FX Rates",
+        "rates":      "Interest Rates",
     }
     for key, label in label_map.items():
-        parts.append(format_section(label, market_data[key]))
-        parts.append("")
+        section = market_data.get(key)
+        if section:
+            parts.append(format_section(label, section))
+            parts.append("")
     return "\n".join(parts)
 
 

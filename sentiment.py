@@ -6,7 +6,8 @@ returns a Joywin-style dashboard dict. This REPLACES the LLM's subjective score
 as the number stored in the DB and plotted on the daily chart.
 
 Composite components and default weights:
-    Market data : 55%   (S&P 500 + Nasdaq % change, VIX % change inverted)
+    Market data : 55%   (a blend of equity moves, sector breadth, VIX, and the
+                         10Y Treasury yield — see MARKET_SUBWEIGHTS)
     News         : 35%   (headline NLP sentiment)
     Reddit       :  5%   (subreddit post-title NLP sentiment — usually neutral)
     Fed          :  5%   (hawkish/dovish tone of Fed statements)
@@ -49,8 +50,18 @@ WEIGHTS = {"market": 0.55, "news": 0.35, "reddit": 0.05, "fed": 0.05}
 EQUITY_FULL_SCALE_PCT = 2.0
 # A ±15% VIX move is treated as a full ±1 (inverted) volatility signal.
 VIX_FULL_SCALE_PCT = 15.0
-# Within the market score: how much equities vs. the VIX matter.
-EQUITY_VS_VIX = (0.70, 0.30)
+# A ±5% move in the 10Y yield is treated as a full ±1 (inverted) rates signal.
+RATES_FULL_SCALE_PCT = 5.0
+
+# The market score is a blend of four distinct dimensions. If some data is
+# missing (e.g. no sector data on a backfilled history day), the present
+# sub-signals are renormalized so the weights still sum to 1.
+MARKET_SUBWEIGHTS = {
+    "equities": 0.40,   # magnitude of the big index moves (S&P + Nasdaq)
+    "breadth":  0.25,   # how broadly sectors are participating (advance/decline)
+    "vix":      0.20,   # volatility / fear (inverted)
+    "rates":    0.15,   # 10Y Treasury yield change (inverted)
+}
 
 # Thresholds for the +1/0/-1 discrete classification, per engine. VADER's
 # compound clusters near 0, so a small band works; FinBERT pushes probabilities
@@ -159,26 +170,61 @@ def _avg_classified(titles: list, engine: str = "vader") -> tuple:
 
 # ── Component scores ────────────────────────────────────────────────────────────
 
+def _pct_of(section: dict, name: str):
+    """pct_change for one instrument in a section, or None if missing/errored."""
+    q = (section or {}).get(name, {})
+    return q.get("pct_change") if isinstance(q, dict) and "error" not in q else None
+
+
+def _sector_breadth(sectors: dict):
+    """Advance/decline breadth across sector ETFs in [-1, 1], or None if absent."""
+    moves = [q.get("pct_change") for q in (sectors or {}).values()
+             if isinstance(q, dict) and "error" not in q and q.get("pct_change") is not None]
+    if not moves:
+        return None, None
+    up = sum(1 for m in moves if m > 0)
+    down = sum(1 for m in moves if m < 0)
+    breadth = (up - down) / len(moves)          # already in [-1, 1]
+    return round(breadth, 4), {"up": up, "down": down, "total": len(moves)}
+
+
 def market_component(market_data: dict) -> dict:
-    """Score from S&P 500 + Nasdaq % change and (inverted) VIX % change."""
+    """Blend equities, sector breadth, VIX, and rates into a market score.
+
+    Each sub-signal is normalized to [-1, 1]; present signals are combined with
+    MARKET_SUBWEIGHTS, renormalized over whatever data is available.
+    """
     idx = market_data.get("indices", {})
+    sp = _pct_of(idx, "S&P 500")
+    nq = _pct_of(idx, "Nasdaq 100")
+    vix = _pct_of(idx, "VIX")
+    rate = _pct_of(market_data.get("rates", {}), "10Y Treasury Yield")
+    breadth, breadth_detail = _sector_breadth(market_data.get("sectors", {}))
 
-    def pct(name):
-        q = idx.get(name, {})
-        return q.get("pct_change") if isinstance(q, dict) and "error" not in q else None
-
-    sp, nq, vix = pct("S&P 500"), pct("Nasdaq 100"), pct("VIX")
-
+    # Build each sub-signal as (weight, normalized_value) when its data exists.
+    signals = {}
     equities = [v for v in (sp, nq) if v is not None]
-    equity_norm = _clamp((sum(equities) / len(equities)) / EQUITY_FULL_SCALE_PCT) if equities else 0.0
-    # VIX up = fear = bearish, hence the negative sign.
-    vix_norm = _clamp(-vix / VIX_FULL_SCALE_PCT) if vix is not None else 0.0
+    if equities:
+        signals["equities"] = _clamp((sum(equities) / len(equities)) / EQUITY_FULL_SCALE_PCT)
+    if breadth is not None:
+        signals["breadth"] = breadth
+    if vix is not None:
+        signals["vix"] = _clamp(-vix / VIX_FULL_SCALE_PCT)        # VIX up = bearish
+    if rate is not None:
+        signals["rates"] = _clamp(-rate / RATES_FULL_SCALE_PCT)   # yields up = headwind
 
-    we, wv = EQUITY_VS_VIX
-    score = _clamp(we * equity_norm + wv * vix_norm)
+    # Weighted blend, renormalized over the sub-signals actually present.
+    total_w = sum(MARKET_SUBWEIGHTS[k] for k in signals) or 1.0
+    score = _clamp(sum(MARKET_SUBWEIGHTS[k] * v for k, v in signals.items()) / total_w)
+
     return {
         "score": round(score, 4),
-        "detail": {"sp500_pct": sp, "nasdaq_pct": nq, "vix_pct": vix},
+        "detail": {
+            "sp500_pct": sp, "nasdaq_pct": nq, "vix_pct": vix,
+            "rate_10y_pct": rate, "breadth": breadth,
+            "sectors": breadth_detail,
+            "subscores": {k: round(v, 4) for k, v in signals.items()},
+        },
     }
 
 
@@ -251,6 +297,11 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
         parts.append("Equities " + ("rose" if market["score"] > 0 else
                      "fell" if market["score"] < 0 else "were mixed")
                      + " with " + ", ".join(moves) + ".")
+    sec = d.get("sectors")
+    if sec and sec.get("total"):
+        parts.append(f"Sector breadth: {sec['up']}/{sec['total']} sectors up.")
+    if d.get("rate_10y_pct") is not None:
+        parts.append(f"10Y yield {d['rate_10y_pct']:+.1f}%.")
     parts.append(f"News headlines read {label_for(news['score']).lower()}.")
     parts.append(f"Reddit sentiment is {label_for(reddit['score']).lower()}.")
     if fed["detail"]["hawkish"] or fed["detail"]["dovish"]:

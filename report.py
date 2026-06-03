@@ -17,8 +17,10 @@ import markdown as md
 SECTION_LABELS = {
     "indices": "Major Indices",
     "stocks": "Key Stocks",
+    "sectors": "Sector Performance",
     "commodities": "Commodities & Crypto",
     "fx": "FX Rates",
+    "rates": "Interest Rates",
 }
 
 CSS = """
