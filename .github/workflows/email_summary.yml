@@ -1,0 +1,53 @@
+# .github/workflows/email_summary.yml
+#
+# EMAIL step: sends the most recently generated summary (committed by
+# market_summary.yml after the US close) at 9 AM Hong Kong time. It does not
+# regenerate anything — it just reads the latest committed summary + charts and
+# emails them.
+#
+# Timing: 9 AM HKT = 01:00 UTC. A summary generated Mon 21:30 UTC is emailed
+# Tue 01:00 UTC (9 AM HKT Tue), so this runs Tue–Sat to cover Mon–Fri closes.
+#
+# Required secrets (Settings → Secrets and variables → Actions):
+#   SMTP_HOST, SMTP_USER, SMTP_PASSWORD, EMAIL_TO   (SMTP_PORT/EMAIL_FROM optional)
+
+name: Email Market Summary
+
+on:
+  # ── 9 AM Hong Kong time (UTC+8) = 01:00 UTC, Tue–Sat (day after each close)
+  schedule:
+    - cron: "0 1 * * 2-6"
+
+  # ── Manual trigger (useful for testing)
+  workflow_dispatch:
+
+jobs:
+  email-summary:
+    name: Email Latest Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Email the latest summary
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python send_latest.py

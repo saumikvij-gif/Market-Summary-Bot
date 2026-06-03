@@ -1,12 +1,14 @@
 # .github/workflows/market_summary.yml
 #
-# Runs the market summary script every weekday at 21:30 UTC (after NYSE close).
-# The generated markdown is committed back to the repo automatically.
+# GENERATE step: runs after the US market close (Mon–Fri 21:30 UTC) to produce
+# the summary, update the trend database, and regenerate the charts — then
+# commits them. It does NOT send email; delivery is a separate workflow
+# (email_summary.yml) scheduled for 9 AM Hong Kong time.
 #
 # Required secret:
 #   ANTHROPIC_API_KEY  →  Settings → Secrets and variables → Actions → New secret
 
-name: Daily Market Summary
+name: Generate Market Summary
 
 on:
   # ── Scheduled trigger: Mon–Fri at 21:30 UTC (≈ 5:30 PM ET, after market close)
@@ -47,13 +49,8 @@ jobs:
       - name: Run market summary script
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Email delivery (optional — leave secrets unset to skip sending).
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # No SMTP_* here on purpose: email is sent later by email_summary.yml,
+          # so with no SMTP config the script's email step auto-skips.
         run: |
           mkdir -p summaries
           # One report per day — file it by date so re-runs overwrite the same day.
