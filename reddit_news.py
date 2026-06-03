@@ -2,19 +2,15 @@
 reddit_news.py
 --------------
 Pulls financial news headlines from public RSS feeds (financial news outlets +
-Reddit finance subreddits), prints them to the console, then sends them to
-Claude for a market-sentiment read (bullish / bearish / neutral) with themes
-and key drivers. No Reddit API key or app required.
+Reddit finance subreddits) and prints them to the console. No Reddit API key or
+app required. Also exposes gather_headlines()/build_headline_block() used by the
+main pipeline; sentiment scoring lives in sentiment.py.
 
 Usage:
     python reddit_news.py
 
-Required environment variable (for the sentiment step):
-    ANTHROPIC_API_KEY  - your Anthropic API key (loaded from .env)
-
 Optional:
     NEWS_LIMIT  - max headlines to show per feed (default: 8)
-    NO_SENTIMENT - set to "1" to skip the Claude analysis and just list headlines
 """
 
 import os
@@ -22,7 +18,6 @@ import sys
 import datetime
 import requests
 import feedparser
-import anthropic
 from dotenv import load_dotenv
 
 # Load environment variables from a local .env file if present (no-op in CI)
@@ -151,16 +146,7 @@ def gather_headlines(feeds: dict = None, limit: int = LIMIT) -> dict:
     return store
 
 
-# ── Sentiment analysis (Claude) ─────────────────────────────────────────────────
-
-SENTIMENT_SYSTEM_PROMPT = """\
-You are a financial market sentiment analyst. You are given a batch of news
-headlines and Reddit post titles from finance communities. Assess the overall
-market mood they convey. Be aware that Reddit finance communities (especially
-wallstreetbets) use sarcasm, slang, and irony — interpret tone accordingly.
-Be concise, neutral, and concrete. Use markdown.
-"""
-
+# ── Headline block (reused by the main pipeline) ────────────────────────────────
 
 def build_headline_block(headlines: dict) -> str:
     """Flatten the collected headlines into a single text block for the model."""
@@ -174,38 +160,6 @@ def build_headline_block(headlines: dict) -> str:
     return "\n".join(parts)
 
 
-def generate_sentiment(headlines: dict) -> str:
-    """Send headlines to Claude and return a sentiment analysis."""
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        return ("(Skipped sentiment analysis: ANTHROPIC_API_KEY is not set. "
-                "Add it to your .env file.)")
-
-    block = build_headline_block(headlines)
-    if not block.strip():
-        return "(No headlines were collected, so there is nothing to analyze.)"
-
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-
-    user_message = (
-        "Here are today's financial news headlines and Reddit post titles. "
-        "Provide:\n"
-        "1. An overall market sentiment: Bullish, Bearish, or Neutral, with a "
-        "confidence (low/medium/high).\n"
-        "2. 3–5 recurring themes or topics driving the mood.\n"
-        "3. The specific headlines that most influenced your read.\n"
-        "4. A one-sentence takeaway.\n\n"
-        + block
-    )
-
-    message = client.messages.create(
-        model="claude-sonnet-4-5",
-        max_tokens=1024,
-        system=SENTIMENT_SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_message}],
-    )
-    return message.content[0].text
-
-
 # ── Entry point ────────────────────────────────────────────────────────────────
 
 def main():
@@ -216,19 +170,6 @@ def main():
     headlines = {}
     collect_section("FINANCIAL NEWS OUTLETS", NEWS_FEEDS, headlines)
     collect_section("REDDIT", REDDIT_FEEDS, headlines)
-
-    if os.environ.get("NO_SENTIMENT") == "1":
-        print("\n(Sentiment analysis skipped via NO_SENTIMENT=1)\n")
-        return
-
-    print("\n\nAnalyzing sentiment with Claude…")
-    analysis = generate_sentiment(headlines)
-
-    divider = "═" * 70
-    print(f"\n{divider}")
-    print("  MARKET SENTIMENT ANALYSIS")
-    print(divider)
-    print(analysis)
     print()
 
 

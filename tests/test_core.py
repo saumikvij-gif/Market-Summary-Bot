@@ -1,7 +1,6 @@
 import datetime
 
 import market_summary as ms
-import database
 import send_latest
 
 
@@ -29,18 +28,6 @@ def test_latest_session_date():
     md = {"indices": {"S&P 500": {"session_date": "2026-06-03"}}}
     assert ms.latest_session_date(md) == "2026-06-03"
     assert ms.latest_session_date({"indices": {}}) is None
-
-
-# ── DB sentiment parsing (fallback path) ───────────────────────────────────────
-
-def test_parse_sentiment():
-    label, conf = database.parse_sentiment(
-        "**Overall Sentiment:** Neutral (Confidence: Medium)")
-    assert label == "Neutral" and conf == "Medium"
-
-
-def test_parse_sentiment_missing():
-    assert database.parse_sentiment("no sentiment line here") == (None, None)
 
 
 # ── Stale-email guard ──────────────────────────────────────────────────────────

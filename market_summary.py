@@ -16,7 +16,6 @@ Optional:
 
 import os
 import sys
-import json
 import datetime
 import anthropic
 import yfinance as yf
@@ -181,10 +180,12 @@ def fetch_headlines() -> dict:
         return {}
 
 
-# Tool schema that forces Claude to return structured, machine-readable output.
+# Tool schema that forces Claude to return the summary as machine-readable text.
+# (Sentiment is computed separately and reproducibly in sentiment.py, so Claude
+# only writes the narrative.)
 REPORT_TOOL = {
     "name": "submit_market_report",
-    "description": "Submit the daily market summary and structured sentiment.",
+    "description": "Submit the daily market summary prose.",
     "input_schema": {
         "type": "object",
         "properties": {
@@ -192,55 +193,24 @@ REPORT_TOOL = {
                 "type": "string",
                 "description": (
                     "The market summary in markdown. Use '## ' subheadings, no "
-                    "top-level '# ' title. Do NOT include a News & Sentiment "
-                    "section — that is rendered separately from the fields below."
+                    "top-level '# ' title. Do NOT include a sentiment section — "
+                    "that is rendered separately."
                 ),
-            },
-            "sentiment": {
-                "type": "string",
-                "enum": ["Bullish", "Bearish", "Neutral"],
-                "description": "Overall market sentiment.",
-            },
-            "confidence": {
-                "type": "string",
-                "enum": ["Low", "Medium", "High"],
-                "description": "Confidence in the sentiment call.",
-            },
-            "score": {
-                "type": "integer",
-                "description": (
-                    "Sentiment as a number from -100 (extremely bearish) to "
-                    "+100 (extremely bullish); 0 is neutral."
-                ),
-            },
-            "themes": {
-                "type": "array",
-                "items": {"type": "string"},
-                "description": "3-5 key themes driving the sentiment.",
-            },
-            "drivers": {
-                "type": "array",
-                "items": {"type": "string"},
-                "description": "Specific headlines that most influenced the read.",
             },
         },
-        "required": ["summary_markdown", "sentiment", "confidence", "score", "themes"],
+        "required": ["summary_markdown"],
     },
 }
 
 
 def generate_report(data_block: str, news_block: str = "") -> dict:
-    """Send market data (and optional news) to Claude; return a structured report.
-
-    Uses tool-use so the sentiment fields are reliable rather than scraped from
-    prose. Returns a dict matching REPORT_TOOL's input_schema.
-    """
+    """Send market data (and optional news) to Claude; return {'summary_markdown': ...}."""
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     user_message = (
         "Here is today's market data. Write a concise market summary "
         "(around 300–400 words) covering the key themes, notable movers, and "
-        "any cross-asset signals worth highlighting, then assess sentiment.\n\n"
+        "any cross-asset signals worth highlighting.\n\n"
         + data_block
     )
 
@@ -268,27 +238,6 @@ def generate_report(data_block: str, news_block: str = "") -> dict:
         if block.type == "tool_use":
             return block.input
     raise RuntimeError("Claude did not return a structured report.")
-
-
-def render_sentiment_section(report: dict) -> str:
-    """Build the '## News & Sentiment' markdown from the structured fields."""
-    lines = [
-        "## News & Sentiment",
-        "",
-        f"**Overall Sentiment:** {report.get('sentiment', '—')} "
-        f"(Confidence: {report.get('confidence', '—')}, "
-        f"Score: {report.get('score', 0):+d})",
-        "",
-    ]
-    themes = report.get("themes") or []
-    if themes:
-        lines.append("**Key Themes:**")
-        lines.extend(f"{i}. {t}" for i, t in enumerate(themes, 1))
-        lines.append("")
-    drivers = report.get("drivers") or []
-    if drivers:
-        lines.append("**Driving Headlines:** " + "; ".join(drivers))
-    return "\n".join(lines).rstrip()
 
 
 # ── Output ─────────────────────────────────────────────────────────────────────

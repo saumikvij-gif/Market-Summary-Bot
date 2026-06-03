@@ -16,7 +16,6 @@ print a trend report:
 """
 
 import os
-import re
 import sys
 import csv
 import sqlite3
@@ -122,36 +121,16 @@ def ensure_loaded() -> None:
 
 # ── Writing ──────────────────────────────────────────────────────────────────
 
-def parse_sentiment(summary: str) -> tuple:
-    """Best-effort extraction of (sentiment, confidence) from the summary text.
-
-    Looks for a line like: **Overall Sentiment:** Neutral (Confidence: Moderate)
-    Returns (None, None) if not found.
-    """
-    match = re.search(
-        r"Overall Sentiment:\**\s*([^(\n]+?)\s*\(Confidence:\s*([^)]+)\)",
-        summary,
-        re.IGNORECASE,
-    )
-    if not match:
-        return None, None
-    return match.group(1).strip(" *"), match.group(2).strip(" *")
-
-
 def save_run(market_data: dict, summary: str, run_date: str = None,
              sentiment: str = None, confidence: str = None,
              score: int = None) -> None:
     """Persist one run's quotes and summary. Re-running the same day overwrites.
 
-    If sentiment/confidence aren't supplied (structured), fall back to scraping
-    them from the summary text.
+    Sentiment/confidence/score come from the quantitative dashboard (sentiment.py).
     """
     ensure_loaded()  # rebuild the DB cache from CSV first if needed
     if run_date is None:
         run_date = datetime.date.today().isoformat()
-
-    if sentiment is None and confidence is None:
-        sentiment, confidence = parse_sentiment(summary)
 
     with connect() as conn:
         for section, instruments in market_data.items():
