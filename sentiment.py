@@ -16,9 +16,9 @@ Sentiment engines (right tool per source):
     via SENTIMENT_ENGINE and its deps (requirements-ml.txt) are installed.
   * Reddit (social/slang)     → VADER, which was built for social media and
     reads slang/sarcasm better than FinBERT.
-Default is VADER everywhere (lightweight, CI-friendly). FinBERT loads lazily and
+Default is "hybrid" (FinBERT news/Fed + VADER Reddit). FinBERT loads lazily and
 safely falls back to VADER if its deps/model aren't available, so a run never
-breaks. Set SENTIMENT_ENGINE=hybrid (or finbert) to enable FinBERT on news.
+breaks. Set SENTIMENT_ENGINE=vader to force VADER everywhere (lightweight).
 
 Standalone:
     python sentiment.py        # fetch live data + headlines, print the dashboard JSON
@@ -34,11 +34,11 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-# "vader" (default — all sources use VADER), or "hybrid"/"finbert" to use
-# FinBERT for formal news/Fed text while Reddit always stays on VADER. FinBERT
-# needs transformers+torch (requirements-ml.txt) and loads lazily with a safe
-# VADER fallback if unavailable.
-SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "vader").lower()
+# "hybrid" (default — FinBERT for formal news/Fed, VADER for Reddit) or "vader"
+# (all sources use VADER). FinBERT needs transformers+torch (requirements-ml.txt)
+# and loads lazily; if those deps/model aren't available it safely falls back to
+# VADER, so a run never breaks even without the ML extras installed.
+SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "hybrid").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
 

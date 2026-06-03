@@ -22,7 +22,7 @@ jobs:
   market-summary:
     name: Generate Market Summary
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20   # FinBERT (torch) install + model can take a few minutes
 
     permissions:
       contents: write   # needed to commit the summary back to the repo
@@ -39,16 +39,27 @@ jobs:
           python-version: "3.11"
           cache: pip
 
-      # ── 3. Install dependencies ───────────────────────────────────────────────
+      # ── 3. Cache the FinBERT model so it isn't re-downloaded every run ─────────
+      - name: Cache Hugging Face model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-finbert-prosusai-v1
+
+      # ── 4. Install dependencies (incl. FinBERT for the default hybrid engine) ──
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
+          # CPU-only torch keeps the install lean; then the rest of the ML extras.
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-ml.txt
 
-      # ── 4. Run the script ─────────────────────────────────────────────────────
+      # ── 5. Run the script ─────────────────────────────────────────────────────
       - name: Run market summary script
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SENTIMENT_ENGINE: hybrid
           # No SMTP_* here on purpose: email is sent later by email_summary.yml,
           # so with no SMTP config the script's email step auto-skips.
         run: |
