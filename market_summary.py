@@ -11,7 +11,8 @@ Environment variables required:
     ANTHROPIC_API_KEY  - Your Anthropic API key
 
 Optional:
-    OUTPUT_FILE        - Path to save the summary (default: market_summary.md)
+    OUTPUT_FILE        - Base path for output; the PDF is derived from its stem
+                         (default: market_summary.pdf)
 """
 
 import os
@@ -63,7 +64,8 @@ FX = {
     "GBP/USD": "GBPUSD=X",
 }
 
-OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "market_summary.md")
+# Base path for the run's output; the PDF briefing is derived from its stem.
+OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "market_summary.pdf")
 
 
 # ── Data fetching ──────────────────────────────────────────────────────────────
@@ -280,14 +282,6 @@ def generate_report(data_block: str, news_block: str = "") -> dict:
 
 # ── Output ─────────────────────────────────────────────────────────────────────
 
-def save_output(data_block: str, summary: str) -> None:
-    today = datetime.date.today().strftime("%B %d, %Y")
-    content = f"# Daily Market Summary — {today}\n\n{summary}\n\n---\n\n{data_block}"
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        f.write(content)
-    print(f"\n✅ Summary saved to {OUTPUT_FILE}")
-
-
 def print_to_console(data_block: str, summary: str) -> None:
     today = datetime.date.today().strftime("%B %d, %Y")
     divider = "─" * 60
@@ -380,7 +374,6 @@ def main():
         summary += "\n\n" + sentiment.render_dashboard_md(dashboard)
 
     print_to_console(data_block, summary)
-    save_output(data_block, summary)
 
     # Record this run for historical trend tracking (never block on DB errors).
     # Key by the actual session date so holidays don't create duplicate/today

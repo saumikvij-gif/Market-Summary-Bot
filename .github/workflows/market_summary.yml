@@ -64,8 +64,8 @@ jobs:
           # so with no SMTP config the script's email step auto-skips.
         run: |
           mkdir -p summaries
-          # One report per day — file it by date so re-runs overwrite the same day.
-          export OUTPUT_FILE="summaries/market_summary_$(date -u +'%Y-%m-%d').md"
+          # One PDF briefing per day — file it by date so re-runs overwrite the same day.
+          export OUTPUT_FILE="summaries/market_summary_$(date -u +'%Y-%m-%d').pdf"
           python market_summary.py
 
       # ── 5. Commit & push the generated summary ────────────────────────────────

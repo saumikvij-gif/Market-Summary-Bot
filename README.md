@@ -25,7 +25,7 @@ python market_summary.py
 | Variable            | Required | Default             | Description                          |
 | ------------------- | -------- | ------------------- | ------------------------------------ |
 | `ANTHROPIC_API_KEY` | Yes      | —                   | Your Anthropic API key               |
-| `OUTPUT_FILE`       | No       | `market_summary.md` | Path to save the generated summary   |
+| `OUTPUT_FILE`       | No       | `market_summary.pdf`| Base path for output; the PDF briefing is derived from its stem |
 
 ## Automated runs (GitHub Actions)
 
