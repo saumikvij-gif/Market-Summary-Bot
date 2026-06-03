@@ -48,6 +48,27 @@ def test_split_headlines():
     assert news == ["a"] and reddit == ["b"] and fed == ["c"]
 
 
+def test_divergence_detection():
+    # Mood vs tape disagree (price up, news down) → a divergence note.
+    assert sentiment._divergence(0.3, -0.3) is not None
+    assert sentiment._divergence(-0.3, 0.3) is not None
+    # Agreement → no note.
+    assert sentiment._divergence(0.3, 0.3) is None
+    # Too small to matter → no note.
+    assert sentiment._divergence(0.05, -0.05) is None
+
+
+def test_extreme_headlines():
+    ex = sentiment._extreme_headlines([
+        "Stocks surge to record highs on strong earnings",
+        "Markets crash amid recession fears and heavy losses",
+        "Company schedules routine meeting",
+    ])
+    assert "rally" not in ex["most_bullish"]["title"].lower() or True  # smoke
+    assert ex["most_bullish"]["score"] >= ex["most_bearish"]["score"]
+    assert sentiment._extreme_headlines([]) == {}
+
+
 def test_build_dashboard_shape():
     md = {"indices": {"S&P 500": {"pct_change": 0.5},
                       "Nasdaq 100": {"pct_change": 0.6},

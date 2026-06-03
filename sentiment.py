@@ -226,6 +226,37 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
     return " ".join(parts)
 
 
+def _extreme_headlines(titles: list) -> dict:
+    """Most bullish and most bearish single headline by polarity, or {}."""
+    scored = [(t, score_text(t)) for t in titles if t]
+    if not scored:
+        return {}
+    bull = max(scored, key=lambda x: x[1])
+    bear = min(scored, key=lambda x: x[1])
+    return {
+        "most_bullish": {"title": bull[0], "score": round(bull[1], 3)},
+        "most_bearish": {"title": bear[0], "score": round(bear[1], 3)},
+    }
+
+
+def _divergence(market_score: float, news_score: float) -> str | None:
+    """Flag when price action and news mood meaningfully disagree.
+
+    Since the score is descriptive (validated: no next-day predictive power),
+    the genuinely interesting signal is divergence — the crowd's mood pulling
+    against the tape. Returns a note, or None when they broadly agree.
+    """
+    if abs(market_score) < 0.1 or abs(news_score) < 0.1:
+        return None
+    if (market_score > 0) == (news_score > 0):
+        return None
+    if market_score > 0:
+        return ("⚠️ Divergence: prices rose but the news mood is negative — "
+                "the tape is climbing a wall of worry.")
+    return ("⚠️ Divergence: prices fell but the news mood is positive — "
+            "headlines are upbeat against a down tape.")
+
+
 def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) -> dict:
     """Compute the full Joywin-style sentiment dashboard as a dict."""
     if run_date is None:
@@ -237,6 +268,10 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) ->
     news = news_component(news_titles)
     reddit = reddit_component(reddit_titles)
     fed = fed_component(fed_titles)
+
+    # Surprise insights: divergence (mood vs tape) and the day's standout headlines.
+    divergence = _divergence(market["score"], news["score"])
+    extremes = _extreme_headlines(news_titles + reddit_titles)
 
     # Weighted composite. Each component is already in [-1, 1], so the weighted
     # sum is too (weights sum to 1.0).
@@ -264,6 +299,8 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) ->
             "reddit": reddit["detail"],
             "fed": fed["detail"],
         },
+        "divergence": divergence,
+        "headlines": extremes,
         "summary_text": _commentary(label, market, news, reddit, fed),
     }
 
@@ -286,6 +323,20 @@ def render_dashboard_md(dash: dict) -> str:
         "",
         f"_{dash['summary_text']}_",
     ]
+
+    if dash.get("divergence"):
+        lines += ["", f"**{dash['divergence']}**"]
+
+    h = dash.get("headlines") or {}
+    if h:
+        lines += ["", "**Standout headlines:**"]
+        if h.get("most_bullish"):
+            b = h["most_bullish"]
+            lines.append(f"- 🟢 Most bullish ({b['score']:+.2f}): {b['title']}")
+        if h.get("most_bearish"):
+            b = h["most_bearish"]
+            lines.append(f"- 🔴 Most bearish ({b['score']:+.2f}): {b['title']}")
+
     return "\n".join(lines)
 
 
