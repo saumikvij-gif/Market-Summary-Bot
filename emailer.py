@@ -1,9 +1,8 @@
 """
 emailer.py
 ----------
-Sends the daily market summary by email via SMTP, with the trend charts
-attached inline. Reads all configuration from environment variables (loaded
-from .env locally, or GitHub Actions secrets in CI).
+Emails the daily briefing PDF via SMTP. Reads all configuration from environment
+variables (loaded from .env locally, or GitHub Actions secrets in CI).
 
 Required environment variables:
     SMTP_HOST       - e.g. smtp.gmail.com
@@ -15,17 +14,14 @@ Optional:
     SMTP_PORT       - default 587 (STARTTLS)
     EMAIL_FROM      - default: SMTP_USER
 
-If the required variables are missing, send_summary() does nothing and returns
+If the required variables are missing, send_report() does nothing and returns
 False — so email delivery is opt-in and never blocks the rest of the pipeline.
 """
 
 import os
 import sys
 import smtplib
-import datetime
 from email.message import EmailMessage
-
-import markdown as md
 
 # Reconfigure stdout to UTF-8 so status emojis don't crash on Windows (cp1252)
 if hasattr(sys.stdout, "reconfigure"):
@@ -53,50 +49,6 @@ def _config() -> dict | None:
         "from": os.environ.get("EMAIL_FROM") or user,
         "to": [addr.strip() for addr in to.split(",") if addr.strip()],
     }
-
-
-def _build_html(summary_markdown: str, chart_cids: list) -> str:
-    """Render the markdown summary to HTML and embed referenced charts."""
-    body = md.markdown(summary_markdown, extensions=["extra", "sane_lists"])
-    images = "".join(
-        f'<p><img src="cid:{cid}" style="max-width:100%;height:auto;"></p>'
-        for cid in chart_cids
-    )
-    return f"""\
-<html><body style="font-family:-apple-system,Segoe UI,Arial,sans-serif;
-max-width:760px;margin:auto;color:#222;line-height:1.5;">
-{body}
-{('<hr><h2>Trend Charts</h2>' + images) if images else ''}
-</body></html>"""
-
-
-def send_summary(summary_markdown: str, chart_paths: list = None) -> bool:
-    """Email the summary with charts attached. Returns True if sent."""
-    cfg = _config()
-    if cfg is None:
-        print("  ℹ️  Email not configured (SMTP_* / EMAIL_TO unset) — skipping send.")
-        return False
-
-    chart_paths = [p for p in (chart_paths or []) if p and os.path.exists(p)]
-    today = datetime.date.today().strftime("%B %d, %Y")
-
-    msg = EmailMessage()
-    msg["Subject"] = f"Daily Market Summary — {today}"
-    msg["From"] = cfg["from"]
-    msg["To"] = ", ".join(cfg["to"])
-
-    # Plain-text fallback + HTML alternative with inline charts.
-    msg.set_content(summary_markdown)
-    cids = [f"chart{i}" for i in range(len(chart_paths))]
-    msg.add_alternative(_build_html(summary_markdown, cids), subtype="html")
-
-    # Attach each chart as a related inline image referenced by its cid.
-    html_part = msg.get_payload()[1]
-    for cid, path in zip(cids, chart_paths):
-        with open(path, "rb") as f:
-            html_part.add_related(f.read(), maintype="image", subtype="png", cid=f"<{cid}>")
-
-    return _send(cfg, msg)
 
 
 def _send(cfg: dict, msg: EmailMessage) -> bool:
