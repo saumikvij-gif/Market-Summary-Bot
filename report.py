@@ -116,13 +116,17 @@ def _sector_watch_block(rows: list) -> str:
     body = ""
     for r in rows:
         move = _chg(r.get("move_pct"), pct=True) if r.get("move_pct") is not None else "n/a"
+        rs = _chg(r.get("rel_strength"), pct=True) if r.get("rel_strength") is not None else "n/a"
+        breadth = f"{r['breadth_pct']}%" if r.get("breadth_pct") is not None else "n/a"
         news = _sentiment_label(r.get("news_score"))
-        reddit = _sentiment_label(r.get("reddit_score"))
-        body += (f"<tr><td>{r['sector']}</td><td>{move}</td>"
-                 f"<td>{news}</td><td>{reddit}</td></tr>")
+        overall = r.get("label", "—")
+        body += (f"<tr><td>{r['sector']}</td><td>{move}</td><td>{rs}</td>"
+                 f"<td>{breadth}</td><td>{news}</td><td><b>{overall}</b></td></tr>")
     return (f"<h2>Sector Watch (AI Stack)</h2>"
-            f"<table><tr><th>Sector</th><th>Avg Move</th>"
-            f"<th>News</th><th>Reddit</th></tr>{body}</table>")
+            f'<p class="news-src">Multi-metric read: relative strength, breadth '
+            f"(% of basket above its 50-day MA), news, volume, and Reddit.</p>"
+            f"<table><tr><th>Sector</th><th>Move</th><th>vs S&amp;P</th>"
+            f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")
 
 
 def _divergence_block(dash: dict) -> str:

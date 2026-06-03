@@ -376,7 +376,8 @@ def main():
     try:
         import sectors, sentiment as _s
         _, reddit_titles, _ = _s._split_headlines(headlines)
-        sector_watch = sectors.build_sector_watch(reddit_titles)
+        sp_move = (market_data.get("indices", {}).get("S&P 500", {}) or {}).get("pct_change")
+        sector_watch = sectors.build_sector_watch(reddit_titles, sp_move)
         watch_block = sectors.render_md(sector_watch)
         if watch_block:
             data_block += "\n" + watch_block + "\n"

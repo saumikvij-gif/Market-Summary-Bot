@@ -4,15 +4,19 @@ import sectors
 def test_render_md_handles_missing_values():
     rows = [
         {"sector": "Semiconductors / Compute", "move_pct": 1.08,
-         "news_score": 0.4, "reddit_score": -0.5},
+         "rel_strength": 0.9, "breadth_pct": 80, "news_score": 0.4,
+         "score": 0.5, "label": "Bullish"},
         {"sector": "Memory (DRAM/NAND/HBM)", "move_pct": None,
-         "news_score": None, "reddit_score": None},
+         "rel_strength": None, "breadth_pct": None, "news_score": None,
+         "score": 0.0, "label": "Neutral"},
     ]
     md = sectors.render_md(rows)
     assert "Sector Watch" in md
     assert "Semiconductors / Compute" in md
     assert "+1.08%" in md
-    assert "n/a" in md            # missing move renders as n/a
+    assert "80%>50DMA" in md       # breadth rendered
+    assert "Bullish" in md
+    assert "n/a" in md             # missing values render as n/a
     assert sectors.render_md([]) == ""
 
 

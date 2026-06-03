@@ -159,13 +159,20 @@ def classify(text: str, engine: str = "vader") -> int:
 
 
 def _avg_classified(titles: list, engine: str = "vader") -> tuple:
-    """Mean of discrete classifications over titles → (score in [-1,1], counts)."""
-    labels = [classify(t, engine) for t in titles if t]
-    counts = {"bullish": labels.count(1),
-              "neutral": labels.count(0),
-              "bearish": labels.count(-1)}
-    score = (sum(labels) / len(labels)) if labels else 0.0
-    return round(score, 4), counts
+    """Mean *continuous* polarity over titles → (score in [-1,1], counts).
+
+    Averaging the continuous score (not discrete +1/0/-1) preserves magnitude
+    and avoids the score collapsing to exactly 0.0 when bullish and bearish
+    headline counts happen to balance. Counts are still reported for display.
+    """
+    scores = [score_text(t, engine) for t in titles if t]
+    if not scores:
+        return 0.0, {"bullish": 0, "neutral": 0, "bearish": 0}
+    pos, neg = THRESHOLDS.get(engine, THRESHOLDS["vader"])
+    counts = {"bullish": sum(1 for s in scores if s >= pos),
+              "neutral": sum(1 for s in scores if neg < s < pos),
+              "bearish": sum(1 for s in scores if s <= neg)}
+    return round(sum(scores) / len(scores), 4), counts
 
 
 # ── Component scores ────────────────────────────────────────────────────────────

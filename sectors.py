@@ -1,14 +1,21 @@
 """
 sectors.py
 ----------
-AI-stack "Sector Watch": for each of 8 thesis baskets, compute the day's average
-price move (from a basket of representative stocks) and a news-sentiment read
-(Google News RSS per sector, scored with the sentiment engine), plus a
-best-effort Reddit read by keyword-tagging the gathered subreddit titles.
+AI-stack "Sector Watch": a professional-style, multi-metric read of 8 thesis
+baskets. For each basket it measures not just the average move, but *how* the
+sector is behaving underneath — the way a PM reads a sector:
 
-This is a DISPLAY-ONLY breakdown — it does not feed the composite score (which
-uses whole-market SPDR breadth). Everything is fail-safe: any fetch/scoring
-failure degrades to None rather than blocking the briefing.
+    Relative strength 30%  (sector move vs the S&P — leading or lagging?)
+    Breadth           25%  (% of the basket above its 50-day MA — is the WHOLE
+                            sector participating, or are a few names carrying it?)
+    News sentiment    25%  (FinBERT on a dedicated Google News search)
+    Volume            10%  (today's basket volume vs its 20-day average, signed
+                            by direction — conviction behind the move)
+    Reddit            10%  (best-effort: VADER on keyword-tagged subreddit titles)
+
+Each metric is normalized to [-1, 1] and blended (renormalized over whatever is
+available) into a per-sector score + label. This is DISPLAY-ONLY — it does not
+feed the composite market score. Everything is fail-safe.
 """
 
 import requests
@@ -24,11 +31,20 @@ HEADERS = {
 TIMEOUT = 15
 NEWS_PER_SECTOR = 8
 
-# Each basket: representative tickers (for the price move), a Google News search
-# query (for news sentiment), and keywords (to tag Reddit titles).
+# How a sector's sub-metrics blend into its overall score.
+SECTOR_METRIC_WEIGHTS = {
+    "rel_strength": 0.30,
+    "breadth":      0.25,
+    "news":         0.25,
+    "volume":       0.10,
+    "reddit":       0.10,
+}
+RS_FULL_SCALE_PCT = 2.0   # 2% outperformance vs the S&P = a full ±1 RS signal
+
+# Each basket: representative tickers, a Google News query, and Reddit keywords.
 SECTORS = {
     "Hyperscalers & Neoclouds": {
-        "tickers": ["GOOGL", "MSFT", "AMZN", "ORCL", "CRWV", "NBIS"],
+        "tickers": ["GOOGL", "MSFT", "AMZN", "META", "ORCL", "CRWV", "NBIS"],
         "query": '(hyperscaler OR "data center" OR cloud) (Microsoft OR Amazon OR Google OR CoreWeave OR Oracle)',
         "keywords": ["hyperscaler", "cloud", "azure", "aws", "coreweave", "data center", "gcp"],
     },
@@ -38,56 +54,67 @@ SECTORS = {
         "keywords": ["dram", "nand", "hbm", "memory chip", "micron"],
     },
     "Semiconductors / Compute": {
-        "tickers": ["NVDA", "AMD", "INTC", "ARM", "QCOM", "TSM"],
-        "query": '(semiconductor OR GPU OR CPU) (Nvidia OR AMD OR Intel OR Arm OR TSMC)',
+        "tickers": ["NVDA", "AMD", "ARM", "INTC", "QCOM", "TSM", "AVGO", "MRVL", "SMCI", "ANET"],
+        "query": '(semiconductor OR GPU OR CPU OR "AI chip") (Nvidia OR AMD OR Intel OR Arm OR TSMC)',
         "keywords": ["semiconductor", "gpu", "cpu", "chip", "nvidia", "amd", "intel"],
     },
     "Networking / Interconnect": {
-        "tickers": ["AVGO", "MRVL", "ANET", "LITE", "COHR", "APH"],
-        "query": '(networking OR optical interconnect OR "switch silicon") (Broadcom OR Marvell OR Arista OR Coherent)',
+        "tickers": ["AVGO", "MRVL", "ANET", "LITE", "COHR", "APH", "CIEN"],
+        "query": '(networking OR "optical interconnect" OR "switch silicon") (Broadcom OR Marvell OR Arista OR Coherent)',
         "keywords": ["networking", "interconnect", "optical", "switch", "ethernet", "broadcom", "arista"],
     },
     "SaaS": {
-        "tickers": ["CRM", "NOW", "SNOW", "DDOG", "ADBE", "PLTR"],
-        "query": '(SaaS OR "enterprise software") (Salesforce OR ServiceNow OR Snowflake OR Datadog)',
+        "tickers": ["CRM", "NOW", "SNOW", "DDOG", "MDB", "NET", "HUBS", "PLTR", "ADBE"],
+        "query": '(SaaS OR "enterprise software") (Salesforce OR ServiceNow OR Snowflake OR Datadog OR Cloudflare)',
         "keywords": ["saas", "software", "subscription"],
     },
     "Banking": {
-        "tickers": ["JPM", "BAC", "WFC", "GS", "C"],
+        "tickers": ["JPM", "BAC", "WFC", "GS", "MS", "C", "USB", "PNC"],
         "query": '(bank OR banking OR "loan default") (JPMorgan OR "Bank of America" OR "Goldman Sachs" OR "Wells Fargo")',
         "keywords": ["bank", "banking", "lender", "loan", "credit", "default"],
     },
     "Consumer": {
-        "tickers": ["WMT", "COST", "NKE", "MCD", "HD"],
+        "tickers": ["WMT", "COST", "NKE", "MCD", "HD", "TGT", "LOW", "SBUX"],
         "query": '(consumer spending OR retail) (Walmart OR Costco OR Nike OR "McDonald\'s" OR "Home Depot")',
         "keywords": ["consumer", "retail", "spending", "shopper"],
     },
     "Pharma / Healthcare": {
-        "tickers": ["LLY", "JNJ", "MRK", "PFE", "UNH", "ABBV"],
+        "tickers": ["LLY", "JNJ", "MRK", "PFE", "UNH", "ABBV", "AMGN", "BMY"],
         "query": '(pharma OR healthcare OR drug OR FDA) ("Eli Lilly" OR Pfizer OR Merck OR UnitedHealth)',
         "keywords": ["pharma", "drug", "fda", "healthcare", "biotech"],
     },
 }
 
 
-def _fetch_prices(tickers: list) -> dict:
-    """Batched daily % change for many tickers in one request. {ticker: pct}."""
+def _clamp(x, lo=-1.0, hi=1.0):
+    return max(lo, min(hi, x))
+
+
+def _fetch_history(tickers: list):
+    """Batched ~4 months of Close + Volume for all tickers (one request)."""
     import yfinance as yf
-    data = yf.download(tickers, period="5d", progress=False, group_by="ticker")
-    out = {}
-    for t in tickers:
-        try:
-            closes = data[t]["Close"].dropna()
-            if len(closes) >= 2 and closes.iloc[-2]:
-                out[t] = round((closes.iloc[-1] / closes.iloc[-2] - 1) * 100, 2)
-        except Exception:
-            pass
-    return out
+    return yf.download(tickers, period="4mo", progress=False, group_by="ticker")
+
+
+def _per_ticker_metrics(data, ticker: str):
+    """Return (move_pct, above_50dma, vol_ratio) for one ticker, or None."""
+    try:
+        df = data[ticker]
+        closes = df["Close"].dropna()
+        vols = df["Volume"].dropna()
+        if len(closes) < 2:
+            return None
+        move = (closes.iloc[-1] / closes.iloc[-2] - 1) * 100
+        ma50 = closes.tail(50).mean()
+        above = bool(closes.iloc[-1] > ma50)
+        vol_ratio = (vols.iloc[-1] / vols.tail(20).mean()) if len(vols) >= 5 and vols.tail(20).mean() else None
+        return round(float(move), 2), above, (round(float(vol_ratio), 2) if vol_ratio else None)
+    except Exception:
+        return None
 
 
 def _news_sentiment(query: str) -> tuple:
-    """(avg sentiment, n headlines) from a Google News RSS search, scored by the
-    news engine (FinBERT in hybrid mode). Returns (None, 0) on failure/empty."""
+    """(avg sentiment, n) from a Google News RSS search, FinBERT-scored."""
     url = ("https://news.google.com/rss/search?q="
            + requests.utils.quote(query) + "&hl=en-US&gl=US&ceid=US:en")
     resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
@@ -98,44 +125,71 @@ def _news_sentiment(query: str) -> tuple:
     if not titles:
         return None, 0
     engine = sentiment.news_engine()
-    avg = sum(sentiment.score_text(t, engine) for t in titles) / len(titles)
-    return round(avg, 4), len(titles)
+    return round(sum(sentiment.score_text(t, engine) for t in titles) / len(titles), 4), len(titles)
 
 
 def _reddit_sentiment(keywords: list, reddit_titles: list) -> tuple:
-    """Best-effort: VADER sentiment of Reddit titles matching the sector keywords."""
-    matched = [t for t in (reddit_titles or [])
-               if any(k in t.lower() for k in keywords)]
+    matched = [t for t in (reddit_titles or []) if any(k in t.lower() for k in keywords)]
     if not matched:
         return None, 0
-    avg = sum(sentiment.score_text(t, "vader") for t in matched) / len(matched)
-    return round(avg, 4), len(matched)
+    return round(sum(sentiment.score_text(t, "vader") for t in matched) / len(matched), 4), len(matched)
 
 
-def build_sector_watch(reddit_titles: list = None) -> list:
-    """Return a list of per-sector dicts: move %, news sentiment, reddit sentiment."""
+def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> list:
+    """Per-sector multi-metric read. sp_move is the S&P 500 daily % (for RS)."""
     all_tickers = sorted({t for cfg in SECTORS.values() for t in cfg["tickers"]})
     try:
-        prices = _fetch_prices(all_tickers)
+        data = _fetch_history(all_tickers)
+        metrics = {t: _per_ticker_metrics(data, t) for t in all_tickers}
     except Exception as exc:
-        print(f"  ⚠️  Could not fetch sector prices: {exc}")
-        prices = {}
+        print(f"  ⚠️  Could not fetch sector history: {exc}")
+        metrics = {}
 
     rows = []
     for name, cfg in SECTORS.items():
-        moves = [prices[t] for t in cfg["tickers"] if t in prices]
+        present = [metrics[t] for t in cfg["tickers"] if metrics.get(t)]
+        moves = [m[0] for m in present]
         avg_move = round(sum(moves) / len(moves), 2) if moves else None
+
+        # Breadth: fraction of the basket above its 50-day MA, mapped to [-1, 1].
+        breadth_frac = (sum(1 for m in present if m[1]) / len(present)) if present else None
+        breadth_score = (2 * breadth_frac - 1) if breadth_frac is not None else None
+
+        # Relative strength: sector move vs the S&P.
+        rs_score = None
+        if avg_move is not None and sp_move is not None:
+            rs_score = _clamp((avg_move - sp_move) / RS_FULL_SCALE_PCT)
+
+        # Volume: above-average volume confirms the day's direction.
+        vol_ratios = [m[2] for m in present if m[2] is not None]
+        vol_score = None
+        if vol_ratios and avg_move is not None:
+            avg_ratio = sum(vol_ratios) / len(vol_ratios)
+            direction = 1 if avg_move > 0 else -1 if avg_move < 0 else 0
+            vol_score = _clamp((avg_ratio - 1.0)) * direction
+
         try:
             news_score, news_n = _news_sentiment(cfg["query"])
         except Exception as exc:
             print(f"  ⚠️  Sector news failed for {name}: {exc}")
             news_score, news_n = None, 0
         reddit_score, reddit_n = _reddit_sentiment(cfg["keywords"], reddit_titles)
+
+        # Blend available sub-metrics, renormalized over their weights.
+        parts = {"rel_strength": rs_score, "breadth": breadth_score,
+                 "news": news_score, "volume": vol_score, "reddit": reddit_score}
+        avail = {k: v for k, v in parts.items() if v is not None}
+        total_w = sum(SECTOR_METRIC_WEIGHTS[k] for k in avail) or 1.0
+        score = round(_clamp(sum(SECTOR_METRIC_WEIGHTS[k] * v for k, v in avail.items()) / total_w), 4)
+
         rows.append({
             "sector": name, "move_pct": avg_move,
+            "rel_strength": round(avg_move - sp_move, 2) if (avg_move is not None and sp_move is not None) else None,
+            "breadth_pct": round(breadth_frac * 100) if breadth_frac is not None else None,
             "news_score": news_score, "news_n": news_n,
             "reddit_score": reddit_score, "reddit_n": reddit_n,
-            "constituents": len(moves),
+            "score": score, "label": sentiment.label_for(score),
+            "constituents": len(present),
         })
     return rows
 
@@ -147,7 +201,8 @@ def render_md(rows: list) -> str:
     lines = ["### Sector Watch (AI Stack)"]
     for r in rows:
         move = f"{r['move_pct']:+.2f}%" if r["move_pct"] is not None else "n/a"
-        news = sentiment.label_for(r["news_score"]) if r["news_score"] is not None else "—"
-        red = sentiment.label_for(r["reddit_score"]) if r["reddit_score"] is not None else "—"
-        lines.append(f"- {r['sector']}: {move}  |  news: {news}  |  reddit: {red}")
+        rs = f"{r['rel_strength']:+.2f}%" if r["rel_strength"] is not None else "n/a"
+        breadth = f"{r['breadth_pct']}%>50DMA" if r["breadth_pct"] is not None else "n/a"
+        lines.append(f"- {r['sector']}: {move} (vs S&P {rs}) | breadth {breadth} "
+                     f"| **{r['label']}** ({r['score']:+.2f})")
     return "\n".join(lines)
