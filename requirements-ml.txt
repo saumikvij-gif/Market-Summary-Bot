@@ -1,0 +1,9 @@
+# Optional finance-aware sentiment engine.
+# Install these and set SENTIMENT_ENGINE=finbert to use FinBERT instead of VADER.
+# Heavy (torch + transformers, ~hundreds of MB) — intentionally NOT in the
+# default requirements.txt so normal/CI runs stay lightweight.
+#
+#   pip install -r requirements-ml.txt
+#   SENTIMENT_ENGINE=finbert python market_summary.py
+transformers>=4.40.0
+torch>=2.2.0

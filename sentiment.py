@@ -20,6 +20,7 @@ Standalone:
     python sentiment.py        # fetch live data + headlines, print the dashboard JSON
 """
 
+import os
 import sys
 import json
 import datetime
@@ -28,6 +29,11 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
+
+# Sentiment engine: "vader" (default — lightweight, CI-friendly) or "finbert"
+# (finance-aware, needs transformers+torch from requirements-ml.txt). FinBERT is
+# loaded lazily and falls back to VADER if its dependencies/model aren't present.
+SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "vader").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
 
@@ -55,7 +61,8 @@ HAWKISH = ["hike", "raise rates", "tighten", "restrictive", "inflation",
 DOVISH = ["cut", "ease", "easing", "accommodative", "lower rates", "stimulus",
           "rate reduction", "dovish"]
 
-_analyzer = SentimentIntensityAnalyzer()
+_vader = SentimentIntensityAnalyzer()
+_finbert = None  # None = not loaded yet; False = unavailable; else a pipeline
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
@@ -64,9 +71,39 @@ def _clamp(x: float, lo: float = -1.0, hi: float = 1.0) -> float:
     return max(lo, min(hi, x))
 
 
+def _get_finbert():
+    """Lazily load the FinBERT pipeline; return False (once) if unavailable."""
+    global _finbert
+    if _finbert is None:
+        try:
+            from transformers import pipeline
+            _finbert = pipeline("text-classification",
+                                model="ProsusAI/finbert", top_k=None)
+            print("  (using FinBERT for sentiment)")
+        except Exception as exc:  # missing deps / model / no network
+            print(f"  ⚠️  FinBERT unavailable ({exc}); using VADER instead.")
+            _finbert = False
+    return _finbert
+
+
 def score_text(text: str) -> float:
-    """Return a sentiment polarity in [-1, 1] for one piece of text (VADER)."""
-    return _analyzer.polarity_scores(text or "")["compound"]
+    """Return a sentiment polarity in [-1, 1] for one piece of text.
+
+    Uses FinBERT when SENTIMENT_ENGINE=finbert and it's installed, else VADER.
+    FinBERT polarity = P(positive) - P(negative).
+    """
+    text = text or ""
+    if SENTIMENT_ENGINE == "finbert":
+        clf = _get_finbert()
+        if clf:
+            try:
+                out = clf(text[:512])               # truncate to model limit
+                scores = out[0] if out and isinstance(out[0], list) else out
+                probs = {r["label"].lower(): r["score"] for r in scores}
+                return probs.get("positive", 0.0) - probs.get("negative", 0.0)
+            except Exception as exc:
+                print(f"  ⚠️  FinBERT scoring failed ({exc}); using VADER for this item.")
+    return _vader.polarity_scores(text)["compound"]
 
 
 def classify(text: str) -> int:
