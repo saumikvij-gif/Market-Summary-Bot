@@ -17,7 +17,6 @@ import markdown as md
 SECTION_LABELS = {
     "indices": "Major Indices",
     "stocks": "Key Stocks",
-    "sectors": "Sector Performance",
     "commodities": "Commodities & Crypto",
     "fx": "FX Rates",
     "rates": "Interest Rates",
@@ -31,8 +30,8 @@ h2 { color: #14223b; font-size: 13pt; border-bottom: 1.5px solid #d6deea;
      padding-bottom: 3px; margin-top: 16px; }
 .subtitle { color: #667; font-size: 10pt; margin-bottom: 6px; }
 .score { font-size: 15pt; font-weight: bold; }
-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
-th, td { text-align: left; padding: 3px 6px; font-size: 9.5pt; }
+table { width: 100%; border-collapse: collapse; margin-top: 3px; }
+th, td { text-align: left; padding: 1.5px 5px; font-size: 8.5pt; }
 th { background: #14223b; color: #fff; }
 tr:nth-child(even) td { background: #f3f6fa; }
 .pos { color: #1a7f37; font-weight: bold; }
@@ -45,7 +44,8 @@ tr:nth-child(even) td { background: #f3f6fa; }
 .news-src { color: #888; font-size: 8.5pt; }
 .news-sum { color: #444; font-size: 9pt; }
 .note { background: #fdecea; border-left: 5px solid #c0392b; padding: 6px 10px; }
-img { width: 17cm; }
+/* Charts sit on the dashboard page, so keep them small enough to fit together. */
+img { width: 12cm; }
 """
 
 
@@ -124,7 +124,8 @@ def _sector_watch_block(rows: list) -> str:
                  f"<td>{breadth}</td><td>{news}</td><td><b>{overall}</b></td></tr>")
     return (f"<h2>Sector Watch (AI Stack)</h2>"
             f'<p class="news-src">Multi-metric read: relative strength, breadth '
-            f"(% of basket above its 50-day MA), news, volume, and Reddit.</p>"
+            f"(avg % of the 20/50/200-day MAs the basket trades above), news, "
+            f"volume, and Reddit.</p>"
             f"<table><tr><th>Sector</th><th>Move</th><th>vs S&amp;P</th>"
             f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")
 
@@ -141,13 +142,14 @@ def _dashboard_block(dash: dict) -> str:
     w = dash.get("weights", {})
     rows = ""
     for key, label in [("market", "Market data"), ("news", "News headlines"),
-                       ("reddit", "Reddit"), ("fed", "Fed tone")]:
+                       ("reddit", "Reddit"), ("fed", "Fed (rate expectations)")]:
         rows += (f"<tr><td>{label}</td><td>{w.get(key,0):.0%}</td>"
                  f"<td>{_chg(dash.get(key+'_score'))}</td></tr>")
     engine = (dash.get("components", {}).get("news", {}) or {}).get("engine", "")
     eng = f' <span class="news-src">(news scored with {engine})</span>' if engine else ""
-    return (f'<h2>Market Sentiment Dashboard</h2>'
-            f'<p class="score">Overall: {dash.get("overall_score",0):+.2f} '
+    return (f'<h2>Market Tone &mdash; Today\'s Session</h2>'
+            f'<p class="news-src">A recap of how the market traded today &mdash; not a forecast.</p>'
+            f'<p class="score">Today: {dash.get("overall_score",0):+.2f} '
             f'&rarr; {dash.get("label","")}</p>'
             f'<table><tr><th>Component</th><th>Weight</th><th>Score</th></tr>'
             f'{rows}</table>'
@@ -169,18 +171,23 @@ def build_html(date_str: str, prose_md: str, gainers: list, news: list,
     note = f'<div class="note">{stale_note}</div>' if stale_note else ""
     prose_html = md.markdown(prose_md or "", extensions=["extra"])
     dash_html = _dashboard_block(dashboard) if dashboard else ""
+    pb = '<div style="page-break-before: always;"></div>'   # one section per page
     return f"""<html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <h1>Daily Market Summary</h1>
 <div class="subtitle">{date_str}</div>
 {note}
 {dash_html}
 {_divergence_block(dashboard or {})}
-{_gainers_block(gainers)}
+{_charts_block(chart_paths)}
+{pb}
 {_sector_watch_block(sector_watch)}
+{pb}
+{_gainers_block(gainers)}
 {_news_block(news)}
+{pb}
 <h2>Market Snapshot</h2>
 {_market_tables(market_data)}
-{_charts_block(chart_paths)}
+{pb}
 <h2>Analyst Summary</h2>
 {prose_html}
 </body></html>"""

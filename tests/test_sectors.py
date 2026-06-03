@@ -14,7 +14,7 @@ def test_render_md_handles_missing_values():
     assert "Sector Watch" in md
     assert "Semiconductors / Compute" in md
     assert "+1.08%" in md
-    assert "80%>50DMA" in md       # breadth rendered
+    assert "80% trend" in md       # breadth rendered
     assert "Bullish" in md
     assert "n/a" in md             # missing values render as n/a
     assert sectors.render_md([]) == ""

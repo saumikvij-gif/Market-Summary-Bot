@@ -58,11 +58,13 @@ def test_market_component_renormalizes_when_sparse():
     assert "breadth" not in r["detail"]["subscores"]
 
 
-def test_fed_component_dampened():
-    # A single dovish keyword must not swing the score to +1.
-    r = sentiment.fed_component(["Fed signals a rate cut"])
-    assert 0 < r["score"] <= 0.5
-    assert sentiment.fed_component(["Minutes of the FOMC meeting"])["score"] == 0.0
+def test_fed_component_rate_based():
+    # Falling short rates = market pricing easier policy = supportive (positive).
+    easing = {"rates": {"2Y Treasury Yield": {"pct_change": -2.0}}}
+    tightening = {"rates": {"2Y Treasury Yield": {"pct_change": 3.0}}}
+    assert sentiment.fed_component(easing)["score"] > 0
+    assert sentiment.fed_component(tightening)["score"] < 0
+    assert sentiment.fed_component({})["score"] == 0.0   # no data → neutral
 
 
 def test_split_headlines():

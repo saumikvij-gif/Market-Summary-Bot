@@ -1,8 +1,8 @@
 """
 charts.py
 ---------
-Generates trend charts (PNG) from the SQLite history database so the data is
-glanceable instead of row-by-row. Saves into the charts/ folder.
+Generates trend charts (PNG) from the CSV history (see database.py) so the data
+is glanceable instead of row-by-row. Saves into the charts/ folder.
 
     python charts.py
 

@@ -43,13 +43,19 @@ INDICES = {
 }
 
 STOCKS = {
-    "Apple":    "AAPL",
-    "Microsoft":"MSFT",
-    "Nvidia":   "NVDA",
-    "Amazon":   "AMZN",
-    "Alphabet": "GOOGL",
-    "Tesla":    "TSLA",
-    "Meta":     "META",
+    "Nvidia":    "NVDA",
+    "Microsoft": "MSFT",
+    "AMD":       "AMD",
+    "Meta":      "META",
+    "Alphabet":  "GOOG",
+    "Broadcom":  "AVGO",
+    "Micron":    "MU",
+    "Intel":     "INTC",   # INTL → INTC (Intel)
+    "SanDisk":   "SNDK",
+    "Coherent":  "COHR",
+    "Amazon":    "AMZN",
+    "Apple":     "AAPL",
+    "Arm":       "ARM",
 }
 
 COMMODITIES = {
@@ -80,10 +86,11 @@ SECTORS = {
     "Communication Svc": "XLC",
 }
 
-# Interest-rate signal — the 10-year US Treasury yield (rising yields are a
-# headwind for equities, falling a tailwind, broadly).
+# Interest-rate signals. The 10Y captures financial conditions (market
+# component); the 2Y tracks Fed-policy expectations and powers the Fed score.
 RATES = {
     "10Y Treasury Yield": "^TNX",
+    "2Y Treasury Yield":  "2YY=F",
 }
 
 # Base path for the run's output; the PDF briefing is derived from its stem.
@@ -204,10 +211,11 @@ def format_section(title: str, data: dict) -> str:
 def build_data_block(market_data: dict) -> str:
     today = datetime.date.today().strftime("%B %d, %Y")
     parts = [f"## Market Data — {today}\n"]
+    # Note: "sectors" (SPDR ETFs) is intentionally omitted from display — it's
+    # still fetched to power the composite breadth signal, just not shown.
     label_map = {
         "indices":    "Major Indices",
         "stocks":     "Key Stocks",
-        "sectors":    "Sector Performance",
         "commodities":"Commodities & Crypto",
         "fx":         "FX Rates",
         "rates":      "Interest Rates",
@@ -429,7 +437,6 @@ def main():
             database.save_run(
                 market_data, summary, run_date=db_date,
                 sentiment=dashboard["label"],
-                confidence=None,
                 score=int(round(dashboard["overall_score"] * 100)),
             )
         else:

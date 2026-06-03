@@ -6,11 +6,15 @@ returns a Joywin-style dashboard dict. This REPLACES the LLM's subjective score
 as the number stored in the DB and plotted on the daily chart.
 
 Composite components and default weights:
-    Market data : 55%   (a blend of equity moves, sector breadth, VIX, and the
+    Market data : 50%   (a blend of equity moves, sector breadth, VIX, and the
                          10Y Treasury yield — see MARKET_SUBWEIGHTS)
     News         : 35%   (headline NLP sentiment)
     Reddit       :  5%   (subreddit post-title NLP sentiment — usually neutral)
-    Fed          :  5%   (hawkish/dovish tone of Fed statements)
+    Fed          : 10%   (the Fed Expectations Score — 2Y Treasury move + FinBERT
+                         tone of fresh Fed communications; see fed.py)
+
+This is a DESCRIPTIVE recap of how the market traded today — every input is a
+same-day reading. It is not a forecast (validated: no next-day predictive edge).
 
 Sentiment engines (right tool per source):
   * News + Fed (formal text) → FinBERT, which is finance-aware — when opted in
@@ -44,7 +48,7 @@ SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "hybrid").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
 
-WEIGHTS = {"market": 0.55, "news": 0.35, "reddit": 0.05, "fed": 0.05}
+WEIGHTS = {"market": 0.50, "news": 0.35, "reddit": 0.05, "fed": 0.10}
 
 # A ±2% average move in the big indices is treated as a full ±1 equity signal.
 EQUITY_FULL_SCALE_PCT = 2.0
@@ -70,17 +74,6 @@ THRESHOLDS = {
     "vader":   (0.05, -0.05),
     "finbert": (0.15, -0.15),
 }
-
-# Require at least this many Fed keyword hits before the tone score can reach
-# full scale — keeps a single stray match from swinging fed_score to ±1.
-FED_FULL_SCALE_HITS = 4
-
-# Keyword lexicon for Fed tone. Hawkish (tightening) is bearish for equities;
-# dovish (easing) is bullish.
-HAWKISH = ["hike", "raise rates", "tighten", "restrictive", "inflation",
-           "higher for longer", "rate increase"]
-DOVISH = ["cut", "ease", "easing", "accommodative", "lower rates", "stimulus",
-          "rate reduction", "dovish"]
 
 _vader = SentimentIntensityAnalyzer()
 _finbert = None  # None = not loaded yet; False = unavailable; else a pipeline
@@ -165,13 +158,16 @@ def _avg_classified(titles: list, engine: str = "vader") -> tuple:
     and avoids the score collapsing to exactly 0.0 when bullish and bearish
     headline counts happen to balance. Counts are still reported for display.
     """
-    scores = [score_text(t, engine) for t in titles if t]
-    if not scores:
+    kept = [t for t in titles if t]
+    if not kept:
         return 0.0, {"bullish": 0, "neutral": 0, "bearish": 0}
-    pos, neg = THRESHOLDS.get(engine, THRESHOLDS["vader"])
-    counts = {"bullish": sum(1 for s in scores if s >= pos),
-              "neutral": sum(1 for s in scores if neg < s < pos),
-              "bearish": sum(1 for s in scores if s <= neg)}
+    scores = [score_text(t, engine) for t in kept]
+    # Reuse classify() for the discrete bucketing so the threshold logic lives in
+    # exactly one place. score_text is lru-cached, so this adds no extra inference.
+    labels = [classify(t, engine) for t in kept]
+    counts = {"bullish": sum(1 for l in labels if l == 1),
+              "neutral": sum(1 for l in labels if l == 0),
+              "bearish": sum(1 for l in labels if l == -1)}
     return round(sum(scores) / len(scores), 4), counts
 
 
@@ -248,18 +244,18 @@ def reddit_component(reddit_titles: list) -> dict:
     return {"score": score, "detail": {"n": len(reddit_titles), "engine": "vader", **counts}}
 
 
-def fed_component(fed_titles: list) -> dict:
-    """Net hawkish/dovish tone of Fed statement titles, normalized to [-1, 1]."""
-    hawk = dov = 0
-    for t in fed_titles:
-        low = (t or "").lower()
-        hawk += sum(1 for w in HAWKISH if w in low)
-        dov += sum(1 for w in DOVISH if w in low)
-    total = hawk + dov
-    # Dovish is bullish (+), hawkish is bearish (−). Divide by at least
-    # FED_FULL_SCALE_HITS so a lone keyword yields a muted score, not ±1.
-    score = _clamp((dov - hawk) / max(total, FED_FULL_SCALE_HITS)) if total else 0.0
-    return {"score": round(score, 4), "detail": {"hawkish": hawk, "dovish": dov}}
+def fed_component(market_data: dict, fed_titles: list = None) -> dict:
+    """The Fed Expectations Score — delegated to the fed module.
+
+    A renormalized blend of the 2Y Treasury move (active daily), the FinBERT tone
+    of any fresh Fed communications (active on event days), and an inflation-
+    surprise hook (inactive — no free consensus data). See fed.py for the full
+    rationale and the deliberate 2Y-here / 10Y-in-market split.
+    """
+    import fed
+    result = fed.fed_expectations_score(market_data, fed_titles)
+    return {"score": result["score"], "label": result["label"],
+            "detail": result["detail"]}
 
 
 # ── Composite + labelling ──────────────────────────────────────────────────────
@@ -311,10 +307,16 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
         parts.append(f"10Y yield {d['rate_10y_pct']:+.1f}%.")
     parts.append(f"News headlines read {label_for(news['score']).lower()}.")
     parts.append(f"Reddit sentiment is {label_for(reddit['score']).lower()}.")
-    if fed["detail"]["hawkish"] or fed["detail"]["dovish"]:
-        tone = ("dovish" if fed["score"] > 0 else "hawkish" if fed["score"] < 0 else "neutral")
-        parts.append(f"Fed tone appears {tone}.")
-    parts.append(f"Overall market sentiment: {overall_label}.")
+    treasury = fed["detail"].get("treasury", {})
+    if treasury.get("active") and treasury.get("rate_pct") is not None:
+        tone = ("eased" if fed["score"] > 0 else
+                "tightened" if fed["score"] < 0 else "held steady")
+        parts.append(f"Fed-policy expectations {tone} "
+                     f"(2Y Treasury {treasury['rate_pct']:+.2f}%).")
+    comms = fed["detail"].get("communications", {})
+    if comms.get("active"):
+        parts.append(f"Fresh Fed communications read {label_for(comms['score']).lower()}.")
+    parts.append(f"Today's overall market tone: {overall_label}.")
     return " ".join(parts)
 
 
@@ -364,7 +366,7 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) ->
     market = market_component(market_data)
     news = news_component(news_titles)
     reddit = reddit_component(reddit_titles)
-    fed = fed_component(fed_titles)
+    fed = fed_component(market_data, fed_titles)   # Fed Expectations Score
 
     # Surprise insights: divergence (mood vs tape) and the day's standout headlines.
     divergence = _divergence(market["score"], news["score"])
@@ -407,16 +409,18 @@ def render_dashboard_md(dash: dict) -> str:
     def pct100(x):
         return f"{x * 100:+.0f}"
     lines = [
-        "## Market Sentiment Dashboard",
+        "## Market Tone — Today's Session",
         "",
-        f"**Overall Score:** {dash['overall_score']:+.2f}  →  **{dash['label']}**",
+        "_A recap of how the market traded today — not a forecast._",
+        "",
+        f"**Today's Score:** {dash['overall_score']:+.2f}  →  **{dash['label']}**",
         "",
         "| Component | Weight | Score |",
         "| --- | --- | --- |",
         f"| Market data | {dash['weights']['market']:.0%} | {dash['market_score']:+.2f} |",
         f"| News headlines | {dash['weights']['news']:.0%} | {dash['news_score']:+.2f} |",
         f"| Reddit | {dash['weights']['reddit']:.0%} | {dash['reddit_score']:+.2f} |",
-        f"| Fed tone | {dash['weights']['fed']:.0%} | {dash['fed_score']:+.2f} |",
+        f"| Fed (rate expectations) | {dash['weights']['fed']:.0%} | {dash['fed_score']:+.2f} |",
         "",
         f"_{dash['summary_text']}_",
     ]

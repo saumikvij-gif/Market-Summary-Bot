@@ -6,7 +6,7 @@ CSV-backed history for the market summary bot — no SQLite. The dataset is tiny
 of truth and all querying is done in memory.
 
     history_quotes.csv     - one row per (date, instrument): price, change, pct_change
-    history_summaries.csv  - one row per date: sentiment, confidence, score, summary
+    history_summaries.csv  - one row per date: sentiment, score, summary
 
 Used by market_summary.py to record each run. Can also be run directly to print
 a trend report:
@@ -28,7 +28,7 @@ QUOTES_CSV = os.path.join(_HERE, "history_quotes.csv")
 SUMMARIES_CSV = os.path.join(_HERE, "history_summaries.csv")
 
 QUOTE_COLS = ["run_date", "section", "name", "price", "change", "pct_change"]
-SUMMARY_COLS = ["run_date", "sentiment", "confidence", "score", "summary"]
+SUMMARY_COLS = ["run_date", "sentiment", "score", "summary"]
 
 
 # ── CSV read/write helpers ─────────────────────────────────────────────────────
@@ -68,8 +68,7 @@ def _i(x):
 # ── Writing ──────────────────────────────────────────────────────────────────
 
 def save_run(market_data: dict, summary: str, run_date: str = None,
-             sentiment: str = None, confidence: str = None,
-             score: int = None) -> None:
+             sentiment: str = None, score: int = None) -> None:
     """Persist one run's quotes and summary. Re-running a date overwrites it."""
     if run_date is None:
         run_date = datetime.date.today().isoformat()
@@ -91,8 +90,7 @@ def save_run(market_data: dict, summary: str, run_date: str = None,
     # Upsert the summary, keyed by run_date.
     summaries = {r["run_date"]: r for r in _read(SUMMARIES_CSV)}
     summaries[run_date] = {"run_date": run_date, "sentiment": sentiment,
-                           "confidence": confidence, "score": score,
-                           "summary": summary}
+                           "score": score, "summary": summary}
     _write(SUMMARIES_CSV, SUMMARY_COLS,
            sorted(summaries.values(), key=lambda r: r["run_date"]))
 
@@ -145,7 +143,7 @@ def sentiment_history(limit: int = 14) -> list:
     """Most recent `limit` summary rows, oldest-first."""
     rows = sorted(_read(SUMMARIES_CSV), key=lambda r: r["run_date"])[-limit:]
     return [{"run_date": r["run_date"], "sentiment": r["sentiment"] or None,
-             "confidence": r["confidence"] or None, "score": _i(r["score"])}
+             "score": _i(r["score"])}
             for r in rows]
 
 
@@ -169,9 +167,8 @@ def print_report(name: str = "S&P 500") -> None:
         print("  (no summaries recorded yet)")
     for r in rows:
         sentiment = r["sentiment"] or "—"
-        conf = f" ({r['confidence']})" if r["confidence"] else ""
         score = f"  [{r['score']:+d}]" if r["score"] is not None else ""
-        print(f"  {r['run_date']}  {sentiment}{conf}{score}")
+        print(f"  {r['run_date']}  {sentiment}{score}")
 
     print(f"\n{name} price history")
     print("─" * 50)

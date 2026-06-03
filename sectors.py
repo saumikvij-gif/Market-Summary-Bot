@@ -31,13 +31,14 @@ HEADERS = {
 TIMEOUT = 15
 NEWS_PER_SECTOR = 8
 
-# How a sector's sub-metrics blend into its overall score.
+# How a sector's sub-metrics blend into its overall score. Reddit is only 5%
+# (weak/sparse signal); the freed weight goes to relative strength (price/market).
 SECTOR_METRIC_WEIGHTS = {
-    "rel_strength": 0.30,
+    "rel_strength": 0.35,
     "breadth":      0.25,
     "news":         0.25,
     "volume":       0.10,
-    "reddit":       0.10,
+    "reddit":       0.05,
 }
 RS_FULL_SCALE_PCT = 2.0   # 2% outperformance vs the S&P = a full ±1 RS signal
 
@@ -90,25 +91,40 @@ def _clamp(x, lo=-1.0, hi=1.0):
     return max(lo, min(hi, x))
 
 
+# Moving-average windows blended into each stock's trend strength. Using 20/50/
+# 200 (not just 50) spreads breadth out so it doesn't saturate at 100% in a
+# broad uptrend — a stock can be above its 200-DMA but below its 20-DMA.
+BREADTH_MAS = (20, 50, 200)
+
+
 def _fetch_history(tickers: list):
-    """Batched ~4 months of Close + Volume for all tickers (one request)."""
+    """Batched ~1 year of Close + Volume for all tickers (one request).
+
+    A year is enough for the 200-day MA used in the breadth blend.
+    """
     import yfinance as yf
-    return yf.download(tickers, period="4mo", progress=False, group_by="ticker")
+    return yf.download(tickers, period="1y", progress=False, group_by="ticker")
 
 
 def _per_ticker_metrics(data, ticker: str):
-    """Return (move_pct, above_50dma, vol_ratio) for one ticker, or None."""
+    """Return (move_pct, trend_strength, vol_ratio) for one ticker, or None.
+
+    trend_strength = fraction of the 20/50/200-day MAs the price is above, in
+    [0, 1] (only MAs with enough history are counted).
+    """
     try:
         df = data[ticker]
         closes = df["Close"].dropna()
         vols = df["Volume"].dropna()
         if len(closes) < 2:
             return None
-        move = (closes.iloc[-1] / closes.iloc[-2] - 1) * 100
-        ma50 = closes.tail(50).mean()
-        above = bool(closes.iloc[-1] > ma50)
+        last = closes.iloc[-1]
+        move = (last / closes.iloc[-2] - 1) * 100
+        flags = [1 if last > closes.tail(w).mean() else 0
+                 for w in BREADTH_MAS if len(closes) >= w]
+        strength = (sum(flags) / len(flags)) if flags else None
         vol_ratio = (vols.iloc[-1] / vols.tail(20).mean()) if len(vols) >= 5 and vols.tail(20).mean() else None
-        return round(float(move), 2), above, (round(float(vol_ratio), 2) if vol_ratio else None)
+        return round(float(move), 2), strength, (round(float(vol_ratio), 2) if vol_ratio else None)
     except Exception:
         return None
 
@@ -151,8 +167,10 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> lis
         moves = [m[0] for m in present]
         avg_move = round(sum(moves) / len(moves), 2) if moves else None
 
-        # Breadth: fraction of the basket above its 50-day MA, mapped to [-1, 1].
-        breadth_frac = (sum(1 for m in present if m[1]) / len(present)) if present else None
+        # Breadth: average per-stock trend strength (% of 20/50/200 MAs the price
+        # is above), across the basket, mapped to [-1, 1].
+        strengths = [m[1] for m in present if m[1] is not None]
+        breadth_frac = (sum(strengths) / len(strengths)) if strengths else None
         breadth_score = (2 * breadth_frac - 1) if breadth_frac is not None else None
 
         # Relative strength: sector move vs the S&P.
@@ -202,7 +220,7 @@ def render_md(rows: list) -> str:
     for r in rows:
         move = f"{r['move_pct']:+.2f}%" if r["move_pct"] is not None else "n/a"
         rs = f"{r['rel_strength']:+.2f}%" if r["rel_strength"] is not None else "n/a"
-        breadth = f"{r['breadth_pct']}%>50DMA" if r["breadth_pct"] is not None else "n/a"
+        breadth = f"{r['breadth_pct']}% trend" if r["breadth_pct"] is not None else "n/a"
         lines.append(f"- {r['sector']}: {move} (vs S&P {rs}) | breadth {breadth} "
                      f"| **{r['label']}** ({r['score']:+.2f})")
     return "\n".join(lines)
