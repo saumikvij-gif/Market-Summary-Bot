@@ -8,6 +8,9 @@ env/
 # Environment / secrets
 .env
 
+# Local Claude Code tooling config (machine-specific)
+.claude/
+
 # Generated output (local runs; the Actions workflow commits to summaries/)
 market_summary.md
 
