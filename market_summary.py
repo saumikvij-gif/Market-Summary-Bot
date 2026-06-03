@@ -22,6 +22,8 @@ import anthropic
 import yfinance as yf
 from dotenv import load_dotenv
 
+from utils import retry
+
 # Load environment variables from a local .env file if present (no-op in CI)
 load_dotenv()
 
@@ -68,9 +70,11 @@ OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "market_summary.md")
 # ── Data fetching ──────────────────────────────────────────────────────────────
 
 def fetch_quote(ticker_symbol: str) -> dict:
-    """Return a dict with price, change, and pct_change for one ticker."""
+    """Return a dict with price, change, pct_change, and session_date for one ticker."""
     ticker = yf.Ticker(ticker_symbol)
-    hist = ticker.history(period="2d")
+    # yfinance is unofficial and rate-limits; retry transient failures.
+    hist = retry(lambda: ticker.history(period="5d"),
+                 attempts=3, label=ticker_symbol)
 
     if hist.empty or len(hist) < 1:
         return {"error": f"No data for {ticker_symbol}"}
@@ -85,7 +89,15 @@ def fetch_quote(ticker_symbol: str) -> dict:
         # `or 0.0` normalizes -0.0 (falsy) to 0.0 so tiny negatives don't render as "+-0.00"
         "change":     round(float(change),         2) or 0.0,
         "pct_change": round(float(pct_change),     2) or 0.0,
+        # Date of the latest session, used to detect holidays / stale data.
+        "session_date": hist.index[-1].date().isoformat(),
     }
+
+
+def latest_session_date(market_data: dict) -> str | None:
+    """The session date of the S&P 500 quote (canonical 'data date'), or None."""
+    sp = market_data.get("indices", {}).get("S&P 500", {})
+    return sp.get("session_date") if isinstance(sp, dict) else None
 
 
 def fetch_all_data() -> dict:
@@ -243,14 +255,14 @@ def generate_report(data_block: str, news_block: str = "") -> dict:
             + news_block
         )
 
-    message = client.messages.create(
+    message = retry(lambda: client.messages.create(
         model="claude-sonnet-4-5",
         max_tokens=1500,
         system=SYSTEM_PROMPT,
         tools=[REPORT_TOOL],
         tool_choice={"type": "tool", "name": "submit_market_report"},
         messages=[{"role": "user", "content": user_message}],
-    )
+    ), attempts=3, label="Claude API")
 
     for block in message.content:
         if block.type == "tool_use":
@@ -312,6 +324,15 @@ def main():
     print("Fetching market data…")
     market_data = fetch_all_data()
 
+    # Detect market holidays / stale data: if the latest session isn't today,
+    # the US market didn't trade (holiday/weekend) and figures are last close.
+    session_date = latest_session_date(market_data)
+    today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+    is_fresh = (session_date == today)
+    if session_date and not is_fresh:
+        print(f"  ⚠️  No new US session for {today}; latest data is {session_date} "
+              f"(market holiday or weekend).")
+
     print("\nBuilding data summary…")
     data_block = build_data_block(market_data)
 
@@ -335,11 +356,24 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not compute sentiment dashboard: {exc}")
 
+    # AI narrative is best-effort: if Claude is unavailable, still ship the
+    # data + quant score rather than failing the whole run.
     print("\nGenerating AI summary with Claude…")
-    report = generate_report(data_block, news_block)
+    report = None
+    try:
+        report = generate_report(data_block, news_block)
+    except Exception as exc:
+        print(f"  ⚠️  Claude summary failed: {exc}; continuing with data + score only.")
 
-    # Assemble the document: Claude's prose + the quant sentiment dashboard.
-    summary = report["summary_markdown"].rstrip()
+    # Assemble the document: Claude's prose (if available) + the quant dashboard.
+    if report is not None:
+        summary = report["summary_markdown"].rstrip()
+    else:
+        summary = ("## Market Summary\n\n_The AI narrative was unavailable today; "
+                   "market data and the quantitative sentiment score are shown below._")
+    if session_date and not is_fresh:
+        summary = (f"> **Note:** No US trading session on {today}. Figures are from "
+                   f"the last session ({session_date}).\n\n") + summary
     if dashboard is not None:
         import sentiment
         summary += "\n\n" + sentiment.render_dashboard_md(dashboard)
@@ -348,18 +382,20 @@ def main():
     save_output(data_block, summary)
 
     # Record this run for historical trend tracking (never block on DB errors).
-    # Store the quant score (scaled to -100..100 to match the chart's axis).
+    # Key by the actual session date so holidays don't create duplicate/today
+    # rows; store the quant score (scaled to -100..100 to match the chart axis).
+    db_date = session_date or today
     try:
         import database
         if dashboard is not None:
             database.save_run(
-                market_data, summary,
+                market_data, summary, run_date=db_date,
                 sentiment=dashboard["label"],
                 confidence=None,
                 score=int(round(dashboard["overall_score"] * 100)),
             )
         else:
-            database.save_run(market_data, summary)
+            database.save_run(market_data, summary, run_date=db_date)
         print("📊 Run recorded to market_data.db")
     except Exception as exc:
         print(f"  ⚠️  Could not record run to database: {exc}")

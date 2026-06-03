@@ -18,6 +18,7 @@ print a trend report:
 import os
 import re
 import sys
+import csv
 import sqlite3
 import datetime
 
@@ -25,8 +26,16 @@ import datetime
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-# Store the DB next to this file so the path is stable regardless of cwd.
-DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "market_data.db")
+_HERE = os.path.dirname(os.path.abspath(__file__))
+# The SQLite DB is a LOCAL CACHE (binary, gitignored). The committed source of
+# truth is the pair of CSV files below — text, so Git can merge them cleanly and
+# the daily workflow never hits a binary merge conflict.
+DB_PATH = os.path.join(_HERE, "market_data.db")
+QUOTES_CSV = os.path.join(_HERE, "history_quotes.csv")
+SUMMARIES_CSV = os.path.join(_HERE, "history_summaries.csv")
+
+QUOTE_COLS = ["run_date", "section", "name", "price", "change", "pct_change"]
+SUMMARY_COLS = ["run_date", "sentiment", "confidence", "score", "summary"]
 
 
 # ── Schema ───────────────────────────────────────────────────────────────────
@@ -67,6 +76,50 @@ def init_db() -> None:
             conn.execute("ALTER TABLE summaries ADD COLUMN score INTEGER")
 
 
+# ── CSV source-of-truth (text, git-mergeable) ──────────────────────────────────
+
+def export_csv() -> None:
+    """Dump both tables to CSV — the committed, git-mergeable source of truth."""
+    with connect() as conn:
+        q = conn.execute(
+            f"SELECT {', '.join(QUOTE_COLS)} FROM quotes ORDER BY run_date, name"
+        ).fetchall()
+        s = conn.execute(
+            f"SELECT {', '.join(SUMMARY_COLS)} FROM summaries ORDER BY run_date"
+        ).fetchall()
+    for path, cols, rows in [(QUOTES_CSV, QUOTE_COLS, q),
+                             (SUMMARIES_CSV, SUMMARY_COLS, s)]:
+        with open(path, "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(cols)
+            w.writerows([tuple(r[c] for c in cols) for r in rows])
+
+
+def ensure_loaded() -> None:
+    """If the local DB cache is empty but CSVs exist, rebuild the DB from them.
+
+    Lets the (gitignored) .db be reconstructed from the committed CSVs — e.g. on
+    a fresh CI runner — so the DB never needs to be committed.
+    """
+    init_db()
+    with connect() as conn:
+        has_rows = conn.execute("SELECT 1 FROM quotes LIMIT 1").fetchone()
+        if has_rows or not os.path.exists(QUOTES_CSV):
+            return
+        for path, table, cols in [(QUOTES_CSV, "quotes", QUOTE_COLS),
+                                   (SUMMARIES_CSV, "summaries", SUMMARY_COLS)]:
+            if not os.path.exists(path):
+                continue
+            with open(path, newline="", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                placeholders = ", ".join("?" * len(cols))
+                conn.executemany(
+                    f"INSERT OR REPLACE INTO {table} ({', '.join(cols)}) "
+                    f"VALUES ({placeholders})",
+                    [tuple(row[c] or None for c in cols) for row in reader],
+                )
+
+
 # ── Writing ──────────────────────────────────────────────────────────────────
 
 def parse_sentiment(summary: str) -> tuple:
@@ -93,7 +146,7 @@ def save_run(market_data: dict, summary: str, run_date: str = None,
     If sentiment/confidence aren't supplied (structured), fall back to scraping
     them from the summary text.
     """
-    init_db()
+    ensure_loaded()  # rebuild the DB cache from CSV first if needed
     if run_date is None:
         run_date = datetime.date.today().isoformat()
 
@@ -117,6 +170,9 @@ def save_run(market_data: dict, summary: str, run_date: str = None,
             "(run_date, sentiment, confidence, score, summary) VALUES (?, ?, ?, ?, ?)",
             (run_date, sentiment, confidence, score, summary),
         )
+
+    # Re-export the CSV source of truth so the committed history stays current.
+    export_csv()
 
 
 # ── Backfill (real historical prices, for testing trends) ──────────────────────
@@ -165,12 +221,14 @@ def backfill_prices(period: str = "1y", days: int = None) -> int:
                         )
                         written += 1
                     prev = close
+    export_csv()  # keep the committed source of truth in sync
     return written
 
 
 # ── Reading / trend report ─────────────────────────────────────────────────────
 
 def sentiment_history(limit: int = 14) -> list:
+    ensure_loaded()
     with connect() as conn:
         rows = conn.execute(
             "SELECT run_date, sentiment, confidence, score FROM summaries "
@@ -181,6 +239,7 @@ def sentiment_history(limit: int = 14) -> list:
 
 
 def price_history(name: str, limit: int = 14) -> list:
+    ensure_loaded()
     with connect() as conn:
         rows = conn.execute(
             "SELECT run_date, price, pct_change FROM quotes "
@@ -191,9 +250,10 @@ def price_history(name: str, limit: int = 14) -> list:
 
 
 def print_report(name: str = "S&P 500") -> None:
-    if not os.path.exists(DB_PATH):
-        print("No database yet — run market_summary.py at least once first.")
+    if not (os.path.exists(DB_PATH) or os.path.exists(QUOTES_CSV)):
+        print("No history yet — run market_summary.py at least once first.")
         return
+    ensure_loaded()
 
     print("Sentiment history")
     print("─" * 50)

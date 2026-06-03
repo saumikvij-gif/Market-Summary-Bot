@@ -1,0 +1,67 @@
+run_date,sentiment,confidence,score,summary
+2026-06-02,Slightly Bullish,,21,"> **Note:** No US trading session on 2026-06-03. Figures are from the last session (2026-06-02).
+
+## Market Overview
+
+U.S. equities extended their winning streak on Wednesday, with the S&P 500 notching its ninth consecutive daily gain despite mounting concerns about market breadth and valuation levels. The benchmark index rose 0.13%, while the Nasdaq 100 (+0.48%) and Dow Jones (+0.45%) posted stronger gains. Small-caps outperformed with the Russell 2000 climbing 0.90%, suggesting some rotation away from megacap names. The VIX declined 1.74% to 15.77, indicating complacent market conditions.
+
+## Megacap Divergence and AI Chip Winners
+
+The session featured sharp divergence among tech giants. Apple surged 2.90%, while Microsoft (-4.17%) and Alphabet (-3.86%) suffered significant losses. The standout story emerged in AI chip infrastructure: Marvell Technology rocketed 25% in premarket trading after Nvidia CEO Jensen Huang dubbed it the ""next trillion-dollar company,"" highlighting the broadening of AI investment beyond the usual suspects. Meanwhile, reports that Alphabet's aggressive AI spending is benefiting Broadcom underscored the shifting competitive landscape. Amazon fell 1.81%, and Nvidia itself dipped 0.69% as investors appeared to rotate within the semiconductor complex.
+
+## SpaceX IPO Dominates Sentiment
+
+The most widely discussed development was SpaceX's record-setting IPO plans, with the company reportedly seeking a $1.75 trillion valuation at $135 per share in an all-primary offering. However, Morningstar's analyst note valuing SpaceX at just $780 billion—57% below the IPO target—sparked intense debate about whether retail investors are being set up for losses. The disconnect between public market valuations and private pricing fueled skepticism across investor forums, with many viewing it as evidence of ""greed mode"" in markets, echoing Goldman Sachs CEO David Solomon's recent characterization.
+
+## Commodities and Crypto Under Pressure
+
+Oil rallied 2.65% to $94.60 amid ongoing Middle East tensions (""Iran jitters""), while gold gained 0.86% to $4,513.60 as a safe-haven hedge. Bitcoin, however, plunged 7.98% to $65,626, with reports of long-time crypto bulls ""rage quitting"" and offloading positions reflecting exhaustion among digital asset investors. The dollar edged higher against the yen, reflecting cautious risk appetite despite equity strength.
+
+## Federal Reserve and Macro Backdrop
+
+The Fed released minutes from its April 28-29 FOMC meeting, though no immediate policy shifts were indicated. Commentary from newly appointed Fed Chair Warsh, including his first hires at the central bank, drew attention as markets assess the trajectory of monetary policy amid persistent inflation concerns and stretched equity valuations.
+
+## Market Sentiment Dashboard
+
+**Overall Score:** +0.21  →  **Slightly Bullish**
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 50% | +0.14 |
+| News headlines | 35% | +0.34 |
+| Reddit | 10% | +0.03 |
+| Fed tone | 5% | +0.25 |
+
+_Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX -1.7%. News headlines read bullish. Reddit sentiment is neutral. Fed tone appears dovish. Overall market sentiment: Slightly Bullish._"
+2026-06-03,Slightly Bullish,,22,"## Market Overview
+
+U.S. equities extended their winning streak on Wednesday, with the S&P 500 notching its ninth consecutive daily gain—a rare feat that pushed the index up 0.13% to 7,609.78. Strength was broad-based, with the Russell 2000 leading major benchmarks with a 0.90% advance, while the Nasdaq 100 and Dow Jones rose 0.48% and 0.45%, respectively. The VIX declined 1.74% to 15.77, reflecting subdued near-term volatility expectations even as cross-currents in mega-cap tech created notable dispersion.
+
+## Big Tech Divergence and AI Sentiment
+
+Mega-cap tech stocks exhibited sharp bifurcation. Apple surged 2.90% following unspecified catalysts, while Microsoft suffered a steep 4.17% decline and Alphabet fell 3.86%. Headlines suggest investor rotation within AI beneficiaries: enthusiasm around Broadcom's upcoming earnings—described as potentially more significant than any ""Magnificent Seven"" report this quarter—may be siphoning capital from Alphabet amid concerns over ""relentless AI spending."" Nvidia CEO Jensen Huang's endorsement of Marvell Technology as a potential ""next trillion-dollar company"" drove Marvell up 25% in premarket trading, underscoring the broadening of AI infrastructure plays beyond chip giants. Goldman Sachs CEO David Solomon's characterization of markets as in ""greed mode"" captures the speculative fervor.
+
+## SpaceX IPO and Valuation Skepticism
+
+SpaceX dominated headlines with reports of a planned IPO pricing at $135 per share, targeting a $1.75 trillion valuation. However, Morningstar's $780 billion fair value estimate—less than half the IPO target—sparked debate over frothy valuations in the private-to-public pipeline. Reddit communities expressed deep skepticism, with references to an ""epic rugpull"" and warnings about 401(k) exposure.
+
+## Commodities and Fed Backdrop
+
+Crude oil jumped 2.60% to $94.56 on geopolitical tensions (""Iran jitters persist""), while gold added 0.74% as a hedge. The dollar strengthened on the oil-driven hawkish sentiment. Meanwhile, Federal Reserve meeting minutes from April and March were released, though no explicit policy shifts were indicated. Bitcoin remained flat at $66,601 amid reports of Strategy (MSTR) selling coins for the first time since 2022, triggering investor concern.
+
+## Bottom Line
+
+Despite headline index strength, the ""breadth paradox"" noted by MarketWatch—narrow leadership amid a nine-day rally—and valuation extremes relative to 1929 levels warrant caution. Rotation within tech and anticipation around key earnings (Broadcom) are the dominant near-term drivers.
+
+## Market Sentiment Dashboard
+
+**Overall Score:** +0.22  →  **Slightly Bullish**
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 50% | +0.14 |
+| News headlines | 35% | +0.38 |
+| Reddit | 10% | +0.03 |
+| Fed tone | 5% | +0.25 |
+
+_Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX -1.7%. News headlines read bullish. Reddit sentiment is neutral. Fed tone appears dovish. Overall market sentiment: Slightly Bullish._"

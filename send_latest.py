@@ -15,6 +15,7 @@ import os
 import re
 import sys
 import glob
+import datetime
 
 from dotenv import load_dotenv
 import emailer
@@ -27,6 +28,10 @@ if hasattr(sys.stdout, "reconfigure"):
 
 SUMMARY_GLOB = "summaries/market_summary_*.md"
 CHART_PATHS = ["charts/index_trends.png", "charts/sentiment_trend.png"]
+
+# Don't email a briefing older than this — if generation has been failing we'd
+# otherwise silently resend stale data. Override with STALE_MAX_DAYS.
+STALE_MAX_DAYS = int(os.environ.get("STALE_MAX_DAYS") or 4)
 
 
 def latest_summary_path() -> str | None:
@@ -46,10 +51,27 @@ def latest_summary_path() -> str | None:
     return "market_summary.md" if os.path.exists("market_summary.md") else None
 
 
+def summary_age_days(path: str) -> int | None:
+    """Days between the date in the summary filename and today (UTC); None if no date."""
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", os.path.basename(path))
+    if not m:
+        return None
+    file_date = datetime.date.fromisoformat(m.group(1))
+    today = datetime.datetime.now(datetime.timezone.utc).date()
+    return (today - file_date).days
+
+
 def main() -> None:
     path = latest_summary_path()
     if not path:
         print("No summary file found to email.")
+        sys.exit(1)
+
+    # Stale guard: refuse to silently resend an old briefing (generation likely failing).
+    age = summary_age_days(path)
+    if age is not None and age > STALE_MAX_DAYS:
+        print(f"Latest summary ({path}) is {age} days old (> {STALE_MAX_DAYS}); "
+              f"not emailing stale data. Check the generate workflow.")
         sys.exit(1)
 
     print(f"Emailing latest summary: {path}")

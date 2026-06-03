@@ -1,8 +1,12 @@
-anthropic>=0.40.0
-yfinance>=0.2.40
-python-dotenv>=1.0.0
-requests>=2.31.0
-feedparser>=6.0.0
-matplotlib>=3.7.0
-markdown>=3.5.0
-vaderSentiment>=3.3.2
+# Runtime dependencies (pinned for reproducible CI runs).
+anthropic==0.105.2
+yfinance==1.4.1
+python-dotenv==1.2.2
+requests==2.34.2
+feedparser==6.0.12
+matplotlib==3.10.9
+markdown==3.10.2
+vaderSentiment==3.3.2
+
+# Test-only
+pytest==9.0.3

@@ -62,17 +62,32 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Commit the dated summary, the updated trend database, and charts.
-          git add summaries/ market_data.db charts/
+          # Commit the dated summary, the CSV history (text, mergeable), and charts.
+          # market_data.db is NOT committed — it's rebuilt from the CSVs.
+          git add summaries/ history_quotes.csv history_summaries.csv charts/
           if git diff --staged --quiet; then
             echo "Nothing to commit."
             exit 0
           fi
           git commit -m "chore: add market summary $(date -u +'%Y-%m-%d') [skip ci]"
-          # Integrate any commits pushed since checkout, then push. Retry once to
-          # survive a race with a concurrent push.
+          # Integrate any commits pushed since checkout, then push. Retry to
+          # survive a race with a concurrent push (CSVs merge cleanly).
           for attempt in 1 2 3; do
             git pull --rebase --autostash origin main && git push && break
             echo "Push attempt $attempt failed; retrying after fetch…"
             sleep 5
           done
+
+      # ── 6. Alert on failure ───────────────────────────────────────────────────
+      - name: Notify on failure
+        if: failure()
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          WORKFLOW_NAME: Generate Market Summary
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python notify_failure.py
