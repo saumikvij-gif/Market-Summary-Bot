@@ -99,6 +99,43 @@ def latest_session_date(market_data: dict) -> str | None:
     return sp.get("session_date") if isinstance(sp, dict) else None
 
 
+def fetch_top_gainers(count: int = 5) -> list:
+    """Return the market's top daily gainers via Yahoo's screener, or [].
+
+    Each item: {symbol, name, price, pct_change}. Fail-safe — returns [] on any
+    error so a screener hiccup never blocks the summary.
+    """
+    try:
+        result = retry(lambda: yf.screen("day_gainers", count=count),
+                       attempts=2, label="day_gainers")
+        quotes = result.get("quotes", []) if isinstance(result, dict) else []
+        gainers = []
+        for q in quotes[:count]:
+            gainers.append({
+                "symbol": q.get("symbol"),
+                "name": (q.get("shortName") or q.get("symbol") or "").strip(),
+                "price": q.get("regularMarketPrice"),
+                "pct_change": q.get("regularMarketChangePercent"),
+            })
+        return gainers
+    except Exception as exc:
+        print(f"  ⚠️  Could not fetch top gainers: {exc}")
+        return []
+
+
+def format_top_gainers(gainers: list) -> str:
+    """Render the top gainers as a markdown section, or '' if none."""
+    if not gainers:
+        return ""
+    lines = ["### Top Gainers (Market)"]
+    for g in gainers:
+        price = f"{g['price']:,.2f}" if g.get("price") is not None else "n/a"
+        pct = g.get("pct_change")
+        pct_str = f"▲ {pct:+.2f}%" if pct is not None else ""
+        lines.append(f"- {g['name']} ({g['symbol']}): {price}  {pct_str}")
+    return "\n".join(lines)
+
+
 def fetch_all_data() -> dict:
     """Fetch quotes for every configured instrument."""
     sections = {
@@ -208,9 +245,10 @@ def generate_report(data_block: str, news_block: str = "") -> dict:
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     user_message = (
-        "Here is today's market data. Write a concise market summary "
-        "(around 300–400 words) covering the key themes, notable movers, and "
-        "any cross-asset signals worth highlighting.\n\n"
+        "Here is today's market data, including the market's top daily gainers. "
+        "Write a concise market summary (around 300–400 words) covering the key "
+        "themes, notable movers (mention any standout top gainers), and any "
+        "cross-asset signals worth highlighting.\n\n"
         + data_block
     )
 
@@ -284,6 +322,11 @@ def main():
 
     print("\nBuilding data summary…")
     data_block = build_data_block(market_data)
+
+    print("\nFetching top market gainers…")
+    gainers_block = format_top_gainers(fetch_top_gainers(5))
+    if gainers_block:
+        data_block += "\n" + gainers_block + "\n"
 
     print("\nFetching financial news headlines…")
     headlines = fetch_headlines()                       # {source: [titles]}
