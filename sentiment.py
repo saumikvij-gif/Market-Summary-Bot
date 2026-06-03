@@ -357,6 +357,10 @@ def render_dashboard_md(dash: dict) -> str:
         f"_{dash['summary_text']}_",
     ]
 
+    news_engine = (dash.get("components", {}).get("news", {}) or {}).get("engine")
+    if news_engine:
+        lines += ["", f"<sub>News scored with: {news_engine}</sub>"]
+
     if dash.get("divergence"):
         lines += ["", f"**{dash['divergence']}**"]
 
