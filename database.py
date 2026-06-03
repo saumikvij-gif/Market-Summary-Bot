@@ -121,10 +121,12 @@ def save_run(market_data: dict, summary: str, run_date: str = None,
 
 # ── Backfill (real historical prices, for testing trends) ──────────────────────
 
-def backfill_prices(days: int = 10) -> int:
+def backfill_prices(period: str = "1y", days: int = None) -> int:
     """Populate the quotes table with real historical closes from Yahoo Finance.
 
-    Lets you see the trend report with genuine multi-day data without waiting.
+    Pulls `period` of history (default 1 year) so the trend charts are useful
+    immediately instead of building up over days. `days` optionally caps how
+    many of the most recent sessions to keep (None = all in the period).
     Returns the number of (day, instrument) rows written.
     """
     import yfinance as yf
@@ -143,10 +145,10 @@ def backfill_prices(days: int = 10) -> int:
         for section, tickers in sections.items():
             for name, symbol in tickers.items():
                 print(f"  Backfilling {name} ({symbol})…")
-                hist = yf.Ticker(symbol).history(period="1mo")
+                hist = yf.Ticker(symbol).history(period=period)
                 closes = hist["Close"].dropna()
-                # Walk the most recent `days` sessions; need a prior close for change.
-                recent = closes.tail(days + 1)
+                # Keep all sessions (need one extra prior close for the change calc).
+                recent = closes if days is None else closes.tail(days + 1)
                 prev = None
                 for ts, close in recent.items():
                     if prev is not None:

@@ -14,6 +14,7 @@ Uses a non-interactive matplotlib backend so it works headless (in CI).
 """
 
 import os
+import datetime
 
 import matplotlib
 matplotlib.use("Agg")  # headless backend — no display needed
@@ -25,6 +26,9 @@ CHARTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "charts")
 
 # Instruments to plot on the index-trends chart.
 INDEX_NAMES = ["S&P 500", "Nasdaq 100", "Dow Jones", "Russell 2000"]
+
+# How many recent trading days the index-trends chart spans (~1 year).
+INDEX_CHART_DAYS = 252
 
 
 def _ensure_dir() -> None:
@@ -61,20 +65,32 @@ def chart_sentiment_trend(limit: int = 30) -> str | None:
     return path
 
 
-def chart_index_trends(limit: int = 30) -> str | None:
-    """Plot normalized (=100 at start) price trends for the major indices."""
-    fig, ax = plt.subplots(figsize=(10, 4.5))
+def chart_index_trends(limit: int = INDEX_CHART_DAYS) -> str | None:
+    """Plot normalized (=100 at start) price trends for the major indices.
+
+    Shows a wide window (default ~1 trading year) so the trend is meaningful,
+    and highlights the most recent day with a marker + a dashed "today" line so
+    each new run is clearly visible on the long history.
+    """
+    fig, ax = plt.subplots(figsize=(11, 5))
     plotted = False
+    latest_date = None
 
     for name in INDEX_NAMES:
         rows = database.price_history(name, limit)
-        prices = [r["price"] for r in rows if r["price"] is not None]
-        dates = [r["run_date"] for r in rows if r["price"] is not None]
-        if len(prices) < 2:
+        pairs = [(datetime.date.fromisoformat(r["run_date"]), r["price"])
+                 for r in rows if r["price"] is not None]
+        if len(pairs) < 2:
             continue
-        base = prices[0]
-        normalized = [p / base * 100 for p in prices]  # rebase to 100
-        ax.plot(dates, normalized, marker=".", linewidth=1.8, label=name)
+        dates = [d for d, _ in pairs]
+        base = pairs[0][1]
+        normalized = [p / base * 100 for _, p in pairs]  # rebase to 100
+        line, = ax.plot(dates, normalized, linewidth=1.6,
+                        label=f"{name}  ({normalized[-1]:.1f})")
+        # Emphasize the latest point in each series' colour.
+        ax.scatter([dates[-1]], [normalized[-1]], color=line.get_color(),
+                   s=45, zorder=5, edgecolor="white", linewidth=0.8)
+        latest_date = dates[-1]
         plotted = True
 
     if not plotted:
@@ -83,10 +99,18 @@ def chart_index_trends(limit: int = 30) -> str | None:
         return None
 
     ax.axhline(100, color="#888", linewidth=0.8, linestyle="--")
-    ax.set_title("Major Indices — Normalized Price Trend (start = 100)")
+    # Dashed vertical marker so the most recent day stands out on the long trend.
+    if latest_date is not None:
+        ax.axvline(latest_date, color="#444", linewidth=0.9, linestyle=":")
+        ax.annotate(f"latest\n{latest_date.isoformat()}",
+                    xy=(latest_date, ax.get_ylim()[1]),
+                    xytext=(-4, -4), textcoords="offset points",
+                    ha="right", va="top", fontsize=8, color="#444")
+
+    ax.set_title("Major Indices — Normalized Price Trend (window start = 100)")
     ax.set_ylabel("Indexed to 100")
     ax.grid(True, alpha=0.3)
-    ax.legend()
+    ax.legend(loc="upper left", fontsize=9)
     fig.autofmt_xdate(rotation=45)
     fig.tight_layout()
 
