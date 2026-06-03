@@ -153,20 +153,19 @@ Do NOT include a top-level "# " title or document heading — start directly wit
 the first section (use "## " subheadings). A title is added separately.
 """
 
-def fetch_news_block() -> str:
-    """Pull current financial news/Reddit headlines as a text block.
+def fetch_headlines() -> dict:
+    """Pull current financial news/Reddit/Fed headlines as {source: [titles]}.
 
-    Imports the headline gatherer from reddit_news. Returns an empty string if
-    anything goes wrong, so a news outage never blocks the market summary.
+    Returns an empty dict if anything goes wrong, so a news outage never blocks
+    the market summary. A slightly larger limit is used since the headlines now
+    also feed the quantitative sentiment score.
     """
     try:
         import reddit_news
-        # Keep it light — a few headlines per source is enough context.
-        headlines = reddit_news.gather_headlines(limit=4)
-        return reddit_news.build_headline_block(headlines)
+        return reddit_news.gather_headlines(limit=8)
     except Exception as exc:
         print(f"  ⚠️  Could not fetch news headlines: {exc}")
-        return ""
+        return {}
 
 
 # Tool schema that forces Claude to return structured, machine-readable output.
@@ -316,27 +315,50 @@ def main():
     data_block = build_data_block(market_data)
 
     print("\nFetching financial news headlines…")
-    news_block = fetch_news_block()
+    headlines = fetch_headlines()                       # {source: [titles]}
+    news_block = ""
+    try:
+        import reddit_news
+        news_block = reddit_news.build_headline_block(headlines)
+    except Exception:
+        pass
+
+    # Compute the quantitative sentiment dashboard (reproducible, NLP-based).
+    # This is the score of record — it drives the DB and the daily chart.
+    print("\nComputing quantitative sentiment…")
+    dashboard = None
+    try:
+        import sentiment
+        dashboard = sentiment.build_dashboard(market_data, headlines)
+        print(f"  Sentiment: {dashboard['overall_score']:+.2f} ({dashboard['label']})")
+    except Exception as exc:
+        print(f"  ⚠️  Could not compute sentiment dashboard: {exc}")
 
     print("\nGenerating AI summary with Claude…")
     report = generate_report(data_block, news_block)
 
-    # Assemble the full document: prose + a sentiment section rendered from the
-    # same structured fields we store in the DB (single source of truth).
-    summary = report["summary_markdown"].rstrip() + "\n\n" + render_sentiment_section(report)
+    # Assemble the document: Claude's prose + the quant sentiment dashboard.
+    summary = report["summary_markdown"].rstrip()
+    if dashboard is not None:
+        import sentiment
+        summary += "\n\n" + sentiment.render_dashboard_md(dashboard)
 
     print_to_console(data_block, summary)
     save_output(data_block, summary)
 
     # Record this run for historical trend tracking (never block on DB errors).
+    # Store the quant score (scaled to -100..100 to match the chart's axis).
     try:
         import database
-        database.save_run(
-            market_data, summary,
-            sentiment=report.get("sentiment"),
-            confidence=report.get("confidence"),
-            score=report.get("score"),
-        )
+        if dashboard is not None:
+            database.save_run(
+                market_data, summary,
+                sentiment=dashboard["label"],
+                confidence=None,
+                score=int(round(dashboard["overall_score"] * 100)),
+            )
+        else:
+            database.save_run(market_data, summary)
         print("📊 Run recorded to market_data.db")
     except Exception as exc:
         print(f"  ⚠️  Could not record run to database: {exc}")

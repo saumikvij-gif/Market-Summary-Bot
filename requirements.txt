@@ -5,3 +5,4 @@ requests>=2.31.0
 feedparser>=6.0.0
 matplotlib>=3.7.0
 markdown>=3.5.0
+vaderSentiment>=3.3.2
