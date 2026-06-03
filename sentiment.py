@@ -6,9 +6,9 @@ returns a Joywin-style dashboard dict. This REPLACES the LLM's subjective score
 as the number stored in the DB and plotted on the daily chart.
 
 Composite components and default weights:
-    Market data : 50%   (S&P 500 + Nasdaq % change, VIX % change inverted)
+    Market data : 55%   (S&P 500 + Nasdaq % change, VIX % change inverted)
     News         : 35%   (headline NLP sentiment)
-    Reddit       : 10%   (subreddit post-title NLP sentiment, capped influence)
+    Reddit       :  5%   (subreddit post-title NLP sentiment — usually neutral)
     Fed          :  5%   (hawkish/dovish tone of Fed statements)
 
 Sentiment engine: VADER (vaderSentiment) — lightweight, deterministic, and
@@ -37,7 +37,7 @@ SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "vader").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
 
-WEIGHTS = {"market": 0.50, "news": 0.35, "reddit": 0.10, "fed": 0.05}
+WEIGHTS = {"market": 0.55, "news": 0.35, "reddit": 0.05, "fed": 0.05}
 
 # A ±2% average move in the big indices is treated as a full ±1 equity signal.
 EQUITY_FULL_SCALE_PCT = 2.0
