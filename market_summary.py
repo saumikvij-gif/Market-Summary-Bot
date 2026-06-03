@@ -369,6 +369,20 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not fetch top news: {exc}")
 
+    # AI-stack Sector Watch: per-basket price move + news/Reddit sentiment.
+    # Display-only — does NOT feed the composite score.
+    print("\nBuilding AI-stack sector watch…")
+    sector_watch = []
+    try:
+        import sectors, sentiment as _s
+        _, reddit_titles, _ = _s._split_headlines(headlines)
+        sector_watch = sectors.build_sector_watch(reddit_titles)
+        watch_block = sectors.render_md(sector_watch)
+        if watch_block:
+            data_block += "\n" + watch_block + "\n"
+    except Exception as exc:
+        print(f"  ⚠️  Could not build sector watch: {exc}")
+
     # Compute the quantitative sentiment dashboard (reproducible, NLP-based).
     # This is the score of record — it drives the DB and the daily chart.
     print("\nComputing quantitative sentiment…")
@@ -442,7 +456,8 @@ def main():
         prose = report.get("summary_markdown", "") if report else ""
         html = report_module.build_html(
             today_pretty, prose, gainers, top_news, dashboard or {},
-            market_data, chart_paths, stale_note=stale_note)
+            market_data, chart_paths, stale_note=stale_note,
+            sector_watch=sector_watch)
         if report_module.write_pdf(html, pdf_path):
             print(f"📄 PDF briefing written to {pdf_path}")
         else:

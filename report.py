@@ -102,6 +102,29 @@ def _news_block(news: list) -> str:
     return f"<h2>Top News</h2>{items}"
 
 
+def _sentiment_label(score):
+    """Lazy import to avoid a hard dependency cycle at module load."""
+    if score is None:
+        return "—"
+    import sentiment
+    return sentiment.label_for(score)
+
+
+def _sector_watch_block(rows: list) -> str:
+    if not rows:
+        return ""
+    body = ""
+    for r in rows:
+        move = _chg(r.get("move_pct"), pct=True) if r.get("move_pct") is not None else "n/a"
+        news = _sentiment_label(r.get("news_score"))
+        reddit = _sentiment_label(r.get("reddit_score"))
+        body += (f"<tr><td>{r['sector']}</td><td>{move}</td>"
+                 f"<td>{news}</td><td>{reddit}</td></tr>")
+    return (f"<h2>Sector Watch (AI Stack)</h2>"
+            f"<table><tr><th>Sector</th><th>Avg Move</th>"
+            f"<th>News</th><th>Reddit</th></tr>{body}</table>")
+
+
 def _divergence_block(dash: dict) -> str:
     div = dash.get("divergence")
     if not div:
@@ -137,7 +160,7 @@ def _charts_block(chart_paths: list) -> str:
 
 def build_html(date_str: str, prose_md: str, gainers: list, news: list,
                dashboard: dict, market_data: dict, chart_paths: list,
-               stale_note: str = "") -> str:
+               stale_note: str = "", sector_watch: list = None) -> str:
     """Assemble the full briefing HTML."""
     note = f'<div class="note">{stale_note}</div>' if stale_note else ""
     prose_html = md.markdown(prose_md or "", extensions=["extra"])
@@ -149,6 +172,7 @@ def build_html(date_str: str, prose_md: str, gainers: list, news: list,
 {dash_html}
 {_divergence_block(dashboard or {})}
 {_gainers_block(gainers)}
+{_sector_watch_block(sector_watch)}
 {_news_block(news)}
 <h2>Market Snapshot</h2>
 {_market_tables(market_data)}
