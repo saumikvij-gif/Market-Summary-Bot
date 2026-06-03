@@ -208,12 +208,13 @@ def fetch_headlines() -> dict:
     """Pull current financial news/Reddit/Fed headlines as {source: [titles]}.
 
     Returns an empty dict if anything goes wrong, so a news outage never blocks
-    the market summary. A slightly larger limit is used since the headlines now
-    also feed the quantitative sentiment score.
+    the market summary. A wide per-source limit gives the sentiment scorer a
+    broader, more representative market sample — affordable now that score_text
+    is cached (each unique headline is run through FinBERT only once per run).
     """
     try:
         import reddit_news
-        return reddit_news.gather_headlines(limit=8)
+        return reddit_news.gather_headlines(limit=20)
     except Exception as exc:
         print(f"  ⚠️  Could not fetch news headlines: {exc}")
         return {}

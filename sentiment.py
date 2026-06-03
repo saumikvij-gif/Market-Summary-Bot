@@ -27,6 +27,7 @@ Standalone:
 import os
 import sys
 import json
+import functools
 import datetime
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -111,10 +112,15 @@ def _vader_score(text: str) -> float:
     return _vader.polarity_scores(text)["compound"]
 
 
+@functools.lru_cache(maxsize=4096)
 def score_text(text: str, engine: str = "vader") -> float:
     """Sentiment polarity in [-1, 1]. engine='finbert' uses FinBERT (formal text),
     'vader' uses VADER (social text). FinBERT falls back to VADER if unavailable.
-    FinBERT polarity = P(positive) - P(negative)."""
+    FinBERT polarity = P(positive) - P(negative).
+
+    Cached on (text, engine) so each unique headline is scored once per run —
+    the standout-headline pass reuses the news component's scores instead of
+    re-running the (slow) FinBERT inference."""
     text = text or ""
     if engine == "finbert":
         clf = _get_finbert()
