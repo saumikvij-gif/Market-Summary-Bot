@@ -11,10 +11,14 @@ Composite components and default weights:
     Reddit       :  5%   (subreddit post-title NLP sentiment — usually neutral)
     Fed          :  5%   (hawkish/dovish tone of Fed statements)
 
-Sentiment engine: VADER (vaderSentiment) — lightweight, deterministic, and
-CI-friendly. FinBERT would be more finance-aware but needs transformers+torch
-(~1GB) and is slow/fragile in CI; `score_text()` is isolated so it can be
-swapped later without touching the rest of the pipeline.
+Sentiment engines (right tool per source):
+  * News + Fed (formal text) → FinBERT, which is finance-aware — when opted in
+    via SENTIMENT_ENGINE and its deps (requirements-ml.txt) are installed.
+  * Reddit (social/slang)     → VADER, which was built for social media and
+    reads slang/sarcasm better than FinBERT.
+Default is VADER everywhere (lightweight, CI-friendly). FinBERT loads lazily and
+safely falls back to VADER if its deps/model aren't available, so a run never
+breaks. Set SENTIMENT_ENGINE=hybrid (or finbert) to enable FinBERT on news.
 
 Standalone:
     python sentiment.py        # fetch live data + headlines, print the dashboard JSON
@@ -30,9 +34,10 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-# Sentiment engine: "vader" (default — lightweight, CI-friendly) or "finbert"
-# (finance-aware, needs transformers+torch from requirements-ml.txt). FinBERT is
-# loaded lazily and falls back to VADER if its dependencies/model aren't present.
+# "vader" (default — all sources use VADER), or "hybrid"/"finbert" to use
+# FinBERT for formal news/Fed text while Reddit always stays on VADER. FinBERT
+# needs transformers+torch (requirements-ml.txt) and loads lazily with a safe
+# VADER fallback if unavailable.
 SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "vader").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
@@ -46,9 +51,13 @@ VIX_FULL_SCALE_PCT = 15.0
 # Within the market score: how much equities vs. the VIX matter.
 EQUITY_VS_VIX = (0.70, 0.30)
 
-# VADER compound thresholds for the +1/0/-1 discrete classification.
-POS_THRESHOLD = 0.05
-NEG_THRESHOLD = -0.05
+# Thresholds for the +1/0/-1 discrete classification, per engine. VADER's
+# compound clusters near 0, so a small band works; FinBERT pushes probabilities
+# harder, so it needs a wider neutral band.
+THRESHOLDS = {
+    "vader":   (0.05, -0.05),
+    "finbert": (0.15, -0.15),
+}
 
 # Require at least this many Fed keyword hits before the tone score can reach
 # full scale — keeps a single stray match from swinging fed_score to ±1.
@@ -86,14 +95,28 @@ def _get_finbert():
     return _finbert
 
 
-def score_text(text: str) -> float:
-    """Return a sentiment polarity in [-1, 1] for one piece of text.
+def _finbert_available() -> bool:
+    """True only if FinBERT is opted into AND its pipeline loads."""
+    if SENTIMENT_ENGINE not in ("finbert", "hybrid", "auto"):
+        return False
+    return bool(_get_finbert())
 
-    Uses FinBERT when SENTIMENT_ENGINE=finbert and it's installed, else VADER.
-    FinBERT polarity = P(positive) - P(negative).
-    """
+
+def news_engine() -> str:
+    """Engine for formal news/Fed text: FinBERT when available, else VADER."""
+    return "finbert" if _finbert_available() else "vader"
+
+
+def _vader_score(text: str) -> float:
+    return _vader.polarity_scores(text)["compound"]
+
+
+def score_text(text: str, engine: str = "vader") -> float:
+    """Sentiment polarity in [-1, 1]. engine='finbert' uses FinBERT (formal text),
+    'vader' uses VADER (social text). FinBERT falls back to VADER if unavailable.
+    FinBERT polarity = P(positive) - P(negative)."""
     text = text or ""
-    if SENTIMENT_ENGINE == "finbert":
+    if engine == "finbert":
         clf = _get_finbert()
         if clf:
             try:
@@ -103,22 +126,24 @@ def score_text(text: str) -> float:
                 return probs.get("positive", 0.0) - probs.get("negative", 0.0)
             except Exception as exc:
                 print(f"  ⚠️  FinBERT scoring failed ({exc}); using VADER for this item.")
-    return _vader.polarity_scores(text)["compound"]
+    return _vader_score(text)
 
 
-def classify(text: str) -> int:
-    """Discretize a headline to +1 (bullish) / 0 (neutral) / -1 (bearish)."""
-    c = score_text(text)
-    if c >= POS_THRESHOLD:
+def classify(text: str, engine: str = "vader") -> int:
+    """Discretize a headline to +1 (bullish) / 0 (neutral) / -1 (bearish),
+    using the engine's own thresholds."""
+    c = score_text(text, engine)
+    pos, neg = THRESHOLDS.get(engine, THRESHOLDS["vader"])
+    if c >= pos:
         return 1
-    if c <= NEG_THRESHOLD:
+    if c <= neg:
         return -1
     return 0
 
 
-def _avg_classified(titles: list) -> tuple:
+def _avg_classified(titles: list, engine: str = "vader") -> tuple:
     """Mean of discrete classifications over titles → (score in [-1,1], counts)."""
-    labels = [classify(t) for t in titles if t]
+    labels = [classify(t, engine) for t in titles if t]
     counts = {"bullish": labels.count(1),
               "neutral": labels.count(0),
               "bearish": labels.count(-1)}
@@ -152,13 +177,16 @@ def market_component(market_data: dict) -> dict:
 
 
 def news_component(news_titles: list) -> dict:
-    score, counts = _avg_classified(news_titles)
-    return {"score": score, "detail": {"n": len(news_titles), **counts}}
+    # Formal financial headlines → FinBERT (when available), else VADER.
+    engine = news_engine()
+    score, counts = _avg_classified(news_titles, engine)
+    return {"score": score, "detail": {"n": len(news_titles), "engine": engine, **counts}}
 
 
 def reddit_component(reddit_titles: list) -> dict:
-    score, counts = _avg_classified(reddit_titles)
-    return {"score": score, "detail": {"n": len(reddit_titles), **counts}}
+    # Social/slang text → VADER, which was built for it (FinBERT misreads slang).
+    score, counts = _avg_classified(reddit_titles, "vader")
+    return {"score": score, "detail": {"n": len(reddit_titles), "engine": "vader", **counts}}
 
 
 def fed_component(fed_titles: list) -> dict:
@@ -226,9 +254,14 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
     return " ".join(parts)
 
 
-def _extreme_headlines(titles: list) -> dict:
-    """Most bullish and most bearish single headline by polarity, or {}."""
-    scored = [(t, score_text(t)) for t in titles if t]
+def _extreme_headlines(news_titles: list, reddit_titles: list) -> dict:
+    """Most bullish and most bearish single headline by polarity, or {}.
+
+    Scores each headline with the engine appropriate to its source.
+    """
+    eng = news_engine()
+    scored = [(t, score_text(t, eng)) for t in news_titles if t]
+    scored += [(t, score_text(t, "vader")) for t in reddit_titles if t]
     if not scored:
         return {}
     bull = max(scored, key=lambda x: x[1])
@@ -271,7 +304,7 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) ->
 
     # Surprise insights: divergence (mood vs tape) and the day's standout headlines.
     divergence = _divergence(market["score"], news["score"])
-    extremes = _extreme_headlines(news_titles + reddit_titles)
+    extremes = _extreme_headlines(news_titles, reddit_titles)
 
     # Weighted composite. Each component is already in [-1, 1], so the weighted
     # sum is too (weights sum to 1.0).

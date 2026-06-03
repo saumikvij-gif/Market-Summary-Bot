@@ -59,14 +59,13 @@ def test_divergence_detection():
 
 
 def test_extreme_headlines():
-    ex = sentiment._extreme_headlines([
-        "Stocks surge to record highs on strong earnings",
-        "Markets crash amid recession fears and heavy losses",
-        "Company schedules routine meeting",
-    ])
-    assert "rally" not in ex["most_bullish"]["title"].lower() or True  # smoke
+    ex = sentiment._extreme_headlines(
+        ["Stocks surge to record highs on strong earnings",
+         "Markets crash amid recession fears and heavy losses"],
+        ["thoughts on the dip?"],
+    )
     assert ex["most_bullish"]["score"] >= ex["most_bearish"]["score"]
-    assert sentiment._extreme_headlines([]) == {}
+    assert sentiment._extreme_headlines([], []) == {}
 
 
 def test_build_dashboard_shape():
