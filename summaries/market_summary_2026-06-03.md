@@ -1,37 +1,43 @@
 # Daily Market Summary — June 03, 2026
 
+> **Note:** No US trading session on 2026-06-03. Figures are from the last session (2026-06-02).
+
 ## Market Overview
 
-U.S. equities advanced modestly on June 3, extending the S&P 500's winning streak to nine consecutive sessions despite divergent performance across mega-cap technology stocks. The S&P 500 gained 0.13%, while the Nasdaq 100 and Dow Jones rose 0.48% and 0.45% respectively. Small-caps outperformed with the Russell 2000 climbing 0.90%, suggesting some broadening in market participation. The VIX declined 1.74% to 15.77, indicating muted investor anxiety despite geopolitical headwinds.
+U.S. equities extended their winning streak on Wednesday, with the S&P 500 notching its ninth consecutive day of gains, rising 0.13% to close at 7,609.78. The rally broadened beyond mega-cap tech, as the Russell 2000 surged 0.90% and the Dow Jones advanced 0.45%. The VIX declined 1.74% to 15.77, reflecting subdued volatility despite mounting concerns about stretched valuations and narrow market breadth.
 
-## Geopolitical Tensions Drive Oil Surge
+## Mega-Cap Divergence
 
-Crude oil spiked 2.67% to $94.62 per barrel following reports that Iran has halted ceasefire negotiations and declared the Strait of Hormuz closed—a critical chokepoint for global energy supplies. Gold advanced 0.81% to $4,511.60 as investors sought safe-haven assets. The energy price surge raises inflation concerns and could complicate the Federal Reserve's policy calculus, though recent FOMC minutes released today showed no immediate shift in the central bank's stance.
+A dramatic divergence unfolded among tech giants. Apple soared 2.90% following the "Dear Microsoft Stock Fans, Mark Your Calendars for June 2" headline, though the reference may have been ironic—Microsoft itself plummeted 4.17%, its worst single-day decline in months. Alphabet tumbled 3.86%, likely pressured by UK regulatory enforcement of new competition requirements for Google search and continued skepticism around AI spending efficiency. Amazon fell 1.81%, while Nvidia edged down 0.69% despite CEO Jensen Huang's endorsement of Marvell Technology as a potential "next trillion-dollar company."
 
-## Tech Sector Split on AI Hardware Shifts
+Tesla bucked the trend, climbing 1.89%, though headlines about Elon Musk's potential Tesla-SpaceX merger drew skepticism. The broader narrative of AI infrastructure investment continues to dominate, with Goldman Sachs CEO David Solomon warning markets are in "greed" mode as AI companies chase billions in capital.
 
-The session featured sharp divergence among mega-cap technology names. Apple surged 2.90% and Tesla gained 1.89%, while Microsoft plunged 4.17% and Alphabet dropped 3.86%. The rotation appears linked to Nvidia's announcement of new AI chips for personal computers, which boosted hardware partners like Dell and HP while pressuring cloud-focused hyperscalers. Nvidia CEO Jensen Huang's comment that Marvell could become "the next trillion-dollar company" sparked a 22-25% premarket surge in that stock, highlighting continued enthusiasm for AI infrastructure plays.
+## Crypto and Commodities
 
-## SpaceX IPO Dominates Headlines
+Bitcoin suffered a sharp 5.91% decline to $67,103.52, with reports suggesting long-time bulls are "rage quitting" and offloading holdings amid mounting frustration. Crude oil rose 1.56% to $95.22, buoyed by Venezuela's increased oil exports and geopolitical uncertainty, while gold edged up 0.10% to $4,493.50, maintaining its haven appeal. The dollar strengthened modestly, with USD/JPY rising 0.18% to 159.93.
 
-SpaceX's planned IPO at a $1.75 trillion valuation ($135 per share) dominated investor discussion, though Morningstar's analysis valuing the company at just $780 billion—less than half the target—raised skepticism about frothy valuations in high-profile tech offerings. Commentary from Goldman Sachs CEO David Solomon that markets are in "greed mode" echoed concerns about stretched valuations, with some noting U.S. stocks have surpassed 1929 levels on certain metrics.
+## Key Themes and Outlook
 
-## Cross-Asset Signals
-
-The combination of rising oil prices, declining volatility, and small-cap outperformance suggests investors remain constructive on economic growth despite geopolitical risks. However, narrowing breadth—referenced in warnings about a "breadth paradox"—and rotation within mega-cap tech hint at underlying fragility in the AI-driven rally.
+New Federal Reserve Chair Warsh made his first hires at the central bank, though no immediate policy shifts were signaled. The release of FOMC minutes from recent meetings offered no surprises, with markets already pricing in a steady path. Concerns about valuation extremes intensified, with reports noting U.S. stocks have surpassed 1929 levels and a "breadth paradox" warning of concentration risk despite the rally's surface strength. Greg Abel, Berkshire Hathaway's new CEO, completed his first major acquisition—a nearly $17 billion spree expanding into tech—signaling a strategic shift in the post-Buffett era.
 
 ## Market Sentiment Dashboard
 
-**Overall Score:** +0.18  →  **Slightly Bullish**
+**Overall Score:** +0.15  →  **Slightly Bullish**
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 50% | +0.14 |
-| News headlines | 35% | +0.28 |
-| Reddit | 10% | +0.03 |
+| Market data | 55% | +0.14 |
+| News headlines | 35% | +0.16 |
+| Reddit | 5% | +0.06 |
 | Fed tone | 5% | +0.25 |
 
 _Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX -1.7%. News headlines read slightly bullish. Reddit sentiment is neutral. Fed tone appears dovish. Overall market sentiment: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.94): Applied Materials plans to boost Southeast Asia workforce by 25%- Nikkei
+- 🔴 Most bearish (-0.95): Japan’s IHI shares drop as space agency imposes five-mth bidding ban
 
 ---
 
@@ -54,11 +60,11 @@ _Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX -1.7%. News headlines read 
 - Meta: 597.63  ▼ -2.84 (-0.47%)
 
 ### Commodities & Crypto
-- Gold: 4,511.60  ▲ +36.40 (+0.81%)
-- Crude Oil: 94.62  ▲ +2.46 (+2.67%)
-- Bitcoin: 66,309.97  ▲ +0.00 (+0.00%)
+- Gold: 4,493.50  ▲ +4.40 (+0.10%)
+- Crude Oil: 95.22  ▲ +1.46 (+1.56%)
+- Bitcoin: 67,103.52  ▼ -4,216.25 (-5.91%)
 
 ### FX Rates
-- EUR/USD: 1.16  ▼ +0.00 (-0.03%)
-- USD/JPY: 159.89  ▲ +0.26 (+0.16%)
-- GBP/USD: 1.35  ▲ +0.00 (+0.03%)
+- EUR/USD: 1.16  ▼ +0.00 (-0.12%)
+- USD/JPY: 159.93  ▲ +0.29 (+0.18%)
+- GBP/USD: 1.34  ▼ +0.00 (-0.11%)
