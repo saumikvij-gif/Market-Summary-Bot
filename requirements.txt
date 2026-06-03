@@ -8,6 +8,9 @@ matplotlib==3.10.9
 markdown==3.10.2
 vaderSentiment==3.3.2
 xhtml2pdf==0.2.17
+# Pin svglib < 1.6 so it doesn't drag in rlPyCairo/pycairo, which need the
+# system 'cairo' lib and fail to build on the CI runner. We only embed PNGs.
+svglib==1.5.1
 
 # Test-only
 pytest==9.0.3
