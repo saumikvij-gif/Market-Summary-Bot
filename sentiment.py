@@ -456,7 +456,7 @@ def _fed_explain(label, treasury, comms, inflation, weights_used) -> str:
         dir_word = ("fell" if move_bp <= -0.5 else
                     "rose" if move_bp >= 0.5 else "was flat")
         name = treasury.get("name", FED_RATE_KEY)
-        amount = f" {move_bp:+.0f}bp" if abs(move_bp) >= 0.5 else ""
+        amount = f" {move_bp:+.1f}bp" if abs(move_bp) >= 0.5 else ""
         parts.append(f"{name} {dir_word}{amount} "
                      f"(weight {weights_used.get('treasury', 0):.0%}).")
     if comms.get("active"):
@@ -517,7 +517,7 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
         tone = ("eased" if move_bp <= -0.5 else
                 "tightened" if move_bp >= 0.5 else "held steady")
         name = treasury.get("name", "front-end yields")
-        amount = f" ({name} {move_bp:+.0f}bp)" if abs(move_bp) >= 0.5 else ""
+        amount = f" ({name} {move_bp:+.1f}bp)" if abs(move_bp) >= 0.5 else ""
         parts.append(f"Fed-policy expectations {tone}{amount}.")
     comms = fed["detail"].get("communications", {})
     if comms.get("active"):

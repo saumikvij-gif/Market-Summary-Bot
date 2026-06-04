@@ -128,8 +128,12 @@ def fetch_quote(ticker_symbol: str) -> dict:
 
     return {
         "price":      round(float(latest_close),  2),
+        # Keep `change` at 4dp, not 2dp: for a yield ticker (e.g. ^IRX) the change
+        # IS the move in percentage points, and 2dp quantizes it to whole basis
+        # points — erasing the sub-bp front-end moves the Fed treasury leg reads.
+        # Every display formats change with :+.2f, so this is invisible on screen.
         # `or 0.0` normalizes -0.0 (falsy) to 0.0 so tiny negatives don't render as "+-0.00"
-        "change":     round(float(change),         2) or 0.0,
+        "change":     round(float(change),         4) or 0.0,
         "pct_change": round(float(pct_change),     2) or 0.0,
         # Date of the latest session, used to detect holidays / stale data.
         "session_date": hist.index[-1].date().isoformat(),
