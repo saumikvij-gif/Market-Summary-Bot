@@ -1,7 +1,7 @@
 """
 charts.py
 ---------
-Generates trend charts (PNG) from the CSV history (see database.py) so the data
+Generates trend charts (PNG) from the CSV history (see history.py) so the data
 is glanceable instead of row-by-row. Saves into the charts/ folder.
 
     python charts.py
@@ -20,7 +20,7 @@ import matplotlib
 matplotlib.use("Agg")  # headless backend — no display needed
 import matplotlib.pyplot as plt
 
-import database
+import history
 
 CHARTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "charts")
 
@@ -36,26 +36,42 @@ def _ensure_dir() -> None:
 
 
 def chart_sentiment_trend(limit: int = 30) -> str | None:
-    """Plot daily sentiment score (-100..100) over time."""
-    rows = [r for r in database.sentiment_history(limit) if r["score"] is not None]
+    """Plot the daily sentiment score (-100..100) with a smoothed EMA trend.
+
+    The raw daily score is intrinsically jumpy (it tracks a near-random daily
+    return), so the bold line is a short EMA — the readable day-over-day signal —
+    while the faint markers show the raw daily points behind it.
+    """
+    rows = [r for r in history.sentiment_history(limit) if r["score"] is not None]
     if not rows:
         print("  (no sentiment scores to chart yet)")
         return None
 
+    import sentiment
     dates = [r["run_date"] for r in rows]
     scores = [r["score"] for r in rows]
+    # Progressive EMA: each point is the smoothed value as of that day, using the
+    # same span as the dashboard's headline trend (single source of truth).
+    span = sentiment.SMOOTHING_SPAN
+    smoothed = [round(sentiment.ema(scores[:i + 1], span)) for i in range(len(scores))]
 
     fig, ax = plt.subplots(figsize=(10, 4.5))
     ax.axhline(0, color="#888", linewidth=0.8)
-    ax.plot(dates, scores, marker="o", color="#1f77b4", linewidth=2)
-    ax.fill_between(dates, scores, 0,
-                    where=[s >= 0 for s in scores], color="#2ca02c", alpha=0.15)
-    ax.fill_between(dates, scores, 0,
-                    where=[s < 0 for s in scores], color="#d62728", alpha=0.15)
+    # Faint raw daily points; the EMA trend carries the visual weight.
+    ax.plot(dates, scores, marker="o", markersize=4, color="#1f77b4",
+            linewidth=1.0, alpha=0.40, label="Daily score (raw)")
+    ax.plot(dates, smoothed, color="#1f77b4", linewidth=2.6,
+            label=f"{span}-day EMA trend")
+    # Shade by the trend, not the noisy daily value.
+    ax.fill_between(dates, smoothed, 0,
+                    where=[s >= 0 for s in smoothed], color="#2ca02c", alpha=0.15)
+    ax.fill_between(dates, smoothed, 0,
+                    where=[s < 0 for s in smoothed], color="#d62728", alpha=0.15)
     ax.set_ylim(-100, 100)
     ax.set_title("Market Sentiment Score Over Time")
     ax.set_ylabel("Bearish  ←  Score  →  Bullish")
     ax.grid(True, alpha=0.3)
+    ax.legend(loc="upper left", fontsize=9)
     fig.autofmt_xdate(rotation=45)
     fig.tight_layout()
 
@@ -77,7 +93,7 @@ def chart_index_trends(limit: int = INDEX_CHART_DAYS) -> str | None:
     latest_date = None
 
     for name in INDEX_NAMES:
-        rows = database.price_history(name, limit)
+        rows = history.price_history(name, limit)
         pairs = [(datetime.date.fromisoformat(r["run_date"]), r["price"])
                  for r in rows if r["price"] is not None]
         if len(pairs) < 2:
@@ -122,7 +138,7 @@ def chart_index_trends(limit: int = INDEX_CHART_DAYS) -> str | None:
 
 def generate_all() -> list:
     """Generate every chart; return the list of paths actually written."""
-    if not os.path.exists(database.QUOTES_CSV):
+    if not os.path.exists(history.QUOTES_CSV):
         print("No history yet — run market_summary.py at least once first.")
         return []
     _ensure_dir()

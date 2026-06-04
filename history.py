@@ -1,6 +1,6 @@
 """
-database.py
------------
+history.py
+----------
 CSV-backed history for the market summary bot — no SQLite. The dataset is tiny
 (~250 days x ~18 instruments), so two committed CSV files are the single source
 of truth and all querying is done in memory.
@@ -11,8 +11,8 @@ of truth and all querying is done in memory.
 Used by market_summary.py to record each run. Can also be run directly to print
 a trend report:
 
-    python database.py                # recent sentiment + S&P 500 history
-    python database.py "Nvidia"       # price history for a specific instrument
+    python history.py                # recent sentiment + S&P 500 history
+    python history.py "Nvidia"       # price history for a specific instrument
 """
 
 import os
@@ -20,8 +20,9 @@ import sys
 import csv
 import datetime
 
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+from utils import force_utf8
+
+force_utf8()
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QUOTES_CSV = os.path.join(_HERE, "history_quotes.csv")

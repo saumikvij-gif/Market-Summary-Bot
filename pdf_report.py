@@ -1,6 +1,6 @@
 """
-report.py
----------
+pdf_report.py
+-------------
 Builds the full daily briefing as styled HTML and renders it to a downloadable
 PDF (via xhtml2pdf). The PDF carries everything — sentiment dashboard, a clearly
 titled divergence alert, a highlighted Top Gainers block, Top News with
@@ -58,6 +58,18 @@ def _chg(value, pct=False):
     return f'<span class="{cls}">{txt}</span>'
 
 
+def _colored(text: str, value) -> str:
+    """Wrap arbitrary text in a green/red span by the sign of `value`.
+
+    Near-zero (|value| < 0.005, i.e. rounds to 0.00) and None render plain, so a
+    neutral reading isn't dressed up as bullish or bearish.
+    """
+    if value is None or abs(value) < 0.005:
+        return text
+    cls = "pos" if value > 0 else "neg"
+    return f'<span class="{cls}">{text}</span>'
+
+
 def _market_tables(market_data: dict) -> str:
     parts = []
     for key, label in SECTION_LABELS.items():
@@ -113,19 +125,25 @@ def _sentiment_label(score):
 def _sector_watch_block(rows: list) -> str:
     if not rows:
         return ""
+    # Leaders first: strongest blended score at the top, laggards at the bottom —
+    # the way a PM scans a sector table.
+    rows = sorted(rows, key=lambda r: (r.get("score") is None, -(r.get("score") or 0)))
     body = ""
     for r in rows:
         move = _chg(r.get("move_pct"), pct=True) if r.get("move_pct") is not None else "n/a"
         rs = _chg(r.get("rel_strength"), pct=True) if r.get("rel_strength") is not None else "n/a"
         breadth = f"{r['breadth_pct']}%" if r.get("breadth_pct") is not None else "n/a"
         news = _sentiment_label(r.get("news_score"))
-        overall = r.get("label", "—")
+        # Overall: label + numeric score, coloured by sign so resolution isn't lost.
+        sc = r.get("score")
+        overall_txt = r.get("label", "—") + (f" ({sc:+.2f})" if sc is not None else "")
+        overall = _colored(f"<b>{overall_txt}</b>", sc)
         body += (f"<tr><td>{r['sector']}</td><td>{move}</td><td>{rs}</td>"
-                 f"<td>{breadth}</td><td>{news}</td><td><b>{overall}</b></td></tr>")
+                 f"<td>{breadth}</td><td>{news}</td><td>{overall}</td></tr>")
     return (f"<h2>Sector Watch (AI Stack)</h2>"
-            f'<p class="news-src">Multi-metric read: relative strength, breadth '
+            f'<p class="news-src">Blended score from relative strength, breadth '
             f"(avg % of the 20/50/200-day MAs the basket trades above), news, "
-            f"volume, and Reddit.</p>"
+            f"volume, and Reddit. Sorted strongest&rarr;weakest.</p>"
             f"<table><tr><th>Sector</th><th>Move</th><th>vs S&amp;P</th>"
             f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")
 
@@ -138,22 +156,53 @@ def _divergence_block(dash: dict) -> str:
             f'<div class="box divergence">{div}</div>')
 
 
+def _standout_block(dash: dict) -> str:
+    """The day's most-bullish / most-bearish single headline (matches markdown)."""
+    h = dash.get("headlines") or {}
+    if not h:
+        return ""
+    items = ""
+    b = h.get("most_bullish")
+    if b:
+        items += (f'<div class="news-item"><span class="pos">Most bullish '
+                  f'({b["score"]:+.2f})</span> &mdash; {b["title"]}</div>')
+    be = h.get("most_bearish")
+    if be:
+        items += (f'<div class="news-item"><span class="neg">Most bearish '
+                  f'({be["score"]:+.2f})</span> &mdash; {be["title"]}</div>')
+    return f'<p class="news-title">Standout headlines</p>{items}' if items else ""
+
+
 def _dashboard_block(dash: dict) -> str:
     w = dash.get("weights", {})
     rows = ""
     for key, label in [("market", "Market data"), ("news", "News headlines"),
                        ("reddit", "Reddit"), ("fed", "Fed (rate expectations)")]:
-        rows += (f"<tr><td>{label}</td><td>{w.get(key,0):.0%}</td>"
+        # A 0-weight component (e.g. Reddit for now) is flagged as disabled rather
+        # than shown as a live-looking "0% | +0.00" row.
+        disabled = w.get(key, 0) == 0
+        lbl = f'{label} <span class="news-src">(disabled)</span>' if disabled else label
+        rows += (f"<tr><td>{lbl}</td><td>{w.get(key,0):.0%}</td>"
                  f"<td>{_chg(dash.get(key+'_score'))}</td></tr>")
     engine = (dash.get("components", {}).get("news", {}) or {}).get("engine", "")
     eng = f' <span class="news-src">(news scored with {engine})</span>' if engine else ""
+    score = dash.get("overall_score", 0)
+    head = _colored(f'Today: {score:+.2f} &rarr; {dash.get("label","")}', score)
+    trend = ""
+    if dash.get("smoothed_score") is not None:
+        span = dash.get("smoothing_span", "")
+        sm = dash["smoothed_score"]
+        sm_txt = _colored(f'{sm:+.2f} &rarr; {dash.get("smoothed_label","")}', sm)
+        trend = (f'<p class="news-src">Trend ({span}-day EMA): <b>{sm_txt}</b>'
+                 f' &mdash; smoothed, the readable day-over-day signal.</p>')
     return (f'<h2>Market Tone &mdash; Today\'s Session</h2>'
             f'<p class="news-src">A recap of how the market traded today &mdash; not a forecast.</p>'
-            f'<p class="score">Today: {dash.get("overall_score",0):+.2f} '
-            f'&rarr; {dash.get("label","")}</p>'
+            f'<p class="score">{head}</p>'
+            f'{trend}'
             f'<table><tr><th>Component</th><th>Weight</th><th>Score</th></tr>'
             f'{rows}</table>'
-            f'<p class="news-sum">{dash.get("summary_text","")}{eng}</p>')
+            f'<p class="news-sum">{dash.get("summary_text","")}{eng}</p>'
+            f'{_standout_block(dash)}')
 
 
 def _charts_block(chart_paths: list) -> str:

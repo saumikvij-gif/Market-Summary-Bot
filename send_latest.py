@@ -19,12 +19,12 @@ import datetime
 
 from dotenv import load_dotenv
 import emailer
+from utils import force_utf8
 
 # Load SMTP_* / EMAIL_TO from .env locally (no-op in CI, which uses secrets).
 load_dotenv()
 
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+force_utf8()
 
 PDF_GLOB = "summaries/market_summary_*.pdf"
 

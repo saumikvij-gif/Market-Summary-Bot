@@ -1,4 +1,4 @@
-import report
+import pdf_report
 
 
 def _dash():
@@ -18,7 +18,7 @@ MARKET = {"indices": {"S&P 500": {"price": 7600.0, "change": 9.8, "pct_change": 
 
 
 def test_build_html_has_all_sections():
-    html = report.build_html(
+    html = pdf_report.build_html(
         "June 03, 2026", "## Overview\nMarkets rose.",
         [{"symbol": "LEGN", "name": "Legend Biotech", "price": 36.28, "pct_change": 42.22}],
         [{"source": "CNBC", "title": "Headline", "summary": "A summary.", "link": ""}],
@@ -36,11 +36,11 @@ def test_build_html_has_all_sections():
 def test_divergence_omitted_when_absent():
     d = _dash()
     d["divergence"] = None
-    html = report.build_html("June 03, 2026", "x", [], [], d, MARKET, [])
+    html = pdf_report.build_html("June 03, 2026", "x", [], [], d, MARKET, [])
     assert "Divergence Alert" not in html
 
 
 def test_gainers_and_news_omitted_when_empty():
-    html = report.build_html("June 03, 2026", "x", [], [], _dash(), MARKET, [])
+    html = pdf_report.build_html("June 03, 2026", "x", [], [], _dash(), MARKET, [])
     assert "Top Gainers" not in html
     assert "Top News" not in html

@@ -19,13 +19,12 @@ False — so email delivery is opt-in and never blocks the rest of the pipeline.
 """
 
 import os
-import sys
 import smtplib
 from email.message import EmailMessage
 
-# Reconfigure stdout to UTF-8 so status emojis don't crash on Windows (cp1252)
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+from utils import force_utf8
+
+force_utf8()
 
 
 def _config() -> dict | None:

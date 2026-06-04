@@ -6,15 +6,27 @@ returns a Joywin-style dashboard dict. This REPLACES the LLM's subjective score
 as the number stored in the DB and plotted on the daily chart.
 
 Composite components and default weights:
-    Market data : 50%   (a blend of equity moves, sector breadth, VIX, and the
+    Market data : 70%   (a blend of equity moves, sector breadth, VIX, and the
                          10Y Treasury yield — see MARKET_SUBWEIGHTS)
-    News         : 35%   (headline NLP sentiment)
-    Reddit       :  5%   (subreddit post-title NLP sentiment — usually neutral)
-    Fed          : 10%   (the Fed Expectations Score — 2Y Treasury move + FinBERT
-                         tone of fresh Fed communications; see fed.py)
+    News         : 20%   (headline NLP sentiment)
+    Reddit       :  0%   (DISABLED — see note below; component still computed for
+                         display but contributes nothing to the score)
+    Fed          : 10%   (the Fed Expectations Score — front-end T-Bill move +
+                         FinBERT tone of fresh Fed communications; see the Fed
+                         Expectations sub-model below)
+
+The market component carries the most weight because it is the only piece with a
+validated, faithful same-day read of the tape (same-day corr ≈ 0.97 vs the index
+move — see validate_sentiment.py); news/Reddit headline-NLP is a noisier, small-
+sample signal, so it is trimmed. Reddit is weighted 0 for now: public RSS "hot"
+feeds are a poor same-day proxy (hot posts persist for days) — the weight will be
+restored once a proper social feed (Reddit/X/Threads API) is wired in.
 
 This is a DESCRIPTIVE recap of how the market traded today — every input is a
 same-day reading. It is not a forecast (validated: no next-day predictive edge).
+A short EMA (SMOOTHING_SPAN) of the daily composite is also reported as a trend,
+because the raw same-day score is intrinsically jumpy (it tracks a near-random
+daily return); the smoothed line is the more readable day-over-day signal.
 
 Sentiment engines (right tool per source):
   * News + Fed (formal text) → FinBERT, which is finance-aware — when opted in
@@ -30,15 +42,15 @@ Standalone:
 """
 
 import os
-import sys
 import json
 import functools
 import datetime
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+from utils import clamp as _clamp, force_utf8
+
+force_utf8()
 
 # "hybrid" (default — FinBERT for formal news/Fed, VADER for Reddit) or "vader"
 # (all sources use VADER). FinBERT needs transformers+torch (requirements-ml.txt)
@@ -48,7 +60,12 @@ SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "hybrid").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
 
-WEIGHTS = {"market": 0.50, "news": 0.35, "reddit": 0.05, "fed": 0.10}
+WEIGHTS = {"market": 0.70, "news": 0.20, "reddit": 0.00, "fed": 0.10}
+
+# Span (in trading days) for the EMA trend line on the daily composite. The raw
+# same-day score whipsaws (it faithfully tracks a near-random daily return), so a
+# short EMA is surfaced alongside it as the readable day-over-day signal.
+SMOOTHING_SPAN = 5
 
 # A ±2% average move in the big indices is treated as a full ±1 equity signal.
 EQUITY_FULL_SCALE_PCT = 2.0
@@ -81,8 +98,21 @@ _finbert = None  # None = not loaded yet; False = unavailable; else a pipeline
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
-def _clamp(x: float, lo: float = -1.0, hi: float = 1.0) -> float:
-    return max(lo, min(hi, x))
+def ema(values: list, span: int = SMOOTHING_SPAN):
+    """Exponential moving average of a numeric series (oldest-first).
+
+    Returns the final EMA value (the smoothed 'today'), or None for an empty
+    series. A shorter span tracks the raw score more closely; a longer span is
+    smoother. Used to surface a readable trend over the jumpy daily composite.
+    """
+    vals = [v for v in (values or []) if v is not None]
+    if not vals:
+        return None
+    alpha = 2.0 / (span + 1)
+    e = vals[0]
+    for v in vals[1:]:
+        e = alpha * v + (1 - alpha) * e
+    return e
 
 
 def _get_finbert():
@@ -245,17 +275,200 @@ def reddit_component(reddit_titles: list) -> dict:
 
 
 def fed_component(market_data: dict, fed_titles: list = None) -> dict:
-    """The Fed Expectations Score — delegated to the fed module.
+    """The Fed Expectations Score — the composite's 4th component.
 
-    A renormalized blend of the 2Y Treasury move (active daily), the FinBERT tone
-    of any fresh Fed communications (active on event days), and an inflation-
-    surprise hook (inactive — no free consensus data). See fed.py for the full
-    rationale and the deliberate 2Y-here / 10Y-in-market split.
+    A renormalized blend of the front-end T-Bill move (active daily), the FinBERT
+    tone of any fresh Fed communications (active on event days), and an inflation-
+    surprise hook (inactive — no free consensus data). The full sub-model lives
+    in the "Fed Expectations sub-model" section below.
     """
-    import fed
-    result = fed.fed_expectations_score(market_data, fed_titles)
+    result = fed_expectations_score(market_data, fed_titles)
     return {"score": result["score"], "label": result["label"],
             "detail": result["detail"]}
+
+
+# ── Fed Expectations sub-model ───────────────────────────────────────────────────
+# The Fed score is a market-driven read of where monetary-policy expectations
+# moved today — a DESCRIPTIVE same-day reading, not a forecast. It is a
+# renormalized blend of three sub-components; only the *active* ones contribute on
+# a given day (inactive ones drop out so the score is never diluted by a stale 0):
+#
+#   1. Treasury (50%, active every trading day) — the 13-week T-Bill yield (^IRX)
+#      is the front of the curve: almost pure policy-rate expectation, near-zero
+#      term premium, so it overlaps least with the 10Y used in market_component's
+#      `rates` sub-signal. Its DAILY MOVE in basis points is the signal (a falling
+#      front-end yield = easier policy priced = dovish/supportive = +). Scaling on
+#      the bp move (not the % change of the level) keeps it level-independent.
+#      (A 2Y would be the obvious proxy, but Yahoo has no reliable free 2Y feed —
+#      the old 2YY=F future froze for days and faked a flat signal; ^IRX is live.)
+#   2. Communications (25%, active only when fresh Fed text is present) — on FOMC
+#      days/speeches/minutes (~8/yr) we score the text with the news engine
+#      (FinBERT when available); the other ~245 days it's inactive.
+#   3. Inflation surprise (25%, permanently INACTIVE) — (actual − consensus) CPI/
+#      PCE; the consensus feed is proprietary with no free source, so this is a
+#      wired-but-dormant hook (flip INFLATION_ENABLED once a feed exists).
+#
+# Why the front-end yield lives here but the 10Y lives in market_component: the
+# front-end bill tracks the expected Fed-funds PATH (pure policy expectations →
+# Fed score); the 10Y tracks long-run growth + inflation + term premium (broad
+# financial conditions → market score). Correlated via the curve, but distinct
+# information, so each is used exactly once in the place it belongs.
+
+# The rates key (and Yahoo ticker, in market_summary.RATES) for the front-end
+# Treasury yield used as the Fed-policy-path proxy. One name, used everywhere.
+FED_RATE_KEY = "13-Week T-Bill Yield"
+
+# Sub-component weights within the Fed score (renormalized over active components).
+TREASURY_WEIGHT = 0.50
+COMMS_WEIGHT = 0.25
+INFLATION_WEIGHT = 0.25
+
+# A ±15bp move in the front-end yield is treated as a full ±1 Treasury signal.
+# (~a sizeable front-end repricing day; ordinary daily noise is 1–5bp.)
+FED_FULL_SCALE_BP = 15.0
+
+# Flip to True only once a free consensus-forecast source is wired in (see above).
+INFLATION_ENABLED = False
+
+
+def _change_of(section: dict, name: str):
+    """Absolute level change for one instrument, or None if missing/errored.
+
+    For a yield ticker (e.g. ^IRX) this is the change in the yield itself, in
+    percentage points — multiply by 100 for basis points.
+    """
+    q = (section or {}).get(name, {})
+    return q.get("change") if isinstance(q, dict) and "error" not in q else None
+
+
+def treasury_component(market_data: dict) -> dict:
+    """Front-end Treasury yield move (basis points) → [-1, 1].
+
+    Falling yield = market pricing easier policy = dovish/supportive (+).
+    """
+    change = _change_of(market_data.get("rates", {}), FED_RATE_KEY)
+    if change is None:
+        return {"active": False, "score": 0.0, "move_bp": None, "name": FED_RATE_KEY}
+    move_bp = round(change * 100, 1)             # yield change (pp) → basis points
+    score = _clamp(-move_bp / FED_FULL_SCALE_BP)  # yield down = easier policy = +
+    return {"active": True, "score": round(score, 4), "move_bp": move_bp,
+            "name": FED_RATE_KEY}
+
+
+def communications_component(fed_titles: list) -> dict:
+    """FinBERT tone of fresh Fed text → [-1, 1]. Inactive when no text present.
+
+    Active only on days the Fed feed carries text (FOMC statements, minutes,
+    speeches — roughly 8 events a year). Scored with the news engine (FinBERT
+    when available, else VADER), so dovish language reads positive.
+    """
+    titles = [t for t in (fed_titles or []) if t]
+    if not titles:
+        return {"active": False, "score": 0.0, "n": 0, "engine": None}
+    engine = news_engine()
+    scores = [score_text(t, engine) for t in titles]
+    score = _clamp(sum(scores) / len(scores))
+    return {"active": True, "score": round(score, 4), "n": len(titles), "engine": engine}
+
+
+def inflation_component() -> dict:
+    """Inflation-surprise hook — permanently inactive without consensus data.
+
+    Returns a fixed inactive result. Wire a (actual − consensus) feed in here and
+    set INFLATION_ENABLED = True to switch it on; until then it never contributes.
+    """
+    return {
+        "active": bool(INFLATION_ENABLED),
+        "score": 0.0,
+        "note": "inactive — no free consensus-forecast feed",
+    }
+
+
+def fed_label(score: float) -> str:
+    if score > 0.3:
+        return "Dovish"
+    if score >= 0.1:
+        return "Leaning dovish"
+    if score > -0.1:
+        return "Neutral"
+    if score >= -0.3:
+        return "Leaning hawkish"
+    return "Hawkish"
+
+
+def fed_expectations_score(market_data: dict, fed_titles: list = None) -> dict:
+    """Blend the three Fed sub-components, renormalized over whichever are active.
+
+    Returns:
+        {
+          "score": float in [-1, 1],        # the Fed Expectations Score
+          "label": str,                     # Dovish … Hawkish
+          "detail": {
+            "treasury": {...}, "communications": {...}, "inflation": {...},
+            "active_components": [str], "weights_used": {component: renorm weight},
+            "explanation": str,
+          },
+        }
+    """
+    treasury = treasury_component(market_data)
+    comms = communications_component(fed_titles)
+    inflation = inflation_component()
+
+    # (name, full weight, component-dict) for every component that is active today.
+    candidates = [
+        ("treasury", TREASURY_WEIGHT, treasury),
+        ("communications", COMMS_WEIGHT, comms),
+        ("inflation", INFLATION_WEIGHT, inflation),
+    ]
+    active = [(name, w, c) for name, w, c in candidates if c.get("active")]
+
+    total_w = sum(w for _, w, _ in active)
+    if total_w:
+        score = _clamp(sum(w * c["score"] for _, w, c in active) / total_w)
+        weights_used = {name: round(w / total_w, 4) for name, w, _ in active}
+    else:
+        score = 0.0
+        weights_used = {}
+    score = round(score, 4)
+    label = fed_label(score)
+
+    explanation = _fed_explain(label, treasury, comms, inflation, weights_used)
+
+    return {
+        "score": score,
+        "label": label,
+        "detail": {
+            "treasury": treasury,
+            "communications": comms,
+            "inflation": inflation,
+            "active_components": [name for name, _, _ in active],
+            "weights_used": weights_used,
+            "explanation": explanation,
+        },
+    }
+
+
+def _fed_explain(label, treasury, comms, inflation, weights_used) -> str:
+    parts = [f"Fed Expectations: {label}."]
+    if treasury.get("active") and treasury.get("move_bp") is not None:
+        move_bp = treasury["move_bp"]
+        # Deadband: a sub-1bp move is rounding noise, not a real shift.
+        dir_word = ("fell" if move_bp <= -0.5 else
+                    "rose" if move_bp >= 0.5 else "was flat")
+        name = treasury.get("name", FED_RATE_KEY)
+        amount = f" {move_bp:+.0f}bp" if abs(move_bp) >= 0.5 else ""
+        parts.append(f"{name} {dir_word}{amount} "
+                     f"(weight {weights_used.get('treasury', 0):.0%}).")
+    if comms.get("active"):
+        parts.append(f"Fed communications ({comms['n']} item"
+                     f"{'s' if comms['n'] != 1 else ''}, {comms.get('engine')}) "
+                     f"scored {comms['score']:+.2f} "
+                     f"(weight {weights_used.get('communications', 0):.0%}).")
+    else:
+        parts.append("No fresh Fed text today — communications component inactive.")
+    if not inflation.get("active"):
+        parts.append("Inflation-surprise component inactive (no free consensus data).")
+    return " ".join(parts)
 
 
 # ── Composite + labelling ──────────────────────────────────────────────────────
@@ -270,20 +483,6 @@ def label_for(score: float) -> str:
     if score >= -0.3:
         return "Slightly Bearish"
     return "Bearish"
-
-
-def _split_headlines(headlines: dict) -> tuple:
-    """Split a {source: [titles]} dict into (news, reddit, fed) title lists."""
-    news, reddit, fed = [], [], []
-    for source, titles in (headlines or {}).items():
-        key = source.lower()
-        if key.startswith("r/"):
-            reddit.extend(titles)
-        elif "fed" in key:
-            fed.extend(titles)
-        else:
-            news.extend(titles)
-    return news, reddit, fed
 
 
 def _commentary(overall_label, market, news, reddit, fed) -> str:
@@ -306,13 +505,20 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
     if d.get("rate_10y_pct") is not None:
         parts.append(f"10Y yield {d['rate_10y_pct']:+.1f}%.")
     parts.append(f"News headlines read {label_for(news['score']).lower()}.")
-    parts.append(f"Reddit sentiment is {label_for(reddit['score']).lower()}.")
+    # Only mention Reddit when it actually counts — it's weighted 0 for now.
+    if WEIGHTS.get("reddit", 0) > 0:
+        parts.append(f"Reddit sentiment is {label_for(reddit['score']).lower()}.")
     treasury = fed["detail"].get("treasury", {})
-    if treasury.get("active") and treasury.get("rate_pct") is not None:
-        tone = ("eased" if fed["score"] > 0 else
-                "tightened" if fed["score"] < 0 else "held steady")
-        parts.append(f"Fed-policy expectations {tone} "
-                     f"(2Y Treasury {treasury['rate_pct']:+.2f}%).")
+    move_bp = treasury.get("move_bp")
+    if treasury.get("active") and move_bp is not None:
+        # Describe the front-end yield move itself (with a deadband for rounding
+        # noise) rather than attributing the whole Fed score — which may be
+        # driven by communications — to the Treasury leg.
+        tone = ("eased" if move_bp <= -0.5 else
+                "tightened" if move_bp >= 0.5 else "held steady")
+        name = treasury.get("name", "front-end yields")
+        amount = f" ({name} {move_bp:+.0f}bp)" if abs(move_bp) >= 0.5 else ""
+        parts.append(f"Fed-policy expectations {tone}{amount}.")
     comms = fed["detail"].get("communications", {})
     if comms.get("active"):
         parts.append(f"Fresh Fed communications read {label_for(comms['score']).lower()}.")
@@ -320,18 +526,27 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
     return " ".join(parts)
 
 
+# A headline must be at least this long to be eligible as a "standout" — short
+# fragments score erratically and read as noise when surfaced on their own.
+_MIN_STANDOUT_LEN = 30
+
+
 def _extreme_headlines(news_titles: list, reddit_titles: list) -> dict:
     """Most bullish and most bearish single headline by polarity, or {}.
 
-    Scores each headline with the engine appropriate to its source.
+    Scores each headline with the engine appropriate to its source. Prefers
+    substantive (non-fragment) headlines for the standout picks, falling back to
+    the full set only if nothing clears the length bar — so the feature surfaces
+    a real headline rather than a stray fragment.
     """
     eng = news_engine()
     scored = [(t, score_text(t, eng)) for t in news_titles if t]
     scored += [(t, score_text(t, "vader")) for t in reddit_titles if t]
     if not scored:
         return {}
-    bull = max(scored, key=lambda x: x[1])
-    bear = min(scored, key=lambda x: x[1])
+    eligible = [s for s in scored if len(s[0]) >= _MIN_STANDOUT_LEN] or scored
+    bull = max(eligible, key=lambda x: x[1])
+    bear = min(eligible, key=lambda x: x[1])
     return {
         "most_bullish": {"title": bull[0], "score": round(bull[1], 3)},
         "most_bearish": {"title": bear[0], "score": round(bear[1], 3)},
@@ -356,12 +571,21 @@ def _divergence(market_score: float, news_score: float) -> str | None:
             "headlines are upbeat against a down tape.")
 
 
-def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) -> dict:
-    """Compute the full Joywin-style sentiment dashboard as a dict."""
+def build_dashboard(market_data: dict, headlines: dict, run_date: str = None,
+                    prior_scores: list = None) -> dict:
+    """Compute the full Joywin-style sentiment dashboard as a dict.
+
+    prior_scores: recent *raw* composite scores in [-1, 1], oldest-first and
+    EXCLUDING today. When given, an EMA trend (smoothed_score / smoothed_label)
+    is computed over prior_scores + today's score and added to the dashboard —
+    the readable day-over-day signal over the jumpy daily number. Omit it and the
+    smoothed fields mirror the raw score (no history available yet).
+    """
     if run_date is None:
         run_date = datetime.date.today().isoformat()
 
-    news_titles, reddit_titles, fed_titles = _split_headlines(headlines)
+    import news_feeds
+    news_titles, reddit_titles, fed_titles = news_feeds.split_headlines(headlines)
 
     market = market_component(market_data)
     news = news_component(news_titles)
@@ -383,10 +607,18 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None) ->
     overall = round(_clamp(overall), 4)
     label = label_for(overall)
 
+    # EMA trend over the recent raw composite (prior days + today). Falls back to
+    # the raw score when no history is supplied yet.
+    smoothed = round(ema(list(prior_scores or []) + [overall]), 4)
+    smoothed_label = label_for(smoothed)
+
     return {
         "date": run_date,
         "overall_score": overall,
         "label": label,
+        "smoothed_score": smoothed,
+        "smoothed_label": smoothed_label,
+        "smoothing_span": SMOOTHING_SPAN,
         "market_score": market["score"],
         "news_score": news["score"],
         "reddit_score": reddit["score"],
@@ -414,6 +646,14 @@ def render_dashboard_md(dash: dict) -> str:
         "_A recap of how the market traded today — not a forecast._",
         "",
         f"**Today's Score:** {dash['overall_score']:+.2f}  →  **{dash['label']}**",
+    ]
+    if dash.get("smoothed_score") is not None:
+        span = dash.get("smoothing_span", SMOOTHING_SPAN)
+        lines.append(
+            f"**Trend ({span}-day EMA):** {dash['smoothed_score']:+.2f}  →  "
+            f"**{dash['smoothed_label']}**  "
+            f"<sub>(smoothed — the readable day-over-day signal)</sub>")
+    lines += [
         "",
         "| Component | Weight | Score |",
         "| --- | --- | --- |",
@@ -447,10 +687,10 @@ def render_dashboard_md(dash: dict) -> str:
 
 if __name__ == "__main__":
     import market_summary as ms
-    import reddit_news
+    import news_feeds
 
     data = ms.fetch_all_data()
-    heads = reddit_news.gather_headlines(limit=8)
+    heads = news_feeds.gather_headlines(limit=8)
     dash = build_dashboard(data, heads)
     print(json.dumps(dash, indent=2))
     print("\n" + render_dashboard_md(dash))

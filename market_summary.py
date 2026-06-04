@@ -16,20 +16,28 @@ Optional:
 """
 
 import os
-import sys
 import datetime
 import anthropic
 import yfinance as yf
 from dotenv import load_dotenv
 
-from utils import retry
+from utils import retry, force_utf8
+
+# Project modules. These are all hard dependencies (pinned in requirements.txt);
+# each pipeline stage in main() still wraps its *work* in try/except so one
+# failing source (a feed, the DB, charts, email) never sinks the whole briefing.
+import news_feeds
+import sentiment
+import sector_watch
+import history
+import charts
+import pdf_report as report_module
+import emailer
 
 # Load environment variables from a local .env file if present (no-op in CI)
 load_dotenv()
 
-# Ensure UTF-8 console output so symbols like ▲/▼ don't crash on Windows (cp1252)
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+force_utf8()
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -87,10 +95,14 @@ SECTORS = {
 }
 
 # Interest-rate signals. The 10Y captures financial conditions (market
-# component); the 2Y tracks Fed-policy expectations and powers the Fed score.
+# component); the 13-week T-Bill tracks Fed-policy expectations and powers the
+# Fed score. We use ^IRX (13-week bill) rather than a 2Y because Yahoo has no
+# reliable free 2Y yield — the old 2YY=F future returns values frozen for days,
+# which silently faked a flat signal. ^IRX is the front of the curve: live,
+# liquid, and the purest policy-path read (see the Fed sub-model in sentiment.py).
 RATES = {
-    "10Y Treasury Yield": "^TNX",
-    "2Y Treasury Yield":  "2YY=F",
+    "10Y Treasury Yield":  "^TNX",
+    "13-Week T-Bill Yield": "^IRX",
 }
 
 # Base path for the run's output; the PDF briefing is derived from its stem.
@@ -240,22 +252,6 @@ Do NOT include a top-level "# " title or document heading — start directly wit
 the first section (use "## " subheadings). A title is added separately.
 """
 
-def fetch_headlines() -> dict:
-    """Pull current financial news/Reddit/Fed headlines as {source: [titles]}.
-
-    Returns an empty dict if anything goes wrong, so a news outage never blocks
-    the market summary. A wide per-source limit gives the sentiment scorer a
-    broader, more representative market sample — affordable now that score_text
-    is cached (each unique headline is run through FinBERT only once per run).
-    """
-    try:
-        import reddit_news
-        return reddit_news.gather_headlines(limit=20)
-    except Exception as exc:
-        print(f"  ⚠️  Could not fetch news headlines: {exc}")
-        return {}
-
-
 # Tool schema that forces Claude to return the summary as machine-readable text.
 # (Sentiment is computed separately and reproducibly in sentiment.py, so Claude
 # only writes the narrative.)
@@ -360,20 +356,26 @@ def main():
     if gainers_block:
         data_block += "\n" + gainers_block + "\n"
 
+    # Pull current news/Reddit/Fed headlines as {source: [titles]}. A wide
+    # per-source limit gives the sentiment scorer a broader, more representative
+    # sample — affordable now that score_text is cached. Fail-safe: a news
+    # outage yields {} and never blocks the rest of the run.
     print("\nFetching financial news headlines…")
-    headlines = fetch_headlines()                       # {source: [titles]}
+    try:
+        headlines = news_feeds.gather_headlines(limit=20)
+    except Exception as exc:
+        print(f"  ⚠️  Could not fetch news headlines: {exc}")
+        headlines = {}
     news_block = ""
     try:
-        import reddit_news
-        news_block = reddit_news.build_headline_block(headlines)
+        news_block = news_feeds.build_headline_block(headlines)
     except Exception:
         pass
 
     # Top news with summaries, for the briefing's Top News section.
     top_news = []
     try:
-        import reddit_news
-        top_news = reddit_news.get_top_news(5)
+        top_news = news_feeds.get_top_news(5)
     except Exception as exc:
         print(f"  ⚠️  Could not fetch top news: {exc}")
 
@@ -382,11 +384,10 @@ def main():
     print("\nBuilding AI-stack sector watch…")
     sector_watch = []
     try:
-        import sectors, sentiment as _s
-        _, reddit_titles, _ = _s._split_headlines(headlines)
+        _, reddit_titles, _ = news_feeds.split_headlines(headlines)
         sp_move = (market_data.get("indices", {}).get("S&P 500", {}) or {}).get("pct_change")
-        sector_watch = sectors.build_sector_watch(reddit_titles, sp_move)
-        watch_block = sectors.render_md(sector_watch)
+        sector_watch = sector_watch.build_sector_watch(reddit_titles, sp_move)
+        watch_block = sector_watch.render_md(sector_watch)
         if watch_block:
             data_block += "\n" + watch_block + "\n"
     except Exception as exc:
@@ -397,9 +398,19 @@ def main():
     print("\nComputing quantitative sentiment…")
     dashboard = None
     try:
-        import sentiment
-        dashboard = sentiment.build_dashboard(market_data, headlines)
-        print(f"  Sentiment: {dashboard['overall_score']:+.2f} ({dashboard['label']})")
+        # Recent raw composite scores (stored as -100..100), oldest-first and
+        # excluding today, so the dashboard can compute its EMA trend line over
+        # prior days + today. A short pull window is enough for a short EMA.
+        prior_scores = [
+            r["score"] / 100.0
+            for r in history.sentiment_history(limit=sentiment.SMOOTHING_SPAN * 4)
+            if r["score"] is not None and r["run_date"] != (session_date or today)
+        ]
+        dashboard = sentiment.build_dashboard(market_data, headlines,
+                                              prior_scores=prior_scores)
+        print(f"  Sentiment: {dashboard['overall_score']:+.2f} ({dashboard['label']})"
+              f"  |  trend {dashboard['smoothed_score']:+.2f} "
+              f"({dashboard['smoothed_label']})")
     except Exception as exc:
         print(f"  ⚠️  Could not compute sentiment dashboard: {exc}")
 
@@ -422,7 +433,6 @@ def main():
         summary = (f"> **Note:** No US trading session on {today}. Figures are from "
                    f"the last session ({session_date}).\n\n") + summary
     if dashboard is not None:
-        import sentiment
         summary += "\n\n" + sentiment.render_dashboard_md(dashboard)
 
     print_to_console(data_block, summary)
@@ -432,23 +442,21 @@ def main():
     # rows; store the quant score (scaled to -100..100 to match the chart axis).
     db_date = session_date or today
     try:
-        import database
         if dashboard is not None:
-            database.save_run(
+            history.save_run(
                 market_data, summary, run_date=db_date,
                 sentiment=dashboard["label"],
                 score=int(round(dashboard["overall_score"] * 100)),
             )
         else:
-            database.save_run(market_data, summary, run_date=db_date)
-        print("📊 Run recorded to market_data.db")
+            history.save_run(market_data, summary, run_date=db_date)
+        print(f"📊 Run recorded to {os.path.basename(history.SUMMARIES_CSV)}")
     except Exception as exc:
         print(f"  ⚠️  Could not record run to database: {exc}")
 
     # Generate trend charts from the accumulated history (never block on errors).
     chart_paths = []
     try:
-        import charts
         chart_paths = charts.generate_all()
     except Exception as exc:
         print(f"  ⚠️  Could not generate charts: {exc}")
@@ -460,7 +468,6 @@ def main():
                   f"No US trading session on {today}. Figures are from the last "
                   f"session ({session_date}).")
     try:
-        import report as report_module
         prose = report.get("summary_markdown", "") if report else ""
         html = report_module.build_html(
             today_pretty, prose, gainers, top_news, dashboard or {},
@@ -477,7 +484,6 @@ def main():
 
     # Email the PDF as a downloadable attachment (opt-in, fail-safe).
     try:
-        import emailer
         emailer.send_report(pdf_path, today_pretty)
     except Exception as exc:
         print(f"  ⚠️  Could not send email: {exc}")

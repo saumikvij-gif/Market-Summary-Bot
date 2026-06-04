@@ -1,10 +1,25 @@
 """
 utils.py
 --------
-Small shared helpers. Currently: retry-with-backoff for flaky network/API calls.
+Small shared helpers used across the pipeline: retry-with-backoff for flaky
+network/API calls, value clamping, and UTF-8 console setup.
 """
 
+import sys
 import time
+
+
+def force_utf8() -> None:
+    """Reconfigure stdout to UTF-8 so symbols like ▲/▼/emoji don't crash on
+    Windows consoles (cp1252). No-op where stdout can't be reconfigured."""
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
+
+def clamp(x: float, lo: float = -1.0, hi: float = 1.0) -> float:
+    """Constrain x to [lo, hi]. The pipeline's sub-scores are all normalized to
+    [-1, 1], so this is the single shared clamp used by every scoring module."""
+    return max(lo, min(hi, x))
 
 
 def retry(fn, attempts: int = 3, base_delay: float = 1.5, label: str = ""):

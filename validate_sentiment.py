@@ -4,7 +4,7 @@ validate_sentiment.py
 Backtests the sentiment score against real index moves, to answer: does the
 score actually track / predict the market, or is it just plausible?
 
-Important honesty caveat: only the MARKET component (50% of the composite) can
+Important honesty caveat: only the MARKET component (70% of the composite) can
 be reconstructed historically — news / Reddit / Fed headlines are not archived,
 so the full composite can't be backfilled. This therefore validates the market
 component, which is the dominant and only history-reconstructable piece.
@@ -18,14 +18,13 @@ It reports, over the available price history:
     python validate_sentiment.py
 """
 
-import sys
 import math
 
-import database
+import history
 import sentiment
+from utils import force_utf8
 
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+force_utf8()
 
 INDEX = "S&P 500"  # the index whose forward return we test against
 
@@ -43,7 +42,7 @@ def _pearson(xs: list, ys: list) -> float:
 
 def _pct_by_date(name: str) -> dict:
     """{run_date: pct_change} for one instrument, across all stored history."""
-    rows = database.price_history(name, limit=10_000)
+    rows = history.price_history(name, limit=10_000)
     return {r["run_date"]: r["pct_change"] for r in rows if r["pct_change"] is not None}
 
 
@@ -56,7 +55,7 @@ def main() -> None:
     dates = sorted(d for d in sp if d in nq and d in vix)
     if len(dates) < 30:
         print(f"Only {len(dates)} usable days — run the backfill first "
-              f"(python -c \"import database; database.backfill_prices()\").")
+              f"(python -c \"import history; history.backfill_prices()\").")
         return
 
     # Reconstruct the market-component score for each day.
@@ -91,7 +90,7 @@ def main() -> None:
     print(f"Validation over {len(dates)} trading days "
           f"({dates[0]} → {dates[-1]})")
     print("─" * 64)
-    print("NOTE: market component only (50% of composite); news/Reddit/Fed")
+    print("NOTE: market component only (70% of composite); news/Reddit/Fed")
     print("      history isn't archived and can't be backfilled.")
     print()
     print(f"  Same-day corr(score_t, return_t)    : {same_r:+.3f}   "

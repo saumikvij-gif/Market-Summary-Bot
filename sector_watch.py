@@ -1,33 +1,35 @@
 """
-sectors.py
-----------
+sector_watch.py
+---------------
 AI-stack "Sector Watch": a professional-style, multi-metric read of 8 thesis
 baskets. For each basket it measures not just the average move, but *how* the
 sector is behaving underneath — the way a PM reads a sector:
 
-    Relative strength 30%  (sector move vs the S&P — leading or lagging?)
-    Breadth           25%  (% of the basket above its 50-day MA — is the WHOLE
-                            sector participating, or are a few names carrying it?)
+    Relative strength 35%  (sector move vs the S&P — leading or lagging?)
+    Breadth           25%  (% of the basket above its 20/50/200-day MAs — is the
+                            WHOLE sector participating, or a few names carrying it?)
     News sentiment    25%  (FinBERT on a dedicated Google News search)
     Volume            10%  (today's basket volume vs its 20-day average, signed
                             by direction — conviction behind the move)
-    Reddit            10%  (best-effort: VADER on keyword-tagged subreddit titles)
+    Reddit             5%  (best-effort: VADER on keyword-tagged subreddit titles)
 
 Each metric is normalized to [-1, 1] and blended (renormalized over whatever is
 available) into a per-sector score + label. This is DISPLAY-ONLY — it does not
 feed the composite market score. Everything is fail-safe.
+
+The basket's headline move is the MEDIAN of its constituents, not the mean: the
+baskets are small (4–10 names) and equal-weighted, so a single outlier (e.g. one
+name up 30% on an upgrade) would otherwise drag the whole sector's reported move
+and its relative-strength/volume-direction reads. The median is the typical
+stock's move; breadth still separately captures how broadly the basket moved.
 """
 
 import requests
 import feedparser
 
 import sentiment
+from utils import clamp as _clamp
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/120.0.0.0 Safari/537.36"
-}
 TIMEOUT = 15
 NEWS_PER_SECTOR = 8
 
@@ -40,10 +42,16 @@ SECTOR_METRIC_WEIGHTS = {
     "volume":       0.10,
     "reddit":       0.05,
 }
-RS_FULL_SCALE_PCT = 2.0   # 2% outperformance vs the S&P = a full ±1 RS signal
+# 3.5% outperformance vs the S&P = a full ±1 RS signal. Wider than the index
+# full-scales because these AI/semis baskets are high-beta and routinely move
+# several % vs the S&P on a busy day — a tighter scale pinned RS (the largest,
+# 35%, sub-metric) to ±1 constantly, drowning out the other metrics.
+RS_FULL_SCALE_PCT = 3.5
 
 # Each basket: representative tickers, a Google News query, and Reddit keywords.
-SECTORS = {
+# NB: distinct from market_summary.SECTORS (the 11 SPDR ETFs used for breadth) —
+# these are the AI-stack thesis baskets this module reports on.
+SECTOR_BASKETS = {
     "Hyperscalers & Neoclouds": {
         "tickers": ["GOOGL", "MSFT", "AMZN", "META", "ORCL", "CRWV", "NBIS"],
         "query": '(hyperscaler OR "data center" OR cloud) (Microsoft OR Amazon OR Google OR CoreWeave OR Oracle)',
@@ -87,8 +95,12 @@ SECTORS = {
 }
 
 
-def _clamp(x, lo=-1.0, hi=1.0):
-    return max(lo, min(hi, x))
+def _median(values: list):
+    """Median of a non-empty numeric list (mean of the two middle values if even)."""
+    s = sorted(values)
+    n = len(s)
+    mid = n // 2
+    return s[mid] if n % 2 else (s[mid - 1] + s[mid]) / 2
 
 
 # Moving-average windows blended into each stock's trend strength. Using 20/50/
@@ -130,14 +142,26 @@ def _per_ticker_metrics(data, ticker: str):
 
 
 def _news_sentiment(query: str) -> tuple:
-    """(avg sentiment, n) from a Google News RSS search, FinBERT-scored."""
+    """(avg sentiment, n) from a Google News RSS search, FinBERT-scored.
+
+    Reuses the main pipeline's staleness and boilerplate filters (news_feeds) so
+    the same foreign-bourse template junk / days-old items that are kept out of
+    the composite can't leak into a sector's news read either. Filtering happens
+    BEFORE the per-sector cap so we keep up to NEWS_PER_SECTOR *clean* headlines.
+    """
+    import news_feeds
     url = ("https://news.google.com/rss/search?q="
            + requests.utils.quote(query) + "&hl=en-US&gl=US&ceid=US:en")
-    resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+    resp = requests.get(url, headers=news_feeds.HEADERS, timeout=TIMEOUT)
     resp.raise_for_status()
-    titles = [e.get("title", "").strip()
-              for e in feedparser.parse(resp.content).entries[:NEWS_PER_SECTOR]]
-    titles = [t for t in titles if t]
+    titles = []
+    for e in feedparser.parse(resp.content).entries:
+        t = (e.get("title") or "").strip()
+        if not t or news_feeds.is_boilerplate(t) or news_feeds.is_stale(e):
+            continue
+        titles.append(t)
+        if len(titles) >= NEWS_PER_SECTOR:
+            break
     if not titles:
         return None, 0
     engine = sentiment.news_engine()
@@ -153,7 +177,7 @@ def _reddit_sentiment(keywords: list, reddit_titles: list) -> tuple:
 
 def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> list:
     """Per-sector multi-metric read. sp_move is the S&P 500 daily % (for RS)."""
-    all_tickers = sorted({t for cfg in SECTORS.values() for t in cfg["tickers"]})
+    all_tickers = sorted({t for cfg in SECTOR_BASKETS.values() for t in cfg["tickers"]})
     try:
         data = _fetch_history(all_tickers)
         metrics = {t: _per_ticker_metrics(data, t) for t in all_tickers}
@@ -162,10 +186,11 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> lis
         metrics = {}
 
     rows = []
-    for name, cfg in SECTORS.items():
+    for name, cfg in SECTOR_BASKETS.items():
         present = [metrics[t] for t in cfg["tickers"] if metrics.get(t)]
         moves = [m[0] for m in present]
-        avg_move = round(sum(moves) / len(moves), 2) if moves else None
+        # Median (not mean) so one outlier name can't define the basket's move.
+        basket_move = round(_median(moves), 2) if moves else None
 
         # Breadth: average per-stock trend strength (% of 20/50/200 MAs the price
         # is above), across the basket, mapped to [-1, 1].
@@ -175,16 +200,20 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> lis
 
         # Relative strength: sector move vs the S&P.
         rs_score = None
-        if avg_move is not None and sp_move is not None:
-            rs_score = _clamp((avg_move - sp_move) / RS_FULL_SCALE_PCT)
+        if basket_move is not None and sp_move is not None:
+            rs_score = _clamp((basket_move - sp_move) / RS_FULL_SCALE_PCT)
 
-        # Volume: above-average volume confirms the day's direction.
+        # Volume: above-average volume CONFIRMS the day's direction. Only
+        # above-average volume contributes (floored at 0): below-average volume
+        # means weak conviction → no signal, NOT an opposite one. (The old
+        # `(avg_ratio-1)*direction` flipped sign on light volume, so a low-volume
+        # down day scored *positive* — a confusing anti-signal. Floor fixes that.)
         vol_ratios = [m[2] for m in present if m[2] is not None]
         vol_score = None
-        if vol_ratios and avg_move is not None:
+        if vol_ratios and basket_move is not None:
             avg_ratio = sum(vol_ratios) / len(vol_ratios)
-            direction = 1 if avg_move > 0 else -1 if avg_move < 0 else 0
-            vol_score = _clamp((avg_ratio - 1.0)) * direction
+            direction = 1 if basket_move > 0 else -1 if basket_move < 0 else 0
+            vol_score = _clamp(max(0.0, avg_ratio - 1.0)) * direction
 
         try:
             news_score, news_n = _news_sentiment(cfg["query"])
@@ -201,8 +230,8 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> lis
         score = round(_clamp(sum(SECTOR_METRIC_WEIGHTS[k] * v for k, v in avail.items()) / total_w), 4)
 
         rows.append({
-            "sector": name, "move_pct": avg_move,
-            "rel_strength": round(avg_move - sp_move, 2) if (avg_move is not None and sp_move is not None) else None,
+            "sector": name, "move_pct": basket_move,
+            "rel_strength": round(basket_move - sp_move, 2) if (basket_move is not None and sp_move is not None) else None,
             "breadth_pct": round(breadth_frac * 100) if breadth_frac is not None else None,
             "news_score": news_score, "news_n": news_n,
             "reddit_score": reddit_score, "reddit_n": reddit_n,

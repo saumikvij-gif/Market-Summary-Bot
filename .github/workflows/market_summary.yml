@@ -74,7 +74,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Commit the dated summary, the CSV history (text, mergeable), and charts.
-          # market_data.db is NOT committed — it's rebuilt from the CSVs.
+          # The two CSVs are the single source of truth; charts are rebuilt from them.
           git add summaries/ history_quotes.csv history_summaries.csv charts/
           if git diff --staged --quiet; then
             echo "Nothing to commit."
