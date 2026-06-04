@@ -1,12 +1,12 @@
 # .github/workflows/email_summary.yml
 #
 # EMAIL step: sends the most recently generated summary (committed by
-# market_summary.yml after the US close) at 9 AM Hong Kong time. It does not
+# market_summary.yml after the US close) at 10:15 AM Hong Kong time. It does not
 # regenerate anything — it just reads the latest committed summary + charts and
 # emails them.
 #
-# Timing: 9 AM HKT = 01:00 UTC. A summary generated Mon 21:30 UTC is emailed
-# Tue 01:00 UTC (9 AM HKT Tue), so this runs Tue–Sat to cover Mon–Fri closes.
+# Timing: 10:15 AM HKT = 02:15 UTC. A summary generated Mon 21:30 UTC is emailed
+# Tue 02:15 UTC (10:15 AM HKT Tue), so this runs Tue–Sat to cover Mon–Fri closes.
 #
 # Required secrets (Settings → Secrets and variables → Actions):
 #   SMTP_HOST, SMTP_USER, SMTP_PASSWORD, EMAIL_TO   (SMTP_PORT/EMAIL_FROM optional)
@@ -14,9 +14,9 @@
 name: Email Market Summary
 
 on:
-  # ── 9 AM Hong Kong time (UTC+8) = 01:00 UTC, Tue–Sat (day after each close)
+  # ── 10:15 AM Hong Kong time (UTC+8) = 02:15 UTC, Tue–Sat (day after each close)
   schedule:
-    - cron: "0 1 * * 2-6"
+    - cron: "15 2 * * 2-6"
 
   # ── Manual trigger (useful for testing)
   workflow_dispatch:
