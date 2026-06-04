@@ -44,8 +44,8 @@ tr:nth-child(even) td { background: #f3f6fa; }
 .news-src { color: #888; font-size: 8.5pt; }
 .news-sum { color: #444; font-size: 9pt; }
 .note { background: #fdecea; border-left: 5px solid #c0392b; padding: 6px 10px; }
-/* Charts sit on the dashboard page, so keep them small enough to fit together. */
-img { width: 12cm; }
+/* Charts have their own page, so they can run close to the full text width. */
+img { width: 17cm; }
 """
 
 
@@ -131,7 +131,13 @@ def _sector_watch_block(rows: list) -> str:
     body = ""
     for r in rows:
         move = _chg(r.get("move_pct"), pct=True) if r.get("move_pct") is not None else "n/a"
-        rs = _chg(r.get("rel_strength"), pct=True) if r.get("rel_strength") is not None else "n/a"
+        rs_val = r.get("rel_strength")
+        if rs_val is not None:
+            # Tag each row with the benchmark it's measured against (Nasdaq / S&P).
+            bench = r.get("benchmark", "S&P").replace("&", "&amp;")
+            rs = f'{_chg(rs_val, pct=True)} <span class="news-src">vs {bench}</span>'
+        else:
+            rs = "n/a"
         breadth = f"{r['breadth_pct']}%" if r.get("breadth_pct") is not None else "n/a"
         news = _sentiment_label(r.get("news_score"))
         # Overall: label + numeric score, coloured by sign so resolution isn't lost.
@@ -143,8 +149,9 @@ def _sector_watch_block(rows: list) -> str:
     return (f"<h2>Sector Watch (AI Stack)</h2>"
             f'<p class="news-src">Blended score from relative strength, breadth '
             f"(avg % of the 20/50/200-day MAs the basket trades above), news, "
-            f"volume, and Reddit. Sorted strongest&rarr;weakest.</p>"
-            f"<table><tr><th>Sector</th><th>Move</th><th>vs S&amp;P</th>"
+            f"volume, and Reddit. Relative strength is vs the Nasdaq for tech "
+            f"baskets and the S&amp;P for the rest. Sorted strongest&rarr;weakest.</p>"
+            f"<table><tr><th>Sector</th><th>Move</th><th>Rel. Str.</th>"
             f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")
 
 
@@ -220,25 +227,29 @@ def build_html(date_str: str, prose_md: str, gainers: list, news: list,
     note = f'<div class="note">{stale_note}</div>' if stale_note else ""
     prose_html = md.markdown(prose_md or "", extensions=["extra"])
     dash_html = _dashboard_block(dashboard) if dashboard else ""
-    pb = '<div style="page-break-before: always;"></div>'   # one section per page
+
+    tables = _market_tables(market_data)
+    snapshot = f"<h2>Market Snapshot</h2>{tables}" if tables else ""
+    analyst = f"<h2>Analyst Summary</h2>{prose_html}" if prose_html.strip() else ""
+
+    # One section per page. Empty sections are dropped entirely (with their page
+    # break) so a missing block — e.g. a day the sector watch can't be built —
+    # never leaves a blank page behind. Charts get their own page.
+    pages = [
+        dash_html + _divergence_block(dashboard or {}),   # page 1: tone + divergence
+        _charts_block(chart_paths),                        # trend charts — own page
+        _sector_watch_block(sector_watch),                 # sector watch — own page
+        _gainers_block(gainers) + _news_block(news),       # gainers + news
+        snapshot,                                          # market snapshot
+        analyst,                                           # analyst summary
+    ]
+    pb = '<div style="page-break-before: always;"></div>'
+    body = pb.join(p for p in pages if p and p.strip())
     return f"""<html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <h1>Daily Market Summary</h1>
 <div class="subtitle">{date_str}</div>
 {note}
-{dash_html}
-{_divergence_block(dashboard or {})}
-{_charts_block(chart_paths)}
-{pb}
-{_sector_watch_block(sector_watch)}
-{pb}
-{_gainers_block(gainers)}
-{_news_block(news)}
-{pb}
-<h2>Market Snapshot</h2>
-{_market_tables(market_data)}
-{pb}
-<h2>Analyst Summary</h2>
-{prose_html}
+{body}
 </body></html>"""
 
 

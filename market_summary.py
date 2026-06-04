@@ -382,12 +382,15 @@ def main():
     # AI-stack Sector Watch: per-basket price move + news/Reddit sentiment.
     # Display-only — does NOT feed the composite score.
     print("\nBuilding AI-stack sector watch…")
-    sector_watch = []
+    watch_rows = []   # NB: keep this name distinct from the `sector_watch` module
     try:
         _, reddit_titles, _ = news_feeds.split_headlines(headlines)
-        sp_move = (market_data.get("indices", {}).get("S&P 500", {}) or {}).get("pct_change")
-        sector_watch = sector_watch.build_sector_watch(reddit_titles, sp_move)
-        watch_block = sector_watch.render_md(sector_watch)
+        idx = market_data.get("indices", {})
+        sp_move = (idx.get("S&P 500", {}) or {}).get("pct_change")
+        nasdaq_move = (idx.get("Nasdaq 100", {}) or {}).get("pct_change")
+        # Tech baskets are measured vs the Nasdaq, the rest vs the S&P (see module).
+        watch_rows = sector_watch.build_sector_watch(reddit_titles, sp_move, nasdaq_move)
+        watch_block = sector_watch.render_md(watch_rows)
         if watch_block:
             data_block += "\n" + watch_block + "\n"
     except Exception as exc:
@@ -472,7 +475,7 @@ def main():
         html = report_module.build_html(
             today_pretty, prose, gainers, top_news, dashboard or {},
             market_data, chart_paths, stale_note=stale_note,
-            sector_watch=sector_watch)
+            sector_watch=watch_rows)
         if report_module.write_pdf(html, pdf_path):
             print(f"📄 PDF briefing written to {pdf_path}")
         else:

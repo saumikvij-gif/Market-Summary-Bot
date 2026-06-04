@@ -5,7 +5,8 @@ AI-stack "Sector Watch": a professional-style, multi-metric read of 8 thesis
 baskets. For each basket it measures not just the average move, but *how* the
 sector is behaving underneath — the way a PM reads a sector:
 
-    Relative strength 35%  (sector move vs the S&P — leading or lagging?)
+    Relative strength 35%  (sector move vs its benchmark — leading or lagging?
+                            tech baskets vs the Nasdaq 100, the rest vs the S&P)
     Breadth           25%  (% of the basket above its 20/50/200-day MAs — is the
                             WHOLE sector participating, or a few names carrying it?)
     News sentiment    25%  (FinBERT on a dedicated Google News search)
@@ -95,6 +96,18 @@ SECTOR_BASKETS = {
 }
 
 
+# Relative strength is measured against the benchmark that best fits each basket:
+# the tech / AI-stack baskets track the Nasdaq 100 (their natural high-beta home),
+# while the broader-economy baskets track the S&P 500.
+NASDAQ_BASKETS = {
+    "Hyperscalers & Neoclouds",
+    "Memory (DRAM/NAND/HBM)",
+    "Semiconductors / Compute",
+    "Networking / Interconnect",
+    "SaaS",
+}
+
+
 def _median(values: list):
     """Median of a non-empty numeric list (mean of the two middle values if even)."""
     s = sorted(values)
@@ -175,8 +188,15 @@ def _reddit_sentiment(keywords: list, reddit_titles: list) -> tuple:
     return round(sum(sentiment.score_text(t, "vader") for t in matched) / len(matched), 4), len(matched)
 
 
-def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> list:
-    """Per-sector multi-metric read. sp_move is the S&P 500 daily % (for RS)."""
+def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
+                        nasdaq_move: float = None) -> list:
+    """Per-sector multi-metric read.
+
+    Relative strength is each basket's move vs its benchmark: the tech baskets
+    (NASDAQ_BASKETS) vs the Nasdaq 100 daily % (`nasdaq_move`), the rest vs the
+    S&P 500 daily % (`sp_move`). If a basket's benchmark move is unavailable, RS
+    is simply omitted and the remaining sub-metrics renormalize.
+    """
     all_tickers = sorted({t for cfg in SECTOR_BASKETS.values() for t in cfg["tickers"]})
     try:
         data = _fetch_history(all_tickers)
@@ -198,10 +218,13 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> lis
         breadth_frac = (sum(strengths) / len(strengths)) if strengths else None
         breadth_score = (2 * breadth_frac - 1) if breadth_frac is not None else None
 
-        # Relative strength: sector move vs the S&P.
+        # Relative strength: sector move vs its benchmark (tech → Nasdaq, else S&P).
+        use_nasdaq = name in NASDAQ_BASKETS
+        bench_move = nasdaq_move if use_nasdaq else sp_move
+        bench_label = "Nasdaq" if use_nasdaq else "S&P"
         rs_score = None
-        if basket_move is not None and sp_move is not None:
-            rs_score = _clamp((basket_move - sp_move) / RS_FULL_SCALE_PCT)
+        if basket_move is not None and bench_move is not None:
+            rs_score = _clamp((basket_move - bench_move) / RS_FULL_SCALE_PCT)
 
         # Volume: above-average volume CONFIRMS the day's direction. Only
         # above-average volume contributes (floored at 0): below-average volume
@@ -231,7 +254,8 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None) -> lis
 
         rows.append({
             "sector": name, "move_pct": basket_move,
-            "rel_strength": round(basket_move - sp_move, 2) if (basket_move is not None and sp_move is not None) else None,
+            "rel_strength": round(basket_move - bench_move, 2) if (basket_move is not None and bench_move is not None) else None,
+            "benchmark": bench_label,
             "breadth_pct": round(breadth_frac * 100) if breadth_frac is not None else None,
             "news_score": news_score, "news_n": news_n,
             "reddit_score": reddit_score, "reddit_n": reddit_n,
@@ -250,6 +274,7 @@ def render_md(rows: list) -> str:
         move = f"{r['move_pct']:+.2f}%" if r["move_pct"] is not None else "n/a"
         rs = f"{r['rel_strength']:+.2f}%" if r["rel_strength"] is not None else "n/a"
         breadth = f"{r['breadth_pct']}% trend" if r["breadth_pct"] is not None else "n/a"
-        lines.append(f"- {r['sector']}: {move} (vs S&P {rs}) | breadth {breadth} "
+        bench = r.get("benchmark", "S&P")
+        lines.append(f"- {r['sector']}: {move} (vs {bench} {rs}) | breadth {breadth} "
                      f"| **{r['label']}** ({r['score']:+.2f})")
     return "\n".join(lines)

@@ -43,45 +43,56 @@ _Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX +1.8%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Tigress Financial Lifts NVIDIA (NVDA) Price Target, Keeps Strong Buy Rating
 - 🔴 Most bearish (-0.94): Palo Alto Networks’ earnings show AI brings new urgency to cybersecurity, but stock still dips"
-2026-06-03,Neutral,2,"## Market Overview
+2026-06-03,Neutral,-10,"> **Note:** No US trading session on 2026-06-04. Figures are from the last session (2026-06-03).
 
-U.S. equities declined on June 3, with the S&P 500 down 0.52%, the Dow falling 0.79%, and the Russell 2000 losing 0.96%. The Nasdaq 100 showed relative resilience, dropping just 0.27% as tech sector performance diverged sharply. The VIX edged up 2.09% to 16.10, reflecting modestly elevated caution amid uneven sector performance.
+## Market Overview
 
-## Fed and Macro Backdrop
+U.S. equities declined Thursday as a divergence within the tech sector and rising bond yields weighed on sentiment. The S&P 500 fell 0.74%, while the Dow Jones dropped 1.21% and the Russell 2000 shed 1.31%. The Nasdaq 100 outperformed relatively, declining just 0.29%, as strength in memory and certain chip names offset weakness in mega-cap hyperscalers. The VIX edged up 2.12% to 16.40, reflecting modestly elevated caution.
 
-The Federal Reserve released minutes from recent FOMC meetings and discount rate discussions, though no immediate policy changes were announced. The 10-year Treasury yield rose 3 basis points to 4.48%, while the 2-year remained flat at 3.84%, suggesting investors are processing persistent inflation concerns. Crude oil surged 2.14% to $95.77, reflecting ongoing geopolitical tensions and supply concerns—a development that could complicate the Fed's inflation outlook. Gold dipped 0.33%, while Bitcoin fell 0.73% to $66,216, as some analysts noted crypto investors ""rage quitting"" amid the AI-driven equity rally.
+The 10-year Treasury yield climbed 4 basis points to 4.49%, with gold prices indicating the U.S. jobs data reinforced higher-rate expectations. Gold still managed to gain 1.12% as investors sought safety, while crude oil dipped 0.73% and Bitcoin fell 0.80% amid continued crypto weakness.
 
 ## Tech Sector Bifurcation
 
-A notable divide emerged within technology. Hyperscalers struggled, with Microsoft down 3.27%, Amazon off 2.38%, and Nvidia declining 3.06%. This weakness weighed on the broader AI infrastructure narrative. Conversely, semiconductor and memory stocks showed strength: AMD gained 1.96%, Intel surged 3.96%, and SanDisk jumped 4.27%. Meta stood out with a 3.16% gain, bolstered by RBC Capital reiterating its bullish stance on the company's AI opportunities. Marvell Technology reportedly soared in premarket trading after Nvidia's Jensen Huang called it a potential ""next trillion-dollar company.""
+Technology stocks painted a split picture. The Memory sector (DRAM/NAND/HBM) surged 3.51% with 100% breadth, benefiting from strong momentum. **SanDisk** led the charge with a stunning 6.71% gain, while **Micron** added 1.45%. **Intel** jumped 4.43% and **AMD** climbed 4.02% as semiconductor and compute stocks broadly rallied 0.88%.
 
-The Memory (DRAM/NAND/HBM) sector rallied 3.08% with 100% breadth, signaling robust demand amid AI memory shortages. Reports highlighted SK Hynix plans to double wafer capacity, underscoring supply constraints.
+Conversely, hyperscalers suffered sharp losses, falling 3.17% as a group. **Nvidia** dropped 3.62% and **Microsoft** slid 3.17%, reversing recent strength despite headlines about Microsoft hitting a three-month high on PC optimism earlier in the week. **Amazon** fell 2.53% and **Apple** declined 1.57%. **Meta** bucked the trend, surging 4.24% on continued AI enthusiasm and an RBC reiteration of its Outperform rating.
 
-## Standout Movers and Cross-Asset Themes
+The divergence extended to software, where SaaS names tumbled 6.99%. After-hours earnings from **Broadcom** and **CrowdStrike** disappointed despite beats, with both stocks falling sharply on tepid guidance and margin concerns, signaling investor fatigue with elevated valuations in parts of the AI trade.
 
-Among top gainers, Navitas Semiconductor led with an 18.60% surge, followed by Abivax (+15.11%), TG Therapeutics (+10.00%), and IPG Photonics (+9.78%). Victoria's Secret spiked roughly 40% after a strong earnings beat, defying consumer weakness concerns.
+## Standout Gainers and SpaceX IPO Buzz
 
-The SaaS sector lagged significantly, down 5.34%, as valuations faced pressure amid rising yields and concerns about profitability. Banking also underperformed (-2.01%), reflecting rate-flattening dynamics and economic uncertainty.
+Among broader market gainers, **Abivax SA** (ABVX) soared 24.34%, **Navitas Semiconductor** (NVTS) jumped 19.26%, and **MiniMed Group** (MMED) rose 15.94%. These smaller-cap names capitalized on sector-specific catalysts and momentum.
 
-Cross-asset signals suggest a rotation within tech—away from high-valuation hyperscalers toward hardware and memory beneficiaries of AI infrastructure spending. Rising oil prices and a stronger dollar (EUR/USD and GBP/USD both down ~0.20%) add to inflation worries, potentially constraining Fed easing expectations. The yen hovered near 160 against the dollar, prompting warnings from Japanese officials about potential intervention.
+Meanwhile, headlines were dominated by **SpaceX's** anticipated IPO, targeting a $1.75 trillion valuation at $135 per share—though Morningstar's analysis pegged fair value closer to $780 billion, underscoring valuation debates. The IPO wave, including quantum computing firm Quantinuum's $1.68 billion raise, signals robust capital markets activity.
+
+## Cross-Asset Signals
+
+The combination of rising yields, gold strength, and equity weakness suggests investors are recalibrating for a higher-for-longer rate environment. Currency markets remained subdued, with minimal movement in EUR/USD and USD/JPY. Bitcoin's continued slide—down over 22% since recent highs—reflects ""rage quitting"" among long-time holders, per reports, as crypto capital rotates elsewhere.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.02  →  **Neutral**
+**Today's Score:** -0.10  →  **Neutral**
+**Trend (5-day EMA):** +0.04  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 50% | -0.06 |
-| News headlines | 35% | +0.13 |
-| Reddit | 5% | +0.07 |
-| Fed (rate expectations) | 10% | -0.01 |
+| Market data | 70% | -0.18 |
+| News headlines | 20% | +0.13 |
+| Reddit | 0% | +0.08 |
+| Fed (rate expectations) | 10% | +0.00 |
 
-_Equities fell with Nasdaq -0.3%, S&P 500 -0.5%, VIX +2.1%. Sector breadth: 7/11 sectors up. 10Y yield +0.7%. News headlines read slightly bullish. Reddit sentiment is neutral. Fed-policy expectations tightened (2Y Treasury +0.00%). Fresh Fed communications read neutral. Today's overall market tone: Neutral._
+_Equities fell with Nasdaq -0.3%, S&P 500 -0.7%, VIX +2.1%. Sector breadth: 5/11 sectors up. 10Y yield +0.8%. News headlines read slightly bullish. Fed-policy expectations held steady. Today's overall market tone: Neutral._
+
+**Yield curve:** Bear Steepener (Δslope +4.0bp; 3M–10Y +87bp).
+
+_Rates-method A/B — current (10Y level): **-0.10** (Neutral)  ·  curve-aware: **-0.09** (Neutral)._
 
 <sub>News scored with: finbert</sub>
 
+**⚠️ Divergence: prices fell but the news mood is positive — headlines are upbeat against a down tape.**
+
 **Standout headlines:**
-- 🟢 Most bullish (+0.94): Old Dominion’s May update shows an improving LTL market
-- 🔴 Most bearish (-0.96): Morocco stocks lower at close of trade; Moroccan All Shares down 0.11%"
+- 🟢 Most bullish (+0.92): Fluence Energy Stock Is Soaring. Its Helping Nvidia Power a New Wave of Data Centers
+- 🔴 Most bearish (-0.96): Bitcoin set to slump to new lows for 2026 after recent sell-off, traders forecast"
