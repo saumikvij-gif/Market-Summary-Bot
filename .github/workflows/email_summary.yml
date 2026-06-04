@@ -1,12 +1,18 @@
 # .github/workflows/email_summary.yml
 #
 # EMAIL step: sends the most recently generated summary (committed by
-# market_summary.yml after the US close) at 10:15 AM Hong Kong time. It does not
-# regenerate anything — it just reads the latest committed summary + charts and
-# emails them.
+# market_summary.yml after the US close) around 10:15 AM Hong Kong time. It does
+# not regenerate anything — it just reads the latest committed summary + charts
+# and emails them.
 #
-# Timing: 10:15 AM HKT = 02:15 UTC. A summary generated Mon 21:30 UTC is emailed
-# Tue 02:15 UTC (10:15 AM HKT Tue), so this runs Tue–Sat to cover Mon–Fri closes.
+# Reliability: GitHub's scheduled triggers are best-effort and frequently delayed
+# or silently dropped (no run, no alert). So we schedule THREE staggered times as
+# a backstop — if one trigger is dropped, a later one still delivers. To avoid
+# duplicate emails, send_latest.py records the last briefing date it sent in the
+# committed `.last_emailed` marker and skips if a backstop run already sent today.
+#
+# Timing (HKT = UTC+8): 10:15 / 10:45 / 11:30 AM HKT = 02:15 / 02:45 / 03:30 UTC,
+# Tue–Sat (the day after each Mon–Fri close).
 #
 # Required secrets (Settings → Secrets and variables → Actions):
 #   SMTP_HOST, SMTP_USER, SMTP_PASSWORD, EMAIL_TO   (SMTP_PORT/EMAIL_FROM optional)
@@ -14,9 +20,12 @@
 name: Email Market Summary
 
 on:
-  # ── 10:15 AM Hong Kong time (UTC+8) = 02:15 UTC, Tue–Sat (day after each close)
+  # ── Staggered backstop: 10:15 / 10:45 / 11:30 AM HKT, Tue–Sat. First run that
+  #    succeeds sends + marks the day done; later runs see the marker and skip.
   schedule:
     - cron: "15 2 * * 2-6"
+    - cron: "45 2 * * 2-6"
+    - cron: "30 3 * * 2-6"
 
   # ── Manual trigger (useful for testing)
   workflow_dispatch:
@@ -26,6 +35,10 @@ jobs:
     name: Email Latest Summary
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
+    # Needed so the post-send step can commit the .last_emailed marker.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -51,6 +64,24 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python send_latest.py
+
+      - name: Persist the sent-marker
+        if: success()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f .last_emailed ] && git add .last_emailed || true
+          if git diff --staged --quiet; then
+            echo "No marker change (nothing sent, or already up to date)."
+            exit 0
+          fi
+          git commit -m "chore: mark email sent $(date -u +'%Y-%m-%d') [skip ci]"
+          # Survive a race with a concurrent push (the marker line merges cleanly).
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && break
+            echo "Push attempt $attempt failed; retrying after fetch…"
+            sleep 5
+          done
 
       - name: Notify on failure
         if: failure()

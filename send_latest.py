@@ -32,6 +32,28 @@ PDF_GLOB = "summaries/market_summary_*.pdf"
 # otherwise silently resend stale data. Override with STALE_MAX_DAYS.
 STALE_MAX_DAYS = int(os.environ.get("STALE_MAX_DAYS") or 4)
 
+# Records the date of the last briefing we successfully emailed. Because GitHub's
+# scheduled triggers are unreliable, this workflow is scheduled at several
+# staggered times as a backstop; this marker makes those redundant runs
+# idempotent — each distinct briefing is emailed exactly once, never duplicated.
+MARKER_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           ".last_emailed")
+
+
+def already_emailed(briefing_date: str) -> bool:
+    """True if MARKER_FILE already records this briefing date as sent."""
+    try:
+        with open(MARKER_FILE, encoding="utf-8") as f:
+            return f.read().strip() == briefing_date
+    except FileNotFoundError:
+        return False
+
+
+def mark_emailed(briefing_date: str) -> None:
+    """Record this briefing date as sent (committed by the workflow afterwards)."""
+    with open(MARKER_FILE, "w", encoding="utf-8") as f:
+        f.write(briefing_date + "\n")
+
 
 def latest_pdf_path() -> str | None:
     """Return the path of the newest dated briefing PDF, or None.
@@ -73,11 +95,20 @@ def main() -> None:
         sys.exit(1)
 
     m = re.search(r"(\d{4}-\d{2}-\d{2})", os.path.basename(path))
-    date_str = (datetime.date.fromisoformat(m.group(1)).strftime("%B %d, %Y")
-                if m else datetime.date.today().strftime("%B %d, %Y"))
+    briefing_date = (m.group(1) if m
+                     else datetime.datetime.now(datetime.timezone.utc).date().isoformat())
+    date_str = datetime.date.fromisoformat(briefing_date).strftime("%B %d, %Y")
+
+    # Idempotency guard: if a staggered backstop run already emailed this exact
+    # briefing, skip (success — no duplicate email).
+    if already_emailed(briefing_date):
+        print(f"Briefing for {briefing_date} was already emailed — skipping "
+              f"(backstop run, no duplicate).")
+        return
 
     print(f"Emailing latest briefing: {path}")
     if emailer.send_report(path, date_str):
+        mark_emailed(briefing_date)
         return
     # Configured-but-failed (or not configured) — surface as a job failure.
     print("Email was not sent.")
