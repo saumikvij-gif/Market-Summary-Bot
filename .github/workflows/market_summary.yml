@@ -11,9 +11,17 @@
 name: Generate Market Summary
 
 on:
-  # ── Scheduled trigger: Mon–Fri at 21:30 UTC (≈ 5:30 PM ET, after market close)
+  # ── Scheduled trigger: Mon–Fri at 21:30 UTC (≈ 5:30 PM ET, after market close).
+  #    Kept as a fallback — GitHub's own scheduler often fires hours late, so the
+  #    on-time trigger is the external one below.
   schedule:
     - cron: "30 21 * * 1-5"
+
+  # ── On-time external trigger: a cron-job.com ping POSTs to the repo's
+  #    /dispatches endpoint with {"event_type":"generate-summary"} at 21:30 UTC.
+  #    Fires on the minute, unlike GitHub's best-effort schedule.
+  repository_dispatch:
+    types: [generate-summary]
 
   # ── Manual trigger (useful for testing)
   workflow_dispatch:

@@ -22,10 +22,17 @@ name: Email Market Summary
 on:
   # ── Staggered backstop: 10:15 / 10:45 / 11:30 AM HKT, Tue–Sat. First run that
   #    succeeds sends + marks the day done; later runs see the marker and skip.
+  #    Kept as a fallback — GitHub's scheduler often fires hours late.
   schedule:
     - cron: "15 2 * * 2-6"
     - cron: "45 2 * * 2-6"
     - cron: "30 3 * * 2-6"
+
+  # ── On-time external trigger: a cron-job.com ping POSTs to the repo's
+  #    /dispatches endpoint with {"event_type":"send-email"} at 10:15 AM HKT
+  #    (02:15 UTC). Fires on the minute; the dedupe marker still prevents dupes.
+  repository_dispatch:
+    types: [send-email]
 
   # ── Manual trigger (useful for testing)
   workflow_dispatch:
