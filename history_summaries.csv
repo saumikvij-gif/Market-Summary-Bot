@@ -88,27 +88,25 @@ _Equities rose with Nasdaq -0.5%, S&P 500 +0.4%, VIX -4.3%. Sector breadth: 8/11
 - 🔴 Most bearish (-0.96): Bitcoin set to slump to new lows for 2026 after recent sell-off, traders forecast"
 2026-06-04,Neutral,6,"> **Note:** No US trading session on 2026-06-05. Figures are from the last session (2026-06-04).
 
-## Market Overview
+## Divergence in Leadership: Old Economy Rallies, Tech Falters
 
-U.S. equities displayed sharp divergence on Friday, with traditional blue-chips rallying while tech-heavy indices faltered. The Dow Jones surged 1.73% and the Russell 2000 gained 1.45%, while the Nasdaq 100 declined 0.53%. The S&P 500 edged up 0.41%, masking significant internal rotation beneath the surface. The VIX ticked 2% higher to 15.71, reflecting modest caution amid shifting market leadership.
+U.S. equities delivered a mixed session marked by sharp sector rotation away from technology. The Dow Jones surged **1.73%** to a fresh record, while the Russell 2000 climbed **1.45%**, signaling renewed appetite for cyclicals and small-caps. In contrast, the Nasdaq 100 fell **0.53%**, dragged lower by a dramatic selloff in semiconductor stocks. The S&P 500 managed a modest **0.41%** gain, reflecting the market's bifurcated character.
 
-## Semiconductor Rout Drags Tech
+## Semiconductor Sector Under Pressure
 
-A brutal selloff in semiconductor stocks weighed heavily on the tech sector. Broadcom plunged 12.59% despite delivering an AI-fueled beat-and-raise quarter, signaling potential valuation concerns or profit-taking after a strong run. Micron tumbled 7.74%, while AMD fell 3.56%, Arm declined 4.47%, and SanDisk dropped 3.92%. The Memory sector fell 3.52%, with 100% breadth to the downside, while the broader Semiconductors/Compute segment declined 2.04%. Despite the chip wreckage, mega-cap survivors included Nvidia (+1.82%) and Alphabet (+3.82%), which rallied even as investors digested news of its massive $84.75 billion AI infrastructure equity raise announced earlier in the week.
+The session's most striking feature was the collapse in memory and AI infrastructure names. **Broadcom** plunged **12.59%** following its latest earnings report, sparking debate over valuation and near-term demand. **Micron** sank **7.74%**, while **AMD** lost **3.56%** and **Arm** dropped **4.47%**. The Memory sector overall tumbled **3.52%**, with 100% breadth indicating broad-based weakness. Even as **Nvidia** rose **1.82%** and **Alphabet** gained **3.82%**, the Semiconductors/Compute group fell **2.04%**, underscoring nervousness around stretched valuations in parts of the AI stack.
 
-## Standout Gainers and Sector Rotation
+## Sector Rotation Favors Financials and Healthcare
 
-Top gainers reflected idiosyncratic strength: ChronoScale Corporation (CHRN) soared 22.69%, Abivax SA (ABVX) jumped 16.39%, and Oscar Health (OSCR) and Redwire Corporation (RDW) both climbed over 15%. Banking stocks led sector performance with a 3.94% advance, exhibiting 96% breadth and bullish sentiment. Pharma/Healthcare also rallied 3.52%, while Hyperscalers & Neoclouds gained 1.51% as cloud infrastructure plays outperformed. Consumer stocks lagged with 17% breadth, underscoring defensive rotation away from discretionary spending.
+Traditional sectors stole the spotlight. **Banking** surged **3.94%** with 96% positive breadth and bullish sentiment, benefiting from a stable rate environment as the 10-year Treasury yield dipped slightly to **4.48%**. **Pharma/Healthcare** climbed **3.52%**, supported by strong moves in smaller names including top gainer **Abivax** (+16.39%) and **Oscar Health** (+15.12%). **ChronoScale Corporation** led all gainers with a **22.69%** jump, while **Redwire** (+15.09%) and **Adaptive Biotechnologies** (+13.07%) rounded out the leaders.
 
-## SpaceX IPO and Policy Developments
+## SpaceX IPO Dominates Headlines
 
-Market chatter centered on SpaceX's upcoming Nasdaq debut, with the company pricing 555.6 million shares at $135 for a $1.77 trillion valuation—though analysts including Morningstar have questioned whether the true value is less than half that figure. The S&P 500 Index Committee confirmed it will *not* change inclusion rules to fast-track mega-cap IPOs, a ""wild twist"" that surprised market participants expecting expedited entry for SpaceX and similar mega-listings.
+Market chatter centered on **SpaceX**, which announced a **$135 IPO price** at a $1.77 trillion valuation, though the S&P 500 Index Committee confirmed it will **not** fast-track mega-cap IPO inclusions. Analysts remain divided on valuation, with estimates ranging from under $900 billion (Morningstar) to over $2 trillion (Ark Invest's Starlink-focused view). The headline sparked speculation about potential market liquidity effects and renewed interest in space and defense names like Redwire.
 
-On the policy front, new Fed Chair Warsh made his first hires, including a ""Project 2025"" author, signaling potential shifts in the central bank's approach, though no immediate rate changes were announced.
+## Cross-Asset Signals: Calm Beneath the Surface
 
-## Cross-Asset Signals
-
-Crude oil fell 1.30% and Bitcoin declined 1.61% to $62,517, with crypto bears citing further downside risk. The 10-year Treasury yield dipped slightly to 4.48%, offering mild support to risk assets. Gold slipped 0.29%. Currency markets were quiet, with EUR/USD and GBP/USD barely budging.
+Despite equity volatility, broader markets remained subdued. The **VIX** rose modestly to **15.63**, gold edged down **0.27%**, and crude oil held flat. Bitcoin ticked up **0.23%**, while the dollar weakened slightly against the euro and pound. The relative calm in rates and commodities suggests rotation rather than risk-off sentiment, with investors repositioning toward value and cyclicals astech digests recent gains.
 
 ## Market Tone — Today's Session
 
@@ -119,15 +117,15 @@ _A recap of how the market traded today — not a forecast._
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.08 |
-| News headlines | 20% | -0.00 |
-| Reddit | 0% | +0.11 |
+| Market data | 70% | +0.09 |
+| News headlines | 20% | -0.03 |
+| Reddit | 0% | +0.10 |
 | Fed (rate expectations) | 10% | +0.02 |
 
-_Equities rose with Nasdaq -0.5%, S&P 500 +0.4%, VIX +2.0%. Sector breadth: 8/11 sectors up. 10Y yield -0.3%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
+_Equities rose with Nasdaq -0.5%, S&P 500 +0.4%, VIX +1.5%. Sector breadth: 8/11 sectors up. 10Y yield -0.3%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.90): Marvell, AMD Rally, Lead Chip Stocks To Record High
-- 🔴 Most bearish (-0.96): Bitcoin set to slump to new lows for 2026 after recent sell-off, traders forecast"
+- 🟢 Most bullish (+0.91): GameStop (GME) Posts Stellar Earnings, Climbs 6%
+- 🔴 Most bearish (-0.96): Nasdaq, S&P futures slip as semiconductors drag; payrolls in focus"
