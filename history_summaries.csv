@@ -43,50 +43,58 @@ _Equities rose with Nasdaq +0.5%, S&P 500 +0.1%, VIX +1.8%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Tigress Financial Lifts NVIDIA (NVDA) Price Target, Keeps Strong Buy Rating
 - 🔴 Most bearish (-0.94): Palo Alto Networks’ earnings show AI brings new urgency to cybersecurity, but stock still dips"
-2026-06-03,Slightly Bearish,-13,"> **Note:** No US trading session on 2026-06-04. Figures are from the last session (2026-06-03).
+2026-06-03,Neutral,-4,"> **Note:** No US trading session on 2026-06-05. Figures are from the last session (2026-06-03).
 
 ## Market Overview
 
-U.S. equities retreated Thursday, snapping a nine-day winning streak for the S&P 500, with cyclicals and mega-cap tech bearing the brunt of selling pressure. The S&P 500 fell 0.74%, while the Dow Jones posted a sharper 1.21% decline and the Russell 2000 dropped 1.31%. The Nasdaq 100 showed relative resilience, down just 0.29%, buoyed by strength in memory chip stocks. The VIX edged up 3.36% to 16.60, reflecting modest risk-off sentiment.
+U.S. equities retreated Friday, snapping a nine-day winning streak for the S&P 500, as investors rotated out of megacap tech and digested a flurry of IPO news. The Dow Jones Industrial Average led losses, falling 1.21%, while the S&P 500 declined 0.74% and the Nasdaq 100 dipped 0.29%. Small caps struggled as the Russell 2000 dropped 1.31%. Despite the selloff, the VIX fell 4.11% to 15.40, suggesting relatively muted concern among options traders.
 
-## Sector Rotation and AI Stack Divergence
+## Tech Sector Divergence
 
-A pronounced divergence emerged within the AI technology stack. Memory stocks surged 3.51%, with **SanDisk** (+6.71%), **Intel** (+4.43%), **AMD** (+4.02%), **Meta** (+4.24%), and Micron (+1.45%) leading the charge. This strength contrasts sharply with weakness in hyperscalers, which fell 3.17% as Microsoft (-3.17%), Nvidia (-3.62%), and Amazon (-2.53%) all declined. SaaS names underperformed badly, down 6.99%, suggesting investors are rotating within tech rather than abandoning the AI trade entirely.
+A sharp divergence emerged within the technology sector, particularly along the AI infrastructure stack. The hyperscaler and cloud giants—including Microsoft (-3.17%), Nvidia (-3.62%), and Amazon (-2.53%)—faced pressure, while memory and semiconductor stocks rallied strongly. Meta bucked the megacap trend with a 4.24% gain. 
 
-Broadcom's post-earnings slide in after-hours trading—driven by disappointing software revenue and AI chip forecasts—underscores concerns about near-term demand visibility. CrowdStrike also fell despite beating estimates, highlighting stretched valuations in select cybersecurity names.
+Memory stocks led the charge, with the DRAM/NAND/HBM segment surging 3.51% and showing 100% breadth strength. SanDisk soared 6.71%, marking it as one of the session's standout performers alongside Micron (+1.45%). Intel climbed 4.43% and AMD added 4.02%, suggesting rotation within the chip sector away from the highest-flyers and toward relative value plays. The semiconductors/compute segment rose 0.88% overall with 93% breadth, signaling healthy internal participation.
 
-## Top Gainers and Standout Movers
+Conversely, the SaaS sector cratered 6.99%, underperforming the Nasdaq by 670 basis points, while hyperscalers declined 3.17%—both showing ""slightly bearish"" sentiment signals.
 
-Among broader market gainers, **Abivax SA (ABVX)** surged 24.34%, while **Navitas Semiconductor (NVTS)** jumped 19.26% and **MiniMed Group (MMED)** climbed 15.94%. **POET Technologies** added 11.29%, reflecting enthusiasm for emerging semiconductor and photonics plays riding the broader AI infrastructure wave. Lightwave Logic also reportedly soared 15% on Nvidia-related optimism.
+## SpaceX and IPO Developments
 
-## Cross-Asset Signals
+SpaceX dominated headlines as the company priced its blockbuster IPO at $135 per share, targeting a $1.77 trillion valuation and aiming to raise a record $75 billion. However, the S&P Dow Jones Indices Committee reaffirmed existing rules, denying SpaceX and other mega-IPOs expedited entry into benchmark indices—a decision that sparked debate about market structure. Goldman Sachs projected SpaceX revenue could reach $322 billion by 2030, a 100x increase, while Morningstar offered a more conservative valuation at less than half the IPO figure.
 
-Safe-haven flows dominated fixed income and commodities. Gold rallied 1.36% to $4,497, while crude oil slipped 1.08%. The 10-year Treasury yield rose 4 basis points to 4.49%, suggesting mixed inflation or growth concerns rather than pure flight-to-quality. Bitcoin dropped 2.31% to $62,538, triggering billions in liquidations as crypto investors reportedly ""rage quit"" amid AI equities outperformance.
+Other IPO activity included Quantinuum opening at $68 and Applied Aerospace & Defense debuting at a $3.5 billion valuation, underscoring continued appetite for space and defense exposure.
 
-## Key Developments
+## Crypto Weakness and Cross-Asset Signals
 
-News flow centered on IPO activity and Fed leadership changes. SpaceX filed for a record $75 billion IPO at $135 per share (though Morningstar values it at less than half the $1.77 trillion target), while quantum computing firm Quantinuum raised $1.68 billion. Fed Chair Warsh's first hires, including a ""Project 2025"" author, drew attention but yielded no immediate policy signals. Anthropic's AI scaling announcement and Morgan Stanley's move to open wealth management to AI agents further underscored the AI infrastructure theme dominating investor attention.
+Bitcoin extended losses, falling 1.43% to $63,100 amid reports of billions in liquidations and growing nervousness reflected in a 20% jump in Bitcoin's ""fear gauge."" Headlines questioned whether institutional players were using Bitcoin as a liquidity source for private AI investments, while Michael Saylor's sale of 32 BTC fueled speculation about shifting sentiment.
+
+Fixed income remained stable, with the 10-year Treasury yield edging down just 1 basis point to 4.48%. Commodities were quiet—gold dipped 0.15% and crude oil was flat—while foreign exchange showed minimal movement.
+
+## Broader Market Themes
+
+Among top gainers, ChronoScale Corporation (CHRN) surged 22.69%, Abivax SA (ABVX) rose 16.39%, and healthcare names Oscar Health (OSCR) and Adaptive Biotechnologies (ADPT) climbed over 13%, reflecting pockets of strength in biotech and specialty sectors. Pharma/healthcare gained 0.32% with slightly bullish sentiment, while consumer stocks posted modest gains (+0.48%) despite weak breadth.
+
+Notably, Federal Reserve developments emerged as Chair Warsh made his first hires at the central bank, including a ""Project 2025"" author, signaling potential policy direction shifts ahead—an item worth monitoring as markets digest evolving monetary policy leadership.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.13  →  **Slightly Bearish**
-**Trend (5-day EMA):** +0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** -0.04  →  **Neutral**
+**Trend (5-day EMA):** +0.11  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | -0.19 |
-| News headlines | 20% | +0.07 |
-| Reddit | 0% | +0.07 |
-| Fed (rate expectations) | 10% | -0.03 |
+| Market data | 70% | -0.06 |
+| News headlines | 20% | +0.01 |
+| Reddit | 0% | +0.15 |
+| Fed (rate expectations) | 10% | +0.02 |
 
-_Equities fell with Nasdaq -0.3%, S&P 500 -0.7%, VIX +3.4%. Sector breadth: 5/11 sectors up. 10Y yield +0.8%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +0.5bp). Today's overall market tone: Slightly Bearish._
+_Equities fell with Nasdaq -0.3%, S&P 500 -0.7%, VIX -4.1%. Sector breadth: 5/11 sectors up. 10Y yield -0.3%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.92): Marvell’s (MRVL) ‘Trillion-Dollar’ Potential Propels Firm to All-Time High
+- 🟢 Most bullish (+0.92): Robust Earnings and International Expansion Assert RLX Technology Inc. (RLX) as a Top Sin Stock to Buy
 - 🔴 Most bearish (-0.96): Bitcoin set to slump to new lows for 2026 after recent sell-off, traders forecast"
 2026-06-04,Bullish,33,"> **Note:** No US trading session on 2026-06-05. Figures are from the last session (2026-06-04).
 
