@@ -204,9 +204,16 @@ def _avg_classified(titles: list, engine: str = "vader") -> tuple:
 # ── Component scores ────────────────────────────────────────────────────────────
 
 def _pct_of(section: dict, name: str):
-    """pct_change for one instrument in a section, or None if missing/errored."""
+    """pct_change for one instrument in a section, or None if missing/errored.
+
+    A NaN is treated as missing (None): `v == v` is False only for NaN, so a
+    poisoned feed can't slip a NaN into the score (where _clamp would pin it).
+    """
     q = (section or {}).get(name, {})
-    return q.get("pct_change") if isinstance(q, dict) and "error" not in q else None
+    if not isinstance(q, dict) or "error" in q:
+        return None
+    v = q.get("pct_change")
+    return v if isinstance(v, (int, float)) and v == v else None
 
 
 def _sector_breadth(sectors: dict):

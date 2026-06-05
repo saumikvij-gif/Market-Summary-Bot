@@ -118,11 +118,18 @@ def fetch_quote(ticker_symbol: str) -> dict:
     hist = retry(lambda: ticker.history(period="5d"),
                  attempts=3, label=ticker_symbol)
 
-    if hist.empty or len(hist) < 1:
+    # Drop NaN closes before computing: yfinance sometimes returns a trailing NaN
+    # row (e.g. an incomplete/just-opened session), which would otherwise make
+    # change/pct_change NaN and silently poison every consumer — the market score
+    # and, visibly, Sector Watch's relative strength ("+nan% vs Nasdaq").
+    if hist.empty:
+        return {"error": f"No data for {ticker_symbol}"}
+    closes = hist["Close"].dropna()
+    if closes.empty:
         return {"error": f"No data for {ticker_symbol}"}
 
-    latest_close  = hist["Close"].iloc[-1]
-    prev_close    = hist["Close"].iloc[-2] if len(hist) >= 2 else latest_close
+    latest_close  = closes.iloc[-1]
+    prev_close    = closes.iloc[-2] if len(closes) >= 2 else latest_close
     change        = latest_close - prev_close
     pct_change    = (change / prev_close * 100) if prev_close else 0.0
 
@@ -135,8 +142,8 @@ def fetch_quote(ticker_symbol: str) -> dict:
         # `or 0.0` normalizes -0.0 (falsy) to 0.0 so tiny negatives don't render as "+-0.00"
         "change":     round(float(change),         4) or 0.0,
         "pct_change": round(float(pct_change),     2) or 0.0,
-        # Date of the latest session, used to detect holidays / stale data.
-        "session_date": hist.index[-1].date().isoformat(),
+        # Date of the latest NON-NaN session, used to detect holidays / stale data.
+        "session_date": closes.index[-1].date().isoformat(),
     }
 
 

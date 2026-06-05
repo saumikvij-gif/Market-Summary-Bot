@@ -38,6 +38,19 @@ def test_volume_score_floors_at_zero():
     assert vol_score(0.6, +1) == 0.0       # light-volume up day → NO anti-signal
 
 
+def test_rel_strength_nan_safe():
+    nan = float("nan")
+    # Normal case: real delta + bounded score.
+    score, delta = sector_watch._rel_strength(1.0, -1.0)   # basket +1 vs bench -1
+    assert delta == 2.0 and 0 < score <= 1.0
+    # NaN/None benchmark or basket → drops out entirely (no "nan%", no clamp-to-1).
+    assert sector_watch._rel_strength(1.0, nan) == (None, None)
+    assert sector_watch._rel_strength(nan, -1.0) == (None, None)
+    assert sector_watch._rel_strength(1.0, None) == (None, None)
+    assert sector_watch._finite(nan) is False
+    assert sector_watch._finite(0.0) is True
+
+
 def test_rs_full_scale_widened():
     # Widened so high-beta baskets don't pin relative strength to ±1 constantly.
     assert sector_watch.RS_FULL_SCALE_PCT >= 3.0

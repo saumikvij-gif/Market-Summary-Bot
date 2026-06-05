@@ -108,6 +108,26 @@ NASDAQ_BASKETS = {
 }
 
 
+def _finite(x) -> bool:
+    """True only for a real, non-NaN number (x == x is False for NaN)."""
+    return isinstance(x, (int, float)) and x == x
+
+
+def _rel_strength(basket_move, bench_move):
+    """(rs_score in [-1,1], display delta) for a basket vs its benchmark, or
+    (None, None) if either move is missing or NaN.
+
+    Guarding on NaN — not just None — matters: a NaN benchmark move (from a
+    poisoned index feed) used to pass the `is not None` check, render as
+    "+nan%", and clamp to +1.0 in the blend (falsely turning every basket
+    bullish). Treated as missing, relative strength simply drops out instead.
+    """
+    if not (_finite(basket_move) and _finite(bench_move)):
+        return None, None
+    delta = basket_move - bench_move
+    return _clamp(delta / RS_FULL_SCALE_PCT), round(delta, 2)
+
+
 def _median(values: list):
     """Median of a non-empty numeric list (mean of the two middle values if even)."""
     s = sorted(values)
@@ -219,12 +239,12 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
         breadth_score = (2 * breadth_frac - 1) if breadth_frac is not None else None
 
         # Relative strength: sector move vs its benchmark (tech → Nasdaq, else S&P).
+        # NaN-safe: a missing/NaN benchmark drops RS out of the blend (and shows
+        # n/a) instead of poisoning the score.
         use_nasdaq = name in NASDAQ_BASKETS
         bench_move = nasdaq_move if use_nasdaq else sp_move
         bench_label = "Nasdaq" if use_nasdaq else "S&P"
-        rs_score = None
-        if basket_move is not None and bench_move is not None:
-            rs_score = _clamp((basket_move - bench_move) / RS_FULL_SCALE_PCT)
+        rs_score, rs_delta = _rel_strength(basket_move, bench_move)
 
         # Volume: above-average volume CONFIRMS the day's direction. Only
         # above-average volume contributes (floored at 0): below-average volume
@@ -254,7 +274,7 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
 
         rows.append({
             "sector": name, "move_pct": basket_move,
-            "rel_strength": round(basket_move - bench_move, 2) if (basket_move is not None and bench_move is not None) else None,
+            "rel_strength": rs_delta,
             "benchmark": bench_label,
             "breadth_pct": round(breadth_frac * 100) if breadth_frac is not None else None,
             "news_score": news_score, "news_n": news_n,
