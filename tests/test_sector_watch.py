@@ -51,6 +51,23 @@ def test_rel_strength_nan_safe():
     assert sector_watch._finite(0.0) is True
 
 
+def test_trend_strength_with_live_price():
+    flat = [10.0] * 210                       # flat 1y history
+    # Live price above the (near-flat) 20/50/200-day MAs → all cleared → 1.0.
+    assert sector_watch._trend_strength_with(flat, 12.0) == 1.0
+    # Below → none cleared → 0.0.
+    assert sector_watch._trend_strength_with(flat, 8.0) == 0.0
+    # No live price → no signal.
+    assert sector_watch._trend_strength_with(flat, None) is None
+
+
+def test_sector_metric_weights():
+    w = sector_watch.SECTOR_METRIC_WEIGHTS
+    assert (w["rel_strength"], w["breadth"], w["news"], w["volume"], w["reddit"]) \
+        == (0.45, 0.30, 0.15, 0.10, 0.00)
+    assert abs(sum(w.values()) - 1.0) < 1e-9
+
+
 def test_rs_full_scale_widened():
     # Widened so high-beta baskets don't pin relative strength to ±1 constantly.
     assert sector_watch.RS_FULL_SCALE_PCT >= 3.0

@@ -5,14 +5,14 @@ AI-stack "Sector Watch": a professional-style, multi-metric read of 8 thesis
 baskets. For each basket it measures not just the average move, but *how* the
 sector is behaving underneath — the way a PM reads a sector:
 
-    Relative strength 35%  (sector move vs its benchmark — leading or lagging?
+    Relative strength 45%  (sector move vs its benchmark — leading or lagging?
                             tech baskets vs the Nasdaq 100, the rest vs the S&P)
-    Breadth           25%  (% of the basket above its 20/50/200-day MAs — is the
+    Breadth           30%  (% of the basket above its 20/50/200-day MAs — is the
                             WHOLE sector participating, or a few names carrying it?)
-    News sentiment    25%  (FinBERT on a dedicated Google News search)
+    News sentiment    15%  (FinBERT on a dedicated Google News search)
     Volume            10%  (today's basket volume vs its 20-day average, signed
                             by direction — conviction behind the move)
-    Reddit             5%  (best-effort: VADER on keyword-tagged subreddit titles)
+    Reddit             0%  (disabled for now — RSS 'hot' is a poor same-day proxy)
 
 Each metric is normalized to [-1, 1] and blended (renormalized over whatever is
 available) into a per-sector score + label. This is DISPLAY-ONLY — it does not
@@ -34,14 +34,16 @@ from utils import clamp as _clamp
 TIMEOUT = 15
 NEWS_PER_SECTOR = 8
 
-# How a sector's sub-metrics blend into its overall score. Reddit is only 5%
-# (weak/sparse signal); the freed weight goes to relative strength (price/market).
+# How a sector's sub-metrics blend into its overall score. Price-derived signals
+# (relative strength + breadth) carry the most weight as the reliable reads;
+# Reddit is disabled (0) for now — RSS "hot" is a poor same-day proxy. Available
+# sub-metrics are renormalized, so a 0-weight metric simply never contributes.
 SECTOR_METRIC_WEIGHTS = {
-    "rel_strength": 0.35,
-    "breadth":      0.25,
-    "news":         0.25,
+    "rel_strength": 0.45,
+    "breadth":      0.30,
+    "news":         0.15,
     "volume":       0.10,
-    "reddit":       0.05,
+    "reddit":       0.00,
 }
 # 3.5% outperformance vs the S&P = a full ±1 RS signal. Wider than the index
 # full-scales because these AI/semis baskets are high-beta and routinely move
@@ -182,17 +184,31 @@ def _per_ticker_metrics(data, ticker: str):
         return None
 
 
-def _yahoo_move(ticker_symbol: str):
-    """Today's % change straight from Yahoo's own quote field
-    (regularMarketChangePercent), or None. Used to refresh a ticker whose daily-
-    history bar lags a session, so a basket's move is one consistent, current
-    session — matching both the benchmark and Yahoo's site."""
+def _yahoo_quote(ticker_symbol: str):
+    """(change_pct, last_price) straight from Yahoo's quote (regularMarketChangePercent
+    / regularMarketPrice), or (None, None). Used to refresh a ticker whose daily-
+    history bar lags a session, so its move AND breadth are the current session —
+    consistent with the benchmark and Yahoo's site."""
     try:
         import yfinance as yf
-        pct = yf.Ticker(ticker_symbol).info.get("regularMarketChangePercent")
-        return round(float(pct), 2) if pct is not None else None
+        info = yf.Ticker(ticker_symbol).info
+        pct, price = info.get("regularMarketChangePercent"), info.get("regularMarketPrice")
+        return (round(float(pct), 2) if pct is not None else None,
+                float(price) if price is not None else None)
     except Exception:
+        return None, None
+
+
+def _trend_strength_with(closes, live_price):
+    """Breadth for a refreshed ticker: fraction of the 20/50/200-day MAs the live
+    price sits above, with the live price appended to the historical closes so the
+    MA windows include the current session (matching _per_ticker_metrics)."""
+    if live_price is None:
         return None
+    vals = [float(c) for c in closes] + [float(live_price)]
+    flags = [1 if live_price > (sum(vals[-w:]) / w) else 0
+             for w in BREADTH_MAS if len(vals) >= w]
+    return (sum(flags) / len(flags)) if flags else None
 
 
 def _news_sentiment(query: str) -> tuple:
@@ -250,16 +266,25 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
     # daily history lags a session for some names (their latest bar isn't
     # populated yet), which would otherwise blend different days into a basket's
     # median move and mis-state relative strength vs the current-session
-    # benchmark. For any ticker whose history bar is stale, refresh its MOVE from
-    # Yahoo's live quote (breadth/volume keep the ~unchanged history values).
+    # benchmark. For any ticker whose history bar is stale, refresh its MOVE and
+    # BREADTH from Yahoo's live quote (volume keeps the ~unchanged history value).
     present = [m for m in metrics.values() if m]
     target_date = max((m[3] for m in present), default=None)
     if target_date:
         for t, m in metrics.items():
-            if m and m[3] != target_date:
-                ymove = _yahoo_move(t)
-                if ymove is not None:
-                    metrics[t] = (ymove, m[1], m[2], target_date)
+            if not (m and m[3] != target_date):
+                continue
+            ymove, yprice = _yahoo_quote(t)
+            if ymove is None:
+                continue
+            strength = m[1]
+            try:                       # recompute breadth against the live price
+                fresh = _trend_strength_with(data[t]["Close"].dropna(), yprice)
+                if fresh is not None:
+                    strength = fresh
+            except Exception:
+                pass
+            metrics[t] = (ymove, strength, m[2], target_date)
 
     rows = []
     for name, cfg in SECTOR_BASKETS.items():
