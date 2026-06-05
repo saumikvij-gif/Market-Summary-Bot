@@ -143,16 +143,22 @@ BREADTH_MAS = (20, 50, 200)
 
 
 def _fetch_history(tickers: list):
-    """Batched ~1 year of Close + Volume for all tickers (one request).
+    """Batched ~1 year of (raw) Close + Volume for all tickers (one request).
 
-    A year is enough for the 200-day MA used in the breadth blend.
+    auto_adjust=False keeps the RAW close — the price Yahoo's site shows and the
+    basis of its change% — so a basket's move matches Yahoo (and the benchmark)
+    rather than a dividend/split-adjusted series. A year is enough for the
+    200-day MA used in the breadth blend.
     """
     import yfinance as yf
-    return yf.download(tickers, period="1y", progress=False, group_by="ticker")
+    return yf.download(tickers, period="1y", progress=False,
+                       group_by="ticker", auto_adjust=False)
 
 
 def _per_ticker_metrics(data, ticker: str):
-    """Return (move_pct, trend_strength, vol_ratio) for one ticker, or None.
+    """Return (move_pct, trend_strength, vol_ratio, last_date) for one ticker, or
+    None. last_date is the ISO date of the latest non-NaN close, used to detect
+    tickers whose history lags a session so their move can be refreshed.
 
     trend_strength = fraction of the 20/50/200-day MAs the price is above, in
     [0, 1] (only MAs with enough history are counted).
@@ -169,7 +175,22 @@ def _per_ticker_metrics(data, ticker: str):
                  for w in BREADTH_MAS if len(closes) >= w]
         strength = (sum(flags) / len(flags)) if flags else None
         vol_ratio = (vols.iloc[-1] / vols.tail(20).mean()) if len(vols) >= 5 and vols.tail(20).mean() else None
-        return round(float(move), 2), strength, (round(float(vol_ratio), 2) if vol_ratio else None)
+        last_date = closes.index[-1].date().isoformat()
+        return (round(float(move), 2), strength,
+                (round(float(vol_ratio), 2) if vol_ratio else None), last_date)
+    except Exception:
+        return None
+
+
+def _yahoo_move(ticker_symbol: str):
+    """Today's % change straight from Yahoo's own quote field
+    (regularMarketChangePercent), or None. Used to refresh a ticker whose daily-
+    history bar lags a session, so a basket's move is one consistent, current
+    session — matching both the benchmark and Yahoo's site."""
+    try:
+        import yfinance as yf
+        pct = yf.Ticker(ticker_symbol).info.get("regularMarketChangePercent")
+        return round(float(pct), 2) if pct is not None else None
     except Exception:
         return None
 
@@ -224,6 +245,21 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
     except Exception as exc:
         print(f"  ⚠️  Could not fetch sector history: {exc}")
         metrics = {}
+
+    # Align every basket ticker to one consistent, current session. yfinance's
+    # daily history lags a session for some names (their latest bar isn't
+    # populated yet), which would otherwise blend different days into a basket's
+    # median move and mis-state relative strength vs the current-session
+    # benchmark. For any ticker whose history bar is stale, refresh its MOVE from
+    # Yahoo's live quote (breadth/volume keep the ~unchanged history values).
+    present = [m for m in metrics.values() if m]
+    target_date = max((m[3] for m in present), default=None)
+    if target_date:
+        for t, m in metrics.items():
+            if m and m[3] != target_date:
+                ymove = _yahoo_move(t)
+                if ymove is not None:
+                    metrics[t] = (ymove, m[1], m[2], target_date)
 
     rows = []
     for name, cfg in SECTOR_BASKETS.items():
