@@ -88,3 +88,52 @@ _Equities fell with Nasdaq -0.3%, S&P 500 -0.7%, VIX +3.4%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): Marvell’s (MRVL) ‘Trillion-Dollar’ Potential Propels Firm to All-Time High
 - 🔴 Most bearish (-0.96): Bitcoin set to slump to new lows for 2026 after recent sell-off, traders forecast"
+2026-06-04,Bullish,33,"> **Note:** No US trading session on 2026-06-05. Figures are from the last session (2026-06-04).
+
+## Market Overview
+
+U.S. equities experienced a mixed session on June 5, 2026, with data unavailable for major indices but the Russell 2000 declining 1.31% to close at 2,893.51. The VIX fell 4.11% to 15.40, suggesting a modest decline in volatility despite the small-cap weakness. Treasury yields edged lower, with the 10-year yield dropping 0.31% to 4.48%, while the dollar showed marginal strength against major currencies.
+
+## SpaceX IPO Dominates Headlines
+
+The dominant narrative centered on SpaceX's highly anticipated IPO, priced at $135 per share with a valuation of $1.77 trillion. However, the S&P 500 Index Committee reaffirmed it will not fast-track mega-cap IPOs into the benchmark, denying SpaceX early entry despite its enormous size. This unexpected decision drew significant market attention, with Goldman Sachs projecting SpaceX revenue to reach $322 billion by 2030—a 100x increase. Ark Invest valued Starlink alone at $2 trillion, though Morningstar offered a more conservative assessment at less than half the company's claimed valuation.
+
+## Sector Rotation and AI Stack Divergence
+
+Technology sectors exhibited notable divergence. Memory stocks (DRAM/NAND/HBM) surged 3.51% with 100% breadth, while SaaS plunged 6.99% despite bullish sentiment indicators. Hyperscalers retreated 3.17%, and semiconductors managed a modest 0.88% gain. This rotation suggests selective profit-taking in high-momentum AI plays while investors repositioned into more defensive segments like healthcare (+0.32%) and consumer (+0.48%).
+
+Enterprise software names faced pressure following earnings. Broadcom and CrowdStrike both saw after-hours declines despite largely positive results, with CrowdStrike falling 10% post-earnings despite beating estimates and announcing a 4-for-1 stock split.
+
+## Top Gainers and Standout Movers
+
+ChronoScale Corporation (CHRN) led market gainers with a remarkable 22.69% surge, followed by Abivax SA (ABVX) up 16.39% and Oscar Health (OSCR) rising 15.12%. Redwire Corporation (RDW) advanced 15.09%, while Adaptive Biotechnologies (ADPT) gained 13.07%, highlighting strength in biotech and aerospace-related names.
+
+## Crypto Under Pressure
+
+Bitcoin declined 1.92% to $62,786, with headlines warning of potential further weakness toward $50,000. Bitcoin's ""fear gauge"" reportedly jumped 20%, triggering billions in liquidations and prompting speculation that institutional investors may be using crypto as a liquidity source for private AI investments.
+
+## Cross-Asset Signals
+
+The combination of lower Treasury yields, declining VIX, and gold's modest 0.15% dip suggests investors remain relatively complacent despite small-cap weakness and crypto volatility. Oil's marginal 0.13% gain to $93.16 reflects stable energy demand, though industry analysts warn higher prices may be ahead.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.33  →  **Bullish**
+**Trend (5-day EMA):** +0.13  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.46 |
+| News headlines | 20% | +0.01 |
+| Reddit | 0% | +0.14 |
+| Fed (rate expectations) | 10% | +0.02 |
+
+_Equities rose with Nasdaq +nan%, S&P 500 +nan%, VIX -4.1%. Sector breadth: 0/11 sectors up. 10Y yield -0.3%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.83): Gold Stock Finds Key Support at Bullish Trendline
+- 🔴 Most bearish (-0.96): Bitcoin set to slump to new lows for 2026 after recent sell-off, traders forecast"
