@@ -111,39 +111,70 @@ OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "market_summary.pdf")
 
 # ── Data fetching ──────────────────────────────────────────────────────────────
 
+def _fast_quote(ticker):
+    """(last_price, previous_close) from Yahoo's live quote (fast_info), or None.
+
+    fast_info is the quote Yahoo's website shows and it updates promptly after
+    the close — unlike the daily-history bar, which can lag a whole session or
+    come back NaN in the window right after the close (which is what made the
+    committed prices drift from Yahoo). previous_close must be non-zero for the
+    % change to be meaningful.
+    """
+    try:
+        fi = ticker.fast_info
+        last, prev = fi["lastPrice"], fi["previousClose"]
+        if last is not None and prev:
+            return float(last), float(prev)
+    except Exception:
+        pass
+    return None
+
+
 def fetch_quote(ticker_symbol: str) -> dict:
-    """Return a dict with price, change, pct_change, and session_date for one ticker."""
+    """price, change, pct_change, and session_date for one ticker.
+
+    Numbers come from Yahoo's live quote (fast_info) so they match the site; the
+    daily history supplies the session date (for holiday/stale detection) and is
+    the numeric fallback when the quote is unavailable.
+    """
     ticker = yf.Ticker(ticker_symbol)
     # yfinance is unofficial and rate-limits; retry transient failures.
     hist = retry(lambda: ticker.history(period="5d"),
                  attempts=3, label=ticker_symbol)
+    # Last NON-NaN close's date — yfinance can return a trailing NaN bar (an
+    # incomplete/just-opened session); dropna keeps the session date honest.
+    closes = hist["Close"].dropna() if not hist.empty else None
+    session_date = (closes.index[-1].date().isoformat()
+                    if closes is not None and not closes.empty else None)
 
-    # Drop NaN closes before computing: yfinance sometimes returns a trailing NaN
-    # row (e.g. an incomplete/just-opened session), which would otherwise make
-    # change/pct_change NaN and silently poison every consumer — the market score
-    # and, visibly, Sector Watch's relative strength ("+nan% vs Nasdaq").
-    if hist.empty:
+    # `change` is kept at 4dp (not 2dp): for a yield ticker (^IRX/^TNX) the change
+    # IS the move in percentage points, and 2dp quantizes it to whole basis points
+    # — erasing the sub-bp front-end moves the Fed treasury leg reads. Displays
+    # format change with :+.2f, so the extra precision is invisible on screen.
+    # `or 0.0` normalizes a -0.0 (falsy) to 0.0 so it doesn't render as "+-0.00".
+
+    quote = _fast_quote(ticker)
+    if quote is not None:                       # preferred: Yahoo's live quote
+        last, prev = quote
+        change = last - prev
+        return {
+            "price":        round(last, 2),
+            "change":       round(change, 4) or 0.0,
+            "pct_change":   round(change / prev * 100, 2) or 0.0,
+            "session_date": session_date or datetime.date.today().isoformat(),
+        }
+
+    # Fallback: the daily history bar (NaN-safe via dropna).
+    if closes is None or closes.empty:
         return {"error": f"No data for {ticker_symbol}"}
-    closes = hist["Close"].dropna()
-    if closes.empty:
-        return {"error": f"No data for {ticker_symbol}"}
-
-    latest_close  = closes.iloc[-1]
-    prev_close    = closes.iloc[-2] if len(closes) >= 2 else latest_close
-    change        = latest_close - prev_close
-    pct_change    = (change / prev_close * 100) if prev_close else 0.0
-
+    last = float(closes.iloc[-1])
+    prev = float(closes.iloc[-2]) if len(closes) >= 2 else last
+    change = last - prev
     return {
-        "price":      round(float(latest_close),  2),
-        # Keep `change` at 4dp, not 2dp: for a yield ticker (e.g. ^IRX) the change
-        # IS the move in percentage points, and 2dp quantizes it to whole basis
-        # points — erasing the sub-bp front-end moves the Fed treasury leg reads.
-        # Every display formats change with :+.2f, so this is invisible on screen.
-        # `or 0.0` normalizes -0.0 (falsy) to 0.0 so tiny negatives don't render as "+-0.00"
-        "change":     round(float(change),         4) or 0.0,
-        "pct_change": round(float(pct_change),     2) or 0.0,
-        # Date of the latest NON-NaN session, used to detect holidays / stale data.
-        "session_date": closes.index[-1].date().isoformat(),
+        "price":        round(last, 2),
+        "change":       round(change, 4) or 0.0,
+        "pct_change":   round((change / prev * 100) if prev else 0.0, 2) or 0.0,
+        "session_date": session_date,
     }
 
 
