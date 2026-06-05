@@ -26,8 +26,6 @@ from utils import force_utf8
 
 force_utf8()
 
-INDEX = "S&P 500"  # the index whose forward return we test against
-
 
 def _pearson(xs: list, ys: list) -> float:
     n = len(xs)
