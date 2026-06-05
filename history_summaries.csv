@@ -129,3 +129,44 @@ _Equities rose with Nasdaq -0.5%, S&P 500 +0.4%, VIX +1.5%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.91): GameStop (GME) Posts Stellar Earnings, Climbs 6%
 - 🔴 Most bearish (-0.96): Nasdaq, S&P futures slip as semiconductors drag; payrolls in focus"
+2026-06-05,Bearish,-46,"## Semiconductor Rout Triggers Broad Market Selloff
+
+U.S. equities suffered their steepest decline of 2026 on Friday, with tech-heavy indices bearing the brunt of a sector-wide semiconductor selloff. The Nasdaq 100 plunged 4.77%, while the S&P 500 dropped 2.64% and the Russell 2000 fell 3.47%. The VIX surged nearly 40% to 21.51, signaling a sharp increase in market anxiety.
+
+## Chip Sector Posts Worst Day Since 2020
+
+The semiconductor complex experienced its most severe single-day drawdown since March 2020, with memory and compute-intensive names leading losses. Micron tumbled 13.25%, while AMD fell 10.86%, Intel dropped 11.28%, and Arm Holdings declined 12.84%. SanDisk plummeted 11.39%, and Broadcom shed 7.92%. Nvidia, the sector bellwether, fell 6.20%. The Memory subsector declined 11.23% relative to the Nasdaq, with 100% breadth participating in the downturn. Reports suggest the selloff was exacerbated by concerns over elevated valuations and potential profit-taking ahead of the highly anticipated SpaceX IPO.
+
+## Jobs Report Complicates Fed Outlook
+
+A stronger-than-expected May jobs report—showing 172,000 additions versus 85,000 expected—pushed the 10-year Treasury yield up 6 basis points to 4.54%. The robust labor market data further diminishes prospects for near-term rate cuts under new Fed Chair Warsh, keeping monetary policy restrictive and pressuring growth-sensitive technology stocks. The dollar strengthened modestly, with EUR/USD down 0.80% and GBP/USD off 0.68%.
+
+## SpaceX IPO Looms; S&P Denies Fast-Track Entry
+
+The $75 billion SpaceX IPO dominated headlines, with the S&P 500 Index Committee rejecting rule changes that would have allowed expedited inclusion for mega-cap IPOs. This decision delays an estimated $14 billion in passive inflows and may have contributed to weakness in speculative growth names. Separately, Google announced a $920 million monthly deal to purchase compute capacity from SpaceX's xAI data centers, while Meta reportedly considers a large equity raise to fund AI infrastructure.
+
+## Defensive Sectors Outperform
+
+Amid the tech carnage, defensive sectors provided refuge. Healthcare and pharma advanced 1.08%, with top gainer The Cooper Companies up 8.58% and ABM Industries rising 6.67%. Banking and consumer sectors held relatively steady. Commodities sold off in tandem with risk assets, with gold down 3.35%, crude oil falling 3.00%, and Bitcoin declining 2.79%, suggesting broad-based deleveraging rather than a flight to traditional safe havens.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.46  →  **Bearish**
+**Trend (5-day EMA):** -0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.66 |
+| News headlines | 20% | +0.04 |
+| Reddit | 0% | +0.03 |
+| Fed (rate expectations) | 10% | -0.03 |
+
+_Equities fell with Nasdaq -4.8%, S&P 500 -2.6%, VIX +39.7%. Sector breadth: 5/11 sectors up. 10Y yield +1.3%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +0.5bp). Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.94): Avino Silver & Gold Mines (ASM) Gets A Higher Target Following Its Latest Results
+- 🔴 Most bearish (-0.96): Marvell, Micron shares tumble as the chip sector suffers its worst day in 6 years"
