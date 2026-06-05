@@ -111,60 +111,56 @@ OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "market_summary.pdf")
 
 # ── Data fetching ──────────────────────────────────────────────────────────────
 
-def _fast_quote(ticker):
-    """(last_price, previous_close) from Yahoo's live quote (fast_info), or None.
-
-    fast_info is the quote Yahoo's website shows and it updates promptly after
-    the close — unlike the daily-history bar, which can lag a whole session or
-    come back NaN in the window right after the close (which is what made the
-    committed prices drift from Yahoo). previous_close must be non-zero for the
-    % change to be meaningful.
-    """
+def _session_date(info: dict) -> str:
+    """Session date from Yahoo's last-trade time (regularMarketTime, a UTC epoch),
+    or today (UTC) as a fallback. Used only for holiday/stale detection."""
+    ts = info.get("regularMarketTime")
     try:
-        fi = ticker.fast_info
-        last, prev = fi["lastPrice"], fi["previousClose"]
-        if last is not None and prev:
-            return float(last), float(prev)
+        if ts:
+            return datetime.datetime.fromtimestamp(
+                int(ts), datetime.timezone.utc).date().isoformat()
     except Exception:
         pass
-    return None
+    return datetime.datetime.now(datetime.timezone.utc).date().isoformat()
 
 
 def fetch_quote(ticker_symbol: str) -> dict:
     """price, change, pct_change, and session_date for one ticker.
 
-    Numbers come from Yahoo's live quote (fast_info) so they match the site; the
-    daily history supplies the session date (for holiday/stale detection) and is
-    the numeric fallback when the quote is unavailable.
+    price/change/% are taken STRAIGHT from Yahoo's own quote fields
+    (info.regularMarketPrice / regularMarketChange / regularMarketChangePercent) —
+    the exact, pre-computed numbers the website shows. We don't recompute the
+    change ourselves, because that would depend on a `previousClose` that yfinance
+    sometimes reports stale/wrong (fast_info gave Apple a 313.97 prev close that
+    wasn't even a real recent close). Falls back to the daily-history bar (NaN-safe
+    via dropna, change computed locally) only if the quote is unavailable.
+
+    `change` is stored at 4dp so a yield ticker's (^IRX/^TNX) sub-basis-point move
+    survives for the Fed leg; every display formats it :+.2f. `or 0.0` normalizes
+    a falsy -0.0 so it never renders as "+-0.00".
     """
     ticker = yf.Ticker(ticker_symbol)
     # yfinance is unofficial and rate-limits; retry transient failures.
-    hist = retry(lambda: ticker.history(period="5d"),
-                 attempts=3, label=ticker_symbol)
-    # Last NON-NaN close's date — yfinance can return a trailing NaN bar (an
-    # incomplete/just-opened session); dropna keeps the session date honest.
-    closes = hist["Close"].dropna() if not hist.empty else None
-    session_date = (closes.index[-1].date().isoformat()
-                    if closes is not None and not closes.empty else None)
+    try:
+        info = retry(lambda: ticker.info, attempts=2, label=ticker_symbol) or {}
+    except Exception:
+        info = {}
 
-    # `change` is kept at 4dp (not 2dp): for a yield ticker (^IRX/^TNX) the change
-    # IS the move in percentage points, and 2dp quantizes it to whole basis points
-    # — erasing the sub-bp front-end moves the Fed treasury leg reads. Displays
-    # format change with :+.2f, so the extra precision is invisible on screen.
-    # `or 0.0` normalizes a -0.0 (falsy) to 0.0 so it doesn't render as "+-0.00".
-
-    quote = _fast_quote(ticker)
-    if quote is not None:                       # preferred: Yahoo's live quote
-        last, prev = quote
-        change = last - prev
+    price = info.get("regularMarketPrice")
+    change = info.get("regularMarketChange")
+    pct = info.get("regularMarketChangePercent")
+    if price is not None and change is not None and pct is not None:
         return {
-            "price":        round(last, 2),
-            "change":       round(change, 4) or 0.0,
-            "pct_change":   round(change / prev * 100, 2) or 0.0,
-            "session_date": session_date or datetime.date.today().isoformat(),
+            "price":        round(float(price), 2),
+            "change":       round(float(change), 4) or 0.0,
+            "pct_change":   round(float(pct), 2) or 0.0,
+            "session_date": _session_date(info),
         }
 
-    # Fallback: the daily history bar (NaN-safe via dropna).
+    # Fallback: the daily history bar (NaN-safe via dropna), change computed here.
+    hist = retry(lambda: ticker.history(period="5d"),
+                 attempts=3, label=ticker_symbol)
+    closes = hist["Close"].dropna() if not hist.empty else None
     if closes is None or closes.empty:
         return {"error": f"No data for {ticker_symbol}"}
     last = float(closes.iloc[-1])
@@ -174,7 +170,7 @@ def fetch_quote(ticker_symbol: str) -> dict:
         "price":        round(last, 2),
         "change":       round(change, 4) or 0.0,
         "pct_change":   round((change / prev * 100) if prev else 0.0, 2) or 0.0,
-        "session_date": session_date,
+        "session_date": closes.index[-1].date().isoformat(),
     }
 
 
