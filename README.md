@@ -17,9 +17,12 @@ See [`Pipeline_Overview.md`](Pipeline_Overview.md) for the end-to-end design.
 3. Computes a deterministic **sentiment score** (−1…+1) — a weighted composite of
    market data, news NLP, and Fed-rate expectations (see Pipeline_Overview.md §4).
    FinBERT scores formal text, VADER scores social text.
-4. Asks Claude for a ~300–400 word analyst narrative grounded in the data + news.
-5. Records the run to CSV history, regenerates trend charts, and builds a PDF.
-6. Emails the PDF (separate, decoupled delivery stage).
+4. Builds a display-only **Sector Watch** — a multi-metric read (relative
+   strength, breadth, news, volume) of 8 AI-stack thesis baskets vs the Nasdaq
+   100 / S&P 500.
+5. Asks Claude for a ~300–400 word analyst narrative grounded in the data + news.
+6. Records the run to CSV history, regenerates trend charts, and builds a PDF.
+7. Emails the PDF (separate, decoupled delivery stage).
 
 ## Setup
 
