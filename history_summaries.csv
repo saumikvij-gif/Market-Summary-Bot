@@ -213,3 +213,42 @@ _Equities rose with Nasdaq +1.6%, S&P 500 +0.3%, VIX -4.5%. Sector breadth: 3/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Micron to deliver ’another strong quarter’, Goldman says
 - 🔴 Most bearish (-0.90): Gold prices today, Monday, June 8: Lower to start the week following Israel, Iran missile strikes"
+2026-06-09,Neutral,-1,"## Divergence Across Major Indices
+
+U.S. equity markets showed sharp divergence on June 9, with the Dow Jones gaining 0.17% and Russell 2000 climbing 0.41%, while technology-heavy indices sold off. The Nasdaq 100 fell 1.12% and the S&P 500 slipped 0.26%, reflecting a pronounced rotation away from mega-cap technology and AI-related names. The VIX rose 5.02% to 19.87, signaling increased hedging activity and investor caution.
+
+## Tech Sector Under Pressure Amid Geopolitical Tensions
+
+Technology stocks faced broad-based selling, with semiconductor and AI infrastructure names particularly hard hit. Apple dropped 3.64%, AMD fell 3.02%, and Arm Holdings declined 6.22%. The selloff was most severe in networking and interconnect stocks, which declined 5.86% as a sector. Coherent plunged 11.44%, underscoring stress in the AI hardware supply chain.
+
+Contributing to risk-off sentiment, reports emerged of U.S. military strikes against Iran, with President Trump announcing a downed helicopter and promised military response. Treasury yields cooled, with the 10-year declining 2 basis points to 4.53%, as investors sought safe-haven assets. Crude oil fell 2.85% to $88.70 amid Middle East tensions, while gold retreated 1.80% to $4,284.80. Bitcoin extended losses, down 3.02% to $61,775.
+
+Market chatter on Reddit and financial media centered on BofA's warning that 70% of its bear market indicators are flashing red, alongside growing concerns about massive capital demands from upcoming mega-IPOs including SpaceX and OpenAI. Questions about market liquidity and whether AI infrastructure spending represents sustainable demand or speculative excess appeared to weigh on sentiment, with headlines questioning whether Micron is ""preparing for the collapse in AI demand.""
+
+## Defensive Rotation and Standout Gainers
+
+Traditional defensive sectors outperformed, with banking up 1.15% and consumer stocks gaining 2.43%. Pharma and healthcare rose 0.68%, supported by broad positive breadth.
+
+Among individual standouts, **Nuvalent surged 39.28%**, leading all gainers, while **Alignment Healthcare jumped 25.08%** and **CECO Environmental climbed 18.52%**. **DraftKings added 11.34%**, reflecting sector-specific strength amid the broader tech weakness. These moves suggest selective appetite for growth in non-AI sectors and potential M&A or clinical trial catalysts in biotech.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.01  →  **Neutral**
+**Trend (5-day EMA):** -0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.03 |
+| News headlines | 20% | +0.06 |
+| Reddit | 0% | +0.04 |
+| Fed (rate expectations) | 10% | -0.05 |
+
+_Equities fell with Nasdaq -1.1%, S&P 500 -0.3%, VIX +5.0%. Sector breadth: 9/11 sectors up. 10Y yield -0.5%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +0.7bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): Should these closed-ended funds Gabelli Equity Trust Inc., Gabelli Utility Trust, and Gabelli Healthcare & Wellness Trust be sold and put into something else?
+- 🔴 Most bearish (-0.96): Apple (AAPL) Faces Near-Term Pressure as App Store Growth Slows"
