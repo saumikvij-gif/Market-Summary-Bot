@@ -174,42 +174,42 @@ _Equities fell with Nasdaq -4.8%, S&P 500 -2.6%, VIX +39.7%. Sector breadth: 5/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.86): Bitcoin ETF Outflows Hit 13-Day Streak as $4.3 Billion Exits the Funds
 - 🔴 Most bearish (-0.96): Marvell, Micron shares tumble as the chip sector suffers its worst day in 6 years"
-2026-06-08,Slightly Bullish,19,"## Semiconductor Rally Drives Tech Divergence
+2026-06-08,Slightly Bullish,15,"> **Note:** No US trading session on 2026-06-09. Figures are from the last session (2026-06-08).
 
-U.S. equities exhibited a clear sectoral divide on Monday, with semiconductor and memory stocks surging while mega-cap tech lagged. The Nasdaq 100 gained 1.58%, buoyed by a powerful rally in chip stocks, while the S&P 500 edged up 0.30% and the Dow slipped 0.16%. The VIX fell sharply by 12% to 18.92, suggesting easing near-term anxiety despite ongoing market rotation concerns.
+## Market Overview
 
-## Memory and Chip Stocks Lead
+U.S. equity markets diverged sharply on Tuesday, with the Nasdaq 100 surging 1.58% while the Dow Jones slipped 0.16%, underscoring a pronounced rotation into semiconductor and AI infrastructure stocks. The S&P 500 advanced a modest 0.30%, and the Russell 2000 gained 0.77%. The VIX declined 4.49% to 18.07, suggesting easing near-term volatility concerns as geopolitical tensions between Israel and Iran appeared to cool.
 
-The standout story was a resurgence in semiconductor hardware, particularly memory. **Micron soared 9.87%** and **Intel jumped 11.19%**, with both companies appearing to benefit from renewed confidence in AI infrastructure demand. Reports citing Nvidia's CEO suggesting prolonged memory shortages and a partnership announcement between Nvidia and SK hynix helped fuel the rally. **SanDisk surged 5.30%**, **Coherent gained 6.62%**, and **AMD advanced 5.14%**, while **Nvidia** itself added 1.73%.
+## Semiconductor Rally Takes Center Stage
 
-Among broader market gainers, **Tango Therapeutics (TNGX)** spiked 53% on unspecified catalysts, while crypto-related names like **Galaxy Digital (+21.4%)** and **MARA Holdings (+11.9%)** rallied alongside Bitcoin's 3.06% rebound above $63,600 following Friday's dip below $60,000. **Cerebras Systems**, an AI chip startup, surged 18.3%.
+The session's dominant theme was a powerful rally in memory and semiconductor stocks, with the memory sector posting a 4.38% gain on 100% positive breadth. **Micron** led mega-cap chip names with a stunning 9.87% surge to $949.28, fueled by Goldman Sachs commentary anticipating ""another strong quarter."" **Intel** jumped 11.19%, while **SanDisk** climbed 5.30% and **Coherent** added 6.62%. Among the broader market's top gainers, **Cerebras Systems** rallied 18.32%, reinforcing enthusiasm around AI compute infrastructure.
 
-The sector breakdown underscores the bifurcation: Memory stocks rose 4.38% with 100% breadth, while Hyperscalers & Neoclouds fell 1.18% as **Microsoft (-1.18%)**, **Meta (-1.28%)**, **Alphabet (-1.25%)**, and **Apple (-1.89%)** all declined. Commentary from Wall Street suggested a ""pause in the AI trade,"" with concerns about market concentration echoing dot-com bubble warnings.
+**AMD** gained 5.14% and **Broadcom** rose 2.82%, while **Nvidia** added a more modest 1.73%. The networking and interconnect subsector advanced 3.45% with 76% breadth, and the broader semiconductor/compute segment rose 2.81%. This strength contrasts sharply with weakness in hyperscalers, which fell 1.18% as **Microsoft** (-1.18%), **Meta** (-1.28%), **Alphabet** (-1.25%), and **Apple** (-1.89%) all declined. Discussion on Reddit and finance forums centered on concerns that U.S. AI companies may be losing pricing power, a potential catalyst for recent softness in large-cap tech.
 
-## Inflation Concerns and Policy Uncertainty
+## IPO Wave and Cross-Asset Signals
 
-Market chatter centered on this week's May CPI release, expected to breach 4%, which would test new Fed Chair Warsh's inflation-fighting credibility. The 10-year Treasury yield ticked up 2 basis points to 4.55%, while the dollar held steady. Headlines warned of an ""inflation storm brewing"" and questioned whether the Fed would respond aggressively, adding a cautious undertone despite equities' resilience.
+OpenAI's confidential IPO filing dominated headlines, following Anthropic's move to public markets. Investors debated whether massive AI IPOs—some valued over $1 trillion—could crowd out capital from other equities. Meanwhile, **Tango Therapeutics** soared 52.97% to lead all gainers, and crypto-related names like **Galaxy Digital** (+21.36%) and **MARA Holdings** (+11.85%) rallied despite Bitcoin slipping 0.68% to $62,675.
 
-Crude oil rose 0.82% to $91.28 despite geopolitical tensions in the Middle East, while gold dipped marginally. The Russell 2000 outperformed with a 0.77% gain, suggesting risk appetite remained intact in smaller-cap names. Overall, markets appear to be rotating within tech rather than abandoning it, with hardware benefiting at software's expense.
+Crude oil fell 2.18% despite Middle East tensions, puzzling traders who noted restricted tanker access through key straits. Gold dipped 0.12%, while the 10-year Treasury yield rose modestly to 4.55%. The dollar strengthened slightly against the euro and pound. Attention now turns to Wednesday's May CPI print, with some analysts forecasting inflation could break above 4%—a development that would carry significant implications for Federal Reserve policy and risk appetite.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.19  →  **Slightly Bullish**
-**Trend (5-day EMA):** -0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.15  →  **Slightly Bullish**
+**Trend (5-day EMA):** -0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.22 |
-| News headlines | 20% | +0.17 |
+| Market data | 70% | +0.12 |
+| News headlines | 20% | +0.32 |
 | Reddit | 0% | +0.04 |
 | Fed (rate expectations) | 10% | -0.02 |
 
-_Equities rose with Nasdaq +1.6%, S&P 500 +0.3%, VIX -12.0%. Sector breadth: 3/11 sectors up. 10Y yield +0.3%. News headlines read slightly bullish. Fed-policy expectations held steady. Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +1.6%, S&P 500 +0.3%, VIX -4.5%. Sector breadth: 3/11 sectors up. 10Y yield +0.3%. News headlines read bullish. Fed-policy expectations held steady. Today's overall market tone: Slightly Bullish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.92): Should these closed-ended funds Gabelli Equity Trust Inc., Gabelli Utility Trust, and Gabelli Healthcare & Wellness Trust be sold and put into something else?
-- 🔴 Most bearish (-0.91): Bitcoin’s Friday Plunge Below 60K Turned a 4 Percent Crypto Drop Into an 11 Percent Wipeout for WGMI Holders"
+- 🟢 Most bullish (+0.93): Micron to deliver ’another strong quarter’, Goldman says
+- 🔴 Most bearish (-0.90): Gold prices today, Monday, June 8: Lower to start the week following Israel, Iran missile strikes"
