@@ -148,8 +148,8 @@ def _sector_watch_block(rows: list) -> str:
                  f"<td>{breadth}</td><td>{news}</td><td>{overall}</td></tr>")
     return (f"<h2>Sector Watch (AI Stack)</h2>"
             f'<p class="news-src">Blended score from relative strength, breadth '
-            f"(avg % of the 20/50/200-day MAs the basket trades above), news, "
-            f"volume, and Reddit. Relative strength is vs the Nasdaq for tech "
+            f"(avg % of the 20/50-day MAs the basket trades above), news, "
+            f"5-day momentum, and Reddit. Relative strength is vs the Nasdaq for tech "
             f"baskets and the S&amp;P for the rest. Sorted strongest&rarr;weakest.</p>"
             f"<table><tr><th>Sector</th><th>Move</th><th>Rel. Str.</th>"
             f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")

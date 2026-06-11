@@ -39,9 +39,12 @@ REQUEST_TIMEOUT = 15  # seconds
 # Drop headlines older than this many hours. The score is a SAME-DAY read, but
 # feeds (especially Reddit "hot" and Investing.com) carry items days old; those
 # stale headlines pollute today's tone. Entries with no parseable date are kept
-# (better to include than to silently drop a whole undated feed). The window is
-# generous (default 48h) to span a weekend/holiday gap between sessions.
-MAX_AGE_HOURS = int(os.environ.get("NEWS_MAX_AGE_HOURS", "48"))
+# (better to include than to silently drop a whole undated feed). Default 24h —
+# tight enough to keep the read genuinely same-day now that the broadened sector
+# queries surface plenty of fresh news. (Note: on the morning after a weekend or
+# holiday the prior session's news is already >24h old; override via
+# NEWS_MAX_AGE_HOURS=48 if a post-gap run looks thin.)
+MAX_AGE_HOURS = int(os.environ.get("NEWS_MAX_AGE_HOURS", "24"))
 
 # Recurring boilerplate / pinned threads that aren't real news (case-insensitive).
 SKIP_PATTERNS = [
@@ -123,6 +126,11 @@ def _norm_title(title: str) -> str:
     same wire story carried by two outlets collapse to one entry so it isn't
     double-counted in the score or shown twice in the briefing."""
     return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+
+
+# Public alias so other modules (e.g. sector_watch) can reuse the dedup key
+# without reaching into a private name.
+norm_title = _norm_title
 
 
 def _wants_us_gate(name: str) -> bool:

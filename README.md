@@ -48,7 +48,7 @@ $env:SENTIMENT_ENGINE = "hybrid"        # FinBERT for news/Fed, VADER for social
 | `OUTPUT_FILE`       | No       | `market_summary.pdf`  | Base path for output; the PDF is derived from its stem |
 | `SENTIMENT_ENGINE`  | No       | `hybrid`              | `hybrid` (FinBERT+VADER) or `vader` (lightweight) |
 | `NEWS_LIMIT`        | No       | `8`                   | Max headlines kept per feed                       |
-| `NEWS_MAX_AGE_HOURS`| No       | `48`                  | Drop headlines older than this                    |
+| `NEWS_MAX_AGE_HOURS`| No       | `24`                  | Drop headlines older than this (set `48` to span a weekend/holiday gap) |
 | `SMTP_HOST` / `SMTP_USER` / `SMTP_PASSWORD` / `EMAIL_TO` | For email | — | SMTP delivery config (see [`emailer.py`](emailer.py)); unset → email is skipped |
 | `SMTP_PORT` / `EMAIL_FROM` | No | `587` / `SMTP_USER` | Optional SMTP overrides                           |
 
