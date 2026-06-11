@@ -307,3 +307,42 @@ _Equities fell with Nasdaq -2.0%, S&P 500 -1.6%, VIX -6.6%. Sector breadth: 4/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Google Strengthens
 - 🔴 Most bearish (-0.88): Lovesac Q1 fiscal 2027 earnings: loss smaller than expected"
+2026-06-11,Bullish,51,"## Broad Risk-On Rally Led by Semiconductors
+
+U.S. equity markets surged Thursday, with the Nasdaq 100 jumping 3.29% and the S&P 500 gaining 1.75%, as investors piled into risk assets following a sharp decline in geopolitical tensions and renewed enthusiasm for the semiconductor sector. The VIX plunged 12.51% to 19.44, while Treasury yields fell 8 basis points to 4.46%, signaling a ""risk-on"" shift despite hotter-than-expected PPI data showing 6.5% year-over-year inflation in May.
+
+## Semiconductor Surge Takes Center Stage
+
+Memory and compute semiconductor stocks led the charge, with the Memory sector soaring 9.83% and achieving 100% positive breadth. **Micron** exploded 11.66% higher after analysts highlighted a ""healthy reset"" and improved demand outlook. **SanDisk** surged 14.50%, while **Intel** rallied 9.27% on positive commentary from BofA regarding subtle competitive dynamics. **Arm Holdings** jumped 11.32%, and **AMD** climbed nearly 8%. The Semiconductors/Compute sector advanced 7.06% with bullish sentiment across the board.
+
+Among broader market top gainers, **York Space Systems** led with a 22.09% gain, followed by **ViaSat** (+18.23%) and **Firefly Aerospace** (+17.80%), as space-related stocks benefited from SpaceX IPO fever. The company priced its landmark IPO at $135 per share, though retail allocation was reportedly cut to the low-20% range, sparking concerns about accessibility for individual investors.
+
+## Commodities Diverge on Geopolitical Shifts
+
+Oil tumbled 4.01% to an 8-week low after President Trump backed away from threatened strikes on Iran, easing supply disruption fears. Conversely, **gold** rallied 2.43% despite falling to 6-month lows earlier in the week, as inflation concerns persisted even while the metal faced headwinds from risk appetite. Bitcoin advanced 3.51%, consistent with the broader risk-on tone.
+
+## Cross-Asset Signals and Notable Divergences
+
+The Treasury yield decline alongside equity strength suggests investors are balancing inflation worries with softer growth expectations. The dollar weakened modestly against the euro and pound, while banking and consumer sectors showed broad bullish participation. Notably, hyperscalers underperformed dramatically (+0.14% vs. Nasdaq's +3.29%), with **Microsoft** falling 1.77%—a potential rotation out of mega-cap tech into semiconductors and cyclicals.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.51  →  **Bullish**
+**Trend (5-day EMA):** +0.10  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.73 |
+| News headlines | 20% | -0.07 |
+| Reddit | 0% | -0.01 |
+| Fed (rate expectations) | 10% | +0.08 |
+
+_Equities rose with Nasdaq +3.3%, S&P 500 +1.8%, VIX -12.5%. Sector breadth: 8/11 sectors up. 10Y yield -1.7%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -1.2bp). Today's overall market tone: Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.93): Intel’s stock could push even higher thanks to this subtle dynamic, BofA says
+- 🔴 Most bearish (-0.91): Global oil prices end near an 8-week low as Trump backs away from his threat of strikes on Iran"
