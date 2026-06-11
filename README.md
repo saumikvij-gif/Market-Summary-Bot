@@ -58,11 +58,14 @@ Two decoupled workflows so data is captured at the US close but the briefing
 lands at the start of the Hong Kong business day:
 
 - [`market_summary.yml`](.github/workflows/market_summary.yml) — **Generate**:
-  Mon–Fri 21:30 UTC (after NYSE close). Produces the summary + PDF, updates the
+  fired ~21:30 UTC after the NYSE close (on-time via an external cron-job.com
+  dispatch; GitHub's native `30 21 * * 1-5` cron is kept as a delayed fallback).
+  Produces the summary + PDF (named by the data's **session date**), updates the
   CSV history, regenerates charts, and commits them.
 - [`email_summary.yml`](.github/workflows/email_summary.yml) — **Deliver**:
-  Tue–Sat (staggered backstop times, ~10–11 AM HKT). Emails the latest committed
-  briefing exactly once via [`send_latest.py`](send_latest.py).
+  fired once a day by the external cron-job.com dispatch (GitHub's native cron was
+  removed — it ran hours late). Emails the latest committed briefing exactly once
+  via [`send_latest.py`](send_latest.py).
 
 **Required secret:** `ANTHROPIC_API_KEY` (Settings → Secrets and variables →
 Actions). For email, add the `SMTP_*` / `EMAIL_TO` secrets too.

@@ -502,16 +502,25 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not generate charts: {exc}")
 
-    # Build the downloadable PDF briefing (full report in one file).
-    pdf_path = os.path.splitext(OUTPUT_FILE)[0] + ".pdf"
-    today_pretty = datetime.date.today().strftime("%B %d, %Y")
+    # Build the downloadable PDF briefing (full report in one file). Name it by the
+    # SESSION date (db_date = the data's real trading day), NOT the wall-clock UTC
+    # date: a delayed run (e.g. a Friday job GitHub's scheduler slips to Saturday
+    # UTC) then overwrites the correct day's file instead of minting a phantom
+    # weekend PDF of Friday's data under a Saturday name. SUMMARY_DIR is set by the
+    # workflow; locally we fall back to OUTPUT_FILE.
+    summary_dir = os.environ.get("SUMMARY_DIR")
+    if summary_dir:
+        pdf_path = os.path.join(summary_dir, f"market_summary_{db_date}.pdf")
+    else:
+        pdf_path = os.path.splitext(OUTPUT_FILE)[0] + ".pdf"
+    briefing_pretty = datetime.date.fromisoformat(db_date).strftime("%B %d, %Y")
     stale_note = ("" if (is_fresh or not session_date) else
                   f"No US trading session on {today}. Figures are from the last "
                   f"session ({session_date}).")
     try:
         prose = report.get("summary_markdown", "") if report else ""
         html = report_module.build_html(
-            today_pretty, prose, gainers, top_news, dashboard or {},
+            briefing_pretty, prose, gainers, top_news, dashboard or {},
             market_data, chart_paths, stale_note=stale_note,
             sector_watch=watch_rows)
         if report_module.write_pdf(html, pdf_path):
@@ -525,7 +534,7 @@ def main():
 
     # Email the PDF as a downloadable attachment (opt-in, fail-safe).
     try:
-        emailer.send_report(pdf_path, today_pretty)
+        emailer.send_report(pdf_path, briefing_pretty)
     except Exception as exc:
         print(f"  ⚠️  Could not send email: {exc}")
 
