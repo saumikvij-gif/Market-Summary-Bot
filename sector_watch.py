@@ -13,14 +13,13 @@ sector:
                             the move participated: whole sector or a few names?)
     News sentiment    15%  (FinBERT on a dedicated Google News search, aggregated
                             per constituent so one name's volume can't dominate)
-    Relative strength  0%  (move vs benchmark — tech baskets vs the Nasdaq 100,
-    5-day momentum     0%   the rest vs the S&P — and the median 5-session return.
-                            Both are shown as COLUMNS for context but no longer
-                            drive the label: being relative / multi-day, they used
-                            to flip the headline against the day's actual move,
-                            e.g. calling a sector that fell 4% "Bullish" because it
-                            outperformed a crashing market.)
-    Reddit             0%  (disabled for now — RSS 'hot' is a poor same-day proxy)
+    Reddit             0%  (disabled reserve — RSS 'hot' is a poor same-day proxy)
+
+Relative strength (the basket's move vs its benchmark — tech baskets vs the Nasdaq
+100, the rest vs the S&P) is computed and shown as a CONTEXT COLUMN, but is not a
+score input: being a relative read it would otherwise flip the headline against the
+day's actual move, e.g. calling a sector that fell 4% "Bullish" merely for
+outperforming a crashing market.
 
 Each metric is normalized to [-1, 1] and blended (renormalized over whatever is
 available) into a per-sector score + label. This is DISPLAY-ONLY — it does not
@@ -52,34 +51,25 @@ NEWS_PER_COMPANY = 8
 # How a sector's sub-metrics blend into its overall score. The day's ABSOLUTE move
 # dominates (0.70) so the label describes that session's direction — validated at
 # ~95% absolute-direction match vs the prior relative/momentum-led blend's 71%
-# (which mislabelled reversal and crash days). breadth + news add texture; relative
-# strength and 5-day momentum are kept at 0 — still COMPUTED and shown as columns,
-# but no longer flip the headline against the day's actual move. Reddit stays 0
-# (RSS "hot" is a poor same-day proxy). Available sub-metrics are renormalized, so a
-# 0-weight metric simply never contributes to the score.
+# (which mislabelled reversal and crash days). breadth + news add texture; Reddit is
+# a disabled reserve (0). Relative strength is computed and shown as a context COLUMN
+# but is deliberately NOT a score input, so it can't flip the headline against the
+# day's actual move. Available sub-metrics are renormalized, so a 0-weight metric
+# never contributes to the score.
 SECTOR_METRIC_WEIGHTS = {
-    "move":         0.70,
-    "rel_strength": 0.00,
-    "breadth":      0.15,
-    "news":         0.15,
-    "momentum":     0.00,
-    "reddit":       0.00,
+    "move":    0.70,
+    "breadth": 0.15,
+    "news":    0.15,
+    "reddit":  0.00,
 }
 # ±2.5% median session move = a full ±1 move signal. A 2-3% day is a decisive
 # session for these high-beta baskets, so it pins the label firmly bullish/bearish,
 # while a sub-1% drift reads as the mild move it is.
 MOVE_FULL_SCALE_PCT = 2.5
-# 3.5% outperformance vs the S&P = a full ±1 RS signal. Wider than the index
-# full-scales because these AI/semis baskets are high-beta and routinely move
-# several % vs the S&P on a busy day — a tighter scale pinned RS (the largest,
-# 35%, sub-metric) to ±1 constantly, drowning out the other metrics.
+# 3.5% outperformance vs the benchmark = a full ±1 relative-strength reading. Used
+# only for the displayed Rel. Str. column (RS is not a score input); kept wide
+# because these high-beta AI/semis baskets routinely move several % vs the S&P.
 RS_FULL_SCALE_PCT = 3.5
-
-# A ±7.5% median 5-session basket return = a full ±1 momentum signal. Sized for a
-# trading week of a high-beta AI/sector basket: big enough that normal weekly chop
-# doesn't saturate it, small enough that a crash/rally week (the regime we want to
-# capture) pins it toward ±1.
-MOMENTUM_FULL_SCALE_PCT = 7.5
 
 # Output calibration. Blending several sub-metrics (each already in [-1,1]) and
 # renormalizing AVERAGES them toward the mean, so even a high-conviction sector
@@ -268,15 +258,6 @@ def _move_score(move_pct):
     return _clamp(move_pct / MOVE_FULL_SCALE_PCT)
 
 
-def _momentum_score(mom_pct):
-    """Normalize a basket's 5-session return (%) to [-1, 1], or None if missing/NaN.
-    ±MOMENTUM_FULL_SCALE_PCT over the week = full ±1, so a sustained up/down regime
-    pushes the sector bullish/bearish even when a single session diverges."""
-    if not _finite(mom_pct):
-        return None
-    return _clamp(mom_pct / MOMENTUM_FULL_SCALE_PCT)
-
-
 def _median(values: list):
     """Median of a non-empty numeric list (mean of the two middle values if even)."""
     s = sorted(values)
@@ -299,7 +280,7 @@ def _fetch_history(tickers: list):
     auto_adjust=False keeps the RAW close — the price Yahoo's site shows and the
     basis of its change% — so a basket's move matches Yahoo (and the benchmark)
     rather than a dividend/split-adjusted series. A year is plenty for the 50-day
-    MA used in the breadth blend (and for the 5-day momentum lookback).
+    MA used in the breadth blend.
     """
     import yfinance as yf
     return yf.download(tickers, period="1y", progress=False,
@@ -307,13 +288,12 @@ def _fetch_history(tickers: list):
 
 
 def _per_ticker_metrics(data, ticker: str):
-    """Return (move_pct, trend_strength, momentum_pct, last_date) for one ticker, or
-    None. last_date is the ISO date of the latest non-NaN close, used to detect
-    tickers whose history lags a session so their move can be refreshed.
+    """Return (move_pct, trend_strength, last_date) for one ticker, or None.
+    last_date is the ISO date of the latest non-NaN close, used to detect tickers
+    whose history lags a session so their move can be refreshed.
 
-    trend_strength = fraction of the 20/50-day MAs the price is above, in
-    [0, 1] (only MAs with enough history are counted). momentum_pct = the 5-session
-    return (last close vs 6 bars ago), the multi-day trend behind the 1-day move.
+    trend_strength = fraction of the 20/50-day MAs the price is above, in [0, 1]
+    (only MAs with enough history are counted).
     """
     try:
         df = data[ticker]
@@ -325,10 +305,8 @@ def _per_ticker_metrics(data, ticker: str):
         flags = [1 if last > closes.tail(w).mean() else 0
                  for w in BREADTH_MAS if len(closes) >= w]
         strength = (sum(flags) / len(flags)) if flags else None
-        momentum = ((last / closes.iloc[-6] - 1) * 100) if len(closes) >= 6 else None
         last_date = closes.index[-1].date().isoformat()
-        return (round(float(move), 2), strength,
-                (round(float(momentum), 2) if momentum is not None else None), last_date)
+        return (round(float(move), 2), strength, last_date)
     except Exception:
         return None
 
@@ -472,12 +450,12 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
     # populated yet), which would otherwise blend different days into a basket's
     # median move and mis-state relative strength vs the current-session
     # benchmark. For any ticker whose history bar is stale, refresh its MOVE and
-    # BREADTH from Yahoo's live quote (5-day momentum keeps the history value).
+    # BREADTH from Yahoo's live quote.
     present = [m for m in metrics.values() if m]
-    target_date = max((m[3] for m in present), default=None)
+    target_date = max((m[2] for m in present), default=None)
     if target_date:
         for t, m in metrics.items():
-            if not (m and m[3] != target_date):
+            if not (m and m[2] != target_date):
                 continue
             ymove, yprice = _yahoo_quote(t)
             if ymove is None:
@@ -489,7 +467,7 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
                     strength = fresh
             except Exception:
                 pass
-            metrics[t] = (ymove, strength, m[2], target_date)
+            metrics[t] = (ymove, strength, target_date)
 
     rows = []
     for name, cfg in SECTOR_BASKETS.items():
@@ -505,33 +483,25 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
         breadth_score = (2 * breadth_frac - 1) if breadth_frac is not None else None
 
         # Relative strength: sector move vs its benchmark (tech → Nasdaq, else S&P).
-        # NaN-safe: a missing/NaN benchmark drops RS out of the blend (and shows
-        # n/a) instead of poisoning the score.
+        # Display-only context column, NOT a score input. NaN-safe: a missing/NaN
+        # benchmark just shows n/a.
         use_nasdaq = name in NASDAQ_BASKETS
         bench_move = nasdaq_move if use_nasdaq else sp_move
         bench_label = "Nasdaq" if use_nasdaq else "S&P"
-        rs_score, rs_delta = _rel_strength(basket_move, bench_move)
-
-        # 5-day momentum: the basket's median 5-session return, normalized to
-        # [-1, 1]. Captures the multi-day TREND/regime, so a sector in a sustained
-        # selloff (or rally) reads bearish (bullish) even when a single session
-        # diverges — the gap the 1-day rel-strength read alone can miss.
-        moms = [m[2] for m in present if m[2] is not None]
-        mom_pct = round(_median(moms), 2) if moms else None
-        mom_score = _momentum_score(mom_pct)
+        _, rs_delta = _rel_strength(basket_move, bench_move)
 
         try:
-            news_score, news_n = _news_sentiment(cfg["query"], cfg.get("companies"))
+            news_score, _ = _news_sentiment(cfg["query"], cfg.get("companies"))
         except Exception as exc:
             print(f"  ⚠️  Sector news failed for {name}: {exc}")
-            news_score, news_n = None, 0
-        reddit_score, reddit_n = _reddit_sentiment(cfg["keywords"], reddit_titles)
+            news_score = None
+        reddit_score, _ = _reddit_sentiment(cfg["keywords"], reddit_titles)
 
         # Blend available sub-metrics, renormalized over their weights. The day's
         # absolute move is the dominant driver so the label describes the session.
         move_score = _move_score(basket_move)
-        parts = {"move": move_score, "rel_strength": rs_score, "breadth": breadth_score,
-                 "news": news_score, "momentum": mom_score, "reddit": reddit_score}
+        parts = {"move": move_score, "breadth": breadth_score,
+                 "news": news_score, "reddit": reddit_score}
         avail = {k: v for k, v in parts.items() if v is not None}
         total_w = sum(SECTOR_METRIC_WEIGHTS[k] for k in avail) or 1.0
         blended = _clamp(sum(SECTOR_METRIC_WEIGHTS[k] * v for k, v in avail.items()) / total_w)
@@ -543,11 +513,8 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
             "rel_strength": rs_delta,
             "benchmark": bench_label,
             "breadth_pct": round(breadth_frac * 100) if breadth_frac is not None else None,
-            "news_score": news_score, "news_n": news_n,
-            "momentum_pct": mom_pct,
-            "reddit_score": reddit_score, "reddit_n": reddit_n,
+            "news_score": news_score,
             "score": score, "label": sentiment.label_for(score),
-            "constituents": len(present),
         })
     return rows
 

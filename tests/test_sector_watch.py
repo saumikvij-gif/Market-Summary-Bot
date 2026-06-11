@@ -26,17 +26,6 @@ def test_median_robust_to_outlier():
     assert sector_watch._median([1.0, -1.0, 5.0]) == 1.0   # odd count → middle value
 
 
-def test_momentum_score_normalizes_and_clamps():
-    fs = sector_watch.MOMENTUM_FULL_SCALE_PCT
-    assert sector_watch._momentum_score(0.0) == 0.0
-    assert sector_watch._momentum_score(fs) == 1.0          # +full scale → +1
-    assert sector_watch._momentum_score(-fs) == -1.0        # −full scale → −1
-    assert sector_watch._momentum_score(2 * fs) == 1.0      # clamped, not >1
-    assert 0 < sector_watch._momentum_score(fs / 2) < 1.0   # partial week → partial
-    assert sector_watch._momentum_score(float("nan")) is None
-    assert sector_watch._momentum_score(None) is None
-
-
 def test_calibrate_decompresses_without_flipping_sign():
     cal = sector_watch._calibrate
     # 0 and the rails are fixed points (no-op at the extremes).
@@ -77,11 +66,12 @@ def test_trend_strength_with_live_price():
 
 
 def test_sector_metric_weights():
-    # The day's absolute move dominates so the label describes the session;
-    # rel_strength + momentum are kept at 0 (context columns, not label drivers).
+    # The day's absolute move dominates so the label describes the session; reddit
+    # is a disabled reserve. rel_strength/momentum are no longer score inputs.
     w = sector_watch.SECTOR_METRIC_WEIGHTS
     assert (w["move"], w["breadth"], w["news"]) == (0.70, 0.15, 0.15)
-    assert w["rel_strength"] == 0.0 and w["momentum"] == 0.0 and w["reddit"] == 0.0
+    assert w["reddit"] == 0.0
+    assert "rel_strength" not in w and "momentum" not in w
     assert abs(sum(w.values()) - 1.0) < 1e-9
 
 

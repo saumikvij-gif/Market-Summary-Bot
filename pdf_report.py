@@ -150,8 +150,8 @@ def _sector_watch_block(rows: list) -> str:
             f'<p class="news-src">Score describes the day: driven by the session move '
             f"(70%), with breadth (avg % of the 20/50-day MAs the basket trades above, "
             f"15%) and news (15%) for texture. Relative strength (vs the Nasdaq for tech "
-            f"baskets, the S&amp;P for the rest) and 5-day momentum are shown as context "
-            f"columns but don't drive the label. Sorted strongest&rarr;weakest.</p>"
+            f"baskets, the S&amp;P for the rest) is shown as a context column but doesn't "
+            f"drive the label. Sorted strongest&rarr;weakest.</p>"
             f"<table><tr><th>Sector</th><th>Move</th><th>Rel. Str.</th>"
             f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")
 
