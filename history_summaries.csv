@@ -260,46 +260,50 @@ _Equities fell with Nasdaq -1.1%, S&P 500 -0.3%, VIX +8.4%. Sector breadth: 9/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.90): Meta deepens partnership with Ambani’s Reliance with AI data centre
 - 🔴 Most bearish (-0.96): Gold prices today, Wednesday, June 10: Prices falling after U.S., Iran strikes and ahead of CPI report"
-2026-06-10,Bearish,-40,"## Broad Selloff Driven by Inflation Concerns
+2026-06-10,Slightly Bearish,-23,"> **Note:** No US trading session on 2026-06-11. Figures are from the last session (2026-06-10).
 
-U.S. equities suffered sharp losses on June 10, with major indices declining broadly as inflation fears resurfaced. The S&P 500 dropped 1.62%, the Nasdaq 100 fell 1.98%, and the Dow Jones shed 1.87%. The VIX surged 11.83% to 22.22, reflecting heightened investor anxiety. Headlines confirmed inflation accelerated to 4.2%—a three-year high—prompting concerns that persistent price pressures could complicate the economic outlook and erode real wage gains.
+## Market Overview
 
-## Technology and Semiconductors Under Pressure
+U.S. equities suffered sharp losses on June 11, with all major indices declining more than 1% as semiconductor and technology stocks led the retreat. The S&P 500 fell 1.62% to 7,267, while the Nasdaq 100 dropped 1.98% and the Dow shed 1.87%. Despite the broad selloff, the VIX declined 6.62% to 20.75, suggesting investors view the move as a correction rather than the beginning of sustained volatility.
 
-The semiconductor complex bore the brunt of selling, with the sector declining nearly 5% relative to the Nasdaq. Broadcom plunged 5.12%, AMD fell 4.86%, Micron dropped 4.70%, and Arm declined 5.37%. Nvidia, a bellwether for AI infrastructure, lost 3.73%. Weakness extended across the AI stack: memory chips fell 4.12% and hyperscalers declined 2.33%, with Meta down 2.33%, Amazon off 2.53%, and Microsoft losing 1.50%. Apple bucked the trend with a modest 0.35% gain, buoyed by news it has become an Nvidia customer, using Blackwell B200 chips to power its new Siri on Google Cloud infrastructure.
+## Semiconductors Under Pressure
 
-Sentiment was further weighed by Oracle's post-earnings slide and reports that the company plans to raise $40 billion in debt and equity financing. Meanwhile, Super Micro tumbled on its $7 billion capital raise announcement, and Alphabet dipped 2.48% despite reporting strong user growth for its Gemini app.
+The AI and semiconductor complex experienced particularly heavy selling, with the sector exhibiting bearish breadth across multiple subsegments. Nvidia fell 3.73%, AMD dropped 4.86%, and Broadcom declined 5.12%. Memory stocks fared even worse, with Micron tumbling 4.70% and the Memory sector (DRAM/NAND/HBM) down 4.12% overall. Arm Holdings led declines among chip designers, falling 5.37%.
 
-## Standout Gainers and Sector Rotation
+Headlines pointed to multiple headwinds: MarketWatch noted that ""Micron, Marvell drag the tech sector into a new bearish phase,"" while Reddit discussions highlighted concerns about valuation and rotation away from high-flying AI names. The semiconductors/compute subsector fell 4.99%, significantly underperforming the broader Nasdaq.
 
-Amid the broad weakness, several stocks posted exceptional gains. **Casey's General Stores (CASY)** surged 20.29%, and **Murphy USA (MUSA)** rallied 10.04%, benefiting from elevated oil prices, which jumped 4.14% on supply concerns. **Fermi Inc. (FRMI)** led all gainers with a 22.60% advance, while **Polibeli Group (PLBL)** and **Webull Corporation (BULL)** rose 16.36% and 11.27%, respectively.
+## Oracle and SpaceX Dominate Headlines
 
-## Commodities and Fixed Income
+Oracle shares declined in extended trading after announcing plans to raise $40 billion through debt and equity financing, despite beating earnings expectations on revenue. The move sparked concern about dilution and capital intensity in the AI infrastructure buildout, with the company having already invested $55.7 billion in capex over the past year.
 
-Crude oil's 4.14% gain reflected renewed geopolitical tensions and supply worries, with reports circulating about a U.S. military incident. Gold fell 4.49%, suggesting reduced safe-haven demand or profit-taking. The 10-year Treasury yield edged up 0.01% to 4.54%, while Bitcoin remained relatively stable, down just 0.21%.
+SpaceX IPO speculation dominated financial media, with reports indicating demand approaching four times oversubscription. However, analysts cautioned retail investors about the risks of ""flipping"" shares on IPO day, particularly for older investors.
 
-## Cross-Asset Signals
+## Defensive Pockets and Cross-Asset Signals
 
-The combination of rising oil, falling equities, and a VIX spike points to stagflationary concerns—growth worries coupled with sticky inflation. Defensive rotation into energy-linked equities and away from high-multiple tech suggests investors are reassessing risk amid macro uncertainty and a slew of high-profile capital raises.
+Notable gainers included consumer-facing names, with Casey's General Stores surging 20.29% and Murphy USA up 10.04%, suggesting a rotation into defensive, cash-generating businesses. Apple bucked the tech selloff with a modest 0.35% gain.
+
+Bitcoin rose 1.80% to $62,618, showing divergence from risk assets, while gold fell 0.87%. Treasury yields remained flat at 4.54%, and the dollar edged higher against major currencies. Oil declined modestly to $89.54.
+
+Reddit posts referenced inflationary pressures and a reported ECB rate hike, though the latter requires confirmation. The combination of tech weakness, stable rates, and resilient commodities suggests investors are reassessing growth stock valuations amid persistent macro uncertainty.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.40  →  **Bearish**
-**Trend (5-day EMA):** -0.16  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** -0.23  →  **Slightly Bearish**
+**Trend (5-day EMA):** -0.11  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | -0.60 |
-| News headlines | 20% | +0.09 |
-| Reddit | 0% | +0.08 |
+| Market data | 70% | -0.34 |
+| News headlines | 20% | +0.04 |
+| Reddit | 0% | +0.07 |
 | Fed (rate expectations) | 10% | +0.00 |
 
-_Equities fell with Nasdaq -2.0%, S&P 500 -1.6%, VIX +11.8%. Sector breadth: 4/11 sectors up. 10Y yield +0.3%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Bearish._
+_Equities fell with Nasdaq -2.0%, S&P 500 -1.6%, VIX -6.6%. Sector breadth: 4/11 sectors up. 10Y yield +0.0%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Slightly Bearish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.93): Spike In Oil Prices Boosted Crescent Energy Company (CRGY) in Q1
-- 🔴 Most bearish (-0.96): Oracle’s stock slides after earnings, as the steep price of AI spooks investors"
+- 🟢 Most bullish (+0.93): These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Google Strengthens
+- 🔴 Most bearish (-0.88): Lovesac Q1 fiscal 2027 earnings: loss smaller than expected"
