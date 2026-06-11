@@ -495,18 +495,6 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not record run to database: {exc}")
 
-    # Internal-only Sector-Watch snapshot: persist the day's per-sector signals +
-    # score so we can later re-fit the metric weights and calibration exponent
-    # against real forward returns. This NEVER enters the briefing/email — it's a
-    # private accumulator committed alongside the history CSVs. Keyed by the
-    # session date so holidays don't mint duplicate rows. Fail-safe.
-    try:
-        history.save_sector_watch(watch_rows, run_date=db_date)
-        if watch_rows:
-            print(f"📈 Sector snapshot recorded to {os.path.basename(history.SECTOR_CSV)}")
-    except Exception as exc:
-        print(f"  ⚠️  Could not record sector snapshot: {exc}")
-
     # Generate trend charts from the accumulated history (never block on errors).
     chart_paths = []
     try:

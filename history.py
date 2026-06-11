@@ -27,19 +27,9 @@ force_utf8()
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QUOTES_CSV = os.path.join(_HERE, "history_quotes.csv")
 SUMMARIES_CSV = os.path.join(_HERE, "history_summaries.csv")
-# Internal-only sector-watch snapshot: one row per (date, sector) capturing the
-# day's sub-signals + blended score. NOT part of the briefing/email — it's a
-# private accumulator (committed alongside the other history CSVs so it survives
-# the ephemeral Action runner) that lets us later fit the metric weights and the
-# calibration exponent against real forward returns instead of one hand-labelled
-# day. Forward returns aren't stored: they're recomputed from Yahoo when we fit.
-SECTOR_CSV = os.path.join(_HERE, "sector_history.csv")
 
 QUOTE_COLS = ["run_date", "section", "name", "price", "change", "pct_change"]
 SUMMARY_COLS = ["run_date", "sentiment", "score", "summary"]
-SECTOR_COLS = ["run_date", "sector", "score", "label", "move_pct", "rel_strength",
-               "breadth_pct", "news_score", "momentum_pct", "reddit_score",
-               "constituents", "benchmark"]
 
 
 # ── CSV read/write helpers ─────────────────────────────────────────────────────
@@ -104,30 +94,6 @@ def save_run(market_data: dict, summary: str, run_date: str = None,
                            "score": score, "summary": summary}
     _write(SUMMARIES_CSV, SUMMARY_COLS,
            sorted(summaries.values(), key=lambda r: r["run_date"]))
-
-
-def save_sector_watch(rows: list, run_date: str = None) -> None:
-    """Persist one run's Sector-Watch snapshot (internal only; never emailed).
-
-    Upserts one row per (run_date, sector) so re-running a date overwrites it,
-    matching save_run's quotes behaviour. `rows` is build_sector_watch's output.
-    """
-    if not rows:
-        return
-    if run_date is None:
-        run_date = datetime.date.today().isoformat()
-    snap = {(r["run_date"], r["sector"]): r for r in _read(SECTOR_CSV)}
-    for r in rows:
-        snap[(run_date, r["sector"])] = {
-            "run_date": run_date, "sector": r.get("sector"),
-            "score": r.get("score"), "label": r.get("label"),
-            "move_pct": r.get("move_pct"), "rel_strength": r.get("rel_strength"),
-            "breadth_pct": r.get("breadth_pct"), "news_score": r.get("news_score"),
-            "momentum_pct": r.get("momentum_pct"), "reddit_score": r.get("reddit_score"),
-            "constituents": r.get("constituents"), "benchmark": r.get("benchmark"),
-        }
-    _write(SECTOR_CSV, SECTOR_COLS,
-           sorted(snap.values(), key=lambda r: (r["run_date"], r["sector"])))
 
 
 # ── Backfill (real historical prices, for testing trends) ──────────────────────

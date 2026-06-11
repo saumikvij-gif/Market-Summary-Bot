@@ -77,10 +77,23 @@ def test_trend_strength_with_live_price():
 
 
 def test_sector_metric_weights():
+    # The day's absolute move dominates so the label describes the session;
+    # rel_strength + momentum are kept at 0 (context columns, not label drivers).
     w = sector_watch.SECTOR_METRIC_WEIGHTS
-    assert (w["rel_strength"], w["breadth"], w["news"], w["momentum"], w["reddit"]) \
-        == (0.35, 0.30, 0.25, 0.10, 0.00)
+    assert (w["move"], w["breadth"], w["news"]) == (0.70, 0.15, 0.15)
+    assert w["rel_strength"] == 0.0 and w["momentum"] == 0.0 and w["reddit"] == 0.0
     assert abs(sum(w.values()) - 1.0) < 1e-9
+
+
+def test_move_score_normalizes_and_clamps():
+    fs = sector_watch.MOVE_FULL_SCALE_PCT
+    assert sector_watch._move_score(0.0) == 0.0
+    assert sector_watch._move_score(fs) == 1.0          # +full scale → +1
+    assert sector_watch._move_score(-fs) == -1.0        # −full scale → −1
+    assert sector_watch._move_score(3 * fs) == 1.0      # clamped, not >1
+    assert 0 < sector_watch._move_score(fs / 2) < 1.0   # partial move → partial
+    assert sector_watch._move_score(float("nan")) is None
+    assert sector_watch._move_score(None) is None
 
 
 def test_rs_full_scale_widened():

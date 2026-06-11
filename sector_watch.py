@@ -2,18 +2,24 @@
 sector_watch.py
 ---------------
 AI-stack "Sector Watch": a professional-style, multi-metric read of 8 thesis
-baskets. For each basket it measures not just the average move, but *how* the
-sector is behaving underneath — the way a PM reads a sector:
+baskets. The headline score is built to DESCRIBE the session — did the sector
+rise or fall today — with the other metrics adding texture, the way a PM reads a
+sector:
 
-    Relative strength 35%  (sector move vs its benchmark — leading or lagging?
-                            tech baskets vs the Nasdaq 100, the rest vs the S&P)
-    Breadth           30%  (% of the basket above its 20/50-day MAs — is the
-                            WHOLE sector participating, or a few names carrying it?)
-    News sentiment    25%  (FinBERT on a dedicated Google News search, aggregated
+    Daily move        70%  (the basket's median constituent move this session —
+                            the headline "did the sector go up or down today",
+                            so the label tracks the day's actual direction)
+    Breadth           15%  (% of the basket above its 20/50-day MAs — how broadly
+                            the move participated: whole sector or a few names?)
+    News sentiment    15%  (FinBERT on a dedicated Google News search, aggregated
                             per constituent so one name's volume can't dominate)
-    5-day momentum    10%  (median 5-session basket return — the multi-day trend,
-                            so a sector in a sustained up/down regime reads that way
-                            even when a single session diverges)
+    Relative strength  0%  (move vs benchmark — tech baskets vs the Nasdaq 100,
+    5-day momentum     0%   the rest vs the S&P — and the median 5-session return.
+                            Both are shown as COLUMNS for context but no longer
+                            drive the label: being relative / multi-day, they used
+                            to flip the headline against the day's actual move,
+                            e.g. calling a sector that fell 4% "Bullish" because it
+                            outperformed a crashing market.)
     Reddit             0%  (disabled for now — RSS 'hot' is a poor same-day proxy)
 
 Each metric is normalized to [-1, 1] and blended (renormalized over whatever is
@@ -43,17 +49,26 @@ TIMEOUT = 15
 # — every constituent is still represented equally; see _company_news_score.
 NEWS_PER_COMPANY = 8
 
-# How a sector's sub-metrics blend into its overall score. Price-derived signals
-# (relative strength + breadth) carry the most weight as the reliable reads;
-# Reddit is disabled (0) for now — RSS "hot" is a poor same-day proxy. Available
-# sub-metrics are renormalized, so a 0-weight metric simply never contributes.
+# How a sector's sub-metrics blend into its overall score. The day's ABSOLUTE move
+# dominates (0.70) so the label describes that session's direction — validated at
+# ~95% absolute-direction match vs the prior relative/momentum-led blend's 71%
+# (which mislabelled reversal and crash days). breadth + news add texture; relative
+# strength and 5-day momentum are kept at 0 — still COMPUTED and shown as columns,
+# but no longer flip the headline against the day's actual move. Reddit stays 0
+# (RSS "hot" is a poor same-day proxy). Available sub-metrics are renormalized, so a
+# 0-weight metric simply never contributes to the score.
 SECTOR_METRIC_WEIGHTS = {
-    "rel_strength": 0.35,
-    "breadth":      0.30,
-    "news":         0.25,
-    "momentum":     0.10,
+    "move":         0.70,
+    "rel_strength": 0.00,
+    "breadth":      0.15,
+    "news":         0.15,
+    "momentum":     0.00,
     "reddit":       0.00,
 }
+# ±2.5% median session move = a full ±1 move signal. A 2-3% day is a decisive
+# session for these high-beta baskets, so it pins the label firmly bullish/bearish,
+# while a sub-1% drift reads as the mild move it is.
+MOVE_FULL_SCALE_PCT = 2.5
 # 3.5% outperformance vs the S&P = a full ±1 RS signal. Wider than the index
 # full-scales because these AI/semis baskets are high-beta and routinely move
 # several % vs the S&P on a busy day — a tighter scale pinned RS (the largest,
@@ -242,6 +257,15 @@ def _calibrate(score):
         return None
     s = _clamp(score)
     return round(_clamp((1.0 if s >= 0 else -1.0) * abs(s) ** SCORE_CALIBRATION_EXP), 4)
+
+
+def _move_score(move_pct):
+    """Normalize a basket's session move (%) to [-1, 1], or None if missing/NaN.
+    ±MOVE_FULL_SCALE_PCT in a session = full ±1, so the label tracks the day's
+    actual direction (this is the dominant sub-metric)."""
+    if not _finite(move_pct):
+        return None
+    return _clamp(move_pct / MOVE_FULL_SCALE_PCT)
 
 
 def _momentum_score(mom_pct):
@@ -503,8 +527,10 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
             news_score, news_n = None, 0
         reddit_score, reddit_n = _reddit_sentiment(cfg["keywords"], reddit_titles)
 
-        # Blend available sub-metrics, renormalized over their weights.
-        parts = {"rel_strength": rs_score, "breadth": breadth_score,
+        # Blend available sub-metrics, renormalized over their weights. The day's
+        # absolute move is the dominant driver so the label describes the session.
+        move_score = _move_score(basket_move)
+        parts = {"move": move_score, "rel_strength": rs_score, "breadth": breadth_score,
                  "news": news_score, "momentum": mom_score, "reddit": reddit_score}
         avail = {k: v for k, v in parts.items() if v is not None}
         total_w = sum(SECTOR_METRIC_WEIGHTS[k] for k in avail) or 1.0

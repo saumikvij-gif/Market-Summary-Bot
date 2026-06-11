@@ -86,9 +86,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Commit the dated summary, the CSV history (text, mergeable), and charts.
           # The two CSVs are the single source of truth; charts are rebuilt from them.
-          # sector_history.csv is an internal-only accumulator (never emailed) used
-          # to later re-fit the sector weights/calibration against forward returns.
-          git add summaries/ history_quotes.csv history_summaries.csv sector_history.csv charts/
+          git add summaries/ history_quotes.csv history_summaries.csv charts/
           if git diff --staged --quiet; then
             echo "Nothing to commit."
             exit 0
