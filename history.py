@@ -27,9 +27,17 @@ force_utf8()
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QUOTES_CSV = os.path.join(_HERE, "history_quotes.csv")
 SUMMARIES_CSV = os.path.join(_HERE, "history_summaries.csv")
+# Daily log of the options-positioning read (OTM put/call per basket). Options
+# flow can't be backfilled from anywhere free, so this accumulated record is the
+# ONLY way the metric can ever be validated — after ~20 sessions it gets tested
+# against the same-day sector moves and either earns weight or gets dropped.
+OPTIONS_CSV = os.path.join(_HERE, "history_options.csv")
 
 QUOTE_COLS = ["run_date", "section", "name", "price", "change", "pct_change"]
 SUMMARY_COLS = ["run_date", "sentiment", "score", "summary"]
+OPTIONS_COLS = ["run_date", "basket", "otm_put_call", "put_vol", "call_vol",
+                "covered", "total", "short_pct_float", "si_mm", "r1_pct",
+                "r5_pct", "price_state", "today", "today_why"]
 
 
 # ── CSV read/write helpers ─────────────────────────────────────────────────────
@@ -94,6 +102,32 @@ def save_run(market_data: dict, summary: str, run_date: str = None,
                            "score": score, "summary": summary}
     _write(SUMMARIES_CSV, SUMMARY_COLS,
            sorted(summaries.values(), key=lambda r: r["run_date"]))
+
+
+def save_options_positioning(rows: list, run_date: str = None) -> None:
+    """Persist one run's options-positioning rows (the evaluation log).
+
+    Upserts one row per (run_date, basket) so re-running a date overwrites it,
+    matching save_run's behaviour. `rows` is build_positioning's output.
+    """
+    if not rows:
+        return
+    if run_date is None:
+        run_date = datetime.date.today().isoformat()
+    log = {(r["run_date"], r["basket"]): r for r in _read(OPTIONS_CSV)}
+    for r in rows:
+        log[(run_date, r["basket"])] = {
+            "run_date": run_date, "basket": r.get("basket"),
+            "otm_put_call": r.get("otm_put_call"),
+            "put_vol": r.get("put_vol"), "call_vol": r.get("call_vol"),
+            "covered": r.get("covered"), "total": r.get("total"),
+            "short_pct_float": r.get("short_pct_float"), "si_mm": r.get("si_mm"),
+            "r1_pct": r.get("r1_pct"), "r5_pct": r.get("r5_pct"),
+            "price_state": r.get("price_state"),
+            "today": r.get("today"), "today_why": r.get("today_why"),
+        }
+    _write(OPTIONS_CSV, OPTIONS_COLS,
+           sorted(log.values(), key=lambda r: (r["run_date"], r["basket"])))
 
 
 # ── Backfill (real historical prices, for testing trends) ──────────────────────

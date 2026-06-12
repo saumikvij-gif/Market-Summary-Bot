@@ -29,6 +29,7 @@ from utils import retry, force_utf8
 import news_feeds
 import sentiment
 import sector_watch
+import options_positioning
 import history
 import charts
 import pdf_report as report_module
@@ -434,6 +435,19 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not build sector watch: {exc}")
 
+    # Options positioning (OTM put/call per basket) — UNDER EVALUATION. Display
+    # + daily log only (history_options.csv builds the record needed to validate
+    # it); feeds neither the composite nor the Sector Watch score.
+    print("\nFetching options positioning (OTM put/call)…")
+    positioning_rows = []
+    try:
+        positioning_rows = options_positioning.build_positioning()
+        pos_block = options_positioning.render_md(positioning_rows)
+        if pos_block:
+            data_block += "\n" + pos_block + "\n"
+    except Exception as exc:
+        print(f"  ⚠️  Could not build options positioning: {exc}")
+
     # Compute the quantitative sentiment dashboard (reproducible, NLP-based).
     # This is the score of record — it drives the DB and the daily chart.
     print("\nComputing quantitative sentiment…")
@@ -495,6 +509,15 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not record run to database: {exc}")
 
+    # Log the options-positioning read, keyed by session date (the evaluation
+    # record that decides whether the metric stays). Fail-safe.
+    try:
+        history.save_options_positioning(positioning_rows, run_date=db_date)
+        if positioning_rows:
+            print(f"📈 Options positioning logged to {os.path.basename(history.OPTIONS_CSV)}")
+    except Exception as exc:
+        print(f"  ⚠️  Could not log options positioning: {exc}")
+
     # Generate trend charts from the accumulated history (never block on errors).
     chart_paths = []
     try:
@@ -522,7 +545,7 @@ def main():
         html = report_module.build_html(
             briefing_pretty, prose, gainers, top_news, dashboard or {},
             market_data, chart_paths, stale_note=stale_note,
-            sector_watch=watch_rows)
+            sector_watch=watch_rows, options_positioning=positioning_rows)
         if report_module.write_pdf(html, pdf_path):
             print(f"📄 PDF briefing written to {pdf_path}")
         else:

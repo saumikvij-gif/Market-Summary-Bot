@@ -156,6 +156,33 @@ def _sector_watch_block(rows: list) -> str:
             f"<th>Breadth</th><th>News</th><th>Overall</th></tr>{body}</table>")
 
 
+def _options_positioning_block(rows: list) -> str:
+    """Positioning read per basket, ending in a simple was-today-bullish-or-
+    bearish call (direction = the day's move, same convention as Sector Watch;
+    positioning explains the session's character)."""
+    if not rows:
+        return ""
+    body = ""
+    for r in rows:
+        si = (f"{r['short_pct_float'] * 100:.1f}%"
+              if r.get("short_pct_float") is not None else "n/a")
+        r1 = r.get("r1_pct")
+        verdict = _colored(f"<b>{r.get('today', '')}</b>", r1)
+        why = f' <span class="news-src">— {r.get("today_why", "")}</span>'
+        body += (f"<tr><td>{r['basket']}</td><td>{r['otm_put_call']:.2f}</td>"
+                 f"<td>{si}</td><td>{_chg(r1, pct=True) if r1 is not None else 'n/a'}</td>"
+                 f"<td>{verdict}{why}</td></tr>")
+    return (f"<h2>Positioning &amp; Regime</h2>"
+            f'<p class="news-src">Was today bullish or bearish, read through '
+            f"positioning: out-of-the-money put/call volume (hedging vs chasing, "
+            f"daily) and short %-of-float (squeeze fuel; exchange data, biweekly) "
+            f"explain the character of the day's move &mdash; squeeze rebound, "
+            f"hedged advance, conviction selling. <b>Under evaluation</b> &mdash; "
+            f"logged daily, drives no scores.</p>"
+            f"<table><tr><th>Basket</th><th>OTM P/C</th><th>Short Flt</th>"
+            f"<th>Day</th><th>Today's Read</th></tr>{body}</table>")
+
+
 def _divergence_block(dash: dict) -> str:
     div = dash.get("divergence")
     if not div:
@@ -223,7 +250,8 @@ def _charts_block(chart_paths: list) -> str:
 
 def build_html(date_str: str, prose_md: str, gainers: list, news: list,
                dashboard: dict, market_data: dict, chart_paths: list,
-               stale_note: str = "", sector_watch: list = None) -> str:
+               stale_note: str = "", sector_watch: list = None,
+               options_positioning: list = None) -> str:
     """Assemble the full briefing HTML."""
     note = f'<div class="note">{stale_note}</div>' if stale_note else ""
     prose_html = md.markdown(prose_md or "", extensions=["extra"])
@@ -239,7 +267,8 @@ def build_html(date_str: str, prose_md: str, gainers: list, news: list,
     pages = [
         dash_html + _divergence_block(dashboard or {}),   # page 1: tone + divergence
         _charts_block(chart_paths),                        # trend charts — own page
-        _sector_watch_block(sector_watch),                 # sector watch — own page
+        _sector_watch_block(sector_watch)                  # sector watch page,
+        + _options_positioning_block(options_positioning),  # + positioning read
         _gainers_block(gainers) + _news_block(news),       # gainers + news
         snapshot,                                          # market snapshot
         analyst,                                           # analyst summary

@@ -85,8 +85,11 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Commit the dated summary, the CSV history (text, mergeable), and charts.
-          # The two CSVs are the single source of truth; charts are rebuilt from them.
-          git add summaries/ history_quotes.csv history_summaries.csv charts/
+          # The CSVs are the single source of truth; charts are rebuilt from them.
+          # history_options.csv is the options-positioning evaluation log — option
+          # flow can't be backfilled, so this accumulated record is how the metric
+          # gets validated (or dropped).
+          git add summaries/ history_quotes.csv history_summaries.csv history_options.csv charts/
           if git diff --staged --quiet; then
             echo "Nothing to commit."
             exit 0
