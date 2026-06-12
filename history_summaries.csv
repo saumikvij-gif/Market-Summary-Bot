@@ -307,42 +307,46 @@ _Equities fell with Nasdaq -2.0%, S&P 500 -1.6%, VIX -6.6%. Sector breadth: 4/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): These 7 Stocks Are Analyst Favorites For Magnificent Earnings Growth; Google Strengthens
 - 🔴 Most bearish (-0.88): Lovesac Q1 fiscal 2027 earnings: loss smaller than expected"
-2026-06-11,Bullish,51,"## Broad Risk-On Rally Led by Semiconductors
+2026-06-11,Bullish,47,"> **Note:** No US trading session on 2026-06-12. Figures are from the last session (2026-06-11).
 
-U.S. equity markets surged Thursday, with the Nasdaq 100 jumping 3.29% and the S&P 500 gaining 1.75%, as investors piled into risk assets following a sharp decline in geopolitical tensions and renewed enthusiasm for the semiconductor sector. The VIX plunged 12.51% to 19.44, while Treasury yields fell 8 basis points to 4.46%, signaling a ""risk-on"" shift despite hotter-than-expected PPI data showing 6.5% year-over-year inflation in May.
+## Semiconductor Rally Powers Broad Market Gains
 
-## Semiconductor Surge Takes Center Stage
+U.S. equities surged Friday, with the Nasdaq 100 jumping 3.29% as semiconductor and memory stocks staged a powerful rally. The S&P 500 advanced 1.75% and the Dow gained 1.86%, while the Russell 2000 climbed 3.02%, suggesting broad risk appetite. The VIX declined 2.67% to 18.92, reflecting easing near-term volatility concerns.
 
-Memory and compute semiconductor stocks led the charge, with the Memory sector soaring 9.83% and achieving 100% positive breadth. **Micron** exploded 11.66% higher after analysts highlighted a ""healthy reset"" and improved demand outlook. **SanDisk** surged 14.50%, while **Intel** rallied 9.27% on positive commentary from BofA regarding subtle competitive dynamics. **Arm Holdings** jumped 11.32%, and **AMD** climbed nearly 8%. The Semiconductors/Compute sector advanced 7.06% with bullish sentiment across the board.
+## Memory and Chip Stocks Lead the Charge
 
-Among broader market top gainers, **York Space Systems** led with a 22.09% gain, followed by **ViaSat** (+18.23%) and **Firefly Aerospace** (+17.80%), as space-related stocks benefited from SpaceX IPO fever. The company priced its landmark IPO at $135 per share, though retail allocation was reportedly cut to the low-20% range, sparking concerns about accessibility for individual investors.
+The semiconductor sector, particularly memory producers, delivered explosive gains in what appears to be a short-squeeze-fueled rebound. **SanDisk soared 14.50%**, the standout among major chip names, while **Micron surged 11.66%** and **Arm gained 11.32%**. **Intel** rallied 9.27%, and **AMD** climbed 7.97%. Positioning data confirms the short-squeeze narrative: the Memory sector showed a put/call ratio of 2.31 with 7.1% short float, indicating heavy bearish positioning unwinding violently as prices surged 9.83% on the day.
 
-## Commodities Diverge on Geopolitical Shifts
+Networking and compute semiconductors also rallied sharply, with Broadcom up 3.62% and Nvidia gaining 2.22%. Breadth was exceptional, with 100% of memory stocks advancing and 65% of compute/semiconductor names in the green. Hyperscalers lagged, however, with Microsoft down 1.77% and Meta off 0.45%, suggesting selectivity within tech.
 
-Oil tumbled 4.01% to an 8-week low after President Trump backed away from threatened strikes on Iran, easing supply disruption fears. Conversely, **gold** rallied 2.43% despite falling to 6-month lows earlier in the week, as inflation concerns persisted even while the metal faced headwinds from risk appetite. Bitcoin advanced 3.51%, consistent with the broader risk-on tone.
+## SpaceX IPO Dominates Headlines
 
-## Cross-Asset Signals and Notable Divergences
+Market attention centered on SpaceX's record-setting $75 billion IPO at a $135 share price, crowning Elon Musk the world's first trillionaire according to headlines. However, retail allocation was reportedly cut to the low 20% range, sparking frustration. Space-related equities surged: **York Space Systems** (YSS) jumped 22.09%, **ViaSat** gained 18.23%, and **Firefly Aerospace** rallied 17.80%. JPMorgan noted the upside for banks from mega-IPO activity. Rocket Lab is set to join the Nasdaq 100 in the quarterly rebalance, with SpaceX inclusion anticipated.
 
-The Treasury yield decline alongside equity strength suggests investors are balancing inflation worries with softer growth expectations. The dollar weakened modestly against the euro and pound, while banking and consumer sectors showed broad bullish participation. Notably, hyperscalers underperformed dramatically (+0.14% vs. Nasdaq's +3.29%), with **Microsoft** falling 1.77%—a potential rotation out of mega-cap tech into semiconductors and cyclicals.
+## Inflation Data and Cross-Asset Signals
+
+May PPI came in white-hot at 1.1% month-over-month and 6.5% year-over-year, yet Treasury yields declined, with the 10-year falling 8 basis points to 4.46%. This counterintuitive move may reflect Fed policy expectations or flight-to-safety flows amid geopolitical developments. Gold rallied 2.85% despite CNBC reporting a 6-month low earlier in the week, while crude oil dropped 3.82% as reports indicated Iran won't restore Strait of Hormuz shipping to prewar levels. Bitcoin edged 1.12% higher.
+
+Banking stocks advanced 1.42% with 100% breadth and a bullish regime score, though the elevated 3.01 put/call ratio suggests investors remain heavily hedged despite the rally.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.51  →  **Bullish**
-**Trend (5-day EMA):** +0.10  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.47  →  **Bullish**
+**Trend (5-day EMA):** +0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.73 |
-| News headlines | 20% | -0.07 |
-| Reddit | 0% | -0.01 |
+| Market data | 70% | +0.60 |
+| News headlines | 20% | +0.20 |
+| Reddit | 0% | +0.06 |
 | Fed (rate expectations) | 10% | +0.08 |
 
-_Equities rose with Nasdaq +3.3%, S&P 500 +1.8%, VIX -12.5%. Sector breadth: 8/11 sectors up. 10Y yield -1.7%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -1.2bp). Today's overall market tone: Bullish._
+_Equities rose with Nasdaq +3.3%, S&P 500 +1.8%, VIX -2.7%. Sector breadth: 8/11 sectors up. 10Y yield -1.7%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -1.2bp). Today's overall market tone: Bullish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.93): Intel’s stock could push even higher thanks to this subtle dynamic, BofA says
-- 🔴 Most bearish (-0.91): Global oil prices end near an 8-week low as Trump backs away from his threat of strikes on Iran"
+- 🟢 Most bullish (+0.94): Jefferies sees US copper tariffs boosting domestic prices soon
+- 🔴 Most bearish (-0.56): SpaceX cuts retail IPO allocation to low 20% range, source says"
