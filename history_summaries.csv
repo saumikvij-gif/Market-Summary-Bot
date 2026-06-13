@@ -350,42 +350,42 @@ _Equities rose with Nasdaq +3.3%, S&P 500 +1.8%, VIX -2.7%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.94): Jefferies sees US copper tariffs boosting domestic prices soon
 - 🔴 Most bearish (-0.56): SpaceX cuts retail IPO allocation to low 20% range, source says"
-2026-06-12,Slightly Bullish,28,"## Market Overview
+2026-06-12,Slightly Bullish,26,"> **Note:** No US trading session on 2026-06-13. Figures are from the last session (2026-06-12).
 
-U.S. equities advanced broadly on Friday, with the Dow Jones leading major indices higher (+0.70%), followed by the Russell 2000 (+0.79%), S&P 500 (+0.50%), and Nasdaq 100 (+0.64%). The VIX fell sharply by 9.05% to 17.68, signaling diminished near-term volatility concerns. Market breadth was constructive, though the session was dominated by the highly anticipated SpaceX IPO debut on the Nasdaq, which reportedly surged past $2 trillion in valuation and absorbed much of the spotlight on Wall Street.
+## Market Overview
 
-## Semiconductor Rally and Key Movers
+U.S. equities advanced across the board on Friday, with the Russell 2000 leading gains at +0.79%, followed by the Dow (+0.70%), Nasdaq 100 (+0.64%), and S&P 500 (+0.50%). The VIX declined sharply by 9.05% to 17.68, signaling ebbing fear as investors rotated into risk assets. Treasury yields were little changed, with the 10-year ticking up 2 basis points to 4.49%, suggesting the rally was driven by equity-specific dynamics rather than shifting rate expectations.
 
-The semiconductor sector delivered notable strength, particularly in memory and compute. **Arm Holdings** surged 11.27%, emerging as a standout among mega-cap tech, while **Intel** rallied 6.51% and **AMD** climbed 4.73%. **SanDisk** and **Coherent** also posted impressive gains of 5.24% and 5.90%, respectively. The Memory sector (DRAM/NAND/HBM) rose 5.79% with 100% breadth, signaling broad-based bullish momentum. However, not all chip names participated: **Micron** declined 1.43% and **Broadcom** fell 0.91%, suggesting divergence within the complex.
+## Semiconductor Surge and Tech Divergence
 
-Among the market's top gainers, **Roku** surged 20.08%, leading a diverse group that included Polibeli Group (+17.51%), Maase Inc. (+15.73%), and biotech names Alumis and Enliven Therapeutics, each up over 14%.
+The semiconductor sector was Friday's standout performer, with the Memory subsector surging +5.80% on 100% breadth and bullish positioning. **Intel** jumped +6.51% and **AMD** gained +4.73%, while **SanDisk** (+5.24%) and **Coherent** (+5.90%) posted robust gains. Most remarkably, **Arm Holdings** soared +11.27%, contributing to the broader Semiconductors/Compute sector's +2.50% advance. This strength came despite heavily hedged positioning in Memory (put/call ratio of 1.87), suggesting protection buyers remain cautious even as prices rally.
 
-## SpaceX IPO Dominates Sentiment
+In sharp contrast, mega-cap tech struggled. **Apple** fell -1.52%, **Amazon** shed -1.23%, and **Micron** declined -1.43%. The Hyperscalers & Neoclouds subsector managed only +0.10% with just 14% breadth, classified as ""Slightly Bearish."" SaaS stocks fell -1.85% with low put/call ratios (0.59), indicating the decline occurred without defensive hedging—a sign of rotation rather than panic.
 
-Wall Street's attention centered on SpaceX's record-setting $75 billion IPO, with social media and financial press buzzing over its valuation trajectory and retail allocation constraints. The IPO reportedly drew comparisons to Tesla's debut, with some speculating on a potential Tesla-SpaceX merger. The event underscored robust risk appetite, though some market participants expressed caution over valuation and ""red flags.""
+## SpaceX IPO Dominates Headlines
 
-## Commodities and Cross-Asset Signals
+Market chatter was dominated by the SpaceX IPO, reportedly raising $75 billion in a record-setting Nasdaq debut. Retail allocation was cut to the low 20% range, and Reddit communities buzzed with speculation on options trading set to begin Tuesday. Some posts referenced a ""US government directive"" to suspend access to unspecified AI models (Fable 5, Mythos 5), with users debating whether this could deflate the AI bubble.
 
-Commodities exhibited sharp divergence: **gold** rallied 3.06% to $4,239.90, reflecting safe-haven demand possibly tied to geopolitical developments, while **crude oil** tumbled 3.90% to a three-month low following reports of a U.S.-Iran peace deal from Pakistan. **Bitcoin** edged 0.08% higher to $63,512.
+## Cross-Asset Signals
 
-The **10-year Treasury yield** rose modestly by 2 basis points to 4.49%, while the dollar firmed slightly against the euro and pound. Sector rotation favored cyclicals and semiconductors, with Banking (+1.60%) and Consumer (+0.57%) outperforming, while SaaS lagged (-1.85%) amid weaker positioning and sentiment.
+**Gold** surged +3.03% to $4,238.80, its best single-day performance in months, even as equities rallied—a rare divergence suggesting safe-haven demand persists. **Crude oil** fell -3.23%, potentially weighing on inflation expectations. **Bitcoin** rose +0.73%, tracking risk-on sentiment. The dollar firmed slightly against EUR and GBP, while USD/JPY climbed to 160.19, approaching intervention-sensitive levels.
 
-## Outlook
+## Top Gainers
 
-The session reflected optimism buoyed by strong semiconductor momentum, robust IPO activity, and easing volatility, though divergence in mega-cap tech and commodity markets suggests nuanced cross-currents ahead.
+**Roku** led the market with a stunning +20.08% gain, followed by **Polibeli Group** (+17.51%), **Maase Inc.** (+15.73%), **Alumis** (+15.55%), and **Enliven Therapeutics** (+14.30%). Broad sector rotation into Banking (+1.60%), Consumer (+0.57%), and Pharma/Healthcare (+0.36%) rounded out the session.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.28  →  **Slightly Bullish**
-**Trend (5-day EMA):** +0.15  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.26  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.14  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.38 |
-| News headlines | 20% | +0.04 |
-| Reddit | 0% | -0.01 |
+| News headlines | 20% | -0.03 |
+| Reddit | 0% | -0.05 |
 | Fed (rate expectations) | 10% | +0.03 |
 
 _Equities rose with Nasdaq +0.6%, S&P 500 +0.5%, VIX -9.1%. Sector breadth: 9/11 sectors up. 10Y yield +0.5%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -0.5bp). Today's overall market tone: Slightly Bullish._
@@ -393,5 +393,5 @@ _Equities rose with Nasdaq +0.6%, S&P 500 +0.5%, VIX -9.1%. Sector breadth: 9/11
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.86): SpaceX surges past $2 trillion in Nasdaq debut, closes in on Amazon
-- 🔴 Most bearish (-0.92): Global oil prices end at 3-month low after Pakistan says a U.S.-Iran peace deal has been reached"
+- 🟢 Most bullish (+0.57): It was a pleasure scamming scammers.
+- 🔴 Most bearish (-0.56): SpaceX cuts retail IPO allocation to low 20% range, source says"

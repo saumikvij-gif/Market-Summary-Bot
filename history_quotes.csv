@@ -4932,19 +4932,19 @@ run_date,section,name,price,change,pct_change
 2026-06-12,stocks,Amazon,238.55,-2.96,-1.23
 2026-06-12,stocks,Apple,291.13,-4.5,-1.52
 2026-06-12,stocks,Arm,380.81,38.58,11.27
-2026-06-12,commodities,Bitcoin,63512.23,48.2188,0.08
+2026-06-12,commodities,Bitcoin,63857.57,465.8789,0.73
 2026-06-12,stocks,Broadcom,382.07,-3.5,-0.91
 2026-06-12,stocks,Coherent,385.03,21.45,5.9
 2026-06-12,sectors,Communication Svc,111.65,-0.47,-0.42
 2026-06-12,sectors,Consumer Disc.,116.6,0.3,0.26
 2026-06-12,sectors,Consumer Staples,85.82,0.55,0.65
-2026-06-12,commodities,Crude Oil,84.29,-3.42,-3.9
+2026-06-12,commodities,Crude Oil,84.88,-2.83,-3.23
 2026-06-12,indices,Dow Jones,51202.26,353.5117,0.7
 2026-06-12,fx,EUR/USD,1.16,-0.0009,-0.08
 2026-06-12,sectors,Energy,57.55,0.43,0.75
 2026-06-12,sectors,Financials,53.34,0.72,1.37
 2026-06-12,fx,GBP/USD,1.34,-0.0015,-0.11
-2026-06-12,commodities,Gold,4239.9,125.8999,3.06
+2026-06-12,commodities,Gold,4238.8,124.7998,3.03
 2026-06-12,sectors,Health Care,153.81,-0.28,-0.18
 2026-06-12,sectors,Industrials,176.18,1.03,0.59
 2026-06-12,stocks,Intel,124.57,7.61,6.51
