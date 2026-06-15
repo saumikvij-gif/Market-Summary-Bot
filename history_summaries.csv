@@ -395,3 +395,44 @@ _Equities rose with Nasdaq +0.6%, S&P 500 +0.5%, VIX -9.1%. Sector breadth: 9/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.57): It was a pleasure scamming scammers.
 - 🔴 Most bearish (-0.56): SpaceX cuts retail IPO allocation to low 20% range, source says"
+2026-06-15,Bullish,47,"## Semiconductor Rally Powers Tech-Led Advance
+
+U.S. equities surged Monday, driven by an explosive rally in semiconductor and AI-related stocks. The Nasdaq 100 jumped 3.06%, far outpacing the S&P 500's 1.65% gain and the Dow's 0.92% advance. The VIX fell 8.37% to 16.20, reflecting diminished investor anxiety as risk appetite returned.
+
+## Memory and AI Infrastructure Lead the Charge
+
+The semiconductor sector dominated headlines, with the Memory segment posting a stunning 10.13% gain—achieving 100% breadth and the highest bullish sentiment reading across tracked sectors. **Micron** surged 10.84%, fueled by growing optimism ahead of its upcoming earnings report and positive momentum in memory trends. **Western Digital** led the broader market's top gainers with a 16.10% rally, while **SanDisk** climbed 6.45%.
+
+Chip designers also posted strong gains: **AMD** rose 6.98%, nearing a $900 billion valuation after announcing enhanced memory technology. **Arm** jumped 8.33%, **Coherent** advanced 7.48%, and **Nvidia** gained 3.54%. The chipmaker ecosystem showed broad-based strength, with the Semiconductors/Compute subsector up 3.85% and Networking/Interconnect advancing 3.87%.
+
+Nvidia's announcement of a historic $20 billion bond offering—its largest debt issuance to date—underscores the capital-intensive expansion in AI infrastructure. Hyperscalers and cloud providers rose 4.62%, with **Microsoft** (+2.31%), **Amazon** (+3.13%), and **Meta** (+4.67%) all participating in the rally.
+
+## Cross-Asset Signals and Macro Backdrop
+
+The 10-year Treasury yield edged down 2 basis points to 4.47%, while oil prices tumbled 4.38% amid concerns about demand and geopolitical developments. Gold rallied 2.18% to $4,331, suggesting a flight-to-quality undercurrent despite equity strength. Bitcoin gained 1.65%, tracking the tech rally.
+
+Market chatter referenced an Iran peace deal, which may have contributed to oil's decline. With falling energy prices, attention is shifting to the Federal Reserve's next move—though no immediate policy announcements were made Monday.
+
+Positioning data reveals heavy hedging in Memory stocks (put/call ratio of 1.99 despite the rally), while the SaaS sector's 1.96% gain appears driven by short-squeeze dynamics. Overall, the day reflected strong conviction in AI infrastructure themes, with semiconductor strength broadening beyond the mega-caps.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.47  →  **Bullish**
+**Trend (5-day EMA):** +0.25  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.59 |
+| News headlines | 20% | +0.29 |
+| Reddit | 0% | +0.12 |
+| Fed (rate expectations) | 10% | +0.00 |
+
+_Equities rose with Nasdaq +3.1%, S&P 500 +1.6%, VIX -8.4%. Sector breadth: 7/11 sectors up. 10Y yield -0.4%. News headlines read slightly bullish. Fed-policy expectations held steady. Today's overall market tone: Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): AMD flirts with a $900 billion valuation after beefing up its memory technology
+- 🔴 Most bearish (-0.96): SpaceX IPO leaves retail investors with too few shares and a tough hold-or-sell decision"
