@@ -436,44 +436,48 @@ _Equities rose with Nasdaq +3.1%, S&P 500 +1.6%, VIX -8.4%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): AMD flirts with a $900 billion valuation after beefing up its memory technology
 - 🔴 Most bearish (-0.96): SpaceX IPO leaves retail investors with too few shares and a tough hold-or-sell decision"
-2026-06-16,Neutral,-1,"## Market Overview
+2026-06-16,Slightly Bearish,-11,"## Market Overview
 
-U.S. markets diverged sharply on June 16, 2026, as investors focused on Fed Chair Kevin Warsh's first policy meeting and a developing interim U.S.-Iran deal. The Dow Jones surged 0.89% to 52,131, driven by strength in financials and industrials, while the Nasdaq 100 fell 1.08% amid a broad selloff in semiconductors and AI-related stocks. The S&P 500 edged down 0.13%, and the Russell 2000 declined 0.51%. The VIX slipped 0.68%, indicating relatively calm sentiment despite sector-specific volatility.
+U.S. equities diverged sharply on June 16, 2026, as the Dow Jones gained 0.64% while the tech-heavy Nasdaq 100 plunged 1.89%, marking a stark rotation away from semiconductor and AI-related stocks. The S&P 500 slipped 0.57%, and the Russell 2000 fell 0.87%, while the VIX edged up 1.30% to 16.41, signaling a modest uptick in investor caution.
 
-## Semiconductor Rout
+## Semiconductor Selloff Weighs on Tech
 
-The semiconductor sector faced heavy selling pressure, with AMD plummeting 4.20%, Broadcom down 3.39%, and Micron falling 3.31% despite reports of ""explosive demand"" for high-bandwidth memory. Intel tumbled 5.80% and Coherent dropped 5.82%, while Nvidia declined 1.34%. Microsoft also fell 1.80% on concerns about heavy AI capital expenditures and softer Azure growth. This sector rotation suggests profit-taking after a strong run, with positioning data showing put/call ratios near neutral (0.59) and no panic hedging, indicating orderly selling rather than capitulation.
+The session's dominant theme was a broad-based semiconductor rout. Intel tumbled 8.45%, AMD dropped 7.30%, and Coherent fell 7.50%, leading a wave of weakness across the chip sector. Micron (-6.18%), Broadcom (-4.37%), and SanDisk (-5.52%) also posted sharp losses, while even industry leader Nvidia declined 2.37%. Sector-level data underscores the severity: the Semiconductors/Compute segment fell 4.15%, and Networking/Interconnect cratered 7.14%, both substantially underperforming the Nasdaq. Positioning data shows low put/call ratios across these segments, suggesting the decline was orderly rather than panic-driven, though the bearish sentiment is unmistakable.
 
-## Top Gainers and Rotation Dynamics
+Offsetting the chip weakness, hyperscalers and mega-cap tech showed resilience. Meta (+1.13%), Alphabet (+1.09%), and Apple (+0.95%) posted gains, helping the Hyperscalers & Neoclouds sector advance 1.06%. Microsoft and Amazon were relatively flat, limiting broader Nasdaq damage.
 
-Bucking the tech selloff, several stocks posted impressive gains. **Innodata Inc. (INOD)** surged 12.76%, **Lionsgate Studios (LION)** jumped 10.65%, and **CoreWeave (CRWV)** rallied 9.90%, highlighting continued appetite for AI infrastructure plays outside the megacaps. **SSR Mining (SSRM)** gained 9.16% as gold edged up 0.16% to $4,358.70, reflecting safe-haven demand. **Opendoor Technologies (OPEN)** rose 8.57%, benefiting from housing sector optimism.
+## SpaceX Mania and Market Chatter
 
-## Commodities and Fixed Income
+Reddit's r/wallstreetbets was ablaze with SpaceX IPO fever, with the stock reportedly trading above $220 in after-hours and surging past Amazon's market cap. Posts ranged from bullish bets (""Threw my entire Roth IRA into SpaceX"") to skeptical short positions and references to expensive options noted by Michael Burry. The frenzy highlights retail enthusiasm around the new listing, though questions about market impact and volatility persist.
 
-Crude oil plunged 5.35% to $75.19, reaching a three-month low on optimism that an interim U.S.-Iran deal will reopen the Strait of Hormuz and boost supply. The 10-year Treasury yield fell 3 basis points to 4.44%, suggesting bond investors are pricing in either growth concerns or dovish Fed expectations as Warsh begins his tenure. Bitcoin declined 1.89% to $65,854.
+## Top Gainers and Sector Rotation
 
-## Cross-Asset Signals
+Among individual standouts, Lionsgate Studios (LION) surged 13.85%, Magnite (MGNI) climbed 10.75%, and CoreWeave (CRWV), an AI infrastructure play, jumped 9.67%. SSR Mining gained 9.99% amid modest gold strength, while Bath & Body Works rallied 8.27%, reflecting consumer resilience.
 
-The Dow's outperformance alongside falling oil prices and declining tech stocks suggests a value-over-growth rotation. Banking and consumer sectors posted gains with bullish positioning, while SaaS and networking stocks lagged without significant hedging demand. The divergence between rising equities and falling yields bears watching as markets digest Warsh's policy stance and geopolitical developments.
+## Macro and Cross-Asset Signals
+
+Fed Chair Warsh is expected to withhold his ""dot"" from the interest rate outlook, adding uncertainty to monetary policy expectations. The 10-year Treasury yield fell 4 basis points to 4.43%, suggesting bond market caution. Crude oil dropped 4.54% to $75.83, while Bitcoin declined 1.00%. The Bank of Japan raised rates 25 basis points to 1.00%, as expected, with minimal immediate FX impact on USD/JPY.
+
+Banking stocks (+1.77%) and consumer names (+0.40%) outperformed, reinforcing the day's rotation into defensives and away from high-beta tech.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.01  →  **Neutral**
-**Trend (5-day EMA):** +0.16  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** -0.11  →  **Slightly Bearish**
+**Trend (5-day EMA):** +0.13  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.02 |
-| News headlines | 20% | -0.10 |
-| Reddit | 0% | +0.10 |
-| Fed (rate expectations) | 10% | -0.09 |
+| Market data | 70% | -0.12 |
+| News headlines | 20% | -0.11 |
+| Reddit | 0% | +0.07 |
+| Fed (rate expectations) | 10% | -0.08 |
 
-_Equities rose with Nasdaq -1.1%, S&P 500 -0.1%, VIX -0.7%. Sector breadth: 8/11 sectors up. 10Y yield -0.7%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.4bp). Today's overall market tone: Neutral._
+_Equities fell with Nasdaq -1.9%, S&P 500 -0.6%, VIX +1.3%. Sector breadth: 8/11 sectors up. 10Y yield -0.9%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.2bp). Today's overall market tone: Slightly Bearish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.94): SGA Global Growth Holds Firm on Microsoft’s (MSFT) Long-Term Advantages
-- 🔴 Most bearish (-0.97): Microsoft Corporation (MSFT) Fell on Heavy AI Capex and Softer Azure Growth"
+- 🟢 Most bullish (+0.89): Daily Spotlight: Raising GDP Estimates
+- 🔴 Most bearish (-0.96): SpaceX IPO leaves retail investors with too few shares and a tough hold-or-sell decision"
