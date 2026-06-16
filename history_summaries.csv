@@ -436,3 +436,44 @@ _Equities rose with Nasdaq +3.1%, S&P 500 +1.6%, VIX -8.4%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): AMD flirts with a $900 billion valuation after beefing up its memory technology
 - 🔴 Most bearish (-0.96): SpaceX IPO leaves retail investors with too few shares and a tough hold-or-sell decision"
+2026-06-16,Neutral,-1,"## Market Overview
+
+U.S. markets diverged sharply on June 16, 2026, as investors focused on Fed Chair Kevin Warsh's first policy meeting and a developing interim U.S.-Iran deal. The Dow Jones surged 0.89% to 52,131, driven by strength in financials and industrials, while the Nasdaq 100 fell 1.08% amid a broad selloff in semiconductors and AI-related stocks. The S&P 500 edged down 0.13%, and the Russell 2000 declined 0.51%. The VIX slipped 0.68%, indicating relatively calm sentiment despite sector-specific volatility.
+
+## Semiconductor Rout
+
+The semiconductor sector faced heavy selling pressure, with AMD plummeting 4.20%, Broadcom down 3.39%, and Micron falling 3.31% despite reports of ""explosive demand"" for high-bandwidth memory. Intel tumbled 5.80% and Coherent dropped 5.82%, while Nvidia declined 1.34%. Microsoft also fell 1.80% on concerns about heavy AI capital expenditures and softer Azure growth. This sector rotation suggests profit-taking after a strong run, with positioning data showing put/call ratios near neutral (0.59) and no panic hedging, indicating orderly selling rather than capitulation.
+
+## Top Gainers and Rotation Dynamics
+
+Bucking the tech selloff, several stocks posted impressive gains. **Innodata Inc. (INOD)** surged 12.76%, **Lionsgate Studios (LION)** jumped 10.65%, and **CoreWeave (CRWV)** rallied 9.90%, highlighting continued appetite for AI infrastructure plays outside the megacaps. **SSR Mining (SSRM)** gained 9.16% as gold edged up 0.16% to $4,358.70, reflecting safe-haven demand. **Opendoor Technologies (OPEN)** rose 8.57%, benefiting from housing sector optimism.
+
+## Commodities and Fixed Income
+
+Crude oil plunged 5.35% to $75.19, reaching a three-month low on optimism that an interim U.S.-Iran deal will reopen the Strait of Hormuz and boost supply. The 10-year Treasury yield fell 3 basis points to 4.44%, suggesting bond investors are pricing in either growth concerns or dovish Fed expectations as Warsh begins his tenure. Bitcoin declined 1.89% to $65,854.
+
+## Cross-Asset Signals
+
+The Dow's outperformance alongside falling oil prices and declining tech stocks suggests a value-over-growth rotation. Banking and consumer sectors posted gains with bullish positioning, while SaaS and networking stocks lagged without significant hedging demand. The divergence between rising equities and falling yields bears watching as markets digest Warsh's policy stance and geopolitical developments.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.01  →  **Neutral**
+**Trend (5-day EMA):** +0.16  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.02 |
+| News headlines | 20% | -0.10 |
+| Reddit | 0% | +0.10 |
+| Fed (rate expectations) | 10% | -0.09 |
+
+_Equities rose with Nasdaq -1.1%, S&P 500 -0.1%, VIX -0.7%. Sector breadth: 8/11 sectors up. 10Y yield -0.7%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.4bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.94): SGA Global Growth Holds Firm on Microsoft’s (MSFT) Long-Term Advantages
+- 🔴 Most bearish (-0.97): Microsoft Corporation (MSFT) Fell on Heavy AI Capex and Softer Azure Growth"
