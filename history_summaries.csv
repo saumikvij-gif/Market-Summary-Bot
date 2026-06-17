@@ -483,3 +483,42 @@ _Equities fell with Nasdaq -1.9%, S&P 500 -0.6%, VIX -0.4%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Bitcoin and ethereum prices today, Wednesday, June 17, 2026: Much higher this week compared to last
 - 🔴 Most bearish (-0.96): Nvidia Stock Is Suffering as Competition Begins to Bite"
+2026-06-17,Bearish,-48,"## Warsh's First FOMC Rattles Markets
+
+U.S. equities sold off sharply on Wednesday as newly appointed Federal Reserve Chair Kevin Warsh presided over his first FOMC meeting, delivering a hawkish surprise that caught investors off guard. The S&P 500 fell 1.21%, the Nasdaq 100 dropped 0.99%, and the Dow declined 0.98%. The VIX spiked 12.37% to 18.44, reflecting heightened uncertainty.
+
+The Fed held rates steady at 3.50%-3.75%, but Warsh ""drastically altered"" the rate statement, paring down language and removing the cutting bias that had supported risk assets. According to bond manager Jeffrey Gundlach, Warsh is ""not going to be the 'easy money' chairman many hoped for,"" triggering a recalibration across asset classes. The 10-year Treasury yield rose 4 basis points to 4.46%, and safe-haven gold fell 1.79%. Bitcoin also declined 2.27%, underscoring the risk-off tone.
+
+## Tech Splits on Hardware Strength
+
+Technology markets exhibited sharp internal divergence. Hyperscalers and SaaS names bore the brunt of the selloff: Meta plunged 5.44%, Microsoft dropped 3.79%, Amazon fell 3.46%, and the SaaS sector declined 3.36%. Headlines around Apple raising prices due to a ""memory chip crunch"" added to uncertainty around mega-cap tech margins.
+
+In contrast, semiconductor hardware—especially memory—rallied strongly. The Memory sector (DRAM/NAND/HBM) surged 2.79% with 100% breadth, led by **Micron** (+2.20%) and **Intel** (+3.46%). **Broadcom** climbed 4.30%, and **Arm Holdings** jumped 5.69%, one of the session's standout gainers among large caps. Positioning data showed elevated put-to-call ratios (1.17) in memory, suggesting the advance occurred despite heavy hedging—a sign of defensive sentiment even amid strength.
+
+## Top Gainers and Cross-Asset Signals
+
+Among broader market gainers, **uniQure N.V. (QURE)** surged 78.44%, leading a biotech rally that included **Moderna** (+11.55%) and **Biohaven** (+12.66%). Energy names like **Eos Energy Enterprises (EOSE)** gained 11.60%.
+
+The dollar strengthened modestly (EUR/USD and GBP/USD both down ~0.9%), consistent with a less dovish Fed outlook. Crude oil held relatively steady (-0.35%), suggesting commodity markets are still digesting the policy shift. Overall positioning across tracked sectors showed low put-to-call ratios (0.37 aggregate), indicating declines occurred ""without hedging demand""—a sign traders were not panicking, but methodically de-risking in response to the Warsh Fed's new tone.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.48  →  **Bearish**
+**Trend (5-day EMA):** -0.07  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.66 |
+| News headlines | 20% | -0.06 |
+| Reddit | 0% | +0.07 |
+| Fed (rate expectations) | 10% | -0.10 |
+
+_Equities fell with Nasdaq -1.0%, S&P 500 -1.2%, VIX +12.4%. Sector breadth: 0/11 sectors up. 10Y yield +0.8%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Fresh Fed communications read neutral. Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.80): +63% (8.5K) SPCX FREE MONEY. Thanks Elon!
+- 🔴 Most bearish (-0.47): Fed Chair Warsh expected to withhold 'dot' from central bank's interest rate outlook"

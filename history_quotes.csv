@@ -5036,3 +5036,40 @@ run_date,section,name,price,change,pct_change
 2026-06-16,fx,USD/JPY,160.27,-0.136,-0.08
 2026-06-16,sectors,Utilities,45.06,0.32,0.72
 2026-06-16,indices,VIX,16.34,-0.07,-0.43
+2026-06-17,rates,10Y Treasury Yield,4.46,0.035,0.79
+2026-06-17,rates,13-Week T-Bill Yield,3.65,0.017,0.47
+2026-06-17,stocks,AMD,512.48,5.19,1.02
+2026-06-17,stocks,Alphabet,362.1,-9.0,-2.43
+2026-06-17,stocks,Amazon,237.5,-8.5,-3.46
+2026-06-17,stocks,Apple,295.95,-3.29,-1.1
+2026-06-17,stocks,Arm,418.88,22.54,5.69
+2026-06-17,commodities,Bitcoin,64215.52,-1488.1914,-2.27
+2026-06-17,stocks,Broadcom,392.9,16.19,4.3
+2026-06-17,stocks,Coherent,378.85,-3.96,-1.03
+2026-06-17,sectors,Communication Svc,109.2,-3.12,-2.78
+2026-06-17,sectors,Consumer Disc.,115.49,-2.97,-2.51
+2026-06-17,sectors,Consumer Staples,83.68,-1.91,-2.23
+2026-06-17,commodities,Crude Oil,75.01,-0.26,-0.35
+2026-06-17,indices,Dow Jones,51492.55,-507.1211,-0.98
+2026-06-17,fx,EUR/USD,1.15,-0.0106,-0.91
+2026-06-17,sectors,Energy,54.67,-0.69,-1.25
+2026-06-17,sectors,Financials,54.05,-0.3,-0.55
+2026-06-17,fx,GBP/USD,1.33,-0.0128,-0.95
+2026-06-17,commodities,Gold,4276.3,-78.1001,-1.79
+2026-06-17,sectors,Health Care,150.71,-2.23,-1.46
+2026-06-17,sectors,Industrials,179.6,-0.25,-0.14
+2026-06-17,stocks,Intel,121.1,4.05,3.46
+2026-06-17,sectors,Materials,52.02,-0.7,-1.33
+2026-06-17,stocks,Meta,567.58,-32.63,-5.44
+2026-06-17,stocks,Micron,1043.19,22.4299,2.2
+2026-06-17,stocks,Microsoft,378.91,-14.92,-3.79
+2026-06-17,indices,Nasdaq 100,29670.95,-297.1816,-0.99
+2026-06-17,stocks,Nvidia,204.65,-2.76,-1.33
+2026-06-17,sectors,Real Estate,43.97,-1.13,-2.51
+2026-06-17,indices,Russell 2000,2917.98,-21.2126,-0.72
+2026-06-17,indices,S&P 500,7420.1,-91.25,-1.21
+2026-06-17,stocks,SanDisk,1958.8,-32.75,-1.64
+2026-06-17,sectors,Technology,185.8,-0.64,-0.34
+2026-06-17,fx,USD/JPY,160.54,0.139,0.09
+2026-06-17,sectors,Utilities,44.46,-0.6,-1.33
+2026-06-17,indices,VIX,18.44,2.03,12.37
