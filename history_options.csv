@@ -35,12 +35,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-06-16,Pharma / Healthcare,1.191,36396,30556,8,8,0.0168,1.133,-0.39,-1.14,drifting,Bearish,conviction selling — puts bid and shorts loaded/rising
 2026-06-16,SaaS,0.623,107321,172330,9,9,0.0516,1.073,-1.52,-2.19,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-06-16,Semiconductors / Compute,0.364,434248,1191543,10,10,0.027,1.103,-4.15,4.31,rising,Bearish,decline without hedging demand — flows not panicked
-2026-06-17,All tracked,0.37,1223547,3303557,58,58,0.0249,1.088,-1.44,1.21,drifting,Bearish,decline without hedging demand — flows not panicked
+2026-06-17,All tracked,0.476,1204490,2530706,58,58,0.0249,1.088,-1.44,1.21,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-06-17,Banking,0.367,47351,128940,8,8,0.0002,1.121,0.0,5.72,at highs,Neutral,quiet session
 2026-06-17,Consumer,0.27,21610,79949,8,8,0.0188,1.054,-2.27,0.48,drifting,Bearish,decline without hedging demand — flows not panicked
-2026-06-17,Hyperscalers & Neoclouds,0.159,157404,990977,7,7,0.0147,1.112,-2.55,-0.21,stabilizing,Bearish,decline without hedging demand — flows not panicked
+2026-06-17,Hyperscalers & Neoclouds,0.257,158849,618688,7,7,0.0147,1.112,-2.55,-0.21,stabilizing,Bearish,decline without hedging demand — flows not panicked
 2026-06-17,Memory (DRAM/NAND/HBM),1.169,271546,232225,4,4,0.0714,1.029,2.78,24.93,at highs,Bullish,"advance, but heavily hedged — protection still bid"
-2026-06-17,Networking / Interconnect,0.734,175432,238896,7,7,0.047,1.146,1.45,6.79,rising,Bullish,broad advance; positioning unremarkable
+2026-06-17,Networking / Interconnect,0.808,152602,188970,7,7,0.047,1.146,1.45,6.79,rising,Bullish,broad advance; positioning unremarkable
 2026-06-17,Pharma / Healthcare,0.329,21692,65942,8,8,0.0168,1.133,-0.75,-1.73,drifting,Bearish,decline without hedging demand — flows not panicked
-2026-06-17,SaaS,0.321,98173,305575,9,9,0.0516,1.073,-3.36,-3.9,falling,Bearish,decline without hedging demand — flows not panicked
-2026-06-17,Semiconductors / Compute,0.387,572458,1479267,10,10,0.027,1.103,1.25,10.03,rising,Bullish,broad advance; positioning unremarkable
+2026-06-17,SaaS,0.321,98173,305582,9,9,0.0516,1.073,-3.36,-3.9,falling,Bearish,decline without hedging demand — flows not panicked
+2026-06-17,Semiconductors / Compute,0.512,551956,1078698,10,10,0.027,1.103,1.25,10.03,rising,Bullish,broad advance; positioning unremarkable
