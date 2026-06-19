@@ -5073,26 +5073,26 @@ run_date,section,name,price,change,pct_change
 2026-06-17,fx,USD/JPY,160.92,0.389,0.24
 2026-06-17,sectors,Utilities,44.46,-0.6,-1.33
 2026-06-17,indices,VIX,17.53,-0.91,-4.93
-2026-06-18,rates,10Y Treasury Yield,4.45,-0.012,-0.27
-2026-06-18,rates,13-Week T-Bill Yield,3.66,0.011,0.3
+2026-06-18,rates,10Y Treasury Yield,4.45,0.0,0.0
+2026-06-18,rates,13-Week T-Bill Yield,3.66,0.0,0.0
 2026-06-18,stocks,AMD,537.37,24.89,4.86
 2026-06-18,stocks,Alphabet,367.46,5.36,1.48
 2026-06-18,stocks,Amazon,244.39,6.891,2.9
 2026-06-18,stocks,Apple,298.01,2.06,0.7
 2026-06-18,stocks,Arm,439.46,20.58,4.91
-2026-06-18,commodities,Bitcoin,62885.23,-1311.25,-2.04
+2026-06-18,commodities,Bitcoin,62420.61,-1888.6094,-2.94
 2026-06-18,stocks,Broadcom,411.35,18.45,4.7
 2026-06-18,stocks,Coherent,389.57,10.72,2.83
 2026-06-18,sectors,Communication Svc,109.45,0.25,0.23
 2026-06-18,sectors,Consumer Disc.,117.16,1.67,1.45
 2026-06-18,sectors,Consumer Staples,83.3,-0.38,-0.45
-2026-06-18,commodities,Crude Oil,75.52,-0.49,-0.64
+2026-06-18,commodities,Crude Oil,76.19,0.34,0.45
 2026-06-18,indices,Dow Jones,51564.7,72.1484,0.14
-2026-06-18,fx,EUR/USD,1.15,-0.0044,-0.38
+2026-06-18,fx,EUR/USD,1.15,0.0003,0.02
 2026-06-18,sectors,Energy,53.77,-0.9,-1.65
 2026-06-18,sectors,Financials,53.57,-0.48,-0.89
-2026-06-18,fx,GBP/USD,1.32,-0.0094,-0.7
-2026-06-18,commodities,Gold,4227.9,-153.5,-3.5
+2026-06-18,fx,GBP/USD,1.32,0.0024,0.18
+2026-06-18,commodities,Gold,4171.7,-74.1997,-1.75
 2026-06-18,sectors,Health Care,149.4,-1.31,-0.87
 2026-06-18,sectors,Industrials,180.91,1.31,0.73
 2026-06-18,stocks,Intel,133.99,12.89,10.64
@@ -5107,6 +5107,6 @@ run_date,section,name,price,change,pct_change
 2026-06-18,indices,S&P 500,7500.58,80.48,1.08
 2026-06-18,stocks,SanDisk,2184.75,225.95,11.54
 2026-06-18,sectors,Technology,191.44,5.64,3.04
-2026-06-18,fx,USD/JPY,161.36,0.827,0.52
+2026-06-18,fx,USD/JPY,161.25,-0.102,-0.06
 2026-06-18,sectors,Utilities,44.76,0.3,0.67
-2026-06-18,indices,VIX,16.4,-2.04,-11.06
+2026-06-18,indices,VIX,17.13,0.73,4.45
