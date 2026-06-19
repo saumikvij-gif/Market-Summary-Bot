@@ -518,48 +518,50 @@ _Equities fell with Nasdaq -1.0%, S&P 500 -1.2%, VIX -4.9%. Sector breadth: 0/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.46): Here’s the link between Apple’s ‘unavoidable’ price hikes and all-time highs for emerging markets
 - 🔴 Most bearish (-0.70): Intel shares rally as Trump says company will build chips for Apple in the U.S."
-2026-06-18,Slightly Bullish,17,"> **Note:** No US trading session on 2026-06-19. Figures are from the last session (2026-06-18).
+2026-06-18,Slightly Bullish,18,"> **Note:** No US trading session on 2026-06-19. Figures are from the last session (2026-06-18).
 
-## Overview
+## Fed Signals Patience as Semiconductor Rally Powers Tech Higher
 
-U.S. equities posted a mixed but broadly positive session on June 19, with technology and semiconductors leading gains while defensive assets weakened. The Nasdaq 100 surged 2.48%, driven by a powerful rally in chip stocks, while the S&P 500 added 1.08% and the Dow inched up just 0.14%. Small-caps joined the party, with the Russell 2000 climbing 2.12%. Despite the risk-on tone, the VIX edged 4.45% higher to 17.13, hinting at lingering caution beneath the surface.
+U.S. equities rallied Friday with a pronounced technology tilt, as newly appointed Federal Reserve Chairman Kevin Warsh signaled a less aggressive approach to rate cuts than markets had anticipated. The Nasdaq 100 surged 2.48%, leading major indices, while the Dow Jones lagged with a modest 0.14% gain. The S&P 500 rose 1.08%, and the Russell 2000 advanced 2.12%.
 
-## Fed Policy and the Warsh Era
+## Warsh Reshapes Fed Messaging
 
-The dominant narrative was the market's recalibration to a more hawkish Federal Reserve under newly appointed Chair Kevin Warsh. Multiple headlines emphasized that Warsh's first policy statement drastically altered expectations, with ""task forces"" signaling potential delays to rate cuts until December. Goldman Sachs slashed its gold forecast by $500 in response, and the dollar narrative shifted toward strength. Treasury yields remained flat at 4.45% for the 10-year, but the repricing of rate-cut hopes appears to be underway. Gold fell 1.75% and Bitcoin dropped 2.94%, reflecting reduced appetite for inflation hedges and speculative assets in a higher-for-longer rate environment.
+The dominant macro theme was Chairman Warsh's first major policy statement, which significantly altered the Fed's rate guidance. According to news reports, Warsh has established new task forces that provide ""wiggle room"" to defer rate changes until December, despite earlier expectations that his appointment would lead to quicker cuts. The 10-year Treasury yield held steady at 4.45%, reflecting muted fixed-income reaction, while currency markets showed minimal volatility.
 
-## Semiconductor Surge
+## Semiconductor Rally Dominates
 
-The star performers were memory and chip stocks, with the Memory sector up 2.79% and exhibiting 100% breadth—a clear bullish signal. **Micron** soared 8.70%, **Intel** jumped 10.64%, and **SanDisk** rocketed 11.54%, making it one of the day's standout gainers. AMD (+4.86%), Broadcom (+4.70%), and Arm (+4.91%) also posted strong advances. Nvidia added 2.95%, while Amazon climbed 2.90%. Positioning data showed elevated put/call ratios in Memory (3.19), suggesting investors are heavily hedged despite the rally—protection remains in demand even as prices advance.
+The semiconductor sector delivered the session's standout performance, with memory and compute chips posting exceptional gains. **SanDisk** led major tech names with an 11.54% surge, followed by **Intel** (+10.64%) and **Micron** (+8.70%). **AMD** climbed 4.86%, **Broadcom** gained 4.70%, and **Arm** added 4.91%. The Memory sector (DRAM/NAND/HBM) collectively rose 6.74% with 100% breadth, though elevated put/call ratios (3.19) suggest investors remain heavily hedged despite the advance.
 
-Among the top market gainers, **Butterfly Network (BFLY)** exploded 55.87% higher after Midjourney unveiled an imaging platform built on its ultrasound-on-chip technology, drawing significant attention on social media.
+Broader AI-stack positioning showed bullish sentiment across Semiconductors/Compute (+5.54%) and Networking/Interconnect (+2.83%). Hyperscalers including **Amazon** (+2.90%) and **Meta** (+1.70%) participated, though **Microsoft** managed only a 0.13% gain.
 
-## Divergence and Weakness
+## Cross-Asset Signals and Notable Movers
 
-Not all sectors participated. Hyperscalers and SaaS names lagged, down 2.55% and 3.36% respectively, with bearish breadth and sentiment. Microsoft barely budged (+0.13%), and consumer-facing stocks fell 2.27%. The divergence between compute hardware and cloud/software underscores rotation within tech rather than uniform optimism.
+Gold retreated 1.72% to $4,172.90, consistent with reduced safe-haven demand amid equity strength. Bitcoin edged up 0.33%, while crude oil rose 0.91% amid conflicting reports on Strait of Hormuz developments and Middle East tensions.
 
-## Outlook
+Among top market gainers, **Butterfly Network** (BFLY) soared 55.87%, and **Wolfspeed** jumped 17.91%, extending the semiconductor and technology hardware rally into smaller caps. The VIX rose 2.32% to 16.78 despite equity strength, hinting at ongoing uncertainty around geopolitical risks and Fed trajectory.
 
-The session reflected optimism around AI infrastructure spending and chip demand, tempered by a sobering Fed outlook. Cross-asset moves—falling gold, weakening crypto, and a firmer dollar—reinforce the hawkish shift. Investors appear to be pricing in a longer wait for easing, favoring hardware plays over rate-sensitive growth names.
+SaaS and Pharma/Healthcare were notable laggards, declining 0.95% and 1.75% respectively, with low put/call ratios suggesting minimal hedging demand in the sell-off.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.17  →  **Slightly Bullish**
+**Today's Score:** +0.18  →  **Slightly Bullish**
 **Trend (5-day EMA):** +0.04  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.27 |
-| News headlines | 20% | -0.08 |
-| Reddit | 0% | +0.09 |
+| Market data | 70% | +0.30 |
+| News headlines | 20% | -0.15 |
+| Reddit | 0% | -0.01 |
 | Fed (rate expectations) | 10% | +0.00 |
 
-_Equities rose with Nasdaq +2.5%, S&P 500 +1.1%, VIX +4.5%. Sector breadth: 5/11 sectors up. 10Y yield +0.0%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +2.5%, S&P 500 +1.1%, VIX +2.3%. Sector breadth: 5/11 sectors up. 10Y yield +0.0%. News headlines read slightly bearish. Fed-policy expectations held steady. Today's overall market tone: Slightly Bullish._
 
 <sub>News scored with: finbert</sub>
 
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
 **Standout headlines:**
-- 🟢 Most bullish (+0.80): Love you to the muun and back <3
-- 🔴 Most bearish (-0.95): The Fed’s new hawkish reality just forced Goldman Sachs to slash its gold forecast by $500"
+- 🟢 Most bullish (+0.49): Even more investors want out of private credit
+- 🔴 Most bearish (-0.91): Oil prices face fresh wave of volatility amid conflicting reports about Strait of Hormuz reopening and ongoing regional strife"
