@@ -5080,7 +5080,7 @@ run_date,section,name,price,change,pct_change
 2026-06-18,stocks,Amazon,244.39,6.891,2.9
 2026-06-18,stocks,Apple,298.01,2.06,0.7
 2026-06-18,stocks,Arm,439.46,20.58,4.91
-2026-06-18,commodities,Bitcoin,63094.39,204.6602,0.33
+2026-06-18,commodities,Bitcoin,63413.0,873.6602,1.4
 2026-06-18,stocks,Broadcom,411.35,18.45,4.7
 2026-06-18,stocks,Coherent,389.57,10.72,2.83
 2026-06-18,sectors,Communication Svc,109.45,0.25,0.23
@@ -5107,6 +5107,6 @@ run_date,section,name,price,change,pct_change
 2026-06-18,indices,S&P 500,7500.58,80.48,1.08
 2026-06-18,stocks,SanDisk,2184.75,225.95,11.54
 2026-06-18,sectors,Technology,191.44,5.64,3.04
-2026-06-18,fx,USD/JPY,161.28,-0.068,-0.04
+2026-06-18,fx,USD/JPY,161.28,-0.073,-0.05
 2026-06-18,sectors,Utilities,44.76,0.3,0.67
 2026-06-18,indices,VIX,16.78,0.38,2.32
