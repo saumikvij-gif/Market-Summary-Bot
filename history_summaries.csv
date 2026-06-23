@@ -565,44 +565,50 @@ _Equities rose with Nasdaq +2.5%, S&P 500 +1.1%, VIX +2.3%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.69): I probably shouldn't have...but I did anyways. Wish me luck.
 - 🔴 Most bearish (-0.91): Oil prices face fresh wave of volatility amid conflicting reports about Strait of Hormuz reopening and ongoing regional strife"
-2026-06-22,Neutral,-2,"## Market Overview
+2026-06-22,Slightly Bearish,-13,"> **Note:** No US trading session on 2026-06-23. Figures are from the last session (2026-06-22).
 
-U.S. equities displayed sharp sector divergence on Monday, with the Dow Jones gaining 0.29% and the Russell 2000 climbing 0.83%, even as the S&P 500 slipped 0.37% and the Nasdaq 100 edged down 0.19%. The VIX rose 2.98% to 17.28, reflecting modest unease beneath the surface. A notable rotation unfolded within the tech sector, as memory and legacy semiconductor names rallied sharply while hyperscalers and software stocks sold off.
+## Market Overview
 
-## Tech Sector Bifurcation
+U.S. equities delivered a split session on June 23, with marked divergence between mega-cap tech and the broader market. The S&P 500 slipped 0.37% while the Nasdaq 100 edged down 0.19%, but the Dow gained 0.29% and the Russell 2000 surged 0.83%. The VIX jumped 14.5% to 19.79, signaling rising hedging demand amid mounting concerns over stretched AI valuations and Fed rate policy.
 
-The technology complex experienced a striking intra-sector rotation. Memory names surged, with **Micron** jumping 6.82% following news of a partnership with AI startup Anthropic, while **Intel** gained 5.19%, **AMD** added 2.65%, and **Coherent** soared 9.22% to lead major tech gainers. **Super Micro Computer** jumped 15.66%, its best run in a year, buoyed by a deepening Nvidia partnership.
+## Tech Sector Rotation
 
-In sharp contrast, mega-cap hyperscalers suffered steep declines. **Alphabet** plunged 5.08%, erasing approximately $225 billion in market capitalization amid reports of a second high-profile AI researcher departing for a rival. **Amazon** fell 4.75%, **Broadcom** dropped 4.67%, and **Microsoft** declined 3.18%. The Hyperscalers & Neoclouds sector fell 4.75%, while Memory surged 3.15% and Networking gained 2.88%, underscoring investor concern about competitive positioning in AI infrastructure versus enthusiasm for the underlying hardware stack.
+A sharp rotation unfolded within technology, with hyperscalers and cloud giants under heavy pressure while memory and networking stocks rallied. Alphabet tumbled 5.08% following the departure of a second AI executive to a rival, while Microsoft fell 3.18% and Amazon declined 4.75%. Broadcom dropped 4.67% and Arm plunged 7.22%, contributing to a 4.75% decline in the Hyperscalers & Neoclouds sector—the session's worst performer.
 
-## Broader Market Dynamics
+In stark contrast, memory chipmakers surged, with the sector up 3.15% on 100% breadth. **Micron soared 6.82%** and **Intel rallied 5.19%**, while **Coherent jumped 9.22%** and **SanDisk climbed 4.07%**. Among broader market gainers, **Super Micro Computer surged 15.66%** and biotech names **Definium Therapeutics (+49.80%)** and **Apogee Therapeutics (+46.66%)** posted explosive gains. The rotation suggests investors are repositioning away from expensive hyperscalers toward cheaper semiconductor plays, even as AI skepticism deepens.
 
-Small-caps and cyclicals outperformed, with the Russell 2000 leading major indices. Banking climbed 1.79% with 100% breadth, and Pharma/Healthcare added 1.35%. Defensive rotation appeared limited, however, as Consumer stocks fell 1.53%.
+## Rate and Macro Headwinds
 
-The 10-year Treasury yield rose 6 basis points to 4.51%, contributing pressure on rate-sensitive growth stocks. Market chatter included a Bank of America report suggesting no Fed rate cuts until 2028, though this remained unconfirmed in major headlines. Positioning data showed memory stocks advancing despite elevated put/call ratios (1.70), indicating hedged bullishness, while hyperscalers declined without significant hedging demand—suggesting orderly profit-taking rather than panic.
+The 10-year Treasury yield rose 6 basis points to 4.51%, weighing on rate-sensitive growth stocks. Headlines highlighting a Bank of America outlook projecting no Fed rate cuts until 2028 underscored persistent inflation concerns and diminished hopes for near-term policy easing. The rising dollar—cited as a fresh test for the AI rally—also pressured international earnings outlooks.
 
-## Commodities and Cross-Asset Signals
+Banking stocks rallied 1.79% on 100% breadth ahead of the Fed's annual stress test results, while pharma and healthcare advanced 1.35%. Consumer stocks fell 1.53% and SaaS dropped 2.14%, both showing low breadth and bearish positioning signals.
 
-Gold fell 1.72% to $4,172.90, while crude oil rose 0.91% and Bitcoin gained 0.78%. The dollar firmed modestly, with EUR/USD down 0.32% and USD/JPY up 0.15%, consistent with rising yields and a risk-off tilt in growth equities.
+## Commodities and Crypto
+
+Gold fell 1.33% to $4,147 and Bitcoin declined 2.93% to $62,187, both pressured by higher yields and risk-off sentiment. Oil dipped 0.23% as investors focused on Strait of Hormuz flows amid ongoing Iran peace negotiations.
+
+## Outlook
+
+The session reflects growing unease over AI valuations, Fed policy rigidity, and concentration risk in mega-cap tech—even as select pockets of technology and cyclicals find support.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.02  →  **Neutral**
-**Trend (5-day EMA):** +0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** -0.13  →  **Slightly Bearish**
+**Trend (5-day EMA):** -0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | -0.02 |
-| News headlines | 20% | +0.03 |
-| Reddit | 0% | +0.07 |
+| Market data | 70% | -0.18 |
+| News headlines | 20% | +0.04 |
+| Reddit | 0% | -0.01 |
 | Fed (rate expectations) | 10% | -0.15 |
 
-_Equities fell with Nasdaq -0.2%, S&P 500 -0.4%, VIX +3.0%. Sector breadth: 8/11 sectors up. 10Y yield +1.3%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +2.2bp). Today's overall market tone: Neutral._
+_Equities fell with Nasdaq -0.2%, S&P 500 -0.4%, VIX +14.5%. Sector breadth: 8/11 sectors up. 10Y yield +1.3%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +2.2bp). Today's overall market tone: Slightly Bearish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.93): Super Micro’s stock is seeing its best run in a year thanks to Nvidia partnership
-- 🔴 Most bearish (-0.95): SpaceX sheds $400 billion in value as stock slides below its IPO-day closing price"
+- 🟢 Most bullish (+0.92): Bitcoin and ethereum prices today, Monday, June 22, 2026: Prices moving higher this morning
+- 🔴 Most bearish (-0.95): Stock market today: Nasdaq, S&P 500 futures dive as global chip sell-off spurs AI doubts"
