@@ -657,3 +657,46 @@ _Equities fell with Nasdaq -3.3%, S&P 500 -1.4%, VIX -1.5%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.66): Alphabet’s stock is set to join the Dow, pivoting index’s industrial roots toward tech
 - 🔴 Most bearish (-0.92): Meta is building a prediction markets app. These stocks fell in response"
+2026-06-24,Neutral,7,"## Market Overview
+
+U.S. equities closed mixed Wednesday as a significant rotation from growth to value took hold, with the Dow Jones and Russell 2000 climbing 0.35% and 0.37% respectively, while the Nasdaq 100 fell 0.43% and the S&P 500 dipped 0.10%. The divergence reflected mounting concerns over monetary policy after headlines suggested potential Fed tightening, alongside broad weakness in technology and mega-cap growth stocks.
+
+## Monetary Policy Concerns Resurface
+
+Markets reacted nervously to speculation that the Trump White House may support Fed Governor Christopher Warsh hiking interest rates, with analysts flagging ""hidden PCE triggers"" that could force the central bank's hand. The 10-year Treasury yield fell 9 basis points to 4.40%, an unusual move that suggests bond investors are pricing in slower growth rather than embracing the hawkish narrative. The VIX declined 4.41% to 18.63, indicating muted near-term volatility expectations despite the policy uncertainty.
+
+## Tech Sector Under Pressure
+
+The AI and semiconductor complex experienced notable bifurcation. Hyperscalers bore the brunt of selling, with Microsoft down 2.27% leading the sector to a -2.27% decline—the worst-performing AI stack segment. Memory stocks also struggled, falling 3.25% with SanDisk plunging 2.50% and Micron off 0.31% despite some retail enthusiasm around memory chip pricing. Positioning data shows low put/call ratios in hyperscalers (0.19) and SaaS (0.29), suggesting the declines occurred without panic hedging—a potentially bearish signal indicating complacent holders.
+
+Broadcom bucked the trend with a 0.51% gain after unveiling custom chips for OpenAI, directly challenging Nvidia's dominance. Networking and interconnect stocks rose 0.80%, the sole AI segment posting gains.
+
+## Standout Performers and Rotation Plays
+
+Housing and payments led the market's top gainers: KB Home surged 16.65%, while Shift4 Payments jumped 14.35%. Sunrun rallied 12.57% on reports of a new Tesla solar partnership. The Consumer sector gained 1.64% with strong breadth, while Pharma/Healthcare added 0.43% on low put/call ratios (0.69), signaling bullish sentiment.
+
+## Commodities and Cross-Asset Signals
+
+Risk assets sold off broadly: crude oil plunged 4.56%, gold dropped 3.21%, and Bitcoin fell 2.86%. The dollar strengthened modestly with USD/JPY rising to 161.76. The simultaneous decline in yields, commodities, and crypto suggests markets are pricing stagflation risks—slower growth with lingering inflation concerns that could prevent Fed easing.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.07  →  **Neutral**
+**Trend (5-day EMA):** -0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.09 |
+| News headlines | 20% | +0.03 |
+| Reddit | 0% | +0.05 |
+| Fed (rate expectations) | 10% | +0.00 |
+
+_Equities rose with Nasdaq -0.4%, S&P 500 -0.1%, VIX -4.4%. Sector breadth: 6/11 sectors up. 10Y yield -2.0%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.86): Broadcom unveils a custom chip for OpenAI as it challenges Nvidia’s dominance
+- 🔴 Most bearish (-0.95): Nasdaq, S&P end lower as tech stocks fall"
