@@ -5191,19 +5191,19 @@ run_date,section,name,price,change,pct_change
 2026-06-24,stocks,Amazon,234.27,0.16,0.07
 2026-06-24,stocks,Apple,293.08,-1.22,-0.41
 2026-06-24,stocks,Arm,359.08,-7.31,-2.0
-2026-06-24,commodities,Bitcoin,60727.22,-1787.8398,-2.86
+2026-06-24,commodities,Bitcoin,61641.5,-1066.0117,-1.7
 2026-06-24,stocks,Broadcom,382.07,1.92,0.51
 2026-06-24,stocks,Coherent,392.5,11.28,2.96
 2026-06-24,sectors,Communication Svc,106.54,-0.73,-0.68
 2026-06-24,sectors,Consumer Disc.,115.07,1.31,1.15
 2026-06-24,sectors,Consumer Staples,84.44,0.72,0.86
-2026-06-24,commodities,Crude Oil,69.87,-3.34,-4.56
+2026-06-24,commodities,Crude Oil,69.63,-0.71,-1.01
 2026-06-24,indices,Dow Jones,51848.9,182.0586,0.35
-2026-06-24,fx,EUR/USD,1.14,-0.0026,-0.23
+2026-06-24,fx,EUR/USD,1.14,0.0012,0.1
 2026-06-24,sectors,Energy,53.57,-0.89,-1.63
 2026-06-24,sectors,Financials,53.72,-0.16,-0.3
-2026-06-24,fx,GBP/USD,1.32,-0.0033,-0.25
-2026-06-24,commodities,Gold,4016.4,-133.0,-3.21
+2026-06-24,fx,GBP/USD,1.32,0.0031,0.23
+2026-06-24,commodities,Gold,4012.0,3.2,0.08
 2026-06-24,sectors,Health Care,153.35,1.17,0.77
 2026-06-24,sectors,Industrials,180.21,2.06,1.16
 2026-06-24,stocks,Intel,131.65,-0.63,-0.48
@@ -5218,6 +5218,6 @@ run_date,section,name,price,change,pct_change
 2026-06-24,indices,S&P 500,7358.22,-7.2397,-0.1
 2026-06-24,stocks,SanDisk,1914.46,-49.14,-2.5
 2026-06-24,sectors,Technology,183.05,-1.14,-0.62
-2026-06-24,fx,USD/JPY,161.76,0.226,0.14
+2026-06-24,fx,USD/JPY,161.78,0.033,0.02
 2026-06-24,sectors,Utilities,45.54,0.47,1.04
-2026-06-24,indices,VIX,18.63,-0.86,-4.41
+2026-06-24,indices,VIX,18.03,-0.6,-3.22

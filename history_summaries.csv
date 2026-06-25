@@ -657,46 +657,48 @@ _Equities fell with Nasdaq -3.3%, S&P 500 -1.4%, VIX -1.5%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.66): Alphabet’s stock is set to join the Dow, pivoting index’s industrial roots toward tech
 - 🔴 Most bearish (-0.92): Meta is building a prediction markets app. These stocks fell in response"
-2026-06-24,Neutral,7,"## Market Overview
+2026-06-24,Neutral,5,"> **Note:** No US trading session on 2026-06-25. Figures are from the last session (2026-06-24).
 
-U.S. equities closed mixed Wednesday as a significant rotation from growth to value took hold, with the Dow Jones and Russell 2000 climbing 0.35% and 0.37% respectively, while the Nasdaq 100 fell 0.43% and the S&P 500 dipped 0.10%. The divergence reflected mounting concerns over monetary policy after headlines suggested potential Fed tightening, alongside broad weakness in technology and mega-cap growth stocks.
+## Market Overview
 
-## Monetary Policy Concerns Resurface
+U.S. equities delivered a mixed session Thursday as a notable rotation continued beneath the surface. The Dow Jones gained 0.35% and the Russell 2000 added 0.37%, while the S&P 500 slipped 0.10% and the Nasdaq 100 fell 0.43%. The VIX declined 3.22% to 18.03, suggesting relatively muted concern despite tech sector weakness. Treasury yields moved lower, with the 10-year falling 9 basis points to 4.40%, providing a tailwind for rate-sensitive sectors.
 
-Markets reacted nervously to speculation that the Trump White House may support Fed Governor Christopher Warsh hiking interest rates, with analysts flagging ""hidden PCE triggers"" that could force the central bank's hand. The 10-year Treasury yield fell 9 basis points to 4.40%, an unusual move that suggests bond investors are pricing in slower growth rather than embracing the hawkish narrative. The VIX declined 4.41% to 18.63, indicating muted near-term volatility expectations despite the policy uncertainty.
+## Banking Boost After Fed Stress Test
 
-## Tech Sector Under Pressure
+A key driver of Thursday's action was the Federal Reserve's release of annual stress test results, which showed U.S. banks capable of withstanding $708 billion in losses under severe scenarios. JPMorgan Chase immediately announced a $50 billion buyback authorization and Goldman Sachs raised its dividend, underscoring robust capital positions. The banking sector edged down just 0.26% despite the positive news, suggesting much of the optimism was already priced in, though positioning data showed elevated put/call ratios indicating lingering hedging demand.
 
-The AI and semiconductor complex experienced notable bifurcation. Hyperscalers bore the brunt of selling, with Microsoft down 2.27% leading the sector to a -2.27% decline—the worst-performing AI stack segment. Memory stocks also struggled, falling 3.25% with SanDisk plunging 2.50% and Micron off 0.31% despite some retail enthusiasm around memory chip pricing. Positioning data shows low put/call ratios in hyperscalers (0.19) and SaaS (0.29), suggesting the declines occurred without panic hedging—a potentially bearish signal indicating complacent holders.
+## Tech Sector Divergence
 
-Broadcom bucked the trend with a 0.51% gain after unveiling custom chips for OpenAI, directly challenging Nvidia's dominance. Networking and interconnect stocks rose 0.80%, the sole AI segment posting gains.
+Technology showed stark bifurcation. Hyperscalers and memory stocks bore the brunt of selling pressure, with Microsoft down 2.27%, SanDisk falling 2.50%, and Micron declining 0.31%—despite reports of soaring memory prices leading to quadrupled revenue. The Memory sector dropped 3.25% with 100% negative breadth and elevated put/call ratios (1.40), signaling conviction selling. Conversely, Coherent surged 2.96% and Broadcom gained 0.51%, helping the Networking/Interconnect subsector rise 0.80%.
 
-## Standout Performers and Rotation Plays
+Market chatter focused on SK Hynix's $30 billion Nasdaq listing plans, which analysts warned could pressure Micron's valuation, and concerns about potential Federal Reserve rate hikes triggered by ""hidden PCE inflation triggers.""
 
-Housing and payments led the market's top gainers: KB Home surged 16.65%, while Shift4 Payments jumped 14.35%. Sunrun rallied 12.57% on reports of a new Tesla solar partnership. The Consumer sector gained 1.64% with strong breadth, while Pharma/Healthcare added 0.43% on low put/call ratios (0.69), signaling bullish sentiment.
+## Standout Movers
 
-## Commodities and Cross-Asset Signals
+Among top gainers, KB Home surged 16.65%, leading a consumer sector rally that gained 1.64% with bullish positioning. Definium Therapeutics jumped 16.45%, Shift4 Payments climbed 14.35%, and Sunrun added 12.57%, reflecting strength in housing, biotech, and clean energy names.
 
-Risk assets sold off broadly: crude oil plunged 4.56%, gold dropped 3.21%, and Bitcoin fell 2.86%. The dollar strengthened modestly with USD/JPY rising to 161.76. The simultaneous decline in yields, commodities, and crypto suggests markets are pricing stagflation risks—slower growth with lingering inflation concerns that could prevent Fed easing.
+## Cross-Asset Signals
+
+The combination of falling Treasury yields, modest equity losses, and declining volatility suggests a ""risk-off lite"" environment rather than panic. Gold edged up 0.08% to $4,012, while Bitcoin dropped 1.70% and crude oil fell 1.01%, indicating rotation into traditional safe havens. The dollar remained steady against major currencies, with USD/JPY at 161.78.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.07  →  **Neutral**
+**Today's Score:** +0.05  →  **Neutral**
 **Trend (5-day EMA):** -0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.09 |
-| News headlines | 20% | +0.03 |
-| Reddit | 0% | +0.05 |
+| Market data | 70% | +0.07 |
+| News headlines | 20% | -0.01 |
+| Reddit | 0% | +0.01 |
 | Fed (rate expectations) | 10% | +0.00 |
 
-_Equities rose with Nasdaq -0.4%, S&P 500 -0.1%, VIX -4.4%. Sector breadth: 6/11 sectors up. 10Y yield -2.0%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
+_Equities rose with Nasdaq -0.4%, S&P 500 -0.1%, VIX -3.2%. Sector breadth: 6/11 sectors up. 10Y yield -2.0%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.86): Broadcom unveils a custom chip for OpenAI as it challenges Nvidia’s dominance
-- 🔴 Most bearish (-0.95): Nasdaq, S&P end lower as tech stocks fall"
+- 🟢 Most bullish (+0.91): Qualcomm’s stock is soaring as these big numbers excite Wall Street
+- 🔴 Most bearish (-0.96): Bitcoin and ethereum prices today, Wednesday, June 24, 2026: Opened at lowest levels in about two weeks"
