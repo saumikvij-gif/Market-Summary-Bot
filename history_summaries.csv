@@ -702,3 +702,46 @@ _Equities rose with Nasdaq -0.4%, S&P 500 -0.1%, VIX -3.2%. Sector breadth: 6/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.91): Qualcomm’s stock is soaring as these big numbers excite Wall Street
 - 🔴 Most bearish (-0.96): Bitcoin and ethereum prices today, Wednesday, June 24, 2026: Opened at lowest levels in about two weeks"
+2026-06-25,Neutral,7,"## Mixed Session Masks Sharp Sector Divergence
+
+U.S. equities closed mixed Thursday as a dramatic rotation within technology overshadowed modest headline moves. The S&P 500 edged down 0.01%, while the Nasdaq 100 gained 0.75% and the Dow added 0.14%. The Russell 2000 climbed 0.71%, suggesting broadening participation. The VIX ticked up 1.40% to 18.89, reflecting pockets of nervousness despite the overall advance.
+
+## Memory Shortage Sparks Explosive Rally
+
+The session's dominant theme was a violent rally in memory stocks, driven by deepening supply constraints. **Micron surged 15.81%** and **SanDisk rocketed 21.53%**, ranking among the market's top gainers alongside DPC (+42.06%), Bio-Techne (+20.08%), and BlackBerry (+19.95%). The Memory sector posted a stunning 10.32% gain with 100% breadth, outperforming the Nasdaq by nearly 10 percentage points. Headlines confirming price increases for Apple's MacBooks and iPads, alongside Microsoft console price hikes, underscored the severity of the DRAM/NAND/HBM crunch. Positioning data reveals heavy hedging (put/call ratio 1.73) even amid the advance, suggesting investors are protecting gains in a parabolic move.
+
+## Hyperscalers Under Pressure
+
+In stark contrast, megacap cloud and software names sold off sharply. **Apple plunged 6.15%**, **Microsoft fell 3.45%**, and **Amazon declined 3.14%**, with Meta and Nvidia also lower. The Hyperscalers & Neoclouds sector dropped 2.65%, and SaaS fell 1.68%. Microsoft's June weakness—characterized as a ""historic rout"" by MarketWatch—reflects investor concern over elevated AI infrastructure spending without immediate returns. Low put/call ratios (0.45 for hyperscalers, 0.51 for SaaS) suggest the declines occurred without panic hedging, indicating orderly profit-taking rather than capitulation.
+
+## Inflation and Fed Concerns Linger
+
+Fed commentary added a cautious undertone. Chicago Fed President Goolsbee noted inflation remains too high, while preferred inflation measures reportedly hit three-year highs, keeping rate-hike talk in play. Treasury yields edged lower (10Y -0.01% to 4.39%), and bond ETF inflows surged as investors hunt for yield. Oil rose 1.61% on geopolitical tensions in the Strait of Hormuz, while Bitcoin dropped 2.28%. Gold advanced 0.82%, reflecting safe-haven demand.
+
+## Cross-Asset Signals
+
+The session highlighted sector-specific stress rather than broad market dislocation. Banking (+0.67%), Pharma/Healthcare (+1.27%), and Networking (+2.29%) all advanced with strong breadth, while consumer-facing and high-valuation tech lagged. The rotation suggests investors are repositioning for a higher-for-longer rate environment, favoring tangible supply constraints and diversified exposure over speculative growth.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.07  →  **Neutral**
+**Trend (5-day EMA):** -0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.13 |
+| News headlines | 20% | -0.15 |
+| Reddit | 0% | +0.04 |
+| Fed (rate expectations) | 10% | +0.07 |
+
+_Equities rose with Nasdaq +0.8%, S&P 500 -0.0%, VIX +1.4%. Sector breadth: 7/11 sectors up. 10Y yield -0.2%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -1.0bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.48): $1.9 million YOLO on Wendy’s. This is going to double!
+- 🔴 Most bearish (-0.95): Microsoft’s stock is suffering a historic June rout as investors balk at heavy spending"
