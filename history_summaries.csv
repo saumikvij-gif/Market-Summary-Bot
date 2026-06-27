@@ -749,44 +749,48 @@ _Equities rose with Nasdaq +0.8%, S&P 500 -0.0%, VIX +4.5%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.73): GameStop's Cohen nixes $35B bonus plan in favor of eBay bid
 - 🔴 Most bearish (-0.95): Microsoft’s stock is suffering a historic June rout as investors balk at heavy spending"
-2026-06-26,Neutral,2,"## Sector Rotation Accelerates as Chip Weakness Deepens
+2026-06-26,Neutral,3,"> **Note:** No US trading session on 2026-06-27. Figures are from the last session (2026-06-26).
 
-U.S. equity markets closed mixed Friday as a sharp selloff in semiconductor and AI infrastructure stocks overshadowed gains in consumer technology and healthcare. The Nasdaq 100 fell 1.09%, weighed down by heavy losses in memory and chip equipment makers, while the S&P 500 dipped just 0.05% and the Russell 2000 edged 0.07% higher. The VIX declined 2.54% to 18.41, suggesting the pullback was orderly rather than panic-driven.
+## Market Overview
 
-## Memory and Chip Infrastructure Under Pressure
+U.S. equities closed mixed on Friday as technology stocks diverged sharply beneath the surface. The S&P 500 edged down 0.05%, while the Nasdaq 100 declined 1.09%, weighed by a selloff in semiconductor and cloud infrastructure names. The Dow slipped 0.09%, but small-caps outperformed with the Russell 2000 gaining 0.07%. The VIX fell 2.54% to 18.41, suggesting market stress remained contained despite tech sector turbulence.
 
-The semiconductor complex suffered its worst day in months, with the Memory sector plunging 11.35%. Micron dropped 6.69%, SanDisk cratered 10.46%, and Coherent fell 6.55%. Nvidia declined 1.64%, AMD lost 2.06%, and Broadcom slid 3.67%. Networking and interconnect names fell 4.74%, with positioning data showing elevated put-call ratios (1.11) and rising short interest (5.3%), pointing to conviction selling. The broad Semiconductors/Compute sector declined 3.54%, though notably its put-call ratio of 0.53 suggests the decline wasn't accompanied by hedging demand—flows appear measured rather than panicked.
+## Semiconductor Shakeout Amid Fed Hawkishness
 
-## Big Tech Bifurcates; SaaS Surges
+The session's defining narrative was a violent rotation within the semiconductor complex. Memory stocks surged, with the sector gaining 10.3% despite Micron plunging 6.69%—a rare divergence suggesting idiosyncratic pressure on the chipmaker. Meanwhile, SanDisk collapsed 10.46%, and other compute-focused names suffered: Broadcom fell 3.67%, AMD lost 2.06%, Nvidia declined 1.64%, and Arm dropped 3.87%.
 
-In sharp contrast, select mega-cap tech names rallied. Microsoft surged 5.71%, Apple gained 3.14%, Amazon rose 2.50%, and Meta added 1.36%. The divergence highlights rotation within technology—investors appeared to favor established hyperscalers and consumer platforms over chipmakers. Alphabet's 2.19% decline bucked the trend. Separately, the SaaS sector soared 6.77%, though the elevated put-call ratio (1.15) and 5.8% short interest suggest hedging demand remains robust despite the advance.
+Positioning data reveals heavy put hedging across memory (P/C ratio 2.41) and networking (1.88), indicating investors remain defensive even as these segments rally. Hyperscalers and cloud infrastructure names sold off 2.65%, with bearish positioning (-0.88 sentiment) and minimal put demand (P/C 1.09), suggesting an orderly but sustained de-risking.
 
-## Fed Pivot Supports Rates and Gold
+## Monetary Policy Takes Center Stage
 
-Federal Reserve hawk Neel Kashkari shifted his stance, now projecting one rate **hike** this year—a notable reversal that underscores the central bank's ongoing vigilance under Chair Kevin Warsh. Despite this hawkish signal and a pop in inflation data, bond yields declined, with the 10-year Treasury falling 2 basis points to 4.37%. MarketWatch noted that ""the Fed's tough talk under Warsh is helping"" anchor inflation expectations. Gold rallied 1.37% to $4,103, benefiting from safe-haven flows and real rate dynamics. Oil tumbled 2.34% to $70.24, with reports citing prices back to pre-Iran-war levels.
+Federal Reserve developments dominated headlines. Minneapolis Fed President Neel Kashkari shifted his outlook to project one rate hike this year, marking a notable hawkish pivot. The news comes amid reports that Fed Chair Warsh's tough stance on inflation is helping anchor long-term expectations, even as recent inflation data ""pops."" The 10-year Treasury yield fell modestly to 4.37%, down 0.46%, reflecting complex cross-currents between inflation concerns and growth uncertainty.
 
-## Biotech and Retail Bright Spots
+## Standout Movers and Cross-Asset Signals
 
-Top gainers included SELLAS Life Sciences (+17.66%), Lucid (+15.63%), and Moderna (+12.59%), as the Pharma/Healthcare sector surged 3.41% with broad 88% breadth. The positioning data (put-call 1.32) suggests the advance is heavily hedged, with protection still well-bid.
+Mega-cap tech showed resilience: Microsoft surged 5.71%, Apple gained 3.14%, Amazon rose 2.50%, and Meta added 1.36%. News that SpaceX will join the Nasdaq-100 on July 7 fueled enthusiasm around passive fund inflows.
+
+Among top market gainers, biotech stood out with SELLAS Life Sciences (+17.66%), Moderna (+12.59%), and ImmunityBio (+11.81%) leading, while Lucid Group jumped 15.62%.
+
+Gold rallied 1.20% to $4,096, signaling safe-haven demand amid geopolitical tensions following confirmed U.S. retaliatory strikes on Iran. Crude oil fell 3.74% to $69.23, likely reflecting supply concerns. Bitcoin edged up 0.41%, while the dollar was stable across major pairs.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.02  →  **Neutral**
+**Today's Score:** +0.03  →  **Neutral**
 **Trend (5-day EMA):** -0.01  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.00 |
-| News headlines | 20% | +0.05 |
-| Reddit | 0% | -0.12 |
+| News headlines | 20% | +0.11 |
+| Reddit | 0% | -0.06 |
 | Fed (rate expectations) | 10% | +0.11 |
 
-_Equities rose with Nasdaq -1.1%, S&P 500 -0.1%, VIX -2.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.5%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -1.7bp). Today's overall market tone: Neutral._
+_Equities rose with Nasdaq -1.1%, S&P 500 -0.1%, VIX -2.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.5%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -1.7bp). Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): Minneapolis Fed President Neel Kashkari says he expects a rate hike this year
-- 🔴 Most bearish (-0.73): Bond yields are falling as inflation pops. The Fed’s tough talk under Warsh is helping."
+- 🔴 Most bearish (-0.92): Italy regulator probes Microsoft over ’Microsoft 365’ price hike"
