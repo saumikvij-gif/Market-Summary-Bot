@@ -794,3 +794,44 @@ _Equities rose with Nasdaq -1.1%, S&P 500 -0.1%, VIX -2.5%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): Minneapolis Fed President Neel Kashkari says he expects a rate hike this year
 - 🔴 Most bearish (-0.92): Italy regulator probes Microsoft over ’Microsoft 365’ price hike"
+2026-06-29,Slightly Bullish,29,"## Market Overview
+
+U.S. equities rallied sharply on Monday, with the Nasdaq 100 surging 2.25% as technology and semiconductor stocks led a broad-based risk-on session. The S&P 500 added 1.18%, while the Dow Jones gained a more modest 0.59%. The Russell 2000 remained virtually flat, highlighting the concentrated nature of the advance. The VIX declined 4.13% to 17.65, signaling reduced market anxiety.
+
+## Technology & AI Stack Dominance
+
+The session was defined by exceptional strength across the AI technology stack. Memory stocks soared 4.38%, outpacing the Nasdaq by over 200 basis points with 100% breadth, suggesting a short-squeeze dynamic. Semiconductors and networking stocks both gained approximately 2.7-2.8%, also showing evidence of short-covering as elevated put/call ratios and short interest were unwound. Alphabet led mega-cap tech with a 4.96% gain, while AMD climbed 3.43% and Amazon advanced 3.20%. Meta rose 2.24%, though Microsoft bucked the trend with a 1.18% decline.
+
+Key positioning metrics point to a squeeze in memory, networking, and SaaS sectors, where high short interest and put protection levels amplified the upside move. Hyperscalers advanced 2.24% with complacent positioning, suggesting the rally may have further room to run.
+
+## Standout Movers & M&A Activity
+
+Beyond the major indices, several standout gainers captured attention. **Ouster surged 28.68%**, while **Iridium Communications jumped 25.44%** following news of Rocket Lab's $8 billion acquisition deal. **SELLAS Life Sciences (+24.70%)**, **FuelCell Energy (+24.17%)**, and **ViaSat (+23.79%)** also posted dramatic gains. Comcast reportedly soared around 20% on spinoff news related to NBCUniversal and Sky, while SpaceX's fast-tracked addition to the Nasdaq-100 is expected to drive substantial ETF buying demand.
+
+## Cross-Asset Signals
+
+Commodity markets offered mixed signals: crude oil rose 1.72% to $70.42, while gold retreated 1.61%, consistent with improved risk appetite. Bitcoin climbed 1.58%, reinforcing the tech-driven momentum. Treasury yields remained largely stable, with the 10-year at 4.37%, offering little resistance to the equity rally. The dollar edged higher against the yen but softened versus the euro and pound, reflecting balanced currency flows.
+
+Overall, Monday's session showcased a powerful tech-led rally fueled by short-covering, M&A activity, and robust positioning dynamics across semiconductor and AI-related sectors.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.29  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.42 |
+| News headlines | 20% | +0.03 |
+| Reddit | 0% | -0.06 |
+| Fed (rate expectations) | 10% | -0.11 |
+
+_Equities rose with Nasdaq +2.2%, S&P 500 +1.2%, VIX -4.1%. Sector breadth: 6/11 sectors up. 10Y yield +0.1%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Today's overall market tone: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): China's economy picks up in June on rebounding U.S. exports, analysts say
+- 🔴 Most bearish (-0.96): Honeywell Aerospace shares slip in Nasdaq debut"
