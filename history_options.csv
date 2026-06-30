@@ -98,12 +98,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-06-26,Pharma / Healthcare,0.947,27319,28834,8,8,0.0171,1.04,1.27,3.64,at highs,Bullish,broad advance; positioning unremarkable
 2026-06-26,SaaS,0.652,71182,109241,9,9,0.0578,1.027,-1.68,-3.18,falling,Bearish,decline without hedging demand — flows not panicked
 2026-06-26,Semiconductors / Compute,0.675,387239,573913,10,10,0.0287,1.015,0.05,-1.27,drifting,Neutral,quiet session
-2026-06-29,All tracked,0.857,1510230,1762402,58,58,0.0229,1.04,0.9,-0.44,drifting,Bullish,broad advance; positioning unremarkable
+2026-06-29,All tracked,0.801,1391380,1736571,58,58,0.0229,1.04,0.9,-0.44,drifting,Bullish,broad advance; positioning unremarkable
 2026-06-29,Banking,0.681,16423,24115,8,8,0.0002,1.121,0.08,-0.51,at highs,Neutral,quiet session
 2026-06-29,Consumer,0.766,44751,58437,8,8,0.0195,1.045,-0.78,0.98,drifting,Bearish,orderly decline; positioning unremarkable
-2026-06-29,Hyperscalers & Neoclouds,0.417,241448,578809,7,7,0.0153,1.094,2.24,-0.22,bouncing,Bullish,broad advance; positioning unremarkable
+2026-06-29,Hyperscalers & Neoclouds,0.574,242987,423414,7,7,0.0153,1.094,2.24,-0.22,bouncing,Bullish,broad advance; positioning unremarkable
 2026-06-29,Memory (DRAM/NAND/HBM),1.589,347294,218546,4,4,0.0646,1.044,4.39,-10.42,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
-2026-06-29,Networking / Interconnect,0.946,94131,99459,7,7,0.0526,1.051,2.8,-5.02,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
+2026-06-29,Networking / Interconnect,0.63,74685,118609,7,7,0.0526,1.051,2.8,-5.02,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
 2026-06-29,Pharma / Healthcare,0.647,34216,52898,8,8,0.0171,1.04,0.59,8.81,at highs,Bullish,complacent advance — few hedges or shorts in place
 2026-06-29,SaaS,0.367,82174,223649,9,9,0.0578,1.027,1.83,6.75,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
-2026-06-29,Semiconductors / Compute,1.236,717439,580659,10,10,0.0287,1.015,2.72,-6.55,bouncing,Bullish,"advance, but heavily hedged — protection still bid"
+2026-06-29,Semiconductors / Compute,0.849,605047,712594,10,10,0.0287,1.015,2.72,-6.55,bouncing,Bullish,broad advance; positioning unremarkable

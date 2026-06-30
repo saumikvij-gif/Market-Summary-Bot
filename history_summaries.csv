@@ -794,44 +794,48 @@ _Equities rose with Nasdaq -1.1%, S&P 500 -0.1%, VIX -2.5%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): Minneapolis Fed President Neel Kashkari says he expects a rate hike this year
 - 🔴 Most bearish (-0.92): Italy regulator probes Microsoft over ’Microsoft 365’ price hike"
-2026-06-29,Slightly Bullish,29,"## Market Overview
+2026-06-29,Slightly Bullish,23,"> **Note:** No US trading session on 2026-06-30. Figures are from the last session (2026-06-29).
 
-U.S. equities rallied sharply on Monday, with the Nasdaq 100 surging 2.25% as technology and semiconductor stocks led a broad-based risk-on session. The S&P 500 added 1.18%, while the Dow Jones gained a more modest 0.59%. The Russell 2000 remained virtually flat, highlighting the concentrated nature of the advance. The VIX declined 4.13% to 17.65, signaling reduced market anxiety.
+## Overview
 
-## Technology & AI Stack Dominance
+U.S. equities rallied on the final trading day of June, with technology leading a broad advance. The Nasdaq 100 surged 2.25%, outpacing the S&P 500's 1.18% gain and the Dow's more modest 0.59% advance. Small-caps lagged, with the Russell 2000 effectively flat (+0.01%), highlighting continued preference for mega-cap growth. The VIX edged down slightly to 17.58, consistent with a calm risk-on session.
 
-The session was defined by exceptional strength across the AI technology stack. Memory stocks soared 4.38%, outpacing the Nasdaq by over 200 basis points with 100% breadth, suggesting a short-squeeze dynamic. Semiconductors and networking stocks both gained approximately 2.7-2.8%, also showing evidence of short-covering as elevated put/call ratios and short interest were unwound. Alphabet led mega-cap tech with a 4.96% gain, while AMD climbed 3.43% and Amazon advanced 3.20%. Meta rose 2.24%, though Microsoft bucked the trend with a 1.18% decline.
+## Sector Performance and Notable Movers
 
-Key positioning metrics point to a squeeze in memory, networking, and SaaS sectors, where high short interest and put protection levels amplified the upside move. Hyperscalers advanced 2.24% with complacent positioning, suggesting the rally may have further room to run.
+The AI and semiconductor complex drove market gains, with memory chips leading the charge. The Memory sector jumped 4.38%, showing 100% breadth and exhibiting signs of a short-squeeze rebound according to positioning data (1.59 put/call ratio, 6.5% short float). **Alphabet** stood out among mega-caps with a 4.96% surge, while **AMD** gained 3.43% and **Amazon** rose 3.20%. Networking and semiconductor compute also posted strong gains of 2.80% and 2.72% respectively, both showing bullish positioning characteristics.
 
-## Standout Movers & M&A Activity
+Microsoft bucked the trend, falling 1.18%, while Apple dipped 0.72%. The consumer sector underperformed broadly, declining 0.78%, though still outpacing its benchmark.
 
-Beyond the major indices, several standout gainers captured attention. **Ouster surged 28.68%**, while **Iridium Communications jumped 25.44%** following news of Rocket Lab's $8 billion acquisition deal. **SELLAS Life Sciences (+24.70%)**, **FuelCell Energy (+24.17%)**, and **ViaSat (+23.79%)** also posted dramatic gains. Comcast reportedly soared around 20% on spinoff news related to NBCUniversal and Sky, while SpaceX's fast-tracked addition to the Nasdaq-100 is expected to drive substantial ETF buying demand.
+Among top gainers, **Ouster** (OUST) soared 28.68%, **Iridium Communications** (IRDM) jumped 25.44% on news of an $8 billion acquisition by Rocket Lab, and **SELLAS Life Sciences** (SLS) rallied 24.70%. **FuelCell Energy** (FCEL) and **ViaSat** (VSAT) also posted gains exceeding 23%.
 
 ## Cross-Asset Signals
 
-Commodity markets offered mixed signals: crude oil rose 1.72% to $70.42, while gold retreated 1.61%, consistent with improved risk appetite. Bitcoin climbed 1.58%, reinforcing the tech-driven momentum. Treasury yields remained largely stable, with the 10-year at 4.37%, offering little resistance to the equity rally. The dollar edged higher against the yen but softened versus the euro and pound, reflecting balanced currency flows.
+The dollar strengthened notably, pushing USD/JPY to 162.32—a 40-year low for the yen that's testing Japanese authorities' tolerance. EUR/USD and GBP/USD both declined modestly. Central banks are reportedly preparing to reduce dollar holdings for the first time, per recent surveys—a potential long-term headwind for the greenback despite near-term strength.
 
-Overall, Monday's session showcased a powerful tech-led rally fueled by short-covering, M&A activity, and robust positioning dynamics across semiconductor and AI-related sectors.
+Gold held near $4,000, up marginally, but faces its worst quarter in 13 years. Bitcoin declined 1.31% to $59,211, extending recent weakness. Treasury yields remained stable at 4.37% for the 10-year, with the T-bill curve steepening slightly.
+
+## Outlook Considerations
+
+Tariff concerns resurfaced as former President Trump threatened 100% tariffs on digital taxes, adding uncertainty for tech. Meanwhile, investors await U.S.-Iran talks and key economic data, including the upcoming June jobs report. SpaceX's fast-tracked addition to the Nasdaq-100 could drive significant ETF-related buying flows in coming sessions.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.29  →  **Slightly Bullish**
-**Trend (5-day EMA):** +0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.23  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.07  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.42 |
-| News headlines | 20% | +0.03 |
-| Reddit | 0% | -0.06 |
+| Market data | 70% | +0.37 |
+| News headlines | 20% | -0.09 |
+| Reddit | 0% | -0.02 |
 | Fed (rate expectations) | 10% | -0.11 |
 
-_Equities rose with Nasdaq +2.2%, S&P 500 +1.2%, VIX -4.1%. Sector breadth: 6/11 sectors up. 10Y yield +0.1%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +2.2%, S&P 500 +1.2%, VIX -0.4%. Sector breadth: 6/11 sectors up. 10Y yield +0.1%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Today's overall market tone: Slightly Bullish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.92): China's economy picks up in June on rebounding U.S. exports, analysts say
-- 🔴 Most bearish (-0.96): Honeywell Aerospace shares slip in Nasdaq debut"
+- 🟢 Most bullish (+0.86): Best high-yield savings interest rates today, Tuesday, June 30, 2026: Earn up to 4.10% APY with Bask Bank
+- 🔴 Most bearish (-0.95): Mortgage and refinance interest rates today, Tuesday, June 30, 2026: Rates mixed, but lowest 30-year rate since May"
