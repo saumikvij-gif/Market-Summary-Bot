@@ -107,3 +107,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-06-29,Pharma / Healthcare,0.647,34216,52898,8,8,0.0171,1.04,0.59,8.81,at highs,Bullish,complacent advance — few hedges or shorts in place
 2026-06-29,SaaS,0.367,82174,223649,9,9,0.0578,1.027,1.83,6.75,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
 2026-06-29,Semiconductors / Compute,0.849,605047,712594,10,10,0.0287,1.015,2.72,-6.55,bouncing,Bullish,broad advance; positioning unremarkable
+2026-06-30,All tracked,0.9,1453720,1614358,58,58,0.0229,1.04,-0.29,1.96,drifting,Bearish,orderly decline; positioning unremarkable
+2026-06-30,Banking,0.617,33109,53696,8,8,0.0002,1.121,-1.15,-1.9,drifting,Bearish,decline without hedging demand — flows not panicked
+2026-06-30,Consumer,1.343,171321,127559,8,8,0.0195,1.045,-1.1,-1.41,drifting,Bearish,orderly decline; positioning unremarkable
+2026-06-30,Hyperscalers & Neoclouds,0.622,210972,339429,7,7,0.0153,1.094,1.05,0.19,stabilizing,Bullish,broad advance; positioning unremarkable
+2026-06-30,Memory (DRAM/NAND/HBM),1.53,256115,167426,4,4,0.0646,1.044,0.21,2.49,drifting,Bullish,"advance, but heavily hedged — protection still bid"
+2026-06-30,Networking / Interconnect,0.895,103121,115170,7,7,0.0526,1.051,2.43,4.73,rising,Bullish,broad advance; positioning unremarkable
+2026-06-30,Pharma / Healthcare,0.937,31530,33661,8,8,0.0171,1.04,-1.12,5.29,at highs,Bearish,orderly decline; positioning unremarkable
+2026-06-30,SaaS,0.424,64484,152236,9,9,0.0578,1.027,-0.67,4.65,stabilizing,Bearish,decline without hedging demand — flows not panicked
+2026-06-30,Semiconductors / Compute,0.906,655941,723813,10,10,0.0287,1.015,3.86,2.38,drifting,Bullish,broad advance; positioning unremarkable
