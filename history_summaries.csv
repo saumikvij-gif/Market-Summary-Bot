@@ -839,46 +839,48 @@ _Equities rose with Nasdaq +2.2%, S&P 500 +1.2%, VIX -0.4%. Sector breadth: 6/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.86): Best high-yield savings interest rates today, Tuesday, June 30, 2026: Earn up to 4.10% APY with Bask Bank
 - 🔴 Most bearish (-0.95): Mortgage and refinance interest rates today, Tuesday, June 30, 2026: Rates mixed, but lowest 30-year rate since May"
-2026-06-30,Slightly Bullish,13,"## Market Overview
+2026-06-30,Neutral,7,"> **Note:** No US trading session on 2026-07-01. Figures are from the last session (2026-06-30).
 
-U.S. equities advanced on the final trading day of June 2026, led by a sharp rally in semiconductor and technology stocks. The Nasdaq 100 surged 1.68%, outpacing the S&P 500's 0.79% gain and the Dow's modest 0.26% rise. The VIX dropped 6.80% to 16.45, reflecting diminished near-term volatility concerns as investors closed out the month and first half of the year.
+## Market Overview
 
-## Semiconductor Rally Drives Tech Higher
+U.S. equities advanced on the first trading day of the second half of 2026, with technology leading the charge. The Nasdaq 100 surged 1.68%, powered by strength in semiconductors and AI infrastructure stocks, while the S&P 500 added 0.79%. The Dow Jones lagged with a modest 0.26% gain, reflecting weakness in banks and consumer names. The VIX ticked up 1.64% to 16.72, suggesting some underlying caution despite the headline gains.
 
-Semiconductors were the standout performers, with the sector's compute segment jumping 3.86% and networking stocks adding 2.43%. **SanDisk** led the charge among major names with an exceptional 10.89% gain, followed by **AMD** (+7.68%) and **Intel** (+6.01%). Nvidia, Apple, and Arm also posted solid gains of 2.63%, 2.70%, and 3.20%, respectively. Among broader market gainers, **Ambarella** surged 28.04% and **MaxLinear** climbed 18.03%, underscoring strong momentum in specialty chip names.
+## Tech and AI Dominate
 
-Memory stocks advanced 0.22% despite heavy put protection (P/C ratio of 1.53), suggesting investors remain hedged even as they position for upside. Networking and compute segments showed cleaner bullish positioning with balanced option flows and broad participation.
+Semiconductor stocks were the day's standout performers, with the sector up 3.86% and outperforming the Nasdaq by over 200 basis points. AMD led mega-cap chips with a 7.68% surge to $580.91, while Intel jumped 6.01%. SanDisk delivered the most explosive move among chip-related names, skyrocketing 10.89% to $2,273.73. Nvidia climbed 2.63%, Apple gained 2.70%, and Arm advanced 3.20%, underscoring broad-based enthusiasm for AI compute infrastructure.
 
-## Rate Concerns Emerge
+Among the broader market's top gainers, Ambarella (AMBA) soared 28.04% and MaxLinear (MXL) rallied 18.03%, both benefiting from the semiconductor momentum. AeroVironment (AVAV) jumped 18.76%, while FuelCell Energy (FCEL) surged 20.84%, possibly reflecting renewed interest in alternative energy plays.
 
-Cleveland Federal Reserve President Hammack provided a notable hawkish note, warning that artificial intelligence could fuel inflation and suggesting rate hikes may be necessary. This commentary coincided with a 4 basis point rise in 10-year Treasury yields to 4.42% and a similar uptick in short-term bill yields. The comments inject uncertainty into the inflation outlook, though equity investors appeared unfazed on Tuesday.
+Networking and interconnect stocks also outperformed, rising 2.43%, with Broadcom up 1.42%. Memory stocks advanced 0.22% despite heavy put/call ratios (1.53), suggesting investors remain hedged even as prices climb.
 
-## Commodities and Crypto Weaken
+## Policy and Macro Concerns
 
-Risk-off sentiment surfaced in alternative assets. Bitcoin fell 3.06% to $58,541, pressured by headlines around Strategy's plans to sell up to $1.25 billion in Bitcoin. Crude oil declined 1.02% and gold slipped 0.42%, while the dollar strengthened modestly against the euro and yen.
+Cleveland Fed President Hammack's comments that AI could fuel inflation and necessitate rate hikes weighed on sentiment in some corners. The 10-year Treasury yield rose 4 basis points to 4.42%, while the 13-week T-Bill yield jumped 1.41% to 3.73%, reflecting a modest hawkish tilt in rate expectations.
+
+Reports of Microsoft planning thousands of layoffs despite heavy AI investment highlighted the sector's cost discipline challenges. Meanwhile, geopolitical tensions flared with reports of a ship running aground in the Strait of Hormuz, though oil declined 0.89% to $68.88.
 
 ## Cross-Asset Signals
 
-The combination of rising yields, falling crypto, and a strong semiconductor rally suggests rotation into perceived AI beneficiaries rather than broad risk appetite. Traditional defensive sectors—banking, pharma, and consumer—all declined over 1%, pointing to sector-specific rather than broad-based strength. June closes with clear leadership in technology, but lingering inflation concerns and rate uncertainty could test this narrow rally in the months ahead.
+Gold fell 0.92% and Bitcoin dropped 1.08%, both retreating as risk appetite favored equities. The dollar edged higher against the euro and pound, consistent with rising yields. Banking, consumer, and pharma sectors all declined over 1%, reflecting a narrow, tech-driven rally rather than broad economic optimism.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.13  →  **Slightly Bullish**
-**Trend (5-day EMA):** +0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.07  →  **Neutral**
+**Trend (5-day EMA):** +0.07  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
-| Market data | 70% | +0.24 |
-| News headlines | 20% | -0.01 |
-| Reddit | 0% | +0.08 |
+| Market data | 70% | +0.13 |
+| News headlines | 20% | +0.06 |
+| Reddit | 0% | +0.10 |
 | Fed (rate expectations) | 10% | -0.35 |
 
-_Equities rose with Nasdaq +1.7%, S&P 500 +0.8%, VIX -6.8%. Sector breadth: 4/11 sectors up. 10Y yield +1.0%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +5.2bp). Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +1.7%, S&P 500 +0.8%, VIX +1.6%. Sector breadth: 4/11 sectors up. 10Y yield +1.0%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +5.2bp). Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.66): Took advantage of yesterday's dip for 500% gain
-- 🔴 Most bearish (-0.95): 20 stocks in the S&P 500 that plunged the most in 2026’s first half"
+- 🟢 Most bullish (+0.86): Best high-yield savings interest rates today, Wednesday, July 1, 2026: Earn up to 4.10% APY with Bask Bank
+- 🔴 Most bearish (-0.96): Microsoft is reportedly planning thousands of layoffs as it spends on AI"
