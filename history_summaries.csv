@@ -884,38 +884,38 @@ _Equities rose with Nasdaq +1.7%, S&P 500 +0.8%, VIX +1.6%. Sector breadth: 4/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.86): Best high-yield savings interest rates today, Wednesday, July 1, 2026: Earn up to 4.10% APY with Bask Bank
 - 🔴 Most bearish (-0.96): Microsoft is reportedly planning thousands of layoffs as it spends on AI"
-2026-07-01,Slightly Bearish,-18,"## Market Overview
+2026-07-01,Slightly Bearish,-16,"## Market Overview
 
-U.S. equities diverged sharply on July 1st, with the Nasdaq 100 plunging 1.54% while the Dow Jones remained nearly flat (-0.03%). The session was dominated by dramatic bifurcation within technology, as investors digested Meta's reported pivot toward building a cloud business to monetize excess AI computing capacity. The S&P 500 declined 0.22%, and the VIX edged up 0.85% to 16.59, reflecting modest unease.
+U.S. equities closed mixed on July 1st as a sharp sector rotation drove divergent performance across major indices. The Nasdaq 100 fell 1.54%, weighed down by a semiconductor selloff, while the Dow Jones held essentially flat (-0.03%) and the S&P 500 dipped 0.22%. The VIX edged up 0.85% to 16.59, though options positioning suggests the decline was orderly rather than panicked.
 
-## Tech Sector Rotation: Winners and Losers
+## Semiconductor Rout Drives Tech Weakness
 
-Meta Platforms surged 8.81% on reports it will offer cloud services using its extensive AI infrastructure, positioning itself as a competitor to AWS and Azure. Microsoft advanced 3.02%, while the hyperscaler and SaaS sectors rallied +1.07% and +2.91% respectively, with strong breadth. According to positioning data, SaaS exhibited a classic short-squeeze dynamic (P/C 0.53, 5.8% short float), suggesting heavily positioned bears were forced to cover.
+A violent rotation out of semiconductor and memory stocks dominated the session. Micron plunged 10.57%, SanDisk tumbled 10.62%, and Intel dropped 9.03% amid headlines about supply glut concerns and Meta's potential cloud pivot. AMD fell 6.89%, Nvidia declined 1.25%, and Arm shed 4.82%. The Memory sector fell 8.45%, while the broader Semiconductors/Compute segment lost 5.28%. Positioning data showed put/call ratios below 0.65 for these sectors, indicating the selloff occurred ""without hedging demand"" — a sign that flows were not panicked, but rather reflected profit-taking or strategic repositioning.
 
-Conversely, semiconductor and memory stocks suffered steep losses. Micron (-10.57%), SanDisk (-10.62%), Intel (-9.03%), and AMD (-6.89%) led the declines, dragging the Memory sector down 8.45% and Semiconductors/Compute down 5.28%. Positioning data showed orderly declines without panic hedging (P/C ratios below 1.0), indicating controlled de-risking rather than capitulation. The narrative centers on potential demand uncertainty if hyperscalers like Meta shift from chip purchases to in-house capacity monetization.
+## Meta's Cloud Ambitions Fuel Rotation
 
-## Top Gainers and Movers
+Meta surged 8.81%, adding nearly $50, as reports emerged that the company is building a cloud business to sell excess AI compute capacity. The move fueled gains across hyperscalers and software: Microsoft rose 3.02%, Amazon gained 1.41%, and the SaaS sector rallied 2.91%. The SaaS sector showed signs of a short-squeeze rebound, with a low put/call ratio (0.53) and elevated short interest (5.8%). Banking also advanced 2.12% with strong breadth, though a put/call ratio of 1.20 suggests heavy hedging activity despite the rally.
 
-Among broader market standouts, **Freedom Holding Corp. (FRHC)** jumped 20.42%, **Reddit (RDDT)** rallied 13.93%, and small-cap names **DSC Holdings** (+39.67%) and **Regencell Bioscience (RGC)** (+31.86%) posted notable gains, though on lower volume.
+## Macro and Policy Backdrop
 
-## Macro and Cross-Asset Signals
+Fed Chair Kevin Warsh declined to signal a July rate decision but reiterated that inflation remains ""too high,"" even as Kalshi traders bet that inflation peaked in May. The 10-year Treasury yield rose 6 basis points to 4.47%, while the Atlanta Fed slashed its Q2 GDP growth forecast from 3.0% to 1.2%, underscoring stagflation concerns. Euro area inflation fell to 2.8%, and Bitcoin rallied 3.27% to $60,423, potentially reflecting safe-haven demand or risk appetite amid fiat currency uncertainty.
 
-Fed Chair Kevin Warsh declined to signal July policy intentions but reiterated that inflation remains ""too high,"" even as Kalshi traders bet energy-driven inflation peaked in May. The 10-year Treasury yield rose 6 basis points to 4.47%, reflecting persistent hawkish sentiment. Bitcoin rallied 3.40% to $60,542, while crude oil fell 2.03% and gold edged up 0.15%, consistent with risk-on rotation favoring digital assets over energy.
+## Notable Movers
 
-The euro slipped 0.36% against the dollar as eurozone inflation moderated to 2.8% annually, widening the transatlantic policy divergence.
+Among broader market gainers, DSC Holdings surged 39.67%, Regencell Bioscience jumped 31.86%, and Freedom Holding climbed 20.42%. Reddit rallied 13.93%, continuing its volatile post-IPO trajectory.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.17  →  **Slightly Bearish**
+**Today's Score:** -0.16  →  **Slightly Bearish**
 **Trend (5-day EMA):** -0.01  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.16 |
-| News headlines | 20% | -0.43 |
-| Reddit | 0% | -0.00 |
+| News headlines | 20% | -0.36 |
+| Reddit | 0% | +0.01 |
 | Fed (rate expectations) | 10% | +0.21 |
 
 _Equities fell with Nasdaq -1.5%, S&P 500 -0.2%, VIX +0.8%. Sector breadth: 7/11 sectors up. 10Y yield +1.3%. News headlines read bearish. Fed-policy expectations eased (13-Week T-Bill Yield -3.2bp). Today's overall market tone: Slightly Bearish._
@@ -924,4 +924,4 @@ _Equities fell with Nasdaq -1.5%, S&P 500 -0.2%, VIX +0.8%. Sector breadth: 7/11
 
 **Standout headlines:**
 - 🟢 Most bullish (+0.34): Sorry for tanking the semi conductor market, i bought $800k worth of NVDA at the top last Friday
-- 🔴 Most bearish (-0.94): CoreWeave, Nebius shares tumble as Meta stands to become a fresh threat in the cloud"
+- 🔴 Most bearish (-0.96): Sandisk’s and Micron’s stocks sink as the rotation trade builds, but supply shortages should limit losses"
