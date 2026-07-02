@@ -925,3 +925,48 @@ _Equities fell with Nasdaq -1.5%, S&P 500 -0.2%, VIX +0.8%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.34): Sorry for tanking the semi conductor market, i bought $800k worth of NVDA at the top last Friday
 - 🔴 Most bearish (-0.96): Sandisk’s and Micron’s stocks sink as the rotation trade builds, but supply shortages should limit losses"
+2026-07-02,Neutral,0,"## Market Overview
+
+U.S. equities delivered a sharp divergence on July 2, with the Dow Jones surging 1.14% and the S&P 500 flat at +0.00%, while the Nasdaq 100 tumbled 1.61% as technology—particularly semiconductors and AI infrastructure—sold off aggressively. The VIX edged down 2.65% to 16.15, suggesting that despite the tech rout, broader market anxiety remained contained.
+
+## Tech Sector Carnage and Rotation
+
+The session was dominated by a punishing selloff across the AI and semiconductor stack. Memory stocks bore the brunt, with the sector down 10.15% and only 38% breadth. Micron plunged 5.49%, Intel fell 5.25%, and SanDisk collapsed 14.13%. Networking and interconnect names also cratered, down 8.65%, while the broader semiconductors/compute segment declined 3.55%. Nvidia slipped 1.39%, AMD lost 4.26%, and Arm dropped 6.58%. Meta shed 4.90%, reflecting weakness in hyperscalers (-1.56%).
+
+Notably, options positioning showed low put/call ratios across these beaten-down sectors, indicating ""decline without hedging demand"" and suggesting flows were not panicked—potentially a sign of orderly profit-taking or rotation rather than outright capitulation. Reports of Palantir's CEO criticizing AI model overselling, Michael Burry's new AI short positions, and Nvidia's robotics pivot all appeared to weigh on sentiment.
+
+Apple provided a rare bright spot in mega-cap tech, rallying 4.84%, while Microsoft added 1.62%. Meanwhile, defensive and cyclical sectors outperformed: Pharma/Healthcare led with a 3.17% gain on 88% breadth, Consumer rose 2.45%, and SaaS climbed 0.49%. Banking held flat but showed 81% breadth, signaling quiet resilience.
+
+## Cross-Asset Signals and Macro Backdrop
+
+June payrolls rose just 57,000, well below expectations, raising questions about labor market momentum. Yet the 10-year Treasury yield edged up 1 basis point to 4.48%, and the dollar weakened (EUR/USD +0.45%, USD/JPY -0.88%), hinting that rate-cut expectations may be evolving cautiously.
+
+Gold rallied 1.30% to $4,135.50, and Bitcoin gained 1.17%, both benefiting from dollar softness and safe-haven flows amid tech turbulence. Crude oil was nearly flat at $68.46.
+
+Among the day's top gainers, Genuine Parts (GPC) surged 12.92%, Avis Budget (CAR) climbed 11.23%, and smaller-cap names like SLBT and PLBL posted double-digit gains, illustrating pockets of strength in old-economy and speculative corners.
+
+## Outlook
+
+The divergence between mega-cap tech winners and broad market defensives, combined with subdued hedging activity despite steep declines, suggests investors are reassessing AI valuations while rotating into economically sensitive and healthcare names. The soft payrolls print and resilient dollar-sensitive assets warrant close attention as July progresses.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.00  →  **Neutral**
+**Trend (5-day EMA):** -0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.02 |
+| News headlines | 20% | -0.04 |
+| Reddit | 0% | +0.04 |
+| Fed (rate expectations) | 10% | +0.21 |
+
+_Equities fell with Nasdaq -1.6%, S&P 500 +0.0%, VIX -2.6%. Sector breadth: 8/11 sectors up. 10Y yield +0.2%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -3.2bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.89): Wall Street indexes end holiday-shortened week with gains of around 2% each
+- 🔴 Most bearish (-0.90): Why Tesla’s stock sank to its worst day in a year despite blowout delivery numbers"
