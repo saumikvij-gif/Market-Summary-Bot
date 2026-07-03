@@ -5413,7 +5413,7 @@ run_date,section,name,price,change,pct_change
 2026-07-02,stocks,Amazon,242.67,0.97,0.4
 2026-07-02,stocks,Apple,308.63,14.25,4.84
 2026-07-02,stocks,Arm,315.28,-22.19,-6.58
-2026-07-02,commodities,Bitcoin,62545.74,1028.6602,1.67
+2026-07-02,commodities,Bitcoin,62529.91,1132.1484,1.84
 2026-07-02,stocks,Broadcom,360.45,-8.89,-2.41
 2026-07-02,stocks,Coherent,333.36,-35.29,-9.57
 2026-07-02,sectors,Communication Svc,109.6,-0.14,-0.13
