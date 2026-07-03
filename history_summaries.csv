@@ -925,46 +925,46 @@ _Equities fell with Nasdaq -1.5%, S&P 500 -0.2%, VIX +0.8%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.34): Sorry for tanking the semi conductor market, i bought $800k worth of NVDA at the top last Friday
 - 🔴 Most bearish (-0.96): Sandisk’s and Micron’s stocks sink as the rotation trade builds, but supply shortages should limit losses"
-2026-07-02,Neutral,-1,"## Market Overview
+2026-07-02,Neutral,-2,"> **Note:** No US trading session on 2026-07-03. Figures are from the last session (2026-07-02).
 
-U.S. markets delivered a stark divergence on July 2, with the Dow Jones surging 1.14% while the Nasdaq 100 tumbled 1.61%, underscoring a pronounced rotation away from technology and into traditional sectors. The S&P 500 closed essentially flat (+0.00%), masking significant sectoral volatility beneath the surface. The VIX declined 2.65% to 16.15, suggesting the selloff in tech was viewed as orderly rather than panic-driven.
+## Market Overview
 
-## Semiconductor Carnage and Tech Weakness
+U.S. equities delivered a split session on July 3, 2026, as a sharp rotation out of technology and semiconductor stocks pushed the Nasdaq 100 down 1.61%, while the Dow Jones surged 1.14% and the S&P 500 closed essentially flat (+0.00%). The Russell 2000 declined 0.55%, and the VIX edged lower by 2.11% to 15.81, suggesting limited panic despite the sector-specific turbulence.
 
-The session's defining narrative was a broad-based semiconductor rout. Memory and networking stocks bore the brunt of selling, with the Memory sector (DRAM/NAND/HBM) plunging 10.15% and Networking/Interconnect down 8.65%. SanDisk cratered 14.13%, Micron fell 5.49%, and Intel dropped 5.25%. Meta (-4.90%), AMD (-4.26%), and Arm (-6.58%) also suffered steep losses. Notably, positioning data showed put/call ratios remained subdued across semiconductors (0.37) and hyperscalers (0.42), indicating the decline occurred ""without hedging demand"" and flows were ""not panicked""—suggesting potential tax-loss harvesting or sector rebalancing rather than distress selling.
+## Technology Sector Rout
 
-Fueling the tech weakness were cautionary comments from Palantir's CEO about AI models being ""irresponsibly over-sold,"" and reports that Michael Burry has initiated AI short bets, citing the ""beginning of the end."" Additionally, Google's $4.7 billion EU antitrust fine added regulatory pressure to Big Tech sentiment.
+The session's defining narrative was broad-based weakness across the AI and semiconductor stack. Memory chipmakers bore the brunt of selling, with the Memory sector plunging 10.15%—SanDisk cratered 14.13%, Micron fell 5.49%, and Intel dropped 5.25%. Networking and interconnect names tumbled 8.65%, while the broader semiconductor/compute segment declined 3.55%. Meta (-4.90%), AMD (-4.26%), and Arm (-6.58%) all posted sharp losses, while Nvidia and Broadcom fell more modestly.
+
+Positioning data suggests conviction selling in memory stocks, with put/call ratios elevated at 1.55 and short interest rising. However, broader semiconductor declines occurred without significant hedging demand, indicating orderly rather than panicked flows. News of Meta exploring a $7.7 billion AI chip partnership with Samsung may have sparked competitive concerns across the chip ecosystem.
 
 ## Defensive Rotation and Standout Gainers
 
-Investors pivoted sharply into defensives. Pharma/Healthcare rallied 3.17% with 88% breadth, Consumer stocks gained 2.45%, and SaaS advanced 0.49% with robust 78% breadth. Apple bucked the tech selloff with a remarkable 4.84% gain, while Microsoft edged up 1.62%.
+Investors rotated sharply into defensive and cyclical sectors. Pharma/Healthcare (+3.17%) and Consumer (+2.45%) led gains, both showing broad participation with 88% and 62% breadth, respectively. SaaS also advanced (+0.49%) with 78% breadth. Apple was a notable bright spot, rallying 4.84%, with Reddit chatter noting ""every dip is buying opportunity in Apple.""
 
-Among top gainers, SL Science Holding surged 34.61%, Polibeli Group jumped 18.20%, and Genuine Parts climbed 12.92%. Avis Budget rallied 11.23%, reflecting strength in cyclical consumer names.
+Among individual names, **Genuine Parts Company (GPC)** surged 12.92%, **SELLAS Life Sciences (SLS)** gained 12.89%, and **Avis Budget Group (CAR)** climbed 11.23%, reflecting strength in industrials, biotech, and consumer-facing cyclicals.
 
-## Macro Context and Political Noise
+## Cross-Asset Signals
 
-A softer-than-expected June jobs report (57,000 payrolls vs. expectations) did little to move rate expectations, with the 10-year Treasury yield inching up 1bp to 4.48%. However, political commentary added noise: President Trump publicly criticized the ""hostile"" Fed and referenced Fed Chair Warsh's independence on rate policy, potentially weighing on risk sentiment.
-
-Bitcoin rose 1.74% to $61,459, while gold edged higher (+0.24%) and the dollar weakened against major currencies (EUR/USD +0.43%, USD/JPY -0.83%), signaling modest risk-off undertones beneath the sector rotation.
+Gold rallied 1.49% to $4,187, and Bitcoin gained 1.67%, both suggesting modest risk-off flows or inflation hedging despite subdued Treasury yields (10Y flat at 4.48%). The dollar firmed slightly against the yen, while oil was nearly unchanged. The combination of falling tech, rising gold, and stable rates points to sector-specific concerns rather than broad macroeconomic deterioration—likely driven by valuation reassessment and competitive dynamics within AI infrastructure.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.01  →  **Neutral**
+**Today's Score:** -0.02  →  **Neutral**
 **Trend (5-day EMA):** -0.01  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.02 |
-| News headlines | 20% | -0.07 |
-| Reddit | 0% | +0.07 |
-| Fed (rate expectations) | 10% | +0.21 |
+| News headlines | 20% | -0.04 |
+| Reddit | 0% | +0.10 |
+| Fed (rate expectations) | 10% | +0.00 |
 
-_Equities fell with Nasdaq -1.6%, S&P 500 +0.0%, VIX -2.6%. Sector breadth: 8/11 sectors up. 10Y yield +0.2%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -3.2bp). Today's overall market tone: Neutral._
+_Equities fell with Nasdaq -1.6%, S&P 500 +0.0%, VIX -2.1%. Sector breadth: 8/11 sectors up. 10Y yield +0.0%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.93): Tesla launches six-seater Model Y L in US to boost sales
-- 🔴 Most bearish (-0.90): Why Tesla’s stock sank to its worst day in a year despite blowout delivery numbers"
+- 🟢 Most bullish (+0.69): South Korean Stocks Gain 5% as Risk on Trades gain momentum Again
+- 🔴 Most bearish (-0.38): I’m more confused by yesterday’s sell-off than the earnings"
