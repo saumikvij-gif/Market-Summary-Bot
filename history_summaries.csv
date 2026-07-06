@@ -968,3 +968,46 @@ _Equities fell with Nasdaq -1.6%, S&P 500 +0.0%, VIX -2.1%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.69): South Korean Stocks Gain 5% as Risk on Trades gain momentum Again
 - 🔴 Most bearish (-0.38): I’m more confused by yesterday’s sell-off than the earnings"
+2026-07-06,Slightly Bullish,13,"## Technology Leads Broad Rally
+
+U.S. equities advanced Monday, with the Nasdaq 100 outperforming on renewed enthusiasm for semiconductor and AI-related stocks. The tech-heavy index surged 1.26%, while the S&P 500 added 0.72% and the Dow Jones climbed a more modest 0.29%. The VIX declined 1.52% to 15.57, reflecting subdued volatility as investors rotated into cyclical tech.
+
+## Semiconductor Surge Steals the Show
+
+The semiconductor sector delivered the day's standout performance, with AMD soaring 6.61% to lead mega-cap gainers. Broadcom jumped 3.73%, and Meta and Alphabet added 2.98% and 2.45%, respectively. Micron gained 0.94%, with MarketWatch citing a ""return to optimism"" about the chip sector. The Memory subsector posted a particularly strong 3.40% gain, while the broader Semiconductors/Compute group rose 2.97%—both significantly outpacing the Nasdaq.
+
+Positioning data suggests short covering amplified the rally in Memory and Networking stocks, where elevated short interest (6.5% and 5.3%, respectively) and put/call ratios above 1.0 in Memory indicate shorts were ""loaded into the selloff and fueled the rip,"" according to positioning analysis. Among smaller-cap chip names, ChipMOS Technologies (IMOS) surged 13.45% and AXT Inc (AXTI) jumped 12.19%, ranking among the market's top daily gainers. DSC Holdings Ltd. led all stocks with a 21.38% gain.
+
+Microsoft was a notable laggard, declining 0.96%, while Nvidia edged up just 0.37%.
+
+## Sector Rotation and Defensive Weakness
+
+The rally was concentrated in technology and financials—Banking gained 2.13% with 100% breadth—while defensive sectors lagged. Consumer stocks fell 1.67% and Pharma/Healthcare dropped 2.10%, both underperforming broader indices. Positioning data showed low put/call ratios in these sectors (0.51 and 0.59), suggesting ""decline without hedging demand"" and that ""flows not panicked.""
+
+## Cross-Asset Signals
+
+Treasury yields were little changed, with the 10-year yield dipping 1 basis point to 4.48%, offering no obvious catalyst from fixed income. The dollar strengthened modestly, with USD/JPY rising 0.46% to 162.08. Gold edged up 0.28% to $4,179, while crude oil was flat at $68.67. Bitcoin gained 0.72% to $64,132, with online chatter referencing supportive comments from former President Trump on cryptocurrency.
+
+The day's action reflected a classic risk-on rotation, with cyclical tech and financials advancing while defensive sectors and small-caps lagged, signaling investor confidence in growth narratives—particularly around AI infrastructure.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.13  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.04  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.20 |
+| News headlines | 20% | +0.03 |
+| Reddit | 0% | +0.11 |
+| Fed (rate expectations) | 10% | -0.15 |
+
+_Equities rose with Nasdaq +1.3%, S&P 500 +0.7%, VIX -1.5%. Sector breadth: 5/11 sectors up. 10Y yield -0.1%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +2.2bp). Today's overall market tone: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.93): Micron’s stock gains, signaling a ‘return to optimism’ about the chip sector
+- 🔴 Most bearish (-0.94): Bitcoin and ethereum prices today, Monday, July 6, 2026: Prices falling after last week's rebound"
