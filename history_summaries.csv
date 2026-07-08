@@ -1050,3 +1050,48 @@ _Equities fell with Nasdaq -1.8%, S&P 500 -0.5%, VIX +3.6%. Sector breadth: 6/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Tesla’s stock could rise 20% thanks to the potential for a SpaceX merger, analyst says
 - 🔴 Most bearish (-0.94): AI-related debt sells off sharply as Amazon looks to borrow another $25 billion"
+2026-07-08,Slightly Bearish,-25,"## Market Overview
+
+U.S. equities diverged sharply on July 8, with the technology-heavy Nasdaq 100 edging up 0.27% while the Dow Jones tumbled 1.09%, its steepest decline among major indices. The S&P 500 slipped 0.28%, and the Russell 2000 fell 0.88%, pointing to broad weakness in value and cyclical stocks. The VIX rose 4.77% to 16.90, reflecting modestly elevated hedging demand amid uncertain sentiment.
+
+## Semiconductor Strength Amid Sector Rotation
+
+Semiconductors and memory stocks powered the Nasdaq's resilience. **SanDisk** surged 6.77%, the standout among top gainers in the tech stack, while **Broadcom** jumped 4.83% following Apple's announcement of a chip deal worth more than $30 billion. **Nvidia** gained 3.65%, and **Micron** rose 1.11%, contributing to a 3.67% rally in the Memory sector—its best showing in recent sessions. Positioning data suggests a short-squeeze dynamic in memory names, with elevated short interest (6.5%) fueling the rebound after recent selling pressure.
+
+Meanwhile, mega-cap tech was mixed: Microsoft, Meta, and Alphabet all declined between 1.35% and 2.02%, weighing on the Hyperscalers & Neoclouds segment, which fell 0.96%. Amazon shed nearly 1%, reflecting rotation out of cloud infrastructure plays.
+
+## Fed Minutes Signal Policy Uncertainty
+
+The release of FOMC minutes from the June 16-17 meeting revealed divisions among Fed officials on the direction of interest rates, with some policymakers advocating caution amid sticky inflation and others open to easing. The 10-year Treasury yield rose 4 basis points to 4.57%, indicating bond market caution around the central bank's path forward. This ""family fight,"" as CNBC characterized it, may prolong uncertainty and weigh on rate-sensitive sectors like banking, which fell 2.47%.
+
+## Energy, Defensives Under Pressure
+
+Crude oil climbed 1.54% to $74.65 as U.S. forces conducted additional strikes on Iran, with diesel futures posting their largest daily gains in four years after Russia banned exports. Despite the geopolitical backdrop, energy-linked equities underperformed. Banking, consumer, and healthcare sectors all posted declines, reflecting broad defensiveness and rotation into select semiconductor plays.
+
+Bitcoin dropped 2.01%, while gold held steady. The dollar strengthened modestly, with USD/JPY up 0.29%, as investors positioned for a prolonged period of elevated U.S. rates.
+
+## Standout Movers
+
+Beyond semiconductors, the day's top gainers included **Penguin Solutions** (+25.13%), **TeraWulf** (+12.80%), and **Par Pacific Holdings** (+11.57%), reflecting idiosyncratic strength in smaller-cap names and energy-adjacent plays.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.25  →  **Slightly Bearish**
+**Trend (5-day EMA):** -0.12  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.25 |
+| News headlines | 20% | -0.35 |
+| Reddit | 0% | +0.09 |
+| Fed (rate expectations) | 10% | -0.00 |
+
+_Equities fell with Nasdaq +0.3%, S&P 500 -0.3%, VIX +4.8%. Sector breadth: 2/11 sectors up. 10Y yield +0.9%. News headlines read bearish. Fed-policy expectations held steady. Fresh Fed communications read neutral. Today's overall market tone: Slightly Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.75): Painful red days but I'm Still Standing, yeah yeah yeah
+- 🔴 Most bearish (-0.95): S&P downgrades Harley-Davidson to BB+ on margin concerns"
