@@ -1095,3 +1095,50 @@ _Equities fell with Nasdaq +0.3%, S&P 500 -0.3%, VIX +4.8%. Sector breadth: 2/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.59): Oil prices extend gains after hours as U.S. forces conduct additional strikes on Iran
 - 🔴 Most bearish (-0.88): Fed meeting minutes to show 'family fight' over rates. The squabble could drag on for a while"
+2026-07-09,Slightly Bullish,27,"## Market Overview
+
+US equities rallied on Thursday, with the Nasdaq 100 leading major indices higher by 1.62% as technology and semiconductor stocks surged. The S&P 500 advanced 0.81%, while the Dow Jones added a more modest 0.27%. The Russell 2000 gained 1.22%, and the VIX dropped 6.27% to 15.84, signaling a decline in hedging demand. Treasury yields eased slightly, with the 10-year falling 3 basis points to 4.54%.
+
+## Semiconductor and AI Resurgence
+
+The standout theme was a powerful rebound in semiconductor and AI infrastructure stocks. The Memory sector surged 4.78%, powered by **Micron** (+4.52%) following its announcement of a $3 billion strategic investment to strengthen the US semiconductor ecosystem. **SK Hynix**'s US offering being more than 7x oversubscribed underscored robust institutional appetite for memory exposure. 
+
+**SanDisk** led with a spectacular 7.59% gain, while **Arm Holdings** soared 9.20%, marking one of the session's most impressive moves. **AMD** jumped 5.67% and **Meta** climbed 4.70% after the social media giant announced its entry into the AI coding market, targeting Anthropic and OpenAI with custom chips—a move that eased investor concerns about AI spending. **Broadcom** (+3.20%) and **Intel** (+2.09%) also participated in the rally.
+
+Notably, positioning data suggests the Memory and Networking sectors experienced short-squeeze dynamics, with elevated short interest and put positioning fueling the sharp reversals.
+
+## Broader Market Themes
+
+Beyond mega-cap tech, the market saw broad participation. The Banking sector advanced 1.61% with 94% breadth, though elevated put/call ratios (1.40) indicate investors remain hedged despite the upside. SaaS stocks gained 0.97% with impressive 83% breadth, reflecting broad sector strength.
+
+Among top gainers across the market, **nLIGHT, Inc. (LASR)** surged 27.32%, **Fervo Energy (FRVO)** rose 16.04%, and **BridgeBio Pharma (BBIO)** gained 15.12%.
+
+## Commodities and Policy
+
+**Gold** climbed 1.23% to $4,132.60, extending its recent strength amid risk-on sentiment, while **crude oil** fell 2.33% to $71.81. **Bitcoin** advanced 1.75% to $63,220, tracking risk appetite higher.
+
+The Federal Reserve announced leadership and objectives for task forces to advance monetary policy conduct, with notable private-sector participation including Marc Andreessen and Walmart CEO Doug McMillon, signaling continued focus on policy evolution.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.27  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.41 |
+| News headlines | 20% | -0.19 |
+| Reddit | 0% | +0.00 |
+| Fed (rate expectations) | 10% | +0.20 |
+
+_Equities rose with Nasdaq +1.6%, S&P 500 +0.8%, VIX -6.3%. Sector breadth: 7/11 sectors up. 10Y yield -0.7%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -4.1bp). Fresh Fed communications read neutral. Today's overall market tone: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.43): $350k YOLO into $PENG. 3X from here by December.
+- 🔴 Most bearish (-0.95): A slower AI payoff risks tipping the economy into recession, Apollo says"
