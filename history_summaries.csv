@@ -1136,46 +1136,46 @@ _Equities rose with Nasdaq +1.6%, S&P 500 +0.8%, VIX -6.3%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.56): Solaris Energy stock rises on S&P SmallCap 600 add
 - 🔴 Most bearish (-0.95): A slower AI payoff risks tipping the economy into recession, Apollo says"
-2026-07-10,Slightly Bullish,24,"## Market Overview
+2026-07-10,Slightly Bullish,23,"## Market Overview
 
-U.S. equity markets advanced Friday, with the S&P 500 climbing 0.42% to close at 7,575.39, supported by strength in mega-cap technology and a sharp decline in volatility. The Nasdaq 100 gained 0.33% while the Dow Jones added 0.29%. Small caps diverged, with the Russell 2000 dropping 0.49%, signaling a continued preference for large-cap quality. The VIX fell 5.11% to 15.03, suggesting investor complacency even as geopolitical and sector-specific headlines swirled.
+U.S. equities advanced on July 10, with the S&P 500 gaining 0.42% and the Nasdaq 100 rising 0.33%, though the rally was selective. Large-cap tech drove the gains while small-caps lagged, with the Russell 2000 falling 0.49%. The VIX declined 5.11% to 15.03, signaling reduced near-term volatility concerns. The 10-year Treasury yield edged up 3 basis points to 4.57%, reflecting modest rate pressure as markets await the Federal Reserve's next policy decision.
 
-## Tech Leadership Returns, But Not Uniformly
+## Tech Leadership: Meta and Nvidia Shine
 
-Technology stocks delivered mixed results, with selective strength in mega-caps masking broader weakness. **Meta Platforms surged 5.97%**, reportedly heading for its best week in years and drawing enthusiastic attention from retail traders. **Nvidia climbed 4.03%** and **AMD advanced 2.04%**, while **SanDisk rallied 3.10%**, benefiting from memory sector optimism. The Memory subsector gained 1.53%, outperforming the broader Nasdaq, with positioning data showing a bullish tilt and unremarkable hedging demand.
+Mega-cap tech delivered a bifurcated performance. **Meta surged 5.97%**, notching its best week in years and standing out among the day's top performers in key stocks. **Nvidia climbed 4.03%** and **AMD gained 2.04%**, underscoring continued enthusiasm for AI infrastructure plays. In contrast, Intel fell 2.40% and Micron dropped 1.24% despite announcing a $250 billion U.S. investment commitment through 2035. Apple, Alphabet, and Amazon all closed modestly lower.
 
-Conversely, **Intel tumbled 2.40%** and **Micron declined 1.24%** despite announcing a $250 billion U.S. investment expansion through 2035. Hyperscalers and cloud names weakened 0.48%, while SaaS stocks fell 1.74% with minimal hedging activity—suggesting orderly profit-taking rather than panic. Apple's lawsuit against OpenAI alleging trade secret theft added a headline risk layer, though immediate market impact was muted.
+Sector data revealed mixed signals within the AI stack. Memory stocks (DRAM/NAND/HBM) rose 1.53% with bullish positioning (P/C ratio 0.92), while hyperscalers and SaaS names lagged, declining 0.48% and 1.74% respectively. Notably, SaaS weakness came with a very low put/call ratio of 0.29, suggesting the selloff was orderly without panic hedging.
 
-## Standout Movers and Sectoral Themes
+## Standout Gainers and Cross-Sector Moves
 
-Among the top daily gainers, **Polibeli Group (PLBL) surged 26.48%**, **EquipmentShare.com (EQPT) climbed 16.56%**, and **Vodafone (VOD) jumped 12.54%**, drawing midday coverage. **WD-40 Company (WDFC) rose 10.65%**, rounding out a diverse leadership roster spanning industrials, materials, and telecom.
+Beyond mega-caps, **Polibeli Group (PLBL)** surged 26.48%, leading the market's top gainers, followed by **EquipmentShare.com (EQPT)** up 16.56% and **Vodafone (VOD)** up 12.54%. **WD-40 (WDFC)** jumped 10.65%, reflecting strength in niche industrials and consumer names. The Consumer sector gained 0.85% with bullish positioning, while Banking rose 0.35% with strong breadth despite elevated put/call ratios (1.88), indicating protective hedging remains popular even as the sector advances.
 
-Sector performance reflected defensiveness: Banking rose 0.35% with 88% breadth and bullish sentiment, though elevated put/call ratios (1.88) indicate heavy hedging. Consumer stocks gained 0.85%, also signaling constructive positioning. Pharma/Healthcare declined 0.77% but retained strong breadth, suggesting selective weakness.
+## Commodities, Crypto, and FX
 
-## Cross-Asset Signals and Macro Backdrop
+Commodities were mixed: gold dipped 0.29% and crude oil fell 0.79% amid easing geopolitical concerns despite headlines around U.S.-Iran tensions and China's temporary helium export ban. Bitcoin rallied 1.50% to $64,115, benefiting from risk-on sentiment. Currency markets were quiet, with the dollar firming slightly against the yen and euro.
 
-The 10-year Treasury yield rose 3 basis points to 4.57%, reflecting concerns around persistent inflation and speculation the Fed may reverse recent rate cuts, per MarketWatch commentary. Bitcoin advanced 1.19% to $63,977, while gold dipped 0.29% and crude oil fell 0.79% despite Iran-related supply disruption headlines. The dollar strengthened modestly against the euro and yen.
+## Key Themes
 
-SK Hynix's Nasdaq debut—reportedly the largest foreign IPO ever—closed up approximately 13%, underscoring continued appetite for semiconductor exposure despite sector churn. Geopolitical noise, including China's temporary helium export ban and Middle East tensions, added volatility undertones without derailing the equity rally.
+Apple's lawsuit against OpenAI for alleged trade secret theft dominated headlines, adding uncertainty to the AI landscape. Federal Reserve policy remains front-and-center, with commentary cautioning that rate cuts stabilizing the economy may be at risk of reversal. Overall, the session reflected cautious optimism: defensive hedging coexists with selective risk-taking in AI and consumer plays.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.24  →  **Slightly Bullish**
-**Trend (5-day EMA):** +0.10  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.23  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.10  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.33 |
-| News headlines | 20% | +0.12 |
-| Reddit | 0% | +0.02 |
+| News headlines | 20% | +0.04 |
+| Reddit | 0% | -0.04 |
 | Fed (rate expectations) | 10% | -0.09 |
 
-_Equities rose with Nasdaq +0.3%, S&P 500 +0.4%, VIX -5.1%. Sector breadth: 10/11 sectors up. 10Y yield +0.7%. News headlines read slightly bullish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.3bp). Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +0.3%, S&P 500 +0.4%, VIX -5.1%. Sector breadth: 10/11 sectors up. 10Y yield +0.7%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.3bp). Today's overall market tone: Slightly Bullish._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
-- 🟢 Most bullish (+0.89): Fashion retailer Tailored Brands reveals revenue rise in US IPO filing
-- 🔴 Most bearish (-0.87): US pain at the pump worsens after more US-Iran fighting lifts oil prices"
+- 🟢 Most bullish (+0.90): SK Hynix’s stock sees double-digit pop in Nasdaq debut
+- 🔴 Most bearish (-0.82): Apple sues OpenAI for ‘institutional’ misconduct — and alleges that’s just the tip of the iceberg"

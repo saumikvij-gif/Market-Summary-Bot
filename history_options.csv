@@ -170,12 +170,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-07-09,Pharma / Healthcare,0.953,26883,28204,8,8,0.0171,1.04,-0.32,1.38,drifting,Bearish,orderly decline; positioning unremarkable
 2026-07-09,SaaS,0.843,122816,145615,9,9,0.0578,1.027,0.97,2.63,rising,Bullish,broad advance; positioning unremarkable
 2026-07-09,Semiconductors / Compute,0.567,541598,955408,10,10,0.0287,1.015,2.26,1.61,drifting,Bullish,broad advance; positioning unremarkable
-2026-07-10,All tracked,0.932,1726999,1852196,58,58,0.0229,1.04,-0.33,0.64,drifting,Bearish,orderly decline; positioning unremarkable
-2026-07-10,Banking,1.875,60795,32427,8,8,0.0002,1.121,0.3,1.6,at highs,Bullish,"advance, but heavily hedged — protection still bid"
+2026-07-10,All tracked,0.932,1725485,1851017,58,58,0.0229,1.04,-0.31,0.8,drifting,Bearish,orderly decline; positioning unremarkable
+2026-07-10,Banking,1.875,60795,32427,8,8,0.0002,1.121,0.35,1.35,at highs,Bullish,"advance, but heavily hedged — protection still bid"
 2026-07-10,Consumer,0.75,34726,46275,8,8,0.0195,1.045,0.85,-0.76,drifting,Bullish,broad advance; positioning unremarkable
 2026-07-10,Hyperscalers & Neoclouds,0.597,349203,585413,7,7,0.0153,1.094,-0.48,1.1,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-07-10,Memory (DRAM/NAND/HBM),0.918,277275,302108,4,4,0.0646,1.044,1.53,8.94,rising,Bullish,broad advance; positioning unremarkable
-2026-07-10,Networking / Interconnect,0.761,83908,110245,7,7,0.0526,1.051,-0.35,9.06,rising,Bearish,orderly decline; positioning unremarkable
+2026-07-10,Networking / Interconnect,0.755,82394,109066,7,7,0.0526,1.051,-0.35,9.06,rising,Bearish,orderly decline; positioning unremarkable
 2026-07-10,Pharma / Healthcare,0.779,23685,30418,8,8,0.0171,1.04,-0.78,-2.2,drifting,Bearish,orderly decline; positioning unremarkable
 2026-07-10,SaaS,0.286,75511,264316,9,9,0.0578,1.027,-1.74,0.5,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-07-10,Semiconductors / Compute,1.55,885479,571231,10,10,0.0287,1.015,-0.47,5.66,rising,Bearish,orderly decline; positioning unremarkable
