@@ -1136,3 +1136,46 @@ _Equities rose with Nasdaq +1.6%, S&P 500 +0.8%, VIX -6.3%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.56): Solaris Energy stock rises on S&P SmallCap 600 add
 - 🔴 Most bearish (-0.95): A slower AI payoff risks tipping the economy into recession, Apollo says"
+2026-07-10,Slightly Bullish,24,"## Market Overview
+
+U.S. equity markets advanced Friday, with the S&P 500 climbing 0.42% to close at 7,575.39, supported by strength in mega-cap technology and a sharp decline in volatility. The Nasdaq 100 gained 0.33% while the Dow Jones added 0.29%. Small caps diverged, with the Russell 2000 dropping 0.49%, signaling a continued preference for large-cap quality. The VIX fell 5.11% to 15.03, suggesting investor complacency even as geopolitical and sector-specific headlines swirled.
+
+## Tech Leadership Returns, But Not Uniformly
+
+Technology stocks delivered mixed results, with selective strength in mega-caps masking broader weakness. **Meta Platforms surged 5.97%**, reportedly heading for its best week in years and drawing enthusiastic attention from retail traders. **Nvidia climbed 4.03%** and **AMD advanced 2.04%**, while **SanDisk rallied 3.10%**, benefiting from memory sector optimism. The Memory subsector gained 1.53%, outperforming the broader Nasdaq, with positioning data showing a bullish tilt and unremarkable hedging demand.
+
+Conversely, **Intel tumbled 2.40%** and **Micron declined 1.24%** despite announcing a $250 billion U.S. investment expansion through 2035. Hyperscalers and cloud names weakened 0.48%, while SaaS stocks fell 1.74% with minimal hedging activity—suggesting orderly profit-taking rather than panic. Apple's lawsuit against OpenAI alleging trade secret theft added a headline risk layer, though immediate market impact was muted.
+
+## Standout Movers and Sectoral Themes
+
+Among the top daily gainers, **Polibeli Group (PLBL) surged 26.48%**, **EquipmentShare.com (EQPT) climbed 16.56%**, and **Vodafone (VOD) jumped 12.54%**, drawing midday coverage. **WD-40 Company (WDFC) rose 10.65%**, rounding out a diverse leadership roster spanning industrials, materials, and telecom.
+
+Sector performance reflected defensiveness: Banking rose 0.35% with 88% breadth and bullish sentiment, though elevated put/call ratios (1.88) indicate heavy hedging. Consumer stocks gained 0.85%, also signaling constructive positioning. Pharma/Healthcare declined 0.77% but retained strong breadth, suggesting selective weakness.
+
+## Cross-Asset Signals and Macro Backdrop
+
+The 10-year Treasury yield rose 3 basis points to 4.57%, reflecting concerns around persistent inflation and speculation the Fed may reverse recent rate cuts, per MarketWatch commentary. Bitcoin advanced 1.19% to $63,977, while gold dipped 0.29% and crude oil fell 0.79% despite Iran-related supply disruption headlines. The dollar strengthened modestly against the euro and yen.
+
+SK Hynix's Nasdaq debut—reportedly the largest foreign IPO ever—closed up approximately 13%, underscoring continued appetite for semiconductor exposure despite sector churn. Geopolitical noise, including China's temporary helium export ban and Middle East tensions, added volatility undertones without derailing the equity rally.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.24  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.10  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.33 |
+| News headlines | 20% | +0.12 |
+| Reddit | 0% | +0.02 |
+| Fed (rate expectations) | 10% | -0.09 |
+
+_Equities rose with Nasdaq +0.3%, S&P 500 +0.4%, VIX -5.1%. Sector breadth: 10/11 sectors up. 10Y yield +0.7%. News headlines read slightly bullish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.3bp). Today's overall market tone: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.89): Fashion retailer Tailored Brands reveals revenue rise in US IPO filing
+- 🔴 Most bearish (-0.87): US pain at the pump worsens after more US-Iran fighting lifts oil prices"
