@@ -1179,3 +1179,48 @@ _Equities rose with Nasdaq +0.3%, S&P 500 +0.4%, VIX -5.1%. Sector breadth: 10/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.90): SK Hynix’s stock sees double-digit pop in Nasdaq debut
 - 🔴 Most bearish (-0.82): Apple sues OpenAI for ‘institutional’ misconduct — and alleges that’s just the tip of the iceberg"
+2026-07-13,Bearish,-32,"## Market Overview
+
+U.S. equities sold off Monday, with technology and semiconductor stocks bearing the brunt of losses as concerns over memory chip pricing and geopolitical tensions roiled markets. The Nasdaq 100 plunged 1.88%, while the S&P 500 fell 0.79%. The Dow Jones Industrial Average showed relative resilience, declining just 0.26%, highlighting a rotation away from growth stocks. The VIX surged 14.17% to 17.16, reflecting rising investor anxiety.
+
+## Semiconductor Sector Under Pressure
+
+The semiconductor complex experienced sharp declines following reports that SK Hynix triggered imported volatility across chip stocks, with particular pain in the memory segment. Memory stocks (DRAM/NAND/HBM) collapsed 5.05%, underperforming the Nasdaq by over 300 basis points. SanDisk led the carnage, plummeting 12.63%, while Micron shed 4.32% and Intel dropped 6.12%. AMD fell 4.21%, Nvidia declined 3.52%, and Arm tumbled 7.55%.
+
+Positioning data reveals bearish sentiment is intensifying in memory stocks, with put/call ratios elevated at 1.48 and short interest at 5.3%—suggesting conviction selling rather than capitulation. Notably, the broader semiconductors/compute sector showed a remarkably low put/call ratio of 0.26 despite the 3.75% decline, indicating investors are not aggressively hedging, potentially leaving room for further downside.
+
+## Divergence in Mega-Cap Tech
+
+Not all technology stocks suffered. Microsoft gained 1.53%, Amazon rose 0.80%, and Apple advanced 0.63%, demonstrating investor preference for diversified business models over pure semiconductor exposure. SaaS stocks notably outperformed with a 2.75% gain and 78% breadth, showing bullish momentum.
+
+## Energy and Rates
+
+Crude oil surged 9.23% to $78 per barrel—its largest single-day jump in six years—following reports that the Trump administration reimposed a blockade on the Strait of Hormuz, escalating geopolitical tensions in the Middle East. Gold fell 2.55% despite the turmoil, while Bitcoin declined 2.99%.
+
+The 10-year Treasury yield rose 4 basis points to 4.61%, with Fed Governor Waller's comments warning that rate hikes remain possible boosting odds of a July rate increase. This hawkish shift pressured rate-sensitive assets.
+
+## Cross-Asset Signals
+
+The combination of surging oil, rising yields, falling gold, and elevated VIX suggests markets are pricing stagflationary risks—higher inflation from energy shocks amid tightening monetary policy. The dollar strengthened against the euro and pound, while USD/JPY climbed to 162.45, reflecting safe-haven flows and diverging central bank policies.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.32  →  **Bearish**
+**Trend (5-day EMA):** -0.04  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.46 |
+| News headlines | 20% | +0.10 |
+| Reddit | 0% | +0.06 |
+| Fed (rate expectations) | 10% | -0.22 |
+
+_Equities fell with Nasdaq -1.9%, S&P 500 -0.8%, VIX +14.2%. Sector breadth: 6/11 sectors up. 10Y yield +0.9%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +3.3bp). Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.87): Big banks poised to report booming revenue propelled by SpaceX IPO, Iran war volatility
+- 🔴 Most bearish (-0.92): SpaceX’s stock threatens to fall below the IPO price. Do investors face a ‘crisis’ if it does?"
