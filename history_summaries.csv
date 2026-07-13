@@ -1181,27 +1181,25 @@ _Equities rose with Nasdaq +0.3%, S&P 500 +0.4%, VIX -5.1%. Sector breadth: 10/1
 - 🔴 Most bearish (-0.82): Apple sues OpenAI for ‘institutional’ misconduct — and alleges that’s just the tip of the iceberg"
 2026-07-13,Bearish,-32,"## Market Overview
 
-U.S. equities sold off Monday, with technology and semiconductor stocks bearing the brunt of losses as concerns over memory chip pricing and geopolitical tensions roiled markets. The Nasdaq 100 plunged 1.88%, while the S&P 500 fell 0.79%. The Dow Jones Industrial Average showed relative resilience, declining just 0.26%, highlighting a rotation away from growth stocks. The VIX surged 14.17% to 17.16, reflecting rising investor anxiety.
+U.S. equities sold off Monday as semiconductor and broader technology stocks came under pressure, with the Nasdaq 100 leading losses with a 1.88% decline. The S&P 500 fell 0.79%, while the Dow Jones held up relatively better, dropping just 0.26%. The VIX surged 14.17% to 17.16, reflecting a pickup in risk aversion that accompanied the tech-heavy selloff.
 
-## Semiconductor Sector Under Pressure
+## Semiconductor Rout Drives Tech Weakness
 
-The semiconductor complex experienced sharp declines following reports that SK Hynix triggered imported volatility across chip stocks, with particular pain in the memory segment. Memory stocks (DRAM/NAND/HBM) collapsed 5.05%, underperforming the Nasdaq by over 300 basis points. SanDisk led the carnage, plummeting 12.63%, while Micron shed 4.32% and Intel dropped 6.12%. AMD fell 4.21%, Nvidia declined 3.52%, and Arm tumbled 7.55%.
+The session was dominated by severe weakness across the semiconductor complex, with memory chip stocks bearing the brunt of the selling. Micron plunged 4.32%, SanDisk cratered 12.63%, and AMD declined 4.21%. Reports suggest the volatility was imported from SK Hynix, creating contagion across memory and chip stocks. Intel dropped 6.12%, while Broadcom and Arm Holdings fell 3.98% and 7.55%, respectively. Nvidia, a bellwether for AI infrastructure, declined 3.52%.
 
-Positioning data reveals bearish sentiment is intensifying in memory stocks, with put/call ratios elevated at 1.48 and short interest at 5.3%—suggesting conviction selling rather than capitulation. Notably, the broader semiconductors/compute sector showed a remarkably low put/call ratio of 0.26 despite the 3.75% decline, indicating investors are not aggressively hedging, potentially leaving room for further downside.
+Sector data confirms the breadth of the damage: memory stocks fell 5.05%, semiconductors dropped 3.75%, and networking names declined 3.98%. Put/call ratios in memory reached 1.22 with short interest at 5.3%, signaling ""conviction selling"" and heightened hedging demand. Elsewhere in the chip complex, however, positioning data suggests the decline came without significant panic, as put/call ratios remained subdued despite sharp price declines.
 
 ## Divergence in Mega-Cap Tech
 
-Not all technology stocks suffered. Microsoft gained 1.53%, Amazon rose 0.80%, and Apple advanced 0.63%, demonstrating investor preference for diversified business models over pure semiconductor exposure. SaaS stocks notably outperformed with a 2.75% gain and 78% breadth, showing bullish momentum.
+Not all technology names suffered equally. Microsoft bucked the trend with a 1.53% gain, while Amazon and Apple posted modest advances of 0.80% and 0.63%, respectively. Meanwhile, SaaS stocks rallied strongly, up 2.75% as a sector with 78% breadth, providing a rare bright spot in an otherwise weak technology landscape.
 
-## Energy and Rates
+## Standout Gainers and Cross-Asset Signals
 
-Crude oil surged 9.23% to $78 per barrel—its largest single-day jump in six years—following reports that the Trump administration reimposed a blockade on the Strait of Hormuz, escalating geopolitical tensions in the Middle East. Gold fell 2.55% despite the turmoil, while Bitcoin declined 2.99%.
+Outside of tech, Figma led market gainers with a 12.03% surge, followed by Northern Oil and Gas (+9.94%), Robert Half (+9.85%), Venture Global (+9.15%), and Atlassian (+8.22%). The gains in energy-related names come amid reports that global oil prices topped $83 per barrel—the biggest jump in six years—following reports of renewed tensions in the Strait of Hormuz.
 
-The 10-year Treasury yield rose 4 basis points to 4.61%, with Fed Governor Waller's comments warning that rate hikes remain possible boosting odds of a July rate increase. This hawkish shift pressured rate-sensitive assets.
+In rates markets, the 10-year Treasury yield rose 4 basis points to 4.61%, while the dollar strengthened against the euro and pound. Fed Governor Waller's recent comments warning that rate hikes remain possible appeared to weigh on sentiment, with market chatter suggesting odds of a July rate hike are rising. Gold edged 0.17% higher to $4,012, while Bitcoin fell 2.73%.
 
-## Cross-Asset Signals
-
-The combination of surging oil, rising yields, falling gold, and elevated VIX suggests markets are pricing stagflationary risks—higher inflation from energy shocks amid tightening monetary policy. The dollar strengthened against the euro and pound, while USD/JPY climbed to 162.45, reflecting safe-haven flows and diverging central bank policies.
+The divergence between defensively positioned SaaS and collapsing hardware/semiconductor names, alongside rising yields and a stronger dollar, suggests investors are re-evaluating growth expectations and rotating toward quality amid monetary policy uncertainty.
 
 ## Market Tone — Today's Session
 
@@ -1213,13 +1211,15 @@ _A recap of how the market traded today — not a forecast._
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.46 |
-| News headlines | 20% | +0.10 |
-| Reddit | 0% | +0.06 |
+| News headlines | 20% | +0.11 |
+| Reddit | 0% | +0.05 |
 | Fed (rate expectations) | 10% | -0.22 |
 
-_Equities fell with Nasdaq -1.9%, S&P 500 -0.8%, VIX +14.2%. Sector breadth: 6/11 sectors up. 10Y yield +0.9%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +3.3bp). Today's overall market tone: Bearish._
+_Equities fell with Nasdaq -1.9%, S&P 500 -0.8%, VIX +14.2%. Sector breadth: 6/11 sectors up. 10Y yield +0.9%. News headlines read slightly bullish. Fed-policy expectations tightened (13-Week T-Bill Yield +3.3bp). Today's overall market tone: Bearish._
 
 <sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices fell but the news mood is positive — headlines are upbeat against a down tape.**
 
 **Standout headlines:**
 - 🟢 Most bullish (+0.87): Big banks poised to report booming revenue propelled by SpaceX IPO, Iran war volatility
