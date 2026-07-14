@@ -1224,29 +1224,29 @@ _Equities fell with Nasdaq -1.9%, S&P 500 -0.8%, VIX +14.2%. Sector breadth: 6/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.87): Big banks poised to report booming revenue propelled by SpaceX IPO, Iran war volatility
 - 🔴 Most bearish (-0.92): SpaceX’s stock threatens to fall below the IPO price. Do investors face a ‘crisis’ if it does?"
-2026-07-14,Slightly Bullish,19,"## Market Overview
+2026-07-14,Slightly Bullish,19,"## Overview
 
-U.S. equities advanced on Tuesday with technology stocks leading the rally, as investors digested Fed Chair testimony and positioned ahead of earnings season. The Nasdaq 100 surged 1.10%, outpacing the S&P 500's 0.38% gain and the Dow's modest 0.02% rise. The VIX declined 3.85% to 16.50, reflecting reduced near-term anxiety despite elevated inflation concerns.
+U.S. equities advanced Monday, led by a sharp rally in semiconductors and memory stocks, while hyperscalers lagged. The Nasdaq 100 jumped 1.10%, outpacing the S&P 500's 0.38% gain and the Dow's marginal 0.02% rise. The VIX fell 3.85% to 16.50, reflecting subdued volatility as markets absorbed Fed Chairman Kevin Warsh's congressional testimony and positioned ahead of earnings season.
 
-## Fed Policy and Macro Backdrop
+## Fed Policy Takes Center Stage
 
-Fed Chairman Kevin Warsh's testimony to the House Financial Services Committee proved market-friendly, with Warsh pledging a policy ""regime change"" to eliminate the inflation ""tax"" on Americans. Treasury yields eased slightly, with the 10-year falling 2 basis points to 4.58%, while the dollar weakened against major currencies. The dovish tone appeared to reassure equity investors, particularly in growth sectors, though June inflation data remained a background concern.
+Fed Chair Warsh testified before the House Financial Services committee, pledging a policy ""regime change"" to eliminate what he called the inflation ""tax"" on Americans. While specific policy shifts were not detailed in headlines, the Treasury curve flattened modestly with the 10-year yield declining 2 basis points to 4.58%. Short-term rates also eased, with the 13-week T-Bill dropping 3 basis points to 3.70%. The commentary appears to have reinforced expectations for a more hawkish posture, though risk assets largely shrugged off the rhetoric.
 
-## Memory and Semiconductor Rally
+## Semiconductor and Memory Surge
 
-The session's standout story was a powerful rally in memory and semiconductor stocks. **SK Hynix surged 27.29%** to lead all major gainers, while **Micron jumped 4.92%** and **SanDisk soared 5.01%**. The Memory sector gained 3.48%, significantly outperforming the Nasdaq, with positioning data revealing a heavily hedged advance (put/call ratio of 1.54). **Nvidia** climbed 4.06%, **Intel** added 4.50%, and **AMD** rose 2.57%, driving the broader Semiconductors/Compute sector up 1.05%. The rally appears driven by optimism around AI infrastructure demand and potentially positive earnings signals heading into reporting season.
+The session's standout theme was the rally in chip stocks, particularly memory manufacturers. **SK Hynix** soared 27.29%, leading all market gainers, while **Micron** surged 4.92%, **SanDisk** gained 5.01%, and **Intel** rose 4.50%. The Memory sector climbed 3.48%, significantly outperforming the Nasdaq, with positioning data showing elevated put/call ratios (1.54) suggesting investors remain hedged despite the advance. **Nvidia** (+4.06%) and **AMD** (+2.57%) also contributed to the Semiconductors/Compute sector's 1.05% gain. A Reddit post asking ""Why do we need so much more memory now than last year?"" humorously captured the speculative fervor surrounding AI-driven demand.
 
-## Banking Strength Amid Deal Activity
+Conversely, **Arm Holdings** tumbled 5.96%, a notable laggard in an otherwise buoyant chip complex.
 
-Major banks rallied on reports of booming revenue propelled by the SpaceX IPO and volatility from Middle East tensions. JPMorgan and Goldman Sachs were highlighted as ""new winners"" from the AI boom, with the Banking sector gaining 0.78% on broad 88% breadth. Positioning showed complacency with a low 0.63 put/call ratio, suggesting investors are confidently positioned for strong earnings.
+## Banking Beats, Tech Divergence
 
-## Notable Weakness and Divergence
+Big banks rallied on strong earnings tied to IPO activity (SpaceX) and volatility from geopolitical events. Goldman Sachs and JPMorgan were cited as ""new winners"" of the AI boom, lifting the Banking sector 0.78% with 88% breadth and minimal hedging (P/C 0.63). 
 
-Not all mega-cap tech participated: **Microsoft** fell 1.55%, **Apple** declined 0.77%, and **Arm Holdings** tumbled 5.96%. IBM's stock suffered its worst day ever after surprising investors with an earnings miss, triggering a broader SaaS selloff that ultimately reversed—the sector finished up 1.98% with 89% breadth. Hyperscalers underperformed significantly, down 1.55%, reflecting rotation within technology.
+Hyperscalers stumbled, down 1.55%, with **Microsoft** falling 1.55% and **Apple** declining 0.77%. **IBM's** surprise earnings miss—described as its ""worst day ever""—triggered a broader SaaS sell-off, though the SaaS sector still managed a 1.98% gain with 89% breadth, indicating resilience outside of IBM.
 
-## Commodities and Cross-Asset Signals
+## Cross-Asset Signals
 
-Gold climbed 1.31% to $4,058, while crude oil jumped 2.16% to $79.83, suggesting investors are hedging both growth and inflation risks. Bitcoin slipped 0.66%, diverging from risk assets.
+**Bitcoin** surged 4.44% to $64,584, tracking risk-on sentiment alongside semiconductors. Gold dipped 0.30%, while oil edged up 0.72%. The dollar weakened slightly against the euro and pound, consistent with easing Treasury yields and stable risk appetite.
 
 ## Market Tone — Today's Session
 
@@ -1258,8 +1258,8 @@ _A recap of how the market traded today — not a forecast._
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.19 |
-| News headlines | 20% | +0.20 |
-| Reddit | 0% | +0.04 |
+| News headlines | 20% | +0.21 |
+| Reddit | 0% | +0.06 |
 | Fed (rate expectations) | 10% | +0.11 |
 
 _Equities rose with Nasdaq +1.1%, S&P 500 +0.4%, VIX -3.9%. Sector breadth: 5/11 sectors up. 10Y yield -0.5%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -2.8bp). Fresh Fed communications read neutral. Today's overall market tone: Slightly Bullish._
