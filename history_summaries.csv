@@ -1269,3 +1269,46 @@ _Equities rose with Nasdaq +1.1%, S&P 500 +0.4%, VIX -3.9%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.87): Big banks poised to report booming revenue propelled by SpaceX IPO, Iran war volatility
 - 🔴 Most bearish (-0.96): IBM’s stock just had its worst day ever after the surprise release of an earnings miss"
+2026-07-15,Neutral,6,"## Market Overview
+
+U.S. equities closed mixed on July 15, with the S&P 500 and Dow Jones posting modest gains of 0.38% and 0.29%, respectively, while the Nasdaq 100 slipped 0.28%. The Russell 2000 outperformed with a 0.39% advance, and the VIX declined 5% to 15.67, signaling reduced volatility expectations. The session was marked by a sharp bifurcation within technology, as mega-cap internet platforms surged while semiconductor and memory stocks suffered heavy losses.
+
+## Sector Rotation and AI Stack Divergence
+
+The market witnessed a dramatic rotation within the AI ecosystem. Hyperscalers rallied strongly, with Apple surging 4.01%, Alphabet up 3.60%, Meta gaining 3.07%, Microsoft advancing 2.78%, and Amazon rising 3.02%. The Hyperscalers & Neoclouds sector collectively climbed 3.02% with bullish positioning evident.
+
+In stark contrast, the memory sector collapsed 8.07%, with Micron plunging 8.02% and SanDisk tumbling 8.12%. AMD declined 3.46%, Intel fell 4.43%, and the broader Semiconductors/Compute and Networking/Interconnect sectors dropped 2.12% and 5.83%, respectively. Options positioning in memory showed a low 0.68 put/call ratio despite the decline, suggesting flows remain orderly rather than panicked.
+
+## Monetary Policy and Macro Backdrop
+
+Federal Reserve developments took center stage. New Fed Chair Kevin Warsh testified before the Senate Banking Committee, with New York Fed President Williams stating that inflation has peaked and rates are ""well positioned."" These dovish signals, combined with wholesale prices unexpectedly declining 0.3% in June on lower gasoline costs, contributed to a 0.87% drop in 10-year Treasury yields to 4.54%. The cooler inflation data supported risk appetite in rate-sensitive sectors.
+
+## Notable Movers and Cross-Asset Signals
+
+Top gainers included Lucid Group (+28.79%), Aehr Test Systems (+21.91%), and PayPal (+17.20%), the latter benefiting from reports that Stripe and Advent are offering to acquire the payments giant. Banking stocks rose 1.19% with 94% breadth, potentially benefiting from AI-related investment banking activity as Anthropic moves closer to a mega-IPO.
+
+Oil climbed 1.13% to $80.24, while gold held steady. Bitcoin gained 0.31%, and the dollar weakened against the euro and pound, consistent with the dovish Fed tone. The combination of falling yields, declining volatility, and currency weakness suggests markets are pricing in a more accommodative policy path ahead.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.06  →  **Neutral**
+**Trend (5-day EMA):** +0.04  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.10 |
+| News headlines | 20% | -0.10 |
+| Reddit | 0% | -0.00 |
+| Fed (rate expectations) | 10% | +0.08 |
+
+_Equities rose with Nasdaq -0.3%, S&P 500 +0.4%, VIX -5.0%. Sector breadth: 5/11 sectors up. 10Y yield -0.9%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -1.2bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.86): Wall St ends higher on cool inflation data, strong earnings
+- 🔴 Most bearish (-0.94): SpaceX shares slide below IPO price for the first time as blistering rally unravels"
