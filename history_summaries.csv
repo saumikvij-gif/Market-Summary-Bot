@@ -1312,3 +1312,44 @@ _Equities rose with Nasdaq -0.3%, S&P 500 +0.4%, VIX -5.0%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.79): Buffett says Trump's pick of Kevin Warsh for Fed chair was 'good choice'
 - 🔴 Most bearish (-0.94): SpaceX shares slide below IPO price for the first time as blistering rally unravels"
+2026-07-16,Slightly Bearish,-16,"## Market Overview
+
+U.S. equities closed sharply lower on Thursday, July 16, 2026, as a broad-based selloff in semiconductors and AI-related stocks weighed heavily on growth indices. The Nasdaq 100 tumbled 1.62%, its worst performance among major indices, while the S&P 500 declined 0.51% and the Dow Jones edged down just 0.20%. The VIX jumped 6.76% to 16.73, reflecting a modest uptick in hedging activity, though options positioning suggests investors remain relatively unhedged into the decline.
+
+## Semiconductor Rout Drives Tech Weakness
+
+The technology sector bore the brunt of selling pressure, with the entire AI stack posting steep losses. Memory chip manufacturers suffered the most severe damage, plunging 9.57% as a group. **SanDisk** collapsed 12.63%, **Micron** fell 5.65%, and **Intel** dropped 5.84%. The broader semiconductor sector declined 5.18%, with **AMD** down 5.33%, **Broadcom** off 5.03%, and **Nvidia** losing 2.40%. Headlines around a U.S. probe into Samsung for alleged patent infringement and TSMC's $100 billion U.S. expansion commitment added to sector volatility.
+
+Notably, options data reveals put-call ratios remain subdued across chip stocks (0.40–0.68), suggesting the decline occurred without panic hedging—flows appear orderly rather than capitulatory. Hyperscalers also struggled, falling 4.44%, with **Meta** down 2.46% and **Alphabet** dropping 4.43%. **Microsoft** and **Apple** bucked the trend, gaining 1.38% and 1.76% respectively.
+
+## Defensive Rotation and Top Gainers
+
+Investors rotated into defensive sectors, with pharma/healthcare advancing 2.17% and consumer stocks surging 3.10%. Among standout individual movers, **CareDx** (CDNA) soared 35.60%, **AtaiBeckley** (ATAI) jumped 33.40%, and staffing firms **ManpowerGroup** and **Robert Half** rallied 32.37% and 12.62% respectively, suggesting optimism around labor market dynamics.
+
+## Rates, Commodities, and Cross-Asset Signals
+
+Treasury yields edged higher, with the 10-year rising 2 basis points to 4.57%, while Dallas Fed President Logan called for ""modestly"" higher interest rates, adding a hawkish tilt to the policy outlook. Fed Chairman Kevin Warsh's Senate testimony also touched on rates and the economy, keeping monetary policy in focus. Gold retreated 1.77% and Bitcoin fell 1.07%, reflecting broad risk-off sentiment. Oil held relatively steady, down just 0.29%.
+
+The sharp tech selloff paired with rising yields and defensive sector strength underscores concerns about valuation, growth sustainability, and the potential for tighter monetary conditions ahead.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.16  →  **Slightly Bearish**
+**Trend (5-day EMA):** -0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.16 |
+| News headlines | 20% | -0.22 |
+| Reddit | 0% | +0.03 |
+| Fed (rate expectations) | 10% | -0.06 |
+
+_Equities fell with Nasdaq -1.6%, S&P 500 -0.5%, VIX +6.8%. Sector breadth: 9/11 sectors up. 10Y yield +0.5%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +0.9bp). Today's overall market tone: Slightly Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): Thanks Elon for such great POS SPCX 😂😂,
+- 🔴 Most bearish (-0.94): Netflix earnings forecast disappoints investors, shares tumble"
