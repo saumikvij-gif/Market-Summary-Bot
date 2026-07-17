@@ -215,12 +215,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-07-16,Pharma / Healthcare,0.4,48596,121351,8,8,0.0169,1.016,2.17,1.92,at highs,Bullish,complacent advance — few hedges or shorts in place
 2026-07-16,SaaS,0.847,137438,162197,9,9,0.0552,1.051,-0.21,0.95,drifting,Bearish,orderly decline; positioning unremarkable
 2026-07-16,Semiconductors / Compute,0.403,523163,1298765,10,10,0.0255,0.974,-5.18,-9.73,falling,Bearish,decline without hedging demand — flows not panicked
-2026-07-17,All tracked,0.498,1545938,3102775,58,58,0.0242,1.031,-0.69,-1.45,drifting,Bearish,decline without hedging demand — flows not panicked
+2026-07-17,All tracked,0.499,1548345,3105359,58,58,0.0242,1.031,-0.69,-1.45,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-07-17,Banking,0.598,41790,69907,8,8,0.0002,1.057,-1.12,0.68,at highs,Bearish,decline without hedging demand — flows not panicked
 2026-07-17,Consumer,0.235,20287,86240,8,8,0.0194,1.076,-1.96,-0.89,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-07-17,Hyperscalers & Neoclouds,0.533,322990,605763,7,7,0.0157,1.085,-1.06,-3.47,falling,Bearish,decline without hedging demand — flows not panicked
 2026-07-17,Memory (DRAM/NAND/HBM),0.456,279218,611803,4,4,0.0532,0.755,0.87,-15.78,falling,Bullish,broad advance; positioning unremarkable
-2026-07-17,Networking / Interconnect,0.609,65768,107952,7,7,0.0429,0.968,0.03,-9.81,falling,Neutral,quiet session
+2026-07-17,Networking / Interconnect,0.617,68175,110536,7,7,0.0429,0.968,0.03,-9.81,falling,Neutral,quiet session
 2026-07-17,Pharma / Healthcare,0.398,33571,84246,8,8,0.0169,1.016,0.21,1.69,at highs,Bullish,complacent advance — few hedges or shorts in place
 2026-07-17,SaaS,0.754,125411,166389,9,9,0.0552,1.051,-0.74,3.45,rising,Bearish,orderly decline; positioning unremarkable
-2026-07-17,Semiconductors / Compute,0.485,707270,1459434,10,10,0.0255,0.974,-1.0,-10.48,falling,Bearish,decline without hedging demand — flows not panicked
+2026-07-17,Semiconductors / Compute,0.485,709677,1462018,10,10,0.0255,0.974,-1.0,-10.48,falling,Bearish,decline without hedging demand — flows not panicked
