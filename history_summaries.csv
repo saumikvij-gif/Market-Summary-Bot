@@ -1353,3 +1353,46 @@ _Equities fell with Nasdaq -1.6%, S&P 500 -0.5%, VIX +6.8%. Sector breadth: 9/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): Thanks Elon for such great POS SPCX 😂😂,
 - 🔴 Most bearish (-0.95): Alphabet’s stock falls as Gemini delays suggest Google is struggling to keep up in the AI race"
+2026-07-17,Bearish,-36,"## Market Overview
+
+U.S. equities declined broadly on Friday, with technology stocks bearing the brunt of the selloff. The Nasdaq 100 fell 1.49%, leading losses among major indices, while the S&P 500 dropped 1.01% and the Dow Jones shed 0.77%. The VIX surged 12.19% to 18.77, signaling heightened investor anxiety. Defensive positioning remained modest, however, with put-call ratios across most sectors suggesting the decline was more about profit-taking than panic.
+
+## Tech Sector Under Pressure
+
+Large-cap technology and AI-related stocks retreated sharply as investors reassessed valuations ahead of key earnings reports. Meta Platforms tumbled 2.79%, despite news of potential talks with Anthropic over a $10 billion compute lease deal. Alphabet declined 2.17% and Microsoft fell 1.82%, while semiconductor leader Nvidia dropped 2.21%. SanDisk suffered the steepest loss among major chip names, down 4.0%.
+
+Notable exceptions included Apple, which edged up 0.14% and reportedly reclaimed the title of world's most valuable company from Nvidia, and Arm Holdings, which gained nearly 2%. AI Stack sector data showed weakness across Hyperscalers (-1.06%), Semiconductors (-1.00%), and SaaS (-0.74%), while Memory chips bucked the trend with a 0.86% gain.
+
+## Commodities Surge, Defensives Outperform
+
+Crude oil rallied 4.46% to $81.77, the session's standout move, while gold advanced 0.77% to $4,023 as investors sought haven assets. Treasury yields edged lower, with the 10-year falling 3 basis points to 4.54%, offering modest support to risk assets. Bitcoin remained essentially flat.
+
+The Pharma/Healthcare sector (+0.21%) showed relative strength with bullish positioning, while Consumer stocks lagged severely (-1.96%). Among top gainers, Lucid Group surged 13.93%, and biotech names SELLAS Life Sciences (+12.26%), Oruka Therapeutics (+11.63%), and Dianthus Therapeutics (+10.75%) rallied on sector rotation.
+
+## Cross-Asset Signals
+
+The combination of falling tech stocks, rising oil prices, and a modest VIX spike suggests sector-specific concerns rather than systemic stress. Currency markets remained quiet, and the orderly decline in equity positioning—without elevated hedging demand—indicates this may represent a tactical reset ahead of next week's earnings from Alphabet and Intel rather than a fundamental shift in sentiment toward the AI trade.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.36  →  **Bearish**
+**Trend (5-day EMA):** -0.14  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.60 |
+| News headlines | 20% | +0.32 |
+| Reddit | 0% | +0.03 |
+| Fed (rate expectations) | 10% | -0.07 |
+
+_Equities fell with Nasdaq -1.5%, S&P 500 -1.0%, VIX +12.2%. Sector breadth: 1/11 sectors up. 10Y yield -0.6%. News headlines read bullish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.0bp). Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices fell but the news mood is positive — headlines are upbeat against a down tape.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.73): India's biggest IPO this year rakes in bids worth $31 billion, powered by institutional frenzy
+- 🔴 Most bearish (-0.86): Freak the fuck out when others are fearful"
