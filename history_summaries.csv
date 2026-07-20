@@ -1396,3 +1396,46 @@ _Equities fell with Nasdaq -1.5%, S&P 500 -1.0%, VIX +12.2%. Sector breadth: 1/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.73): India's biggest IPO this year rakes in bids worth $31 billion, powered by institutional frenzy
 - 🔴 Most bearish (-0.86): Freak the fuck out when others are fearful"
+2026-07-20,Slightly Bearish,-14,"## Market Overview
+
+U.S. equity markets delivered a mixed session on July 20, with the Nasdaq 100 edging up 0.04% while the S&P 500 and Dow Jones slipped 0.19% and 0.59%, respectively. The Russell 2000 underperformed with a 0.67% decline, underscoring a distinct rotation into large-cap technology and away from economically sensitive sectors. The VIX fell slightly to 18.65, suggesting complacency despite modest headline weakness.
+
+## Technology and AI Leadership
+
+A clear tech divide emerged, with the AI ecosystem delivering robust gains while broader cyclicals lagged. The Memory sector led with a 2.04% surge, exhibiting classic short-squeeze dynamics—positioning data revealed 5.3% short float and elevated put activity that likely fueled the rally. SanDisk surged 2.67% and Micron jumped 1.94%, while Coherent gained 2.81%. Networking/Interconnect stocks rose 1.98%, similarly driven by short covering (4.3% short float, 0.62 put/call ratio).
+
+Microsoft stood out among mega-caps with a 2.15% gain, accompanied by strong performances from Intel (+2.13%), Broadcom (+1.98%), and Alphabet (+1.52%). The SaaS sector climbed 1.77% on broad participation (89% breadth). Notably, Apple declined 2.14%, representing a rare divergence within Big Tech. The sector rotation appears driven by anticipation of upcoming earnings, particularly Alphabet's Wednesday report, which traders expect could showcase record revenue amid AI infrastructure buildout.
+
+## Standout Gainers and Energy Themes
+
+Among the market's top gainers, Archer Aviation and IREN LIMITED each surged nearly 20%, while crypto miners Cipher Digital (+16.97%) and CleanSpark (+10.67%) rallied in tandem with Bitcoin's 1.43% advance. X-Energy climbed 11.70%, reflecting ongoing interest in nuclear power for AI data center infrastructure—a theme reinforced by Hut 8's announcement of a $9.8 billion AI data center lease.
+
+Crude oil rose 0.78% to $82.42, touching a one-month high amid reports of Houthi blockades affecting Saudi Arabia and heightened Middle East tensions despite Iran ceasefire proposals. Social media chatter flagged dwindling U.S. supply—reportedly just 43 days remaining—adding to bullish sentiment.
+
+## Rates, FX, and Defensives Under Pressure
+
+The 10-year Treasury yield climbed 6 basis points to 4.60%, weighing on rate-sensitive sectors. Banking, Consumer, and Pharma/Healthcare all declined over 1%, showing orderly selling without hedging panic (low put/call ratios). The dollar edged higher against the euro and pound, while USD/JPY ticked up to 162.49. Gold dipped modestly to $4,011.80.
+
+The session reflected a classic ""stay long innovation, fade defensives"" positioning ahead of key tech earnings and amid ongoing geopolitical oil supply concerns.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.14  →  **Slightly Bearish**
+**Trend (5-day EMA):** -0.14  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.16 |
+| News headlines | 20% | -0.16 |
+| Reddit | 0% | +0.04 |
+| Fed (rate expectations) | 10% | +0.01 |
+
+_Equities fell with Nasdaq +0.0%, S&P 500 -0.2%, VIX -0.6%. Sector breadth: 3/11 sectors up. 10Y yield +1.3%. News headlines read slightly bearish. Fed-policy expectations held steady. Today's overall market tone: Slightly Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.87): Best high-yield savings interest rates today, Monday, July 20, 2026: Earn up to 4.10% APY
+- 🔴 Most bearish (-0.94): Amazon closes another major facility, nearly 500 workers affected"
