@@ -5857,19 +5857,19 @@ run_date,section,name,price,change,pct_change
 2026-07-21,stocks,Amazon,247.55,-2.44,-0.98
 2026-07-21,stocks,Apple,327.74,1.15,0.35
 2026-07-21,stocks,Arm,289.73,20.12,7.46
-2026-07-21,commodities,Bitcoin,66283.04,1041.3398,1.6
+2026-07-21,commodities,Bitcoin,66254.85,1148.0703,1.76
 2026-07-21,stocks,Broadcom,386.5,8.34,2.21
 2026-07-21,stocks,Coherent,317.22,31.82,11.15
 2026-07-21,sectors,Communication Svc,110.03,-0.77,-0.69
 2026-07-21,sectors,Consumer Disc.,114.87,0.26,0.23
 2026-07-21,sectors,Consumer Staples,84.06,-0.8,-0.94
-2026-07-21,commodities,Crude Oil,84.54,2.06,2.5
+2026-07-21,commodities,Crude Oil,84.62,0.28,0.33
 2026-07-21,indices,Dow Jones,52224.64,385.3789,0.74
-2026-07-21,fx,EUR/USD,1.14,-0.0012,-0.1
+2026-07-21,fx,EUR/USD,1.14,-0.001,-0.09
 2026-07-21,sectors,Energy,58.5,0.56,0.97
 2026-07-21,sectors,Financials,56.11,0.07,0.12
-2026-07-21,fx,GBP/USD,1.34,-0.0048,-0.36
-2026-07-21,commodities,Gold,4082.2,66.3,1.65
+2026-07-21,fx,GBP/USD,1.34,-0.0049,-0.36
+2026-07-21,commodities,Gold,4084.3,7.9001,0.19
 2026-07-21,sectors,Health Care,160.25,1.0,0.63
 2026-07-21,sectors,Industrials,178.66,0.54,0.3
 2026-07-21,stocks,Intel,105.45,8.39,8.64
@@ -5884,6 +5884,6 @@ run_date,section,name,price,change,pct_change
 2026-07-21,indices,S&P 500,7509.2,65.9204,0.89
 2026-07-21,stocks,SanDisk,1589.4,198.4501,14.27
 2026-07-21,sectors,Technology,180.78,5.07,2.89
-2026-07-21,fx,USD/JPY,163.15,0.696,0.43
+2026-07-21,fx,USD/JPY,163.19,0.733,0.45
 2026-07-21,sectors,Utilities,44.92,-0.02,-0.04
 2026-07-21,indices,VIX,17.05,-1.6,-8.58
