@@ -1441,3 +1441,48 @@ _Equities fell with Nasdaq +0.0%, S&P 500 -0.2%, VIX -0.6%. Sector breadth: 3/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): Gold prices today, Monday, July 20, 2026: Gold holds above $4,000 despite continued violence in the Middle East
 - 🔴 Most bearish (-0.96): Alsea lowers 2026 earnings growth forecast on weak spending, currency headwinds"
+2026-07-21,Slightly Bullish,24,"## Semiconductor Rally Powers Markets Higher
+
+U.S. equities rallied broadly on Tuesday, with the Nasdaq 100 surging 1.93% as semiconductor stocks staged a powerful rebound. The S&P 500 added 0.89% and the Dow rose 0.74%, while the VIX tumbled 8.58% to 17.05, reflecting diminished hedging demand. The tech-heavy rally was driven by renewed optimism around memory chips and AI infrastructure, with several semiconductor names posting double-digit gains.
+
+## Memory Chips Lead Explosive Sector Rotation
+
+The memory sector exploded higher, up 12.34%, fueled by reports of persistent supply constraints. **Micron** surged 12.17% and **SanDisk** rocketed 14.27%, leading the charge. Market chatter focused on comments from ADATA's chairman warning that DRAM shortages could persist for another decade, supporting bullish sentiment across the memory complex. MarketWatch highlighted the chip sector's strong bounce, while positioning data revealed a classic short-squeeze dynamic—puts and shorts accumulated into the recent selloff amplified today's rally.
+
+**Intel** (+8.64%), **AMD** (+8.11%), and **Coherent** (+11.15%) also posted impressive gains, while networking stocks rallied 6.68%. The semiconductor and compute sector advanced 6.12%, significantly outpacing the broader Nasdaq. Nvidia added 2.0% and Arm climbed 7.5%, though Broadcom's more modest 2.2% gain suggested selectivity within the chip complex.
+
+## Mega-Cap Tech Mixed as Rotation Intensifies
+
+In contrast to the semiconductor surge, several mega-cap internet names lagged. **Alphabet** fell 1.47%, **Microsoft** declined 1.13%, and **Amazon** shed nearly 1%, while the hyperscaler/neocloud sector dipped 0.32%. The SaaS sector underperformed sharply, down 2.52%, though breadth remained relatively healthy. This divergence suggests investors rotated from software and cloud platforms into hardware and chip infrastructure.
+
+## Risk Assets Broadly Firmer
+
+Commodities rallied alongside equities, with **gold** up 1.65% to $4,082 and **crude oil** jumping 2.5% to $84.54 amid reports of escalating U.S.-Iran tensions. **Bitcoin** gained 1.6% to $66,283. The 10-year Treasury yield rose 3 basis points to 4.63%, consistent with the risk-on tone. Banking stocks climbed 1.75%, while pharma/healthcare advanced 1.18%, both outpacing the S&P 500.
+
+## Macro Backdrop and Caution
+
+Despite the strong rally, JPMorgan CEO Jamie Dimon warned that markets underestimate current risks, stating he wouldn't buy stocks or Treasuries at prevailing prices. Nonetheless, positioning data suggests the advance was driven by short covering and unwinding of hedges rather than panic, with overall put/call ratios near neutral at 0.97.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.24  →  **Slightly Bullish**
+**Trend (5-day EMA):** -0.01  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.45 |
+| News headlines | 20% | -0.27 |
+| Reddit | 0% | +0.09 |
+| Fed (rate expectations) | 10% | -0.17 |
+
+_Equities rose with Nasdaq +1.9%, S&P 500 +0.9%, VIX -8.6%. Sector breadth: 7/11 sectors up. 10Y yield +0.7%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +2.5bp). Today's overall market tone: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.69): Goldman Sachs to Create Private Market Platform for Rich Investors
+- 🔴 Most bearish (-0.64): As the U.S.-Iran war heats up again, these parts of the stock market and economy could be affected"
