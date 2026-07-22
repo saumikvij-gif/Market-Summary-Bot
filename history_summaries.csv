@@ -1486,40 +1486,40 @@ _Equities rose with Nasdaq +1.9%, S&P 500 +0.9%, VIX -8.6%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Nvidia Vera Rubin shown to provide 10x more throughput per megawatt than Blackwell
 - 🔴 Most bearish (-0.91): US Treasury flags Wall Street tax strategies as potentially abusive, Bloomberg News reports"
-2026-07-22,Neutral,-5,"## Market Overview
+2026-07-22,Neutral,-7,"## Market Overview
 
-U.S. equities closed modestly lower on Wednesday, with the S&P 500 shedding 0.14% and the tech-heavy Nasdaq 100 falling 0.54%. Small-caps underperformed, with the Russell 2000 declining 0.92%, while the Dow Jones barely budged (-0.01%). Despite the weakness, the VIX dropped 2.40% to 16.64, suggesting investors remain relatively sanguine even as geopolitical tensions simmer. The Treasury market saw the 10-year yield rise 3 basis points to 4.66%, touching levels not seen since 2007 according to MarketWatch, as market participants reassess the odds of further Federal Reserve tightening amid escalating Middle East tensions.
+U.S. equities closed modestly lower on Wednesday, with the technology-heavy Nasdaq 100 leading declines at -0.54%, while the Dow Jones Industrial Average held relatively steady at -0.01%. The S&P 500 slipped 0.14%, and the small-cap Russell 2000 underperformed with a 0.92% loss. Despite the modest pullback, the VIX declined 2.40% to 16.64, suggesting little panic among traders even as geopolitical tensions simmer.
 
-## Geopolitical and Macro Backdrop
+## Rate and Macro Backdrop
 
-Oil prices surged 2.54% to $86.48, hitting a six-week high as hopes for de-escalation in the Iran conflict faded. Gold rallied 1.44% to $4,135, with investor John Paulson calling this ""the early stages of a long-term bull market for gold."" The twin moves in oil and gold underscore rising risk-off sentiment tied to geopolitical instability, with some analysts now pricing in a higher likelihood of a Fed rate hike should inflationary pressures resurface.
+Treasury yields climbed, with the 10-year rising 3 basis points to 4.66%, approaching levels not seen since 2007 according to MarketWatch. The move higher comes as Iran-related tensions drive oil prices to six-week highs above $88 per barrel, stoking concerns about persistent inflation and reducing expectations for near-term Federal Reserve rate cuts. Some commentary even warned of a higher likelihood of rate *hikes* if the crisis intensifies—a significant shift in narrative that pressured rate-sensitive growth stocks. Gold retreated 0.61% from recent highs as real yields firmed.
 
-## Tech Sector Divergence
+## Tech Bifurcation: Chips Rally, Software Sags
 
-The semiconductor complex showed sharp internal divergence. Nvidia jumped 2.30%, AMD gained 1.45%, and Broadcom surged 2.67%, with positioning data showing bullish sentiment and broad breadth in the Semiconductors/Compute sector (+1.34%). Meanwhile, the Hyperscalers & Neoclouds basket tumbled 1.09%, dragged down by Meta (-2.58%), Microsoft (-1.86%), and Amazon (-1.09%). Intel fell 2.68% amid reports it's exploring partnerships for its Ohio chip fab, with SK Hynix a potential candidate.
+The semiconductor complex showed notable strength amid broader tech weakness. **Nvidia** surged 2.30%, **AMD** gained 1.45%, and **Broadcom** climbed 2.67%, contributing to a 1.34% advance in the Semiconductors/Compute sector. Memory names also rallied, with the DRAM/NAND/HBM segment up 1.06%. This bifurcation was stark: while chip stocks advanced, hyperscalers and SaaS names tumbled. **Meta** dropped 2.58%, **Microsoft** fell 1.86%, and the SaaS sector cratered 3.87%—the worst performer on the day. Positioning data showed minimal hedging demand despite the SaaS selloff (put/call ratio just 0.34), suggesting orderly profit-taking rather than panic.
 
-SaaS stocks suffered the steepest declines, plunging 3.87% as a group, though ServiceNow bucked the trend on strong cybersecurity-driven earnings. Put-call ratios remain subdued across most tech subsectors, suggesting the selloff is orderly rather than panic-driven.
+Earnings drove individual volatility: Google's cloud-driven beat and increased capex forecast generated after-hours interest, though the stock closed lower. IBM warned on full-year guidance, while ServiceNow rallied on strong cybersecurity momentum.
 
-## Notable Movers
+## Standout Gainers
 
-**Super Micro Computer (SMCI)** led the market with a spectacular 19.84% gain, followed by **Arrowhead Pharmaceuticals (ARWR)** up 19.03%. Industrial names also shone, with **Westinghouse Air Brake Technologies (WAB)** climbing 10.04%. Gold miners rallied in sympathy with bullion, as **Novagold Resources (NG)** jumped 10.30%.
+**Super Micro Computer (SMCI)** rocketed 19.84% to lead all gainers, while **Arrowhead Pharmaceuticals (ARWR)** surged 19.03%. Industrial names also impressed: **Westinghouse Air Brake Technologies (WAB)** jumped 10.04%, and **Novagold Resources (NG)** climbed 10.30% as gold sentiment remained constructive despite the daily pullback.
 
 ## Cross-Asset Signals
 
-The combination of rising yields, surging oil, and rallying gold points to stagflation concerns creeping back into investor psychology. Bitcoin's 0.55% decline suggests risk appetite is selective, with traditional havens outperforming digital assets. Currency markets were muted, with the dollar largely flat against major peers.
+The confluence of rising yields, stronger oil, and a falling VIX presents a nuanced picture: markets are digesting geopolitical risk premiums in energy and rates without broad equity panic, but growth-duration trades are being repriced. Banking stocks rose 0.85% on the steeper curve, while energy benefited from crude's 1.46% rally tied to Middle East supply concerns.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.05  →  **Neutral**
+**Today's Score:** -0.07  →  **Neutral**
 **Trend (5-day EMA):** -0.02  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.08 |
-| News headlines | 20% | +0.07 |
-| Reddit | 0% | -0.04 |
+| News headlines | 20% | -0.00 |
+| Reddit | 0% | -0.05 |
 | Fed (rate expectations) | 10% | -0.10 |
 
 _Equities fell with Nasdaq -0.5%, S&P 500 -0.1%, VIX -2.4%. Sector breadth: 5/11 sectors up. 10Y yield +0.6%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.5bp). Today's overall market tone: Neutral._
@@ -1528,4 +1528,4 @@ _Equities fell with Nasdaq -0.5%, S&P 500 -0.1%, VIX -2.4%. Sector breadth: 5/11
 
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): ServiceNow’s stock rises as earnings show momentum in cybersecurity
-- 🔴 Most bearish (-0.80): Daily Spotlight: Gold Prices Down from the Clouds"
+- 🔴 Most bearish (-0.91): New York City mayor taps ex-FTC Chair Khan for key economic post, separately faces suit over rent freeze"
