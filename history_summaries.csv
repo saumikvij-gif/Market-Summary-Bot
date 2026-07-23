@@ -1529,3 +1529,42 @@ _Equities fell with Nasdaq -0.5%, S&P 500 -0.1%, VIX -2.4%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): ServiceNow’s stock rises as earnings show momentum in cybersecurity
 - 🔴 Most bearish (-0.91): New York City mayor taps ex-FTC Chair Khan for key economic post, separately faces suit over rent freeze"
+2026-07-23,Bearish,-44,"## Market Overview
+
+U.S. equities tumbled Thursday as a fresh wave of tariff announcements and surging oil prices rattled investor confidence. The S&P 500 dropped 1.21%, while the tech-heavy Nasdaq 100 fell 1.87%, led by steep losses in mega-cap technology stocks. The VIX volatility index surged 12.38% to 18.70, reflecting growing hedging demand as traders brace for potential turbulence ahead.
+
+President Trump's announcement of new tariffs covering 60 trade partners weighed on sentiment, reviving concerns about global trade friction and inflationary pressures. Compounding the anxiety, crude oil spiked 6.37% to $92.36 per barrel, prompting market chatter that the Federal Reserve might reconsider its easing path. Some reports noted odds of a rate hike have surged, a dramatic reversal that pushed the 10-year Treasury yield up 5 basis points to 4.70%.
+
+## Technology Sector Under Pressure
+
+The day's narrative was dominated by tech weakness, particularly among hyperscalers and cloud infrastructure names. Alphabet cratered 6.89% following reports that massive profit growth is ""illusory,"" with analyses pointing to SpaceX and Anthropic investments masking underlying cash drain concerns. Amazon fell 4.57%, Meta dropped 3.36%, and Microsoft declined 2.24%. The Hyperscalers & Neoclouds sector fell 3.4% with extremely thin breadth (7%), and notably low put/call ratios (0.32) suggest the selloff occurred without panic hedging—potentially signaling capitulation or complacency.
+
+A bright spot emerged in memory chips: **Micron surged 3.20%**, helping the Memory sector gain 0.64% despite broader semiconductor weakness. Intel dominated after-hours headlines with a forecast that ""crushes estimates,"" citing unprecedented AI-driven chip demand and the fastest sales growth in nearly 15 years.
+
+## Standout Gainers and Defensive Rotation
+
+Outside tech, defensive and opportunistic plays outperformed. **NovoCure Limited (NVCR)** led all gainers, soaring 28.39%, while **Cleveland-Cliffs (CLF)** jumped 15.98% on commodity strength. **Medpace Holdings (MEDP)** rallied 14.71%, part of a broader healthcare sector advance (+1.42%) that showed strong breadth (81%) and bullish sentiment. The Pharma/Healthcare sector's low put/call ratio (0.41) suggests a complacent rally with minimal hedging.
+
+Gold fell 2.40% despite hedge-fund manager John Paulson calling it a ""long-term bull market,"" likely pressured by rising real yields and a stronger dollar (USD/JPY +0.45%). Bitcoin declined 1.49%, tracking risk-off flows.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.44  →  **Bearish**
+**Trend (5-day EMA):** -0.16  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.57 |
+| News headlines | 20% | +0.00 |
+| Reddit | 0% | -0.01 |
+| Fed (rate expectations) | 10% | -0.37 |
+
+_Equities fell with Nasdaq -1.9%, S&P 500 -1.2%, VIX +12.4%. Sector breadth: 4/11 sectors up. 10Y yield +1.0%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +5.5bp). Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.89): JPMorgan report finds dramatic jump in AI-themed ETFs — despite rough quarter
+- 🔴 Most bearish (-0.83): Alphabet’s massive profit growth is ‘illusory’, as SpaceX and Anthropic help mask a historic cash drain"
