@@ -1570,3 +1570,46 @@ _Equities fell with Nasdaq -1.9%, S&P 500 -1.2%, VIX +12.4%. Sector breadth: 4/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): JPMorgan report finds dramatic jump in AI-themed ETFs — despite rough quarter
 - 🔴 Most bearish (-0.95): ServiceNow’s stock falls as a new AI threat overshadows earnings beat"
+2026-07-24,Neutral,-2,"## Market Overview
+
+U.S. equities diverged sharply on Friday as semiconductor and AI-related stocks sold off on mounting concerns about capital expenditure intensity and returns. The S&P 500 edged up 0.05%, while the Nasdaq 100 slid 1.15%, its worst performance relative to the broader market in recent sessions. The Dow Jones added 0.46%, buoyed by industrials and healthcare, while the Russell 2000 declined 0.35%. The VIX dipped modestly to 18.58, suggesting relatively muted fear despite the tech sector weakness.
+
+## Tech Sector Under Pressure
+
+The selloff was concentrated in the AI and semiconductor complex. Moody's warned that ""unprecedented"" AI spending by hyperscalers threatens credit quality at Amazon, Meta, and Alphabet—a headline that catalyzed further weakness. Memory stocks bore the brunt: Micron plunged 6.99%, Intel fell 7.89%, and SanDisk cratered 10.79%. Arm dropped 8.14%, while AMD and Broadcom declined 3.29% and 2.69%, respectively. Coherent shed nearly 10%, rounding out a brutal session for chip names.
+
+Sector-level data underscores the breadth of the damage: Memory (DRAM/NAND/HBM) fell 6.95%, Networking/Interconnect declined 4.07%, and Semiconductors/Compute dropped 3.11%. Notably, positioning metrics reveal low put/call ratios in these segments (0.34–0.51), indicating the decline occurred without panic hedging—flows remain orderly but decidedly bearish. Hyperscalers also fell 1.80%, dragged by Meta (-1.80%) and Amazon (-0.66%), though Alphabet (+0.24%) and Microsoft (+0.03%) held up marginally.
+
+## Bright Spots: Apple, Healthcare, and Defensives
+
+Apple surged 3.53%, a standout performer bucking the broader tech malaise. Defensives and cyclicals outperformed: Healthcare and Pharma advanced 0.90% with Tenet Healthcare among the day's top gainers (+17.17%). SaaS rose 1.11%, supported by Ringcentral's remarkable 25.09% surge following strong results. Banking (+0.46%) and Consumer (+1.35%) sectors also posted gains, with 81% and 88% breadth in Pharma/Healthcare and Banking, respectively—though elevated put/call ratios (1.40 in Banking, 1.12 in Healthcare) suggest investors remain defensively positioned despite the advances.
+
+## Cross-Asset Signals
+
+Treasury yields fell modestly, with the 10-year declining 2 basis points to 4.68%, offering mild support to risk assets. Oil dropped 1.87% to $90.47, while Bitcoin slid 1.53%. Gold edged up 0.14%, reflecting safe-haven demand. Currency markets were quiet, with minimal movement in EUR/USD, USD/JPY, and GBP/USD.
+
+The rotation out of AI and into defensives, combined with Moody's credit warning, suggests investors are reassessing the sustainability of tech capex—a theme likely to dominate earnings season.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.02  →  **Neutral**
+**Trend (5-day EMA):** -0.12  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.12 |
+| News headlines | 20% | -0.50 |
+| Reddit | 0% | +0.07 |
+| Fed (rate expectations) | 10% | -0.03 |
+
+_Equities rose with Nasdaq -1.1%, S&P 500 +0.1%, VIX -0.6%. Sector breadth: 10/11 sectors up. 10Y yield -0.5%. News headlines read bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +0.5bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.48): White House to Host Nuclear Energy CEOs for Advanced Reactor Milestone
+- 🔴 Most bearish (-0.96): Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others"
