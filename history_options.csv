@@ -260,11 +260,11 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-07-23,Pharma / Healthcare,0.406,29717,73170,8,8,0.0169,1.016,1.43,1.21,at highs,Bullish,complacent advance — few hedges or shorts in place
 2026-07-23,SaaS,0.389,111438,286598,9,9,0.0552,1.051,-2.48,-8.97,falling,Bearish,decline without hedging demand — flows not panicked
 2026-07-23,Semiconductors / Compute,0.567,564668,995773,10,10,0.0255,0.974,-1.22,4.79,rising,Bearish,decline without hedging demand — flows not panicked
-2026-07-24,All tracked,0.442,1287515,2914865,58,58,0.0242,1.031,-0.19,-0.5,drifting,Bearish,decline without hedging demand — flows not panicked
+2026-07-24,All tracked,0.442,1287468,2914821,58,58,0.0242,1.031,-0.19,-0.5,drifting,Bearish,decline without hedging demand — flows not panicked
 2026-07-24,Banking,1.4,27391,19565,8,8,0.0002,1.057,0.46,0.45,at highs,Bullish,"advance, but heavily hedged — protection still bid"
-2026-07-24,Consumer,0.709,21178,29889,8,8,0.0194,1.076,1.35,-1.88,drifting,Bullish,broad advance; positioning unremarkable
+2026-07-24,Consumer,0.707,21119,29889,8,8,0.0194,1.076,1.35,-1.88,drifting,Bullish,broad advance; positioning unremarkable
 2026-07-24,Hyperscalers & Neoclouds,0.335,254572,759911,7,7,0.0157,1.085,-1.8,-6.12,falling,Bearish,decline without hedging demand — flows not panicked
-2026-07-24,Memory (DRAM/NAND/HBM),0.813,275457,338965,4,4,0.0532,0.755,-6.95,8.31,rising,Bearish,orderly decline; positioning unremarkable
+2026-07-24,Memory (DRAM/NAND/HBM),0.813,275469,338921,4,4,0.0532,0.755,-6.95,8.31,rising,Bearish,orderly decline; positioning unremarkable
 2026-07-24,Networking / Interconnect,0.505,59847,118565,7,7,0.0429,0.968,-4.07,2.99,rising,Bearish,decline without hedging demand — flows not panicked
 2026-07-24,Pharma / Healthcare,1.117,29687,26589,8,8,0.0169,1.016,0.9,2.07,at highs,Bullish,"advance, but heavily hedged — protection still bid"
 2026-07-24,SaaS,0.96,123524,128705,9,9,0.0552,1.051,1.11,-4.57,falling,Bullish,broad advance; positioning unremarkable

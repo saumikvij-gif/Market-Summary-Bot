@@ -1570,38 +1570,40 @@ _Equities fell with Nasdaq -1.9%, S&P 500 -1.2%, VIX +12.4%. Sector breadth: 4/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): JPMorgan report finds dramatic jump in AI-themed ETFs — despite rough quarter
 - 🔴 Most bearish (-0.95): ServiceNow’s stock falls as a new AI threat overshadows earnings beat"
-2026-07-24,Neutral,-2,"## Market Overview
+2026-07-24,Neutral,-4,"## Mixed Session as Tech Rotation Accelerates
 
-U.S. equities diverged sharply on Friday as semiconductor and AI-related stocks sold off on mounting concerns about capital expenditure intensity and returns. The S&P 500 edged up 0.05%, while the Nasdaq 100 slid 1.15%, its worst performance relative to the broader market in recent sessions. The Dow Jones added 0.46%, buoyed by industrials and healthcare, while the Russell 2000 declined 0.35%. The VIX dipped modestly to 18.58, suggesting relatively muted fear despite the tech sector weakness.
+U.S. equities delivered a divergent performance Friday, with the S&P 500 barely positive (+0.05%) and the Dow gaining 0.46%, while the Nasdaq 100 fell 1.15% in a sharp continuation of this week's tech sector rotation. The VIX declined modestly to 18.58, suggesting selling remained orderly despite pronounced weakness in key growth sectors.
 
-## Tech Sector Under Pressure
+## Semiconductor Selloff Intensifies
 
-The selloff was concentrated in the AI and semiconductor complex. Moody's warned that ""unprecedented"" AI spending by hyperscalers threatens credit quality at Amazon, Meta, and Alphabet—a headline that catalyzed further weakness. Memory stocks bore the brunt: Micron plunged 6.99%, Intel fell 7.89%, and SanDisk cratered 10.79%. Arm dropped 8.14%, while AMD and Broadcom declined 3.29% and 2.69%, respectively. Coherent shed nearly 10%, rounding out a brutal session for chip names.
+The AI infrastructure stack experienced severe pressure following Moody's warning that ""unprecedented"" AI capital spending threatens the credit quality of hyperscalers including Amazon, Meta, and Alphabet. Memory stocks bore the brunt, with the sector plunging 6.95%—led by Micron (-6.99%), Intel (-7.89%), and SanDisk (-10.79%). Coherent dropped 9.84%, while Arm fell 8.14%. The broader semiconductor compute segment declined 3.11%, with AMD down 3.29% and Nvidia off 0.92%. Positioning data revealed low put/call ratios across these segments (0.34-0.51), indicating the decline occurred without panic hedging—a sign of methodical profit-taking rather than capitulation.
 
-Sector-level data underscores the breadth of the damage: Memory (DRAM/NAND/HBM) fell 6.95%, Networking/Interconnect declined 4.07%, and Semiconductors/Compute dropped 3.11%. Notably, positioning metrics reveal low put/call ratios in these segments (0.34–0.51), indicating the decline occurred without panic hedging—flows remain orderly but decidedly bearish. Hyperscalers also fell 1.80%, dragged by Meta (-1.80%) and Amazon (-0.66%), though Alphabet (+0.24%) and Microsoft (+0.03%) held up marginally.
+Notably, Apple bucked the tech trend with a striking +3.53% gain, offering a rare bright spot among mega-cap names.
 
-## Bright Spots: Apple, Healthcare, and Defensives
+## Defensive Rotation Gathers Momentum
 
-Apple surged 3.53%, a standout performer bucking the broader tech malaise. Defensives and cyclicals outperformed: Healthcare and Pharma advanced 0.90% with Tenet Healthcare among the day's top gainers (+17.17%). SaaS rose 1.11%, supported by Ringcentral's remarkable 25.09% surge following strong results. Banking (+0.46%) and Consumer (+1.35%) sectors also posted gains, with 81% and 88% breadth in Pharma/Healthcare and Banking, respectively—though elevated put/call ratios (1.40 in Banking, 1.12 in Healthcare) suggest investors remain defensively positioned despite the advances.
+Traditional defensive and cyclical sectors outperformed. Healthcare led with a 0.90% gain and 88% breadth, supported by Tenet Healthcare's explosive 17.17% rally among top gainers. SaaS stocks rose 1.11%, while consumer names added 1.35%. Banking advanced 0.46% with 81% breadth, though elevated put/call ratios (1.40) suggest investors remain heavily hedged despite the advance.
 
-## Cross-Asset Signals
+**Ringcentral** topped gainers with a remarkable 25.09% surge, while packaging plays **International Paper** (+11.21%) and **Smurfit WestRock** (+11.10%) rallied alongside **Fermi Inc.** (+17.09%).
 
-Treasury yields fell modestly, with the 10-year declining 2 basis points to 4.68%, offering mild support to risk assets. Oil dropped 1.87% to $90.47, while Bitcoin slid 1.53%. Gold edged up 0.14%, reflecting safe-haven demand. Currency markets were quiet, with minimal movement in EUR/USD, USD/JPY, and GBP/USD.
+## Cross-Asset Signals and Credit Concerns
 
-The rotation out of AI and into defensives, combined with Moody's credit warning, suggests investors are reassessing the sustainability of tech capex—a theme likely to dominate earnings season.
+Treasury yields declined modestly (10Y at 4.68%, -2bps) amid the tech weakness, while gold edged higher (+0.14% to $4,055.70)—consistent with mild risk-off positioning. Oil fell 1.87%, and Bitcoin declined 1.55%. The dollar held steady across major pairs.
+
+Moody's credit warning on AI capex sustainability appears to be catalyzing a reassessment of stretched valuations in the AI infrastructure trade, even as mortgage rates trend toward 6.5% and broader rate concerns simmer.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.02  →  **Neutral**
+**Today's Score:** -0.04  →  **Neutral**
 **Trend (5-day EMA):** -0.12  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.12 |
-| News headlines | 20% | -0.50 |
-| Reddit | 0% | +0.07 |
+| News headlines | 20% | -0.58 |
+| Reddit | 0% | +0.00 |
 | Fed (rate expectations) | 10% | -0.03 |
 
 _Equities rose with Nasdaq -1.1%, S&P 500 +0.1%, VIX -0.6%. Sector breadth: 10/11 sectors up. 10Y yield -0.5%. News headlines read bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +0.5bp). Today's overall market tone: Neutral._
