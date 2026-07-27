@@ -1615,42 +1615,44 @@ _Equities rose with Nasdaq -1.1%, S&P 500 +0.1%, VIX -0.6%. Sector breadth: 10/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.48): White House to Host Nuclear Energy CEOs for Advanced Reactor Milestone
 - 🔴 Most bearish (-0.96): Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others"
-2026-07-27,Neutral,7,"## Market Overview
+2026-07-27,Neutral,4,"## Market Overview
 
-U.S. equities posted a mixed session Monday, with a notable rotation away from semiconductors and into software and consumer names. The S&P 500 closed essentially flat (+0.02%), while the Dow Jones outperformed with a 0.51% gain and the Russell 2000 added 0.62%. The Nasdaq 100 lagged, dropping 0.32% as chip stocks came under heavy pressure. Treasury yields eased 4 basis points to 4.64%, providing a mild tailwind to rate-sensitive sectors.
+U.S. equities closed mixed on Monday as a dramatic rotation accelerated beneath the surface, with investors fleeing semiconductor and AI infrastructure stocks while piling into software, consumer, and value names. The S&P 500 eked out a 0.02% gain, while the Dow Jones advanced 0.51% and the Russell 2000 surged 0.62%, underscoring the broad-market bid. The Nasdaq 100, however, fell 0.32%, weighed down by sharp declines across the chip complex.
 
-## Semiconductor Rout Driven by China Competition
+## Semiconductor Carnage and AI Stack Divergence
 
-The session's dominant theme was a sharp selloff across the semiconductor complex, sparked by headlines surrounding China's chipmaking advances. Memory stocks bore the brunt, plunging 10.7% as a sector after CXMT—a Chinese memory chip maker—debuted in Shanghai with a 470% first-day surge to become the country's largest listed company. SanDisk cratered 11%, while Micron fell 2.3%. Reports that China has begun producing homegrown DUV (deep ultraviolet) lithography equipment intensified concerns about competitive displacement in memory and legacy nodes.
+The session's defining narrative was a violent selloff in memory and semiconductor stocks. SanDisk plunged 11%, Micron dropped 2.25%, Nvidia fell 5%, and AMD shed 5.17%, dragging the broader chip sector down 5.2%. Memory stocks as a group collapsed 10.7%, with positioning data revealing conviction selling—put/call ratios rose to 1.53 and short interest climbed. Headlines around China's homegrown DUV chipmaking tools and the debut of Chinese memory maker CXMT (reportedly up 470% at open in Shanghai) likely spooked investors concerned about competitive threats and oversupply risks.
 
-Nvidia declined 5.0% and AMD dropped 5.2%, despite reports that Nvidia is in talks with OpenAI to backstop up to $250 billion in AI infrastructure financing. Networking and compute segments fell 7.4% and 5.2%, respectively, with positioning data showing orderly selling and low hedging demand—suggesting conviction-based repositioning rather than panic.
+Networking and interconnect stocks also suffered, down 7.4%, while hyperscaler cloud names dipped nearly 1%. Notably, positioning suggests flows weren't panicked—put/call ratios remained subdued for chips and hyperscalers—indicating tactical profit-taking rather than capitulation.
 
-## SaaS and Consumer Strength
+In stark contrast, SaaS stocks surged 6.6% with 78% breadth, driven by what appears to be a short squeeze (put/call ratio of 0.64 and elevated short interest). Shopify rocketed 11.5% to become a top market gainer. Consumer stocks rose 3% and pharma/healthcare added 0.6%, both with strong breadth, while banking gained 0.6% on 69% breadth, though elevated hedging (put/call 1.35) suggests caution persists.
 
-In sharp contrast, SaaS names rallied 6.6% with 78% breadth, fueled by a short squeeze after elevated put/call ratios (0.64) and short interest heading into the session. Shopify surged 11.5%, landing among the day's top gainers alongside Wayfair (+12.3%) and Robert Half (+12.6%). Consumer discretionary stocks also gained 3.0%, reflecting resilience in domestic-facing sectors.
+## Standout Movers and Cross-Asset Signals
 
-## Policy and Cross-Asset Signals
+Beyond Shopify, top gainers included Wayfair (+12.3%), Robert Half (+12.6%), and Trump Media (+11.7%), reflecting the day's risk-on rotation into economically sensitive and speculative names. Apple outperformed, rising 1.2% and reclaiming its position as the world's most valuable company from Nvidia, while Microsoft and Alphabet gained nearly 2% and 2.3%, respectively.
 
-President Trump reiterated calls for Fed rate cuts, noting ""I know what he wants to do"" in reference to Fed Chair Kevin Warsh. While no immediate policy shifts are expected, the commentary kept dovish speculation alive. Crude oil tumbled 8.3% as reports indicated a pause in Middle East fighting with Iran, easing supply concerns. Gold edged 0.2% higher, benefiting from geopolitical hedging demand. The VIX rose modestly to 18.67, consistent with sector-specific volatility rather than broad market stress.
+Treasuries rallied, with the 10-year yield falling 4 basis points to 4.64%, suggesting bond investors remain attuned to growth risks despite the equity rotation. Bitcoin declined 1.3%, gold dipped slightly, and crude oil fell 0.8%, all consistent with modest risk-off undertones. The VIX edged up 0.48% to 18.67, reflecting lingering unease despite headline index resilience.
+
+News of Nvidia's potential $250 billion financing deal with OpenAI and concerns over AI-related bond stress ahead of Meta and Microsoft earnings this week may have catalyzed the semiconductor exodus, even as investors rotated into software beneficiaries of AI spending.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.07  →  **Neutral**
-**Trend (5-day EMA):** -0.06  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.04  →  **Neutral**
+**Trend (5-day EMA):** -0.07  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.06 |
-| News headlines | 20% | +0.14 |
-| Reddit | 0% | +0.07 |
+| News headlines | 20% | -0.04 |
+| Reddit | 0% | +0.10 |
 | Fed (rate expectations) | 10% | +0.05 |
 
-_Equities rose with Nasdaq -0.3%, S&P 500 +0.0%, VIX +0.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.8%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -0.8bp). Today's overall market tone: Neutral._
+_Equities rose with Nasdaq -0.3%, S&P 500 +0.0%, VIX +0.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.8%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -0.8bp). Today's overall market tone: Neutral._
 
 <sub>News scored with: finbert</sub>
 
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Gold prices today, Monday, July 27, 2026: Gold prices see positive traction as fighting with Iran has paused
-- 🔴 Most bearish (-0.95): Micron and other chip stocks fall as China steals the spotlight"
+- 🔴 Most bearish (-0.93): More cracks emerge in AI-related bonds as Meta, Microsoft earnings loom"
