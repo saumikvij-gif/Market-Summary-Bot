@@ -1615,3 +1615,42 @@ _Equities rose with Nasdaq -1.1%, S&P 500 +0.1%, VIX -0.6%. Sector breadth: 10/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.48): White House to Host Nuclear Energy CEOs for Advanced Reactor Milestone
 - 🔴 Most bearish (-0.96): Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others"
+2026-07-27,Neutral,7,"## Market Overview
+
+U.S. equities posted a mixed session Monday, with a notable rotation away from semiconductors and into software and consumer names. The S&P 500 closed essentially flat (+0.02%), while the Dow Jones outperformed with a 0.51% gain and the Russell 2000 added 0.62%. The Nasdaq 100 lagged, dropping 0.32% as chip stocks came under heavy pressure. Treasury yields eased 4 basis points to 4.64%, providing a mild tailwind to rate-sensitive sectors.
+
+## Semiconductor Rout Driven by China Competition
+
+The session's dominant theme was a sharp selloff across the semiconductor complex, sparked by headlines surrounding China's chipmaking advances. Memory stocks bore the brunt, plunging 10.7% as a sector after CXMT—a Chinese memory chip maker—debuted in Shanghai with a 470% first-day surge to become the country's largest listed company. SanDisk cratered 11%, while Micron fell 2.3%. Reports that China has begun producing homegrown DUV (deep ultraviolet) lithography equipment intensified concerns about competitive displacement in memory and legacy nodes.
+
+Nvidia declined 5.0% and AMD dropped 5.2%, despite reports that Nvidia is in talks with OpenAI to backstop up to $250 billion in AI infrastructure financing. Networking and compute segments fell 7.4% and 5.2%, respectively, with positioning data showing orderly selling and low hedging demand—suggesting conviction-based repositioning rather than panic.
+
+## SaaS and Consumer Strength
+
+In sharp contrast, SaaS names rallied 6.6% with 78% breadth, fueled by a short squeeze after elevated put/call ratios (0.64) and short interest heading into the session. Shopify surged 11.5%, landing among the day's top gainers alongside Wayfair (+12.3%) and Robert Half (+12.6%). Consumer discretionary stocks also gained 3.0%, reflecting resilience in domestic-facing sectors.
+
+## Policy and Cross-Asset Signals
+
+President Trump reiterated calls for Fed rate cuts, noting ""I know what he wants to do"" in reference to Fed Chair Kevin Warsh. While no immediate policy shifts are expected, the commentary kept dovish speculation alive. Crude oil tumbled 8.3% as reports indicated a pause in Middle East fighting with Iran, easing supply concerns. Gold edged 0.2% higher, benefiting from geopolitical hedging demand. The VIX rose modestly to 18.67, consistent with sector-specific volatility rather than broad market stress.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.07  →  **Neutral**
+**Trend (5-day EMA):** -0.06  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.06 |
+| News headlines | 20% | +0.14 |
+| Reddit | 0% | +0.07 |
+| Fed (rate expectations) | 10% | +0.05 |
+
+_Equities rose with Nasdaq -0.3%, S&P 500 +0.0%, VIX +0.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.8%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -0.8bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.93): Gold prices today, Monday, July 27, 2026: Gold prices see positive traction as fighting with Iran has paused
+- 🔴 Most bearish (-0.95): Micron and other chip stocks fall as China steals the spotlight"
