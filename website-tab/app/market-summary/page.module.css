@@ -1,0 +1,290 @@
+/* Market Summary tab — self-contained styles.
+   All colors flow through the custom properties on .root (light) with dark
+   values under BOTH the OS media query and a [data-theme="dark"] scope, so a
+   site-level theme toggle wins in either direction. Reskinning the tab to the
+   host site's brand = editing this token block only. */
+
+.root {
+  color-scheme: light;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --series: #2a78d6;
+  --pos: #006300;
+  --neg: #d03b3b;
+  --wash: rgba(11, 11, 11, 0.04);
+
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:where(:not([data-theme="light"]))) .root {
+    color-scheme: dark;
+    --surface: #1a1a19;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --series: #3987e5;
+    --pos: #0ca30c;
+    --neg: #e66767;
+    --wash: rgba(255, 255, 255, 0.05);
+  }
+}
+:global([data-theme="dark"]) .root {
+  color-scheme: dark;
+  --surface: #1a1a19;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --muted: #898781;
+  --grid: #2c2c2a;
+  --baseline: #383835;
+  --border: rgba(255, 255, 255, 0.1);
+  --series: #3987e5;
+  --pos: #0ca30c;
+  --neg: #e66767;
+  --wash: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.title { font-size: 22px; font-weight: 650; margin: 0; }
+.subtitle { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; }
+.badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--muted);
+  vertical-align: middle;
+}
+.headerRight { display: flex; align-items: center; gap: 8px; }
+.pdfLink {
+  font-size: 13px;
+  color: var(--series);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.pdfLink:hover { background: var(--wash); }
+
+.dateNav { display: flex; align-items: center; gap: 4px; }
+.dateSelect {
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+.navBtn {
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.navBtn:hover:not(:disabled) { background: var(--wash); }
+.navBtn:disabled { opacity: 0.4; cursor: default; }
+
+/* ── Cards & layout ─────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.cardTitle { font-size: 15px; font-weight: 650; margin: 0 0 10px; }
+.tag {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1px 8px;
+  vertical-align: middle;
+}
+.caption { font-size: 12.5px; color: var(--muted); margin: -4px 0 10px; }
+.toneRow {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+}
+@media (max-width: 760px) { .toneRow { grid-template-columns: 1fr; } }
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 16px;
+}
+@media (max-width: 760px) { .twoCol { grid-template-columns: 1fr; } }
+.dimmed { opacity: 0.55; transition: opacity 120ms ease; }
+.error {
+  border: 1px solid var(--neg);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--neg);
+  font-size: 14px;
+}
+.empty { color: var(--muted); font-size: 14px; padding: 24px 4px; }
+
+/* ── Stat tile (market tone) ────────────────────────────────────────── */
+.toneCard { display: flex; flex-direction: column; margin-bottom: 0; }
+.statLabel { font-size: 13px; color: var(--ink-2); }
+.statValue {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 6px 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toneDot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--baseline);
+  flex: none;
+}
+.toneDot.pos { background: var(--pos); }
+.toneDot.neg { background: var(--neg); }
+.statSub { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.statNote { font-size: 12px; color: var(--muted); margin: auto 0 0; padding-top: 10px; }
+
+.pos { color: var(--pos); }
+.neg { color: var(--neg); }
+.muted { color: var(--muted); font-size: 0.92em; }
+
+/* ── Trend chart ────────────────────────────────────────────────────── */
+.chartWrap { position: relative; }
+.chartBox { position: relative; outline: none; border-radius: 6px; }
+.chartBox:focus-visible { box-shadow: 0 0 0 2px var(--series); }
+.chartSvg { display: block; width: 100%; height: auto; cursor: crosshair; }
+.seriesLine {
+  fill: none;
+  stroke: var(--series);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.gridLine { stroke: var(--grid); stroke-width: 1; }
+.zeroLine { stroke: var(--baseline); stroke-width: 1; }
+.crosshair { stroke: var(--muted); stroke-width: 1; }
+.axisText {
+  fill: var(--muted);
+  font-size: 10px;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.markerSelected, .markerHover {
+  fill: var(--series);
+  stroke: var(--surface);
+  stroke-width: 2;
+  pointer-events: none;
+}
+.tooltip {
+  position: absolute;
+  top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.tooltip strong { font-size: 13px; font-variant-numeric: tabular-nums; }
+.tooltipKey {
+  width: 12px; height: 2px;
+  background: var(--series);
+  border-radius: 1px;
+  flex: none;
+}
+.tooltipDate { color: var(--ink-2); }
+.chartEmpty { color: var(--muted); font-size: 13px; padding: 24px 0; }
+.tableView { margin-top: 8px; font-size: 12.5px; }
+.tableView summary { color: var(--muted); cursor: pointer; }
+.tableView .tableScroll { max-height: 240px; overflow-y: auto; margin-top: 8px; }
+
+/* ── Tables ─────────────────────────────────────────────────────────── */
+.tableScroll { overflow-x: auto; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--baseline);
+  padding: 6px 10px 6px 0;
+  white-space: nowrap;
+}
+.table td {
+  padding: 6px 10px 6px 0;
+  border-bottom: 1px solid var(--grid);
+  font-variant-numeric: tabular-nums;
+  vertical-align: top;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background: var(--wash); }
+
+.snapshotGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px 28px;
+}
+.snapshotHeading { font-size: 13px; font-weight: 650; margin: 10px 0 4px; }
+
+/* ── News list ──────────────────────────────────────────────────────── */
+.newsList { list-style: none; margin: 0; padding: 0; }
+.newsItem { padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 13.5px; }
+.newsItem:last-child { border-bottom: none; }
+.newsTitle { font-weight: 600; }
+.newsSummary { margin: 3px 0 0; color: var(--ink-2); font-size: 12.5px; }
+
+/* ── Markdown briefing ──────────────────────────────────────────────── */
+.markdown { font-size: 14px; line-height: 1.65; }
+.mdH3 { font-size: 15.5px; font-weight: 650; margin: 18px 0 6px; }
+.mdH4 { font-size: 13.5px; font-weight: 650; margin: 14px 0 4px; color: var(--ink-2); }
+.mdP { margin: 8px 0; }
+.mdList { margin: 8px 0; padding-left: 22px; }
+.mdList li { margin: 3px 0; }
+.mdQuote {
+  margin: 10px 0;
+  padding: 8px 14px;
+  border-left: 3px solid var(--baseline);
+  color: var(--ink-2);
+  background: var(--wash);
+  border-radius: 0 6px 6px 0;
+}
+.markdown a { color: var(--series); }
