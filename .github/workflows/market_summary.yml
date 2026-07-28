@@ -1,9 +1,10 @@
 # .github/workflows/market_summary.yml
 #
-# GENERATE step: runs after the US market close (Mon–Fri 21:30 UTC) to produce
-# the summary, update the trend database, and regenerate the charts — then
-# commits them. It does NOT send email; delivery is a separate workflow
-# (email_summary.yml) scheduled for 9 AM Hong Kong time.
+# GENERATE step: runs after the US market close (Mon–Fri 23:45 UTC — late
+# enough that Bloomberg's same-day "The Close" episode is on YouTube) to
+# produce the summary, update the trend database, and regenerate the charts —
+# then commits them. It does NOT send email; delivery is a separate workflow
+# (email_summary.yml) triggered at 01:00 UTC (9 AM SGT).
 #
 # Required secret:
 #   ANTHROPIC_API_KEY  →  Settings → Secrets and variables → Actions → New secret
@@ -11,14 +12,15 @@
 name: Generate Market Summary
 
 on:
-  # ── Scheduled trigger: Mon–Fri at 21:30 UTC (≈ 5:30 PM ET, after market close).
+  # ── Scheduled trigger: Mon–Fri at 23:45 UTC (≈ 7:45 PM ET — after the close
+  #    AND after Bloomberg uploads the same-day "The Close" episode ~23:00 UTC).
   #    Kept as a fallback — GitHub's own scheduler often fires hours late, so the
   #    on-time trigger is the external one below.
   schedule:
-    - cron: "30 21 * * 1-5"
+    - cron: "45 23 * * 1-5"
 
   # ── On-time external trigger: a cron-job.com ping POSTs to the repo's
-  #    /dispatches endpoint with {"event_type":"generate-summary"} at 21:30 UTC.
+  #    /dispatches endpoint with {"event_type":"generate-summary"} at 23:45 UTC.
   #    Fires on the minute, unlike GitHub's best-effort schedule.
   repository_dispatch:
     types: [generate-summary]

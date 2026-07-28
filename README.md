@@ -70,8 +70,9 @@ Two decoupled workflows so data is captured at the US close but the briefing
 lands at the start of the Hong Kong business day:
 
 - [`market_summary.yml`](.github/workflows/market_summary.yml) — **Generate**:
-  fired ~21:30 UTC after the NYSE close (on-time via an external cron-job.com
-  dispatch; GitHub's native `30 21 * * 1-5` cron is kept as a delayed fallback).
+  fired ~23:45 UTC — after the NYSE close *and* after Bloomberg uploads the
+  same-day "The Close" episode (on-time via an external cron-job.com dispatch;
+  GitHub's native `45 23 * * 1-5` cron is kept as a delayed fallback).
   Produces the summary + PDF (named by the data's **session date**), updates the
   CSV history, regenerates charts, and commits them.
 - [`email_summary.yml`](.github/workflows/email_summary.yml) — **Deliver**:

@@ -27,9 +27,12 @@ front-ends (Invidious/Piped) are blocked upstream too. Three-layer fetch chain:
      available, clearly labelled that the transcript was missing.
 Cookie-based auth was rejected — YouTube bans accounts used that way.
 
-Timing note: The Close uploads ~2h after the 21:30 UTC pipeline run, so the
-summarised episode is usually the PREVIOUS session's — the episode date is
-always shown so the reader knows exactly what they're getting.
+Timing note: the pipeline runs at 23:45 UTC, after Bloomberg uploads the
+same-day episode (~23:00 UTC), so the summary normally covers TODAY's show.
+The channel RSS only lists the newest 15 uploads, so if the episode is late
+(or the run is delayed), find_latest_close falls back to scanning the
+channel's videos page in a headless browser; the episode date is always shown
+so the reader knows exactly what they're getting.
 
 DISPLAY-ONLY and fail-safe: feeds no scores; any failure just omits the section.
 """
@@ -51,25 +54,83 @@ MAX_TRANSCRIPT_CHARS = 150_000                    # bounds Claude cost on 2h sho
 SUMMARY_MODEL = "claude-sonnet-4-5"
 
 
-def find_latest_close():
-    """Newest 'The Close' episode from the channel RSS, or None.
+def _date_from_title(title: str):
+    """The Close titles carry the air date ('… | The Close 7/27/2026') → ISO."""
+    m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", title)
+    return f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}" if m else ""
 
-    Returns {video_id, title, published (ISO date), description}. The RSS
-    description reliably includes the episode's full guest lineup; everything
-    after the '--------' separator is channel boilerplate and is dropped.
+
+def find_latest_close():
+    """Newest 'The Close' episode: channel RSS first, browser fallback second.
+
+    Returns {video_id, title, published (ISO date), description} or None. The
+    RSS description reliably includes the episode's full guest lineup
+    (everything after the '--------' separator is channel boilerplate). The
+    RSS feed only lists the 15 newest uploads, so on heavy posting days an
+    episode can scroll out — then a headless browser scans the channel's
+    videos page instead (no description there; the date comes from the title).
     """
-    resp = requests.get(RSS_URL, timeout=TIMEOUT, headers=HEADERS)
-    resp.raise_for_status()
-    feed = feedparser.parse(resp.content)
-    for entry in feed.entries:                    # newest first
-        title = entry.get("title", "")
-        if not TITLE_RE.search(title):
-            continue
-        desc = entry.get("media_description") or entry.get("summary") or ""
-        desc = desc.split("--------")[0].strip()
-        published = (entry.get("published", "") or "")[:10]
-        return {"video_id": entry.get("yt_videoid"), "title": title,
-                "published": published, "description": desc}
+    try:
+        resp = requests.get(RSS_URL, timeout=TIMEOUT, headers=HEADERS)
+        resp.raise_for_status()
+        feed = feedparser.parse(resp.content)
+        for entry in feed.entries:                # newest first
+            title = entry.get("title", "")
+            if not TITLE_RE.search(title):
+                continue
+            desc = entry.get("media_description") or entry.get("summary") or ""
+            desc = desc.split("--------")[0].strip()
+            published = (entry.get("published", "") or "")[:10]
+            return {"video_id": entry.get("yt_videoid"), "title": title,
+                    "published": published or _date_from_title(title),
+                    "description": desc}
+    except Exception as exc:
+        print(f"  ℹ️  Channel RSS failed ({type(exc).__name__}).")
+    print("  ℹ️  'The Close' not in the RSS window — scanning the channel page.")
+    return _find_via_channel_page()
+
+
+def _clean_grid_title(title: str) -> str:
+    """Grid aria-labels append chrome to the title ('… by Bloomberg Television
+    N views … 1 hour, 31 minutes') — cut it back to the bare episode title."""
+    title = re.split(r"\s+by Bloomberg", title)[0]
+    return re.sub(r"(\s+\d+\s+(?:hours?|minutes?|seconds?),?)+\s*$", "", title).strip()
+
+
+def _find_via_channel_page():
+    """Browser fallback: scan the channel's /videos page (lists far more than
+    the 15-entry RSS) for the newest 'The Close'. Returns an episode dict with
+    an empty description (not available there), or None. Never raises."""
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            ctx = browser.new_context(locale="en-US", user_agent=_BROWSER_UA,
+                                      viewport={"width": 1400, "height": 900})
+            try:
+                page = ctx.new_page()
+                page.goto(f"https://www.youtube.com/channel/{CHANNEL_ID}/videos",
+                          wait_until="domcontentloaded", timeout=60_000)
+                page.wait_for_timeout(4_000)
+                # YouTube's grid markup churns (rich-items vs lockup view
+                # models); watch-anchors + their aria-label/title/text survive
+                # both. Dedupe per video id, keep page order (newest first).
+                vids = page.evaluate(
+                    "() => Array.from(document.querySelectorAll("
+                    "'a[href*=\"watch?v=\"]'))"
+                    ".map(a => ({title: a.getAttribute('aria-label') ||"
+                    " a.getAttribute('title') || a.textContent.trim(),"
+                    " href: a.href})).filter(v => v.title).slice(0, 120)")
+            finally:
+                browser.close()
+        for v in vids or []:
+            title = _clean_grid_title(v.get("title") or "")
+            m = re.search(r"[?&]v=([\w-]{11})", v.get("href") or "")
+            if title and m and TITLE_RE.search(title):
+                return {"video_id": m.group(1), "title": title,
+                        "published": _date_from_title(title), "description": ""}
+    except Exception as exc:
+        print(f"  ℹ️  Channel-page scan failed ({type(exc).__name__}).")
     return None
 
 

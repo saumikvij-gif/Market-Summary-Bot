@@ -10,6 +10,19 @@ def test_title_regex_matches_real_pattern():
     assert not bc.TITLE_RE.search("Closing bell recap")   # 'Close' alone isn't the show
 
 
+def test_date_from_title_and_grid_title_cleanup():
+    assert bc._date_from_title("Stocks Slide | The Close 7/27/2026") == "2026-07-27"
+    assert bc._date_from_title("Bloomberg The Close 12/3/2026") == "2026-12-03"
+    assert bc._date_from_title("no date here") == ""
+    # aria-label chrome stripped back to the bare episode title.
+    assert bc._clean_grid_title(
+        "Stocks in the Red | The Close 7/27/2026 1 hour, 31 minutes"
+    ) == "Stocks in the Red | The Close 7/27/2026"
+    assert bc._clean_grid_title(
+        "Markets Rally | The Close 7/28/2026 by Bloomberg Television 12,345 views"
+    ) == "Markets Rally | The Close 7/28/2026"
+
+
 def test_proxy_config_absent_without_env(monkeypatch):
     # Unset AND empty (how an undefined GitHub secret expands) both mean "off".
     monkeypatch.delenv("WEBSHARE_PROXY_USERNAME", raising=False)
