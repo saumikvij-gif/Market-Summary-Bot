@@ -269,12 +269,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-07-24,Pharma / Healthcare,1.117,29687,26589,8,8,0.0169,1.016,0.9,2.07,at highs,Bullish,"advance, but heavily hedged — protection still bid"
 2026-07-24,SaaS,0.96,123524,128705,9,9,0.0552,1.051,1.11,-4.57,falling,Bullish,broad advance; positioning unremarkable
 2026-07-24,Semiconductors / Compute,0.339,537737,1586699,10,10,0.0255,0.974,-3.11,2.46,drifting,Bearish,decline without hedging demand — flows not panicked
-2026-07-27,All tracked,0.538,1195731,2223894,58,58,0.0239,0.974,0.18,-0.22,drifting,Bullish,broad advance; positioning unremarkable
-2026-07-27,Banking,1.347,39029,28977,8,8,0.0002,0.992,0.59,0.14,at highs,Bullish,"advance, but heavily hedged — protection still bid"
-2026-07-27,Consumer,0.763,34430,45114,8,8,0.02,0.999,3.04,-0.15,drifting,Bullish,broad advance; positioning unremarkable
-2026-07-27,Hyperscalers & Neoclouds,0.307,182501,594670,7,7,0.0172,1.077,-0.97,-5.15,falling,Bearish,decline without hedging demand — flows not panicked
-2026-07-27,Memory (DRAM/NAND/HBM),1.533,276379,180325,4,4,0.0566,0.87,-10.68,4.03,rising,Bearish,conviction selling — puts bid and shorts loaded/rising
-2026-07-27,Networking / Interconnect,0.977,61653,63096,7,7,0.0434,0.958,-7.43,0.26,drifting,Bearish,orderly decline; positioning unremarkable
-2026-07-27,Pharma / Healthcare,1.202,36679,30527,8,8,0.0177,1.019,0.6,2.06,at highs,Bullish,"advance, but heavily hedged — protection still bid"
-2026-07-27,SaaS,0.643,119660,186081,9,9,0.054,0.936,6.61,-0.56,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
-2026-07-27,Semiconductors / Compute,0.43,490024,1140494,10,10,0.0243,0.997,-5.16,0.01,drifting,Bearish,decline without hedging demand — flows not panicked
+2026-07-27,All tracked,0.563,1054665,1874687,58,58,0.0239,0.974,0.23,-0.26,drifting,Bullish,broad advance; positioning unremarkable
+2026-07-27,Banking,1.349,39118,28994,8,8,0.0002,0.992,0.08,1.4,at highs,Neutral,quiet session
+2026-07-27,Consumer,0.763,34430,45118,8,8,0.02,0.999,1.83,0.73,drifting,Bullish,broad advance; positioning unremarkable
+2026-07-27,Hyperscalers & Neoclouds,0.404,175921,435944,7,7,0.0172,1.077,0.06,-3.28,falling,Neutral,quiet session
+2026-07-27,Memory (DRAM/NAND/HBM),1.342,228289,170099,4,4,0.0566,0.87,-4.14,1.98,drifting,Bearish,conviction selling — puts bid and shorts loaded/rising
+2026-07-27,Networking / Interconnect,0.84,56386,67124,7,7,0.0434,0.958,-2.61,-0.82,drifting,Bearish,orderly decline; positioning unremarkable
+2026-07-27,Pharma / Healthcare,1.217,37159,30529,8,8,0.0177,1.019,0.09,3.65,at highs,Neutral,quiet session
+2026-07-27,SaaS,0.643,119694,186179,9,9,0.054,0.936,5.62,-2.46,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
+2026-07-27,Semiconductors / Compute,0.42,403025,960117,10,10,0.0243,0.997,-1.02,-1.01,drifting,Bearish,decline without hedging demand — flows not panicked
