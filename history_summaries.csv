@@ -1658,3 +1658,44 @@ _Equities rose with Nasdaq -0.3%, S&P 500 +0.0%, VIX +1.1%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Gold prices today, Monday, July 27, 2026: Gold prices see positive traction as fighting with Iran has paused
 - 🔴 Most bearish (-0.96): Stock market today: S&P 500, Nasdaq futures slide as chip sell-off deepens"
+2026-07-28,Neutral,5,"## Index Divergence Deepens Amid Semiconductor Rout
+
+U.S. equity markets displayed stark divergence on Tuesday as a broad selloff in semiconductors and AI-related stocks sent the Nasdaq 100 down 0.98%, while the Dow Jones surged 1.03% and the S&P 500 edged up 0.21%. The Nasdaq's decline brought it to the brink of correction territory—down 9.5% from its June peak—as investors continued to reassess elevated valuations in technology amid mounting concerns over AI capital expenditure returns.
+
+The Philadelphia Semiconductor Index tumbled 4.5% for its fourth consecutive losing session, the longest losing streak since March. Micron led the carnage, plunging 8.85% as China-related fears intensified, on track for its worst monthly drop in 11 years. SanDisk collapsed 14.25%, extending after-hours losses toward 20% on the day. AMD shed 8.15%, Intel fell 5.86%, and Arm dropped 8.11%. Coherent tumbled 10.31%, underscoring the broad-based retreat across the semiconductor complex.
+
+Sector data revealed the depth of the selloff: Memory stocks fell 8.69%, Networking/Interconnect declined 7.09%, and Semiconductors/Compute dropped 4.38%—all on bearish positioning signals. Notably, put/call ratios remained subdued across chip sectors (0.53–0.81), suggesting ""orderly decline"" without panic-driven hedging demand, according to positioning metrics.
+
+In sharp contrast, defensive and cyclical sectors rallied. Pharma/Healthcare jumped 2.14% with 100% breadth, while Consumer stocks gained 1.87%. Among individual standouts, **Itron surged 26.23%**, **Ionic Digital climbed 25.80%**, and **Kiniksa Pharmaceuticals advanced 25.03%**, leading the market's top gainers. **Lucid Group** jumped 21.54%, and **IQVIA Holdings** rose 13.94%.
+
+## Fed Decision and Cross-Asset Signals
+
+Attention turns to Wednesday's FOMC meeting, Chairman Kevin Warsh's second decision. Despite Treasury yields falling for a third session (10-year down 4bp to 4.60%), swap markets price a 30% chance of an immediate rate hike, rising to 60–70% for September. Citadel Securities reportedly expects a surprise hike, adding uncertainty to an already fragile tech sector vulnerable to rising discount rates.
+
+Crude oil surged 4.21% to $82.60 on reports of Houthi strikes on Saudi tankers, while gold dipped 0.50%. The VIX fell 2.46% to 18.21, suggesting relative complacency despite the tech upheaval. Emerging credit market stress—widening CDS spreads on hyperscalers as insurers exclude AI risk from general policies—adds another layer of concern around unquantified AI liabilities.
+
+## Outlook
+
+The equal-weight S&P outperformed its cap-weighted counterpart by 90 basis points, reflecting a rotation away from mega-cap tech. With key earnings from Microsoft, Meta, and Amazon looming, and the Fed decision Wednesday, volatility may persist as markets grapple with AI investment skepticism and monetary policy uncertainty.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.05  →  **Neutral**
+**Trend (5-day EMA):** -0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.05 |
+| News headlines | 20% | -0.02 |
+| Reddit | 0% | -0.11 |
+| Fed (rate expectations) | 10% | +0.25 |
+
+_Equities rose with Nasdaq -1.0%, S&P 500 +0.2%, VIX -2.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.8%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -3.7bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): Seagate’s earnings are welcome news for the battered AI trade
+- 🔴 Most bearish (-0.96): Micron’s stock sinks toward worst monthly drop in 11 years as China fears escalate"
