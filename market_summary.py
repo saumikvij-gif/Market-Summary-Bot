@@ -30,6 +30,7 @@ import news_feeds
 import sentiment
 import sector_watch
 import options_positioning
+import bloomberg_close
 import history
 import charts
 import pdf_report as report_module
@@ -448,6 +449,19 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not build options positioning: {exc}")
 
+    # Bloomberg News Summary: the latest episode of Bloomberg TV's "The Close",
+    # summarised (full transcript when fetchable, honest guest rundown when
+    # not). Display-only — a new briefing section; feeds no scores. Fail-safe.
+    print("\nBuilding Bloomberg 'The Close' summary…")
+    bloomberg = None
+    try:
+        bloomberg = bloomberg_close.build_bloomberg_summary()
+        bb_block = bloomberg_close.render_md(bloomberg)
+        if bb_block:
+            data_block += "\n" + bb_block + "\n"
+    except Exception as exc:
+        print(f"  ⚠️  Could not build Bloomberg summary: {exc}")
+
     # Compute the quantitative sentiment dashboard (reproducible, NLP-based).
     # This is the score of record — it drives the DB and the daily chart.
     print("\nComputing quantitative sentiment…")
@@ -545,7 +559,8 @@ def main():
         html = report_module.build_html(
             briefing_pretty, prose, gainers, top_news, dashboard or {},
             market_data, chart_paths, stale_note=stale_note,
-            sector_watch=watch_rows, options_positioning=positioning_rows)
+            sector_watch=watch_rows, options_positioning=positioning_rows,
+            bloomberg=bloomberg)
         if report_module.write_pdf(html, pdf_path):
             print(f"📄 PDF briefing written to {pdf_path}")
         else:

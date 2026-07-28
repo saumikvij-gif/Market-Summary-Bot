@@ -183,6 +183,26 @@ def _options_positioning_block(rows: list) -> str:
             f"<th>Day</th><th>Today's Read</th></tr>{body}</table>")
 
 
+def _bloomberg_block(info: dict) -> str:
+    """Bloomberg News Summary — Bloomberg TV's 'The Close', summarised.
+
+    `info` comes from bloomberg_close.build_bloomberg_summary(): a full-
+    transcript summary when captions were fetchable, otherwise an honest
+    episode rundown (guest lineup) clearly labelled as such.
+    """
+    if not info or not info.get("summary_md"):
+        return ""
+    tag = ("Full-transcript summary" if info.get("mode") == "transcript"
+           else "Episode rundown &mdash; transcript unavailable")
+    body = md.markdown(info["summary_md"], extensions=["extra"])
+    link = (f' &middot; <a href="{info["url"]}">watch on YouTube</a>'
+            if info.get("url") else "")
+    return (f"<h2>Bloomberg News Summary</h2>"
+            f'<p class="news-src">{info.get("title", "The Close")} '
+            f'(aired {info.get("published", "n/a")}) &middot; {tag}{link}</p>'
+            f"{body}")
+
+
 def _divergence_block(dash: dict) -> str:
     div = dash.get("divergence")
     if not div:
@@ -251,7 +271,7 @@ def _charts_block(chart_paths: list) -> str:
 def build_html(date_str: str, prose_md: str, gainers: list, news: list,
                dashboard: dict, market_data: dict, chart_paths: list,
                stale_note: str = "", sector_watch: list = None,
-               options_positioning: list = None) -> str:
+               options_positioning: list = None, bloomberg: dict = None) -> str:
     """Assemble the full briefing HTML."""
     note = f'<div class="note">{stale_note}</div>' if stale_note else ""
     prose_html = md.markdown(prose_md or "", extensions=["extra"])
@@ -269,6 +289,7 @@ def build_html(date_str: str, prose_md: str, gainers: list, news: list,
         _charts_block(chart_paths),                        # trend charts — own page
         _sector_watch_block(sector_watch)                  # sector watch page,
         + _options_positioning_block(options_positioning),  # + positioning read
+        _bloomberg_block(bloomberg),                       # Bloomberg summary — own page
         _gainers_block(gainers) + _news_block(news),       # gainers + news
         snapshot,                                          # market snapshot
         analyst,                                           # analyst summary

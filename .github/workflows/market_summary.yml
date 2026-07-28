@@ -30,7 +30,8 @@ jobs:
   market-summary:
     name: Generate Market Summary
     runs-on: ubuntu-latest
-    timeout-minutes: 20   # FinBERT (torch) install + model can take a few minutes
+    timeout-minutes: 30   # FinBERT (torch) install + model + Chromium (Bloomberg
+                          # transcript scrape) can take a few minutes combined
 
     permissions:
       contents: write   # needed to commit the summary back to the repo
@@ -63,11 +64,28 @@ jobs:
           pip install torch --index-url https://download.pytorch.org/whl/cpu
           pip install -r requirements-ml.txt
 
+      # ── 4b. Chromium for the Bloomberg "The Close" transcript scrape ──────────
+      #    (the transcript panel needs a real browser; cached between runs)
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ hashFiles('requirements.txt') }}
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+
       # ── 5. Run the script ─────────────────────────────────────────────────────
       - name: Run market summary script
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SENTIMENT_ENGINE: hybrid
+          # Optional rotating-residential proxy for the Bloomberg "The Close"
+          # transcript pull (YouTube blocks cloud IPs). Unset secrets expand to
+          # empty strings, which bloomberg_close.py treats as absent — the
+          # section then runs in episode-rundown mode instead. Add the two
+          # WEBSHARE_* secrets to switch full-transcript mode on, no code change.
+          WEBSHARE_PROXY_USERNAME: ${{ secrets.WEBSHARE_PROXY_USERNAME }}
+          WEBSHARE_PROXY_PASSWORD: ${{ secrets.WEBSHARE_PROXY_PASSWORD }}
           # No SMTP_* here on purpose: email is sent later by email_summary.yml,
           # so with no SMTP config the script's email step auto-skips.
         run: |
