@@ -278,12 +278,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-07-27,Pharma / Healthcare,1.217,37159,30529,8,8,0.0177,1.019,0.09,3.65,at highs,Neutral,quiet session
 2026-07-27,SaaS,0.643,119694,186179,9,9,0.054,0.936,5.62,-2.46,bouncing,Bullish,short-squeeze rebound — shorts/puts were loaded into the selloff and fueled the rip
 2026-07-27,Semiconductors / Compute,0.42,403025,960117,10,10,0.0243,0.997,-1.02,-1.01,drifting,Bearish,decline without hedging demand — flows not panicked
-2026-07-28,All tracked,0.702,1319654,1881088,58,58,0.0239,0.974,-0.15,-1.37,drifting,Bearish,orderly decline; positioning unremarkable
-2026-07-28,Banking,1.823,33696,18486,8,8,0.0002,0.992,-0.07,0.1,at highs,Neutral,quiet session
-2026-07-28,Consumer,0.538,33228,61795,8,8,0.02,0.999,1.87,3.67,rising,Bullish,broad advance; positioning unremarkable
+2026-07-28,All tracked,0.702,1319648,1881095,58,58,0.0239,0.974,-0.15,-1.37,drifting,Bearish,orderly decline; positioning unremarkable
+2026-07-28,Banking,1.823,33691,18486,8,8,0.0002,0.992,-0.07,0.44,at highs,Neutral,quiet session
+2026-07-28,Consumer,0.538,33228,61795,8,8,0.02,0.999,1.87,3.3,rising,Bullish,broad advance; positioning unremarkable
 2026-07-28,Hyperscalers & Neoclouds,0.708,233244,329394,7,7,0.0172,1.077,-0.08,-6.74,falling,Neutral,quiet session
 2026-07-28,Memory (DRAM/NAND/HBM),0.815,225732,276998,4,4,0.0566,0.87,-8.69,-15.84,falling,Bearish,orderly decline; positioning unremarkable
 2026-07-28,Networking / Interconnect,0.527,56044,106291,7,7,0.0434,0.958,-7.09,-14.24,falling,Bearish,decline without hedging demand — flows not panicked
-2026-07-28,Pharma / Healthcare,0.862,45842,53159,8,8,0.0177,1.019,2.14,4.12,at highs,Bullish,broad advance; positioning unremarkable
-2026-07-28,SaaS,0.983,169781,172685,9,9,0.054,0.936,0.29,0.97,drifting,Bullish,broad advance; positioning unremarkable
+2026-07-28,Pharma / Healthcare,0.862,45841,53159,8,8,0.0177,1.019,2.14,4.13,at highs,Bullish,broad advance; positioning unremarkable
+2026-07-28,SaaS,0.983,169781,172692,9,9,0.054,0.936,0.29,-0.5,drifting,Bullish,broad advance; positioning unremarkable
 2026-07-28,Semiconductors / Compute,0.592,560304,945771,10,10,0.0243,0.997,-4.39,-6.86,falling,Bearish,decline without hedging demand — flows not panicked

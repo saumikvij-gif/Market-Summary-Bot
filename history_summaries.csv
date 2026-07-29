@@ -1658,38 +1658,42 @@ _Equities rose with Nasdaq -0.3%, S&P 500 +0.0%, VIX +1.1%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): Gold prices today, Monday, July 27, 2026: Gold prices see positive traction as fighting with Iran has paused
 - 🔴 Most bearish (-0.96): Stock market today: S&P 500, Nasdaq futures slide as chip sell-off deepens"
-2026-07-28,Neutral,5,"## Index Divergence Deepens Amid Semiconductor Rout
+2026-07-28,Neutral,6,"> **Note:** No US trading session on 2026-07-29. Figures are from the last session (2026-07-28).
 
-U.S. equity markets displayed stark divergence on Tuesday as a broad selloff in semiconductors and AI-related stocks sent the Nasdaq 100 down 0.98%, while the Dow Jones surged 1.03% and the S&P 500 edged up 0.21%. The Nasdaq's decline brought it to the brink of correction territory—down 9.5% from its June peak—as investors continued to reassess elevated valuations in technology amid mounting concerns over AI capital expenditure returns.
+## Market Overview
 
-The Philadelphia Semiconductor Index tumbled 4.5% for its fourth consecutive losing session, the longest losing streak since March. Micron led the carnage, plunging 8.85% as China-related fears intensified, on track for its worst monthly drop in 11 years. SanDisk collapsed 14.25%, extending after-hours losses toward 20% on the day. AMD shed 8.15%, Intel fell 5.86%, and Arm dropped 8.11%. Coherent tumbled 10.31%, underscoring the broad-based retreat across the semiconductor complex.
+U.S. equity markets delivered a split session on July 29, 2026, with the Dow Jones surging 1.03% while the Nasdaq 100 slipped 0.98%, flirting with correction territory at nearly 10% below recent highs. The S&P 500 eked out a modest 0.21% gain, masking significant sector divergence as investors continued to rotate away from technology into defensive and cyclical names. The VIX declined 2.46% to 18.21, suggesting orderly repositioning rather than panic.
 
-Sector data revealed the depth of the selloff: Memory stocks fell 8.69%, Networking/Interconnect declined 7.09%, and Semiconductors/Compute dropped 4.38%—all on bearish positioning signals. Notably, put/call ratios remained subdued across chip sectors (0.53–0.81), suggesting ""orderly decline"" without panic-driven hedging demand, according to positioning metrics.
+## Semiconductor Rout Intensifies
 
-In sharp contrast, defensive and cyclical sectors rallied. Pharma/Healthcare jumped 2.14% with 100% breadth, while Consumer stocks gained 1.87%. Among individual standouts, **Itron surged 26.23%**, **Ionic Digital climbed 25.80%**, and **Kiniksa Pharmaceuticals advanced 25.03%**, leading the market's top gainers. **Lucid Group** jumped 21.54%, and **IQVIA Holdings** rose 13.94%.
+The Philadelphia Semiconductor Index extended its selloff for a fourth consecutive session, with memory and networking stocks bearing the brunt. **Micron plummeted 8.85%** amid escalating China concerns and what MarketWatch described as its worst monthly performance in 11 years. **AMD dropped 8.15%**, **Intel fell 5.86%**, and **Arm declined 8.11%**. The damage was particularly severe in memory and storage: **SanDisk crashed 14.25%** (down nearly 60% from recent highs), while networking names also suffered steep losses. Reddit's r/wallstreetbets captured the mood with dark humor about ""short-term memory loss"" and warnings to ""never trust Jensen Huang.""
+
+Seagate's strong earnings—highlighting robust AI-driven data storage demand—offered little relief to the broader chip complex. Positioning data showed relatively low put-to-call ratios in semiconductors (0.59) and networking (0.53), suggesting the decline proceeded without significant hedging demand and that flows remain orderly rather than panicked.
+
+## Defensive Rotation and Standout Gainers
+
+Investors piled into healthcare and consumer sectors, which rose 2.14% and 1.87% respectively with 100% and 69% breadth. The equal-weight S&P 500 outperformed its cap-weighted counterpart by roughly 90 basis points, underscoring broad market participation beyond mega-caps. 
+
+Top individual gainers reflected this shift: **Itron (ITRI) surged 26.23%**, **Ionic Digital (IOND) jumped 25.80%**, **Kiniksa Pharmaceuticals (KNSA) climbed 25.03%**, **Lucid Group (LCID) rallied 21.54%**, and **IQVIA (IQV) advanced 13.94%**. Consumer bellwethers delivered strong earnings, with Ford and Coca-Cola raising guidance.
 
 ## Fed Decision and Cross-Asset Signals
 
-Attention turns to Wednesday's FOMC meeting, Chairman Kevin Warsh's second decision. Despite Treasury yields falling for a third session (10-year down 4bp to 4.60%), swap markets price a 30% chance of an immediate rate hike, rising to 60–70% for September. Citadel Securities reportedly expects a surprise hike, adding uncertainty to an already fragile tech sector vulnerable to rising discount rates.
+With the Federal Reserve decision looming, markets priced a 30% probability of a rate hike Wednesday, rising to 60-70% for September. The 10-year Treasury yield declined 4 basis points to 4.60%, while crude oil rallied 4.11% to $82.52 amid reports of Houthi strikes on Saudi tankers. Bitcoin gained 0.93%, and gold dipped modestly.
 
-Crude oil surged 4.21% to $82.60 on reports of Houthi strikes on Saudi tankers, while gold dipped 0.50%. The VIX fell 2.46% to 18.21, suggesting relative complacency despite the tech upheaval. Emerging credit market stress—widening CDS spreads on hyperscalers as insurers exclude AI risk from general policies—adds another layer of concern around unquantified AI liabilities.
-
-## Outlook
-
-The equal-weight S&P outperformed its cap-weighted counterpart by 90 basis points, reflecting a rotation away from mega-cap tech. With key earnings from Microsoft, Meta, and Amazon looming, and the Fed decision Wednesday, volatility may persist as markets grapple with AI investment skepticism and monetary policy uncertainty.
+Notably, MarketWatch highlighted that the Bank of Japan's upcoming decision may matter more for portfolios than the Fed's, as South Korea's KOSPI plunged 8% with circuit breakers triggered—a reminder of growing stress in Asian markets. The combination of falling yields, rising oil, and tech weakness suggests markets are recalibrating growth expectations and bracing for potential monetary policy shifts on multiple fronts.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.05  →  **Neutral**
+**Today's Score:** +0.06  →  **Neutral**
 **Trend (5-day EMA):** -0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.05 |
-| News headlines | 20% | -0.02 |
-| Reddit | 0% | -0.11 |
+| News headlines | 20% | +0.01 |
+| Reddit | 0% | -0.13 |
 | Fed (rate expectations) | 10% | +0.25 |
 
 _Equities rose with Nasdaq -1.0%, S&P 500 +0.2%, VIX -2.5%. Sector breadth: 7/11 sectors up. 10Y yield -0.8%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -3.7bp). Today's overall market tone: Neutral._
