@@ -1703,3 +1703,45 @@ _Equities rose with Nasdaq -1.0%, S&P 500 +0.2%, VIX -2.5%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): Seagate’s earnings are welcome news for the battered AI trade
 - 🔴 Most bearish (-0.96): Micron’s stock sinks toward worst monthly drop in 11 years as China fears escalate"
+2026-07-29,Bearish,-49,"## Market Overview
+
+U.S. equities suffered sharp losses Wednesday as the Nasdaq 100 entered correction territory, falling 2.06% and closing 11% below June highs. The S&P 500 dropped 1.52% while the Dow shed 1,153 points (-2.19%) in a broad-based selloff. The VIX surged 13.45% to 20.66, reflecting heightened investor anxiety. Despite strong gains in a handful of mid-cap names—including Huron Consulting (+40.37%), Manhattan Associates (+21.32%), and Lithia Motors (+19.30%)—breadth was decidedly negative.
+
+## Fed Decision Triggers Bond Market Revolt
+
+The Federal Reserve held interest rates steady, but the decision sparked a significant bond market reaction that overshadowed the policy itself. Chair Kevin Warsh reiterated that ""there is no soft inflation target,"" yet failed to convince fixed income investors of the Fed's inflation-fighting credibility. The 30-year Treasury yield surged to 5.2%—the highest since 2007—while the 2-year yield fell 6 basis points, producing the steepest yield curve steepening in a year. Three FOMC members dissented in favor of rate hikes, underscoring internal divisions. Bond strategists interpreted the market's response as a direct challenge to Warsh's rhetoric, with mortgage and refinance rates climbing across the board ahead of the decision.
+
+## Semiconductor Carnage and AI Spending Doubts
+
+Technology stocks bore the brunt of the selloff, particularly semiconductor and AI-related names. Micron plunged 9.94%, while AMD (-5.51%), Intel (-5.12%), Arm (-8.11%), SanDisk (-7.32%), and Coherent (-8.75%) all posted severe losses. Nvidia declined 3.55%, and Broadcom fell 2.78%. Sector data revealed the damage: Semiconductors/Compute dropped 5.31%, Networking/Interconnect fell 6.34%, and Memory tumbled 3.82%—all significantly underperforming the broader market. Notably, put/call ratios remained extraordinarily low (0.14–0.23) across chip sectors, suggesting the decline occurred without meaningful hedging demand and flows remained ""not panicked.""
+
+After-hours, Microsoft rallied roughly 3% on better-than-expected Azure cloud revenue growth (43% vs. 40% consensus), while Meta dropped 6.5% on disappointing Q3 guidance despite maintaining elevated capex projections. The divergence highlighted growing investor scrutiny around AI return on investment. Qualcomm also declined on news that its Apple business would end faster than anticipated—by late 2026 rather than 2027.
+
+## Cross-Asset Signals and Safe-Haven Flows
+
+Gold climbed 1.32% to $4,150.90, benefiting from inflation concerns and geopolitical tensions surrounding Middle East energy markets. Bitcoin edged up 0.15%, while crude oil remained essentially flat. The 10-year Treasury yield rose modestly (+0.39%) to 4.62%, while the 13-week T-Bill yield fell 2.71%, reflecting a flight to near-term safety amid Fed uncertainty. Currency markets were largely stable.
+
+## Bright Spots in Consumer and SaaS
+
+Amid the tech wreckage, consumer discretionary names posted resilience. Starbucks surged 8% after hours on 7.9% comp sales growth (vs. 5.7% expected) with raised guidance, and Chipotle similarly beat estimates, suggesting robust consumer spending. The SaaS sector rose 4.64% with 78% breadth, standing out as one of the few bullish pockets in an otherwise challenging session.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.49  →  **Bearish**
+**Trend (5-day EMA):** -0.19  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.71 |
+| News headlines | 20% | -0.20 |
+| Fed (rate expectations) | 10% | +0.44 |
+
+_Equities fell with Nasdaq -2.1%, S&P 500 -1.5%, VIX +13.4%. Sector breadth: 2/11 sectors up. 10Y yield +0.4%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -10.2bp). Fresh Fed communications read neutral. Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.91): Mortgage and refinance rates today, Wednesday, July 29, 2026: Rates up across the board ahead of Fed rate decision
+- 🔴 Most bearish (-0.97): Qualcomm forecasts weak quarterly profit, expects Apple revenue drop to accelerate"
