@@ -5,7 +5,7 @@ Backtests the sentiment score against real index moves, to answer: does the
 score actually track / predict the market, or is it just plausible?
 
 Important honesty caveat: only the MARKET component (70% of the composite) can
-be reconstructed historically — news / Reddit / Fed headlines are not archived,
+be reconstructed historically — news / Fed headlines are not archived,
 so the full composite can't be backfilled. This therefore validates the market
 component, which is the dominant and only history-reconstructable piece.
 
@@ -88,7 +88,7 @@ def main() -> None:
     print(f"Validation over {len(dates)} trading days "
           f"({dates[0]} → {dates[-1]})")
     print("─" * 64)
-    print("NOTE: market component only (70% of composite); news/Reddit/Fed")
+    print("NOTE: market component only (70% of composite); news/Fed")
     print("      history isn't archived and can't be backfilled.")
     print()
     print(f"  Same-day corr(score_t, return_t)    : {same_r:+.3f}   "

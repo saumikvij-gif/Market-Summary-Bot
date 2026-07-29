@@ -12,11 +12,11 @@ See [`Pipeline_Overview.md`](Pipeline_Overview.md) for the end-to-end design.
 
 1. Pulls quotes for indices, key stocks, sector ETFs, commodities/crypto, FX, and
    rates via [`yfinance`](https://pypi.org/project/yfinance/).
-2. Fetches news/Reddit/Fed headlines from public RSS feeds, filtered for
+2. Fetches news/Fed headlines from public RSS feeds, filtered for
    US-market relevance and recency.
 3. Computes a deterministic **sentiment score** (−1…+1) — a weighted composite of
    market data, news NLP, and Fed-rate expectations (see Pipeline_Overview.md §4).
-   FinBERT scores formal text, VADER scores social text.
+   FinBERT scores the text (VADER is the lightweight fallback).
 4. Builds a display-only **Sector Watch** of 8 AI-stack thesis baskets, scored by
    the session move (with breadth + news for texture) so the label describes how
    each sector traded; relative strength vs the Nasdaq 100 / S&P 500 is shown as

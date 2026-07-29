@@ -2,10 +2,9 @@
 news_feeds.py
 -------------
 Pulls financial news headlines from public RSS feeds (news outlets + the Federal
-Reserve + Reddit finance subreddits) and prints them to the console. No Reddit API
-key or app required. Also exposes gather_headlines()/build_headline_block()/
-split_headlines() used by the main pipeline; sentiment scoring lives in
-sentiment.py.
+Reserve) and prints them to the console. Also exposes gather_headlines()/
+build_headline_block()/split_headlines() used by the main pipeline; sentiment
+scoring lives in sentiment.py.
 
 Usage:
     python news_feeds.py
@@ -37,7 +36,7 @@ LIMIT = int(os.environ.get("NEWS_LIMIT", "8"))
 REQUEST_TIMEOUT = 15  # seconds
 
 # Drop headlines older than this many hours. The score is a SAME-DAY read, but
-# feeds (especially Reddit "hot" and Investing.com) carry items days old; those
+# some feeds (especially Investing.com) carry items days old; those
 # stale headlines pollute today's tone. Entries with no parseable date are kept
 # (better to include than to silently drop a whole undated feed). Default 24h —
 # tight enough to keep the read genuinely same-day now that the broadened sector
@@ -88,8 +87,7 @@ def is_boilerplate(title: str) -> bool:
 # outlets almost always also names an index, the Fed, a macro print, or a company.
 #
 # Applied to the outlet feeds only. The Fed feed is exempt (we want all policy
-# text for the communications component), and the finance subreddits are exempt
-# (inherently US-retail-focused, social tone, and weighted 0 in the composite).
+# text for the communications component).
 US_MARKET_TERMS = [
     # US indices / venues
     r"s&p", r"s & p", r"\bspx\b", r"nasdaq", r"\bdow\b", r"dow jones",
@@ -135,9 +133,8 @@ norm_title = _norm_title
 
 def _wants_us_gate(name: str) -> bool:
     """The US-relevance gate applies to general outlet feeds only — not the Fed
-    feed (all policy text wanted) and not the r/ finance subreddits (social, 0%)."""
-    low = name.lower()
-    return ("fed" not in low) and not low.startswith("r/")
+    feed (all policy text wanted for the communications component)."""
+    return "fed" not in name.lower()
 
 
 def _is_stale(entry, now_ts: float = None) -> bool:
@@ -159,7 +156,7 @@ def _is_stale(entry, now_ts: float = None) -> bool:
 # without reaching into a private name.
 is_stale = _is_stale
 
-# A browser-like User-Agent keeps Reddit's RSS from returning 403.
+# A browser-like User-Agent keeps picky feed servers from returning 403.
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                   "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -174,15 +171,6 @@ NEWS_FEEDS = {
     "CNBC (Finance)":        "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
     "Investing.com":         "https://www.investing.com/rss/news_25.rss",
 }
-
-# Reddit subreddits exposed as public .rss feeds
-REDDIT_FEEDS = {
-    "r/wallstreetbets": "https://www.reddit.com/r/wallstreetbets/hot.rss",
-    "r/stocks":         "https://www.reddit.com/r/stocks/hot.rss",
-    "r/investing":      "https://www.reddit.com/r/investing/hot.rss",
-    "r/StockMarket":    "https://www.reddit.com/r/StockMarket/hot.rss",
-}
-
 
 # ── Fetching ─────────────────────────────────────────────────────────────────
 
@@ -232,7 +220,7 @@ def _clean_summary(raw: str, max_len: int = 280) -> str:
 def get_top_news(count: int = 5, per_source: int = 2) -> list:
     """Top news articles (title + summary) across the news outlets, round-robin.
 
-    Returns a list of {source, title, summary, link}. Reddit/Fed feeds are
+    Returns a list of {source, title, summary, link}. The Fed feed is
     excluded — outlet feeds carry real article summaries.
     """
     outlets = {k: v for k, v in NEWS_FEEDS.items() if "fed" not in k.lower()}
@@ -280,11 +268,11 @@ def gather_headlines(feeds: dict = None, limit: int = LIMIT) -> dict:
     """Fetch headlines into a {source: [titles]} dict without printing.
 
     Useful for importing into other scripts (e.g. the market summary). By
-    default it pulls from both the news outlets and the Reddit feeds. `limit`
-    caps the number of headlines kept per source.
+    default it pulls from the news outlet + Fed feeds. `limit` caps the number
+    of headlines kept per source.
     """
     if feeds is None:
-        feeds = {**NEWS_FEEDS, **REDDIT_FEEDS}
+        feeds = dict(NEWS_FEEDS)
     store = {}
     seen = set()   # cross-source dedup: first outlet to carry a story keeps it
     for name, url in feeds.items():
@@ -307,23 +295,20 @@ def gather_headlines(feeds: dict = None, limit: int = LIMIT) -> dict:
 # ── Headline routing (by source) ────────────────────────────────────────────────
 
 def split_headlines(headlines: dict) -> tuple:
-    """Split a {source: [titles]} dict into (news, reddit, fed) title lists.
+    """Split a {source: [titles]} dict into (news, fed) title lists.
 
-    Routing is by source name, which this module owns (see NEWS_FEEDS /
-    REDDIT_FEEDS): an "r/…" source is Reddit, a source naming the Fed is Fed
-    communications, everything else is general news. The sentiment composite
-    weights each list differently, so the split has to happen before scoring.
+    Routing is by source name, which this module owns (see NEWS_FEEDS): a
+    source naming the Fed is Fed communications, everything else is general
+    news. The sentiment composite weights each list differently, so the split
+    has to happen before scoring.
     """
-    news, reddit, fed = [], [], []
+    news, fed = [], []
     for source, titles in (headlines or {}).items():
-        key = source.lower()
-        if key.startswith("r/"):
-            reddit.extend(titles)
-        elif "fed" in key:
+        if "fed" in source.lower():
             fed.extend(titles)
         else:
             news.extend(titles)
-    return news, reddit, fed
+    return news, fed
 
 
 # ── Headline block (reused by the main pipeline) ────────────────────────────────
@@ -349,7 +334,6 @@ def main():
 
     headlines = {}
     collect_section("FINANCIAL NEWS OUTLETS", NEWS_FEEDS, headlines)
-    collect_section("REDDIT", REDDIT_FEEDS, headlines)
     print()
 
 

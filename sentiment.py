@@ -9,18 +9,14 @@ Composite components and default weights:
     Market data : 70%   (a blend of equity moves, sector breadth, VIX, and the
                          10Y Treasury yield — see MARKET_SUBWEIGHTS)
     News         : 20%   (headline NLP sentiment)
-    Reddit       :  0%   (DISABLED — see note below; component still computed for
-                         display but contributes nothing to the score)
     Fed          : 10%   (the Fed Expectations Score — front-end T-Bill move +
                          FinBERT tone of fresh Fed communications; see the Fed
                          Expectations sub-model below)
 
 The market component carries the most weight because it is the only piece with a
 validated, faithful same-day read of the tape (same-day corr ≈ 0.97 vs the index
-move — see validate_sentiment.py); news/Reddit headline-NLP is a noisier, small-
-sample signal, so it is trimmed. Reddit is weighted 0 for now: public RSS "hot"
-feeds are a poor same-day proxy (hot posts persist for days) — the weight will be
-restored once a proper social feed (Reddit/X/Threads API) is wired in.
+move — see validate_sentiment.py); news headline-NLP is a noisier, small-sample
+signal, so it is trimmed.
 
 This is a DESCRIPTIVE recap of how the market traded today — every input is a
 same-day reading. It is not a forecast (validated: no next-day predictive edge).
@@ -28,14 +24,11 @@ A short EMA (SMOOTHING_SPAN) of the daily composite is also reported as a trend,
 because the raw same-day score is intrinsically jumpy (it tracks a near-random
 daily return); the smoothed line is the more readable day-over-day signal.
 
-Sentiment engines (right tool per source):
-  * News + Fed (formal text) → FinBERT, which is finance-aware — when opted in
-    via SENTIMENT_ENGINE and its deps (requirements-ml.txt) are installed.
-  * Reddit (social/slang)     → VADER, which was built for social media and
-    reads slang/sarcasm better than FinBERT.
-Default is "hybrid" (FinBERT news/Fed + VADER Reddit). FinBERT loads lazily and
-safely falls back to VADER if its deps/model aren't available, so a run never
-breaks. Set SENTIMENT_ENGINE=vader to force VADER everywhere (lightweight).
+Sentiment engine: News + Fed (formal text) → FinBERT, which is finance-aware —
+when opted in via SENTIMENT_ENGINE and its deps (requirements-ml.txt) are
+installed. Default is "hybrid" (FinBERT). FinBERT loads lazily and safely falls
+back to VADER if its deps/model aren't available, so a run never breaks. Set
+SENTIMENT_ENGINE=vader to force VADER everywhere (lightweight).
 
 Standalone:
     python sentiment.py        # fetch live data + headlines, print the dashboard JSON
@@ -52,7 +45,7 @@ from utils import clamp as _clamp, force_utf8
 
 force_utf8()
 
-# "hybrid" (default — FinBERT for formal news/Fed, VADER for Reddit) or "vader"
+# "hybrid" (default — FinBERT for the formal news/Fed text) or "vader"
 # (all sources use VADER). FinBERT needs transformers+torch (requirements-ml.txt)
 # and loads lazily; if those deps/model aren't available it safely falls back to
 # VADER, so a run never breaks even without the ML extras installed.
@@ -60,7 +53,7 @@ SENTIMENT_ENGINE = os.environ.get("SENTIMENT_ENGINE", "hybrid").lower()
 
 # ── Tunable weights and normalization constants ────────────────────────────────
 
-WEIGHTS = {"market": 0.70, "news": 0.20, "reddit": 0.00, "fed": 0.10}
+WEIGHTS = {"market": 0.70, "news": 0.20, "fed": 0.10}
 
 # Span (in trading days) for the EMA trend line on the daily composite. The raw
 # same-day score whipsaws (it faithfully tracks a near-random daily return), so a
@@ -275,12 +268,6 @@ def news_component(news_titles: list) -> dict:
     return {"score": score, "detail": {"n": len(news_titles), "engine": engine, **counts}}
 
 
-def reddit_component(reddit_titles: list) -> dict:
-    # Social/slang text → VADER, which was built for it (FinBERT misreads slang).
-    score, counts = _avg_classified(reddit_titles, "vader")
-    return {"score": score, "detail": {"n": len(reddit_titles), "engine": "vader", **counts}}
-
-
 def fed_component(market_data: dict, fed_titles: list = None) -> dict:
     """The Fed Expectations Score — the composite's 4th component.
 
@@ -492,7 +479,7 @@ def label_for(score: float) -> str:
     return "Bearish"
 
 
-def _commentary(overall_label, market, news, reddit, fed) -> str:
+def _commentary(overall_label, market, news, fed) -> str:
     d = market["detail"]
     parts = []
     moves = []
@@ -512,9 +499,6 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
     if d.get("rate_10y_pct") is not None:
         parts.append(f"10Y yield {d['rate_10y_pct']:+.1f}%.")
     parts.append(f"News headlines read {label_for(news['score']).lower()}.")
-    # Only mention Reddit when it actually counts — it's weighted 0 for now.
-    if WEIGHTS.get("reddit", 0) > 0:
-        parts.append(f"Reddit sentiment is {label_for(reddit['score']).lower()}.")
     treasury = fed["detail"].get("treasury", {})
     move_bp = treasury.get("move_bp")
     if treasury.get("active") and move_bp is not None:
@@ -538,17 +522,15 @@ def _commentary(overall_label, market, news, reddit, fed) -> str:
 _MIN_STANDOUT_LEN = 30
 
 
-def _extreme_headlines(news_titles: list, reddit_titles: list) -> dict:
+def _extreme_headlines(news_titles: list) -> dict:
     """Most bullish and most bearish single headline by polarity, or {}.
 
-    Scores each headline with the engine appropriate to its source. Prefers
-    substantive (non-fragment) headlines for the standout picks, falling back to
-    the full set only if nothing clears the length bar — so the feature surfaces
-    a real headline rather than a stray fragment.
+    Prefers substantive (non-fragment) headlines for the standout picks, falling
+    back to the full set only if nothing clears the length bar — so the feature
+    surfaces a real headline rather than a stray fragment.
     """
     eng = news_engine()
     scored = [(t, score_text(t, eng)) for t in news_titles if t]
-    scored += [(t, score_text(t, "vader")) for t in reddit_titles if t]
     if not scored:
         return {}
     eligible = [s for s in scored if len(s[0]) >= _MIN_STANDOUT_LEN] or scored
@@ -592,23 +574,21 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None,
         run_date = datetime.date.today().isoformat()
 
     import news_feeds
-    news_titles, reddit_titles, fed_titles = news_feeds.split_headlines(headlines)
+    news_titles, fed_titles = news_feeds.split_headlines(headlines)
 
     market = market_component(market_data)
     news = news_component(news_titles)
-    reddit = reddit_component(reddit_titles)
     fed = fed_component(market_data, fed_titles)   # Fed Expectations Score
 
     # Surprise insights: divergence (mood vs tape) and the day's standout headlines.
     divergence = _divergence(market["score"], news["score"])
-    extremes = _extreme_headlines(news_titles, reddit_titles)
+    extremes = _extreme_headlines(news_titles)
 
     # Weighted composite. Each component is already in [-1, 1], so the weighted
     # sum is too (weights sum to 1.0).
     overall = (
         WEIGHTS["market"] * market["score"]
         + WEIGHTS["news"] * news["score"]
-        + WEIGHTS["reddit"] * reddit["score"]
         + WEIGHTS["fed"] * fed["score"]
     )
     overall = round(_clamp(overall), 4)
@@ -628,18 +608,16 @@ def build_dashboard(market_data: dict, headlines: dict, run_date: str = None,
         "smoothing_span": SMOOTHING_SPAN,
         "market_score": market["score"],
         "news_score": news["score"],
-        "reddit_score": reddit["score"],
         "fed_score": fed["score"],
         "weights": WEIGHTS,
         "components": {
             "market": market["detail"],
             "news": news["detail"],
-            "reddit": reddit["detail"],
             "fed": fed["detail"],
         },
         "divergence": divergence,
         "headlines": extremes,
-        "summary_text": _commentary(label, market, news, reddit, fed),
+        "summary_text": _commentary(label, market, news, fed),
     }
 
 
@@ -666,7 +644,6 @@ def render_dashboard_md(dash: dict) -> str:
         "| --- | --- | --- |",
         f"| Market data | {dash['weights']['market']:.0%} | {dash['market_score']:+.2f} |",
         f"| News headlines | {dash['weights']['news']:.0%} | {dash['news_score']:+.2f} |",
-        f"| Reddit | {dash['weights']['reddit']:.0%} | {dash['reddit_score']:+.2f} |",
         f"| Fed (rate expectations) | {dash['weights']['fed']:.0%} | {dash['fed_score']:+.2f} |",
         "",
         f"_{dash['summary_text']}_",

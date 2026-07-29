@@ -66,11 +66,10 @@ def test_trend_strength_with_live_price():
 
 
 def test_sector_metric_weights():
-    # The day's absolute move dominates so the label describes the session; reddit
-    # is a disabled reserve. rel_strength/momentum are no longer score inputs.
+    # The day's absolute move dominates so the label describes the session.
+    # rel_strength/momentum are no longer score inputs.
     w = sector_watch.SECTOR_METRIC_WEIGHTS
     assert (w["move"], w["breadth"], w["news"]) == (0.70, 0.15, 0.15)
-    assert w["reddit"] == 0.0
     assert "rel_strength" not in w and "momentum" not in w
     assert abs(sum(w.values()) - 1.0) < 1e-9
 
@@ -140,9 +139,3 @@ def test_news_per_company_cap_bounds_scoring():
     assert abs(score - 0.5) < 1e-9
 
 
-def test_reddit_sentiment_keyword_match():
-    titles = ["Nvidia GPU demand is insane", "weekend off-topic chat"]
-    score, n = sector_watch._reddit_sentiment(["gpu", "nvidia"], titles)
-    assert n == 1                 # only the first title matches
-    score, n = sector_watch._reddit_sentiment(["gpu"], [])
-    assert (score, n) == (None, 0)

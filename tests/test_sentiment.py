@@ -70,12 +70,11 @@ def test_fed_component_rate_based():
 
 
 def test_split_headlines():
-    news, reddit, fed = news_feeds.split_headlines({
+    news, fed = news_feeds.split_headlines({
         "Yahoo Finance": ["a"],
-        "r/stocks": ["b"],
         "Fed (Monetary Policy)": ["c"],
     })
-    assert news == ["a"] and reddit == ["b"] and fed == ["c"]
+    assert news == ["a"] and fed == ["c"]
 
 
 def test_divergence_detection():
@@ -92,17 +91,14 @@ def test_extreme_headlines():
     ex = sentiment._extreme_headlines(
         ["Stocks surge to record highs on strong earnings",
          "Markets crash amid recession fears and heavy losses"],
-        ["thoughts on the dip?"],
     )
     assert ex["most_bullish"]["score"] >= ex["most_bearish"]["score"]
-    assert sentiment._extreme_headlines([], []) == {}
+    assert sentiment._extreme_headlines([]) == {}
 
 
 def test_weights_sum_to_one():
     # The composite weighting must always sum to 1 so the blend stays in [-1, 1].
     assert abs(sum(sentiment.WEIGHTS.values()) - 1.0) < 1e-9
-    # Reddit is intentionally disabled for now (no good same-day social feed).
-    assert sentiment.WEIGHTS["reddit"] == 0.0
 
 
 def test_ema_smoothing():
@@ -138,11 +134,10 @@ def test_build_dashboard_shape():
                       "Nasdaq 100": {"pct_change": 0.6},
                       "VIX": {"pct_change": -1.0}}}
     heads = {"Yahoo Finance": ["Stocks rally on strong jobs report"],
-             "r/stocks": ["thoughts?"],
              "Fed (Monetary Policy)": ["Fed signals a rate cut"]}
     dash = sentiment.build_dashboard(md, heads, run_date="2026-01-02")
     for key in ("date", "overall_score", "label", "smoothed_score",
-                "smoothed_label", "market_score", "news_score", "reddit_score",
+                "smoothed_label", "market_score", "news_score",
                 "fed_score", "summary_text"):
         assert key in dash
     assert dash["date"] == "2026-01-02"

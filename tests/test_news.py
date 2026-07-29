@@ -44,8 +44,7 @@ def test_norm_title_dedup_key():
 
 
 def test_wants_us_gate_targeting():
-    # Outlet feeds get the gate; the Fed feed and the subreddits are exempt.
+    # Outlet feeds get the gate; the Fed feed is exempt.
     assert rn._wants_us_gate("Yahoo Finance") is True
     assert rn._wants_us_gate("Investing.com") is True
     assert rn._wants_us_gate("Fed (Monetary Policy)") is False
-    assert rn._wants_us_gate("r/wallstreetbets") is False

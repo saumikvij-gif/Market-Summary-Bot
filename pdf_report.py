@@ -232,9 +232,9 @@ def _dashboard_block(dash: dict) -> str:
     w = dash.get("weights", {})
     rows = ""
     for key, label in [("market", "Market data"), ("news", "News headlines"),
-                       ("reddit", "Reddit"), ("fed", "Fed (rate expectations)")]:
-        # A 0-weight component (e.g. Reddit for now) is flagged as disabled rather
-        # than shown as a live-looking "0% | +0.00" row.
+                       ("fed", "Fed (rate expectations)")]:
+        # A 0-weight component is flagged as disabled rather than shown as a
+        # live-looking "0% | +0.00" row.
         disabled = w.get(key, 0) == 0
         lbl = f'{label} <span class="news-src">(disabled)</span>' if disabled else label
         rows += (f"<tr><td>{lbl}</td><td>{w.get(key,0):.0%}</td>"

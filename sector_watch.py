@@ -13,7 +13,6 @@ sector:
                             the move participated: whole sector or a few names?)
     News sentiment    15%  (FinBERT on a dedicated Google News search, aggregated
                             per constituent so one name's volume can't dominate)
-    Reddit             0%  (disabled reserve — RSS 'hot' is a poor same-day proxy)
 
 Relative strength (the basket's move vs its benchmark — tech baskets vs the Nasdaq
 100, the rest vs the S&P) is computed and shown as a CONTEXT COLUMN, but is not a
@@ -51,16 +50,14 @@ NEWS_PER_COMPANY = 8
 # How a sector's sub-metrics blend into its overall score. The day's ABSOLUTE move
 # dominates (0.70) so the label describes that session's direction — validated at
 # ~95% absolute-direction match vs the prior relative/momentum-led blend's 71%
-# (which mislabelled reversal and crash days). breadth + news add texture; Reddit is
-# a disabled reserve (0). Relative strength is computed and shown as a context COLUMN
-# but is deliberately NOT a score input, so it can't flip the headline against the
-# day's actual move. Available sub-metrics are renormalized, so a 0-weight metric
-# never contributes to the score.
+# (which mislabelled reversal and crash days). breadth + news add texture.
+# Relative strength is computed and shown as a context COLUMN but is deliberately
+# NOT a score input, so it can't flip the headline against the day's actual move.
+# Available sub-metrics are renormalized, so a missing metric never skews the score.
 SECTOR_METRIC_WEIGHTS = {
     "move":    0.70,
     "breadth": 0.15,
     "news":    0.15,
-    "reddit":  0.00,
 }
 # ±2.5% median session move = a full ±1 move signal. A 2-3% day is a decisive
 # session for these high-beta baskets, so it pins the label firmly bullish/bearish,
@@ -83,14 +80,13 @@ RS_FULL_SCALE_PCT = 3.5
 # truth data accumulates; 1.0 disables it.
 SCORE_CALIBRATION_EXP = 0.65
 
-# Each basket: representative tickers, a Google News query, and Reddit keywords.
+# Each basket: representative tickers and a Google News query.
 # NB: distinct from market_summary.SECTORS (the 11 SPDR ETFs used for breadth) —
 # these are the AI-stack thesis baskets this module reports on.
 SECTOR_BASKETS = {
     "Hyperscalers & Neoclouds": {
         "tickers": ["GOOGL", "MSFT", "AMZN", "META", "ORCL", "CRWV", "NBIS"],
         "query": '(Microsoft OR Amazon OR Google OR Alphabet OR Meta OR Oracle OR CoreWeave OR Nebius OR hyperscaler OR "data center" OR "cloud computing")',
-        "keywords": ["hyperscaler", "cloud", "azure", "aws", "coreweave", "data center", "gcp"],
         "companies": {
             "Alphabet":  ["google", "alphabet", "googl"],
             "Microsoft": ["microsoft", "msft", "azure"],
@@ -104,7 +100,6 @@ SECTOR_BASKETS = {
     "Memory (DRAM/NAND/HBM)": {
         "tickers": ["MU", "WDC", "SNDK", "STX"],
         "query": '(Micron OR SanDisk OR "Western Digital" OR Seagate OR DRAM OR NAND OR HBM OR "memory chip")',
-        "keywords": ["dram", "nand", "hbm", "memory chip", "micron"],
         "companies": {
             "Micron":          ["micron", "mu"],
             "Western Digital": ["western digital", "wdc"],
@@ -115,7 +110,6 @@ SECTOR_BASKETS = {
     "Semiconductors / Compute": {
         "tickers": ["NVDA", "AMD", "ARM", "INTC", "QCOM", "TSM", "AVGO", "MRVL", "SMCI", "ANET"],
         "query": '(Nvidia OR AMD OR Intel OR Arm OR Qualcomm OR TSMC OR Broadcom OR Marvell OR semiconductor OR "AI chip")',
-        "keywords": ["semiconductor", "gpu", "cpu", "chip", "nvidia", "amd", "intel"],
         "companies": {
             "Nvidia":     ["nvidia", "nvda"],
             "AMD":        ["amd"],
@@ -132,7 +126,6 @@ SECTOR_BASKETS = {
     "Networking / Interconnect": {
         "tickers": ["AVGO", "MRVL", "ANET", "LITE", "COHR", "APH", "CIEN"],
         "query": '(Broadcom OR Marvell OR Arista OR Coherent OR Lumentum OR Ciena OR Amphenol OR "optical networking" OR "switch silicon")',
-        "keywords": ["networking", "interconnect", "optical", "switch", "ethernet", "broadcom", "arista"],
         "companies": {
             "Broadcom": ["broadcom", "avgo"],
             "Marvell":  ["marvell", "mrvl"],
@@ -146,7 +139,6 @@ SECTOR_BASKETS = {
     "SaaS": {
         "tickers": ["CRM", "NOW", "SNOW", "DDOG", "MDB", "NET", "HUBS", "PLTR", "ADBE"],
         "query": '(Salesforce OR ServiceNow OR Snowflake OR Datadog OR Cloudflare OR MongoDB OR HubSpot OR Palantir OR Adobe OR SaaS OR "enterprise software")',
-        "keywords": ["saas", "software", "subscription"],
         "companies": {
             "Salesforce": ["salesforce", "crm"],
             "ServiceNow": ["servicenow"],
@@ -162,7 +154,6 @@ SECTOR_BASKETS = {
     "Banking": {
         "tickers": ["JPM", "BAC", "WFC", "GS", "MS", "C", "USB", "PNC"],
         "query": '(JPMorgan OR "Bank of America" OR "Goldman Sachs" OR "Wells Fargo" OR "Morgan Stanley" OR Citigroup OR "U.S. Bancorp" OR PNC OR "big banks")',
-        "keywords": ["bank", "banking", "lender", "loan", "credit", "default"],
         "companies": {
             "JPMorgan":        ["jpmorgan", "jp morgan", "jpm"],
             "Bank of America": ["bank of america", "bofa"],
@@ -177,7 +168,6 @@ SECTOR_BASKETS = {
     "Consumer": {
         "tickers": ["WMT", "COST", "NKE", "MCD", "HD", "TGT", "LOW", "SBUX"],
         "query": '(Walmart OR Costco OR Nike OR "McDonald\'s" OR "Home Depot" OR Target OR Starbucks OR "Lowe\'s" OR "consumer spending" OR "retail sales")',
-        "keywords": ["consumer", "retail", "spending", "shopper"],
         "companies": {
             "Walmart":     ["walmart", "wmt"],
             "Costco":      ["costco"],
@@ -192,7 +182,6 @@ SECTOR_BASKETS = {
     "Pharma / Healthcare": {
         "tickers": ["LLY", "JNJ", "MRK", "PFE", "UNH", "ABBV", "AMGN", "BMY"],
         "query": '("Eli Lilly" OR Pfizer OR Merck OR UnitedHealth OR "Johnson & Johnson" OR AbbVie OR Amgen OR "Bristol Myers" OR pharma OR FDA)',
-        "keywords": ["pharma", "drug", "fda", "healthcare", "biotech"],
         "companies": {
             "Eli Lilly":          ["eli lilly", "lilly", "lly"],
             "Johnson & Johnson":  ["johnson & johnson", "johnson and johnson", "j&j", "jnj"],
@@ -421,15 +410,8 @@ def _news_sentiment(query: str, companies: dict = None) -> tuple:
     return round(sum(sentiment.score_text(t, engine) for t in titles) / len(titles), 4), len(titles)
 
 
-def _reddit_sentiment(keywords: list, reddit_titles: list) -> tuple:
-    matched = [t for t in (reddit_titles or []) if any(k in t.lower() for k in keywords)]
-    if not matched:
-        return None, 0
-    return round(sum(sentiment.score_text(t, "vader") for t in matched) / len(matched), 4), len(matched)
-
-
-def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
-                        nasdaq_move: float = None) -> list:
+def build_sector_watch(sp_move: float = None,
+                       nasdaq_move: float = None) -> list:
     """Per-sector multi-metric read.
 
     Relative strength is each basket's move vs its benchmark: the tech baskets
@@ -495,13 +477,12 @@ def build_sector_watch(reddit_titles: list = None, sp_move: float = None,
         except Exception as exc:
             print(f"  ⚠️  Sector news failed for {name}: {exc}")
             news_score = None
-        reddit_score, _ = _reddit_sentiment(cfg["keywords"], reddit_titles)
 
         # Blend available sub-metrics, renormalized over their weights. The day's
         # absolute move is the dominant driver so the label describes the session.
         move_score = _move_score(basket_move)
         parts = {"move": move_score, "breadth": breadth_score,
-                 "news": news_score, "reddit": reddit_score}
+                 "news": news_score}
         avail = {k: v for k, v in parts.items() if v is not None}
         total_w = sum(SECTOR_METRIC_WEIGHTS[k] for k in avail) or 1.0
         blended = _clamp(sum(SECTOR_METRIC_WEIGHTS[k] * v for k, v in avail.items()) / total_w)

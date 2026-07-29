@@ -4,9 +4,9 @@ import pdf_report
 def _dash():
     return {
         "overall_score": 0.15, "label": "Slightly Bullish",
-        "market_score": 0.14, "news_score": 0.16, "reddit_score": 0.06,
+        "market_score": 0.14, "news_score": 0.16,
         "fed_score": 0.25,
-        "weights": {"market": 0.50, "news": 0.35, "reddit": 0.05, "fed": 0.10},
+        "weights": {"market": 0.55, "news": 0.35, "fed": 0.10},
         "components": {"news": {"engine": "finbert"}},
         "divergence": "Prices rose but the news mood is negative.",
         "summary_text": "Test commentary.",

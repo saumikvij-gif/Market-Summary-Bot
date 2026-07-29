@@ -329,10 +329,8 @@ def generate_report(data_block: str, news_block: str = "") -> dict:
 
     if news_block.strip():
         user_message += (
-            "\n\nHere are today's financial news headlines and Reddit "
-            "finance-community post titles. Use them to explain the price "
-            "action, and note that Reddit communities use sarcasm and slang — "
-            "interpret tone accordingly. If there are any Federal Reserve / "
+            "\n\nHere are today's financial news headlines. Use them to "
+            "explain the price action. If there are any Federal Reserve / "
             "monetary policy or interest-rate developments, call them out "
             "explicitly in the summary, as they are especially important.\n\n"
             + news_block
@@ -396,7 +394,7 @@ def main():
     if gainers_block:
         data_block += "\n" + gainers_block + "\n"
 
-    # Pull current news/Reddit/Fed headlines as {source: [titles]}. A wide
+    # Pull current news/Fed headlines as {source: [titles]}. A wide
     # per-source limit gives the sentiment scorer a broader, more representative
     # sample — affordable now that score_text is cached. Fail-safe: a news
     # outage yields {} and never blocks the rest of the run.
@@ -419,17 +417,16 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not fetch top news: {exc}")
 
-    # AI-stack Sector Watch: per-basket price move + news/Reddit sentiment.
+    # AI-stack Sector Watch: per-basket price move + news sentiment.
     # Display-only — does NOT feed the composite score.
     print("\nBuilding AI-stack sector watch…")
     watch_rows = []   # NB: keep this name distinct from the `sector_watch` module
     try:
-        _, reddit_titles, _ = news_feeds.split_headlines(headlines)
         idx = market_data.get("indices", {})
         sp_move = (idx.get("S&P 500", {}) or {}).get("pct_change")
         nasdaq_move = (idx.get("Nasdaq 100", {}) or {}).get("pct_change")
         # Tech baskets are measured vs the Nasdaq, the rest vs the S&P (see module).
-        watch_rows = sector_watch.build_sector_watch(reddit_titles, sp_move, nasdaq_move)
+        watch_rows = sector_watch.build_sector_watch(sp_move, nasdaq_move)
         watch_block = sector_watch.render_md(watch_rows)
         if watch_block:
             data_block += "\n" + watch_block + "\n"
