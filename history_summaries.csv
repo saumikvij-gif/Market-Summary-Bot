@@ -1745,3 +1745,47 @@ _Equities fell with Nasdaq -2.1%, S&P 500 -1.5%, VIX +13.4%. Sector breadth: 2/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.75): US stock futures rise as Microsoft surges on strong earnings
 - 🔴 Most bearish (-0.97): Qualcomm forecasts weak quarterly profit, expects Apple revenue drop to accelerate"
+2026-07-30,Bullish,36,"## Fed Holds Rates Steady as Tech Mega-Caps Drive Broad Rally
+
+U.S. equities surged Thursday as the Federal Reserve left interest rates unchanged, easing inflation concerns and triggering a powerful rally led by technology stocks. The S&P 500 climbed 1.66% while the Nasdaq 100 surged 3.36%, buoyed by historic gains in Microsoft and strength across the semiconductor complex. The VIX plunged 17.28% to 17.09, signaling a sharp decline in market volatility.
+
+The Fed's decision to hold rates steady anchored the session, with the 10-year Treasury yield rising modestly to 4.66%. Headlines suggested Wall Street's inflation fears were tempered by the pause, though some commentary questioned Fed Chair Warsh's inflation-fighting credibility. Gold prices crested $4,100 (up 0.01%) while Bitcoin rallied 1.40% to $64,789, both benefiting from the unchanged policy stance.
+
+## Microsoft's Historic Surge Lifts AI Stack
+
+Microsoft delivered the session's defining moment, soaring 15.51%—its largest single-day gain since October 2008—and adding nearly $500 billion in market value, the biggest one-day increase for any stock in history. The rally reflected investor conviction that AI investments are delivering tangible returns, a theme that rippled across the technology landscape.
+
+The broader AI infrastructure stack posted exceptional gains. Memory stocks led the charge, with Micron up 18.36% and **SanDisk rocketing 25.99%**, the latter ranking among the market's standout performers. Positioning data revealed a short-squeeze dynamic in Memory and Networking sectors, where elevated put/call ratios and short interest fueled the advance. AMD gained 13.00%, Intel jumped 11.30%, and Coherent added 12.16%, contributing to a 7.77% surge in the Semiconductors/Compute sector.
+
+Amazon climbed 3.90% after hours on AWS acceleration (36.7% growth), while Arm rose 7.40% and Broadcom added 4.73%.
+
+## Divergence and Top Gainers
+
+Not all mega-caps participated. Meta extended its 11-day slide, falling 7.95%, as investors showed ""no forgiveness"" for firms failing to demonstrate AI ROI. Apple dipped 1.41% despite beating estimates, weighed by soft services revenue and China concerns.
+
+Among the market's **top gainers**, **Fervo Energy (FRVO)** surged 30.56%, **IREN Limited** climbed 30.54%, and **MarketAxess Holdings** jumped 29.45%, highlighting strength beyond mega-cap tech. Crypto-exposed names also rallied, with **Cipher Digital** up 28.10%.
+
+## Cross-Asset Signals
+
+The tech rally occurred despite narrow breadth—only 35% of S&P constituents were positive. Reports of an AI-focused hedge fund implosion suggested capitulation may have cleared the way for the rebound. Credit market stress persisted, with spreads widening on riskier AI/hyperscaler debt, though equity momentum appeared undeterred. Oil rose 0.57%, and the dollar strengthened slightly against the yen.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.36  →  **Bullish**
+**Trend (5-day EMA):** -0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.55 |
+| News headlines | 20% | -0.06 |
+| Fed (rate expectations) | 10% | -0.11 |
+
+_Equities rose with Nasdaq +3.4%, S&P 500 +1.7%, VIX -17.3%. Sector breadth: 5/11 sectors up. 10Y yield +0.9%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Today's overall market tone: Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): Micron, Sandisk and other chip stocks get major boosts in the wake of Microsoft’s earnings
+- 🔴 Most bearish (-0.96): Apple revenue forecast lags Wall Street targets as iPhone maker struggles with supply chain"
