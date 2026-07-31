@@ -1791,3 +1791,47 @@ _Equities rose with Nasdaq +3.4%, S&P 500 +1.7%, VIX -17.3%. Sector breadth: 5/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.62): Amazon lifts investment plans after strong cloud sales; shares jump
 - 🔴 Most bearish (-0.93): Apple disappoints with forecast dogged by supply chain struggles"
+2026-07-31,Neutral,3,"## Major Indices Advance as Big Tech Diverges Sharply
+
+U.S. equities finished higher on Friday, closing out a volatile July with the S&P 500 rising 0.70% to 7,489.72 and the Nasdaq 100 gaining 0.60%. The Dow Jones added 0.53%, while small-caps lagged with the Russell 2000 down 0.50%. The VIX dropped 6.44% to 15.99, reflecting easing near-term volatility concerns despite month-end turbulence.
+
+The session marked the end of a tumultuous month that saw the S&P 500 post its first July decline since 2014, finishing essentially flat despite Friday's gains. Underlying the headline calm was extreme sector dispersion: semiconductor stocks suffered their worst monthly performance since October 2008 (-20%), while hyperscalers posted their best month since 2007.
+
+## Amazon Soars, Apple Crumbles on Earnings
+
+Amazon led mega-cap tech and topped the day's gainers with a stunning 15.32% surge following blowout cloud earnings, demonstrating tangible AI monetization that investors rewarded. The rally helped push Hyperscalers & Neoclouds up 3.02% as a group, with Microsoft gaining 3.02% and Meta advancing 3.28%. Alphabet jumped 6.88%, though the company faced scrutiny after rolling back AI image generation in Google Earth over policy violations.
+
+In stark contrast, Apple plummeted 7.35% on weak iPhone sales forecasts driven by supply chain constraints, with reports suggesting the company could lose nearly $500 billion in market value. The divergence underscored a market increasingly demanding proof of AI revenue, not just spending promises.
+
+Memory stocks faced continued pressure, with Micron down 5.90% and SanDisk falling 5.09% as the Memory sector dropped 2.29%. The segment's low put/call ratio (0.43) suggests sellers remain composed despite the decline.
+
+## Fed Credibility Concerns Drive Rates Higher
+
+Treasury yields continued their climb, with the 10-year rising 8 basis points to 4.75%—the highest level in years. The move extended July's dramatic repricing following Fed Chair Kevin Warsh's Wednesday press conference, which sparked credibility concerns after the central bank held rates steady despite elevated inflation. Three Fed officials who dissented in favor of hiking warned that action is needed now against inflation, further pressuring bond markets. The 30-year yield reportedly hit its highest level since 2007, with the biggest monthly jump since 2024.
+
+## Cross-Asset Signals and Positioning
+
+Oil surged 3.84% to $86.80, capping a roughly 20% monthly gain driven by Middle East tensions. Gold retreated 1.49%, while Bitcoin fell 2.88% to $62,855. The dollar weakened against the yen (-1.38%), reflecting continued Fed credibility concerns.
+
+Positioning data shows Hyperscalers heavily hedged (P/C 1.64) despite strong gains, while Networking stocks (P/C 0.76, +2.32%) appear driven by a short-squeeze dynamic. The broader market's balanced put/call ratio (0.90) suggests measured sentiment amid rising rate uncertainty.
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.03  →  **Neutral**
+**Trend (5-day EMA):** +0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.09 |
+| News headlines | 20% | -0.16 |
+| Fed (rate expectations) | 10% | -0.05 |
+
+_Equities rose with Nasdaq +0.6%, S&P 500 +0.7%, VIX -6.4%. Sector breadth: 4/11 sectors up. 10Y yield +1.8%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +0.7bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.44): Fintech broker Clear Street offers investors pre-IPO access to $188 billion AI giant Databricks
+- 🔴 Most bearish (-0.95): Apple set to lose nearly $500 billion in value after weak forecast"
