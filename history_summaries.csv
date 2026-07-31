@@ -1745,47 +1745,49 @@ _Equities fell with Nasdaq -2.1%, S&P 500 -1.5%, VIX +13.4%. Sector breadth: 2/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.75): US stock futures rise as Microsoft surges on strong earnings
 - 🔴 Most bearish (-0.97): Qualcomm forecasts weak quarterly profit, expects Apple revenue drop to accelerate"
-2026-07-30,Bullish,36,"## Fed Holds Rates Steady as Tech Mega-Caps Drive Broad Rally
+2026-07-30,Bullish,35,"> **Note:** No US trading session on 2026-07-31. Figures are from the last session (2026-07-30).
 
-U.S. equities surged Thursday as the Federal Reserve left interest rates unchanged, easing inflation concerns and triggering a powerful rally led by technology stocks. The S&P 500 climbed 1.66% while the Nasdaq 100 surged 3.36%, buoyed by historic gains in Microsoft and strength across the semiconductor complex. The VIX plunged 17.28% to 17.09, signaling a sharp decline in market volatility.
+## Semiconductor Rally Powers Broad Market Gains
 
-The Fed's decision to hold rates steady anchored the session, with the 10-year Treasury yield rising modestly to 4.66%. Headlines suggested Wall Street's inflation fears were tempered by the pause, though some commentary questioned Fed Chair Warsh's inflation-fighting credibility. Gold prices crested $4,100 (up 0.01%) while Bitcoin rallied 1.40% to $64,789, both benefiting from the unchanged policy stance.
+U.S. equities surged Friday, capping a volatile week with a powerful rally driven by semiconductor and AI infrastructure stocks. The Nasdaq 100 jumped 3.36%, while the S&P 500 and Dow gained 1.66% and 1.19%, respectively. The VIX plunged 17.28% to 17.09, signaling a sharp easing in near-term volatility expectations following recent turbulence.
 
-## Microsoft's Historic Surge Lifts AI Stack
+## Memory and Chip Stocks Lead Historic Gains
 
-Microsoft delivered the session's defining moment, soaring 15.51%—its largest single-day gain since October 2008—and adding nearly $500 billion in market value, the biggest one-day increase for any stock in history. The rally reflected investor conviction that AI investments are delivering tangible returns, a theme that rippled across the technology landscape.
+The technology rally was dominated by semiconductor names, particularly memory and storage companies. **SanDisk surged 26%**, marking one of the day's most spectacular moves among large-cap tech stocks. **Micron soared 18.4%**, while **Intel** (+11.3%), **AMD** (+13.0%), and **Coherent** (+12.2%) all posted double-digit gains. The memory sector as a whole jumped 16.9%, fueled by what positioning data suggests was a short-squeeze rebound after bearish bets accumulated during the recent selloff (put/call ratio of 1.33, short interest 5.7%).
 
-The broader AI infrastructure stack posted exceptional gains. Memory stocks led the charge, with Micron up 18.36% and **SanDisk rocketing 25.99%**, the latter ranking among the market's standout performers. Positioning data revealed a short-squeeze dynamic in Memory and Networking sectors, where elevated put/call ratios and short interest fueled the advance. AMD gained 13.00%, Intel jumped 11.30%, and Coherent added 12.16%, contributing to a 7.77% surge in the Semiconductors/Compute sector.
+**Microsoft's** extraordinary 15.5% gain—adding over $500 billion in market value in its largest single-day increase ever—continued to reverberate through markets. The move followed earnings that demonstrated tangible returns on AI spending, validating the broader infrastructure buildout theme. **Amazon** extended gains (+3.9%) on AWS growth accelerating to 36.7% year-over-year, the fastest pace in 18 quarters.
 
-Amazon climbed 3.90% after hours on AWS acceleration (36.7% growth), while Arm rose 7.40% and Broadcom added 4.73%.
+## Cross-Currents and Divergence
 
-## Divergence and Top Gainers
+Not all mega-cap tech participated. **Meta** fell 7.95%, extending an 11-session decline that has Wall Street questioning the company's AI monetization strategy. **Apple** slipped 1.41% on supply chain concerns despite beating earnings estimates. The sharp divergence underscored extreme market narrowness—only 35% of S&P 500 constituents traded higher despite broad index gains.
 
-Not all mega-caps participated. Meta extended its 11-day slide, falling 7.95%, as investors showed ""no forgiveness"" for firms failing to demonstrate AI ROI. Apple dipped 1.41% despite beating estimates, weighed by soft services revenue and China concerns.
+## Interest Rates and Credit Markets
 
-Among the market's **top gainers**, **Fervo Energy (FRVO)** surged 30.56%, **IREN Limited** climbed 30.54%, and **MarketAxess Holdings** jumped 29.45%, highlighting strength beyond mega-cap tech. Crypto-exposed names also rallied, with **Cipher Digital** up 28.10%.
+The 10-year Treasury yield rose 4 basis points to 4.66%, continuing the steepening trend as markets digest policy uncertainty under new Fed Chairman Warsh. Credit spreads in data center and AI-related bonds have widened notably, with some high-yield issues down 15 points since mid-June as investors weigh hyperscaler capex approaching $750 billion this year and $1.25 trillion in 2027.
 
-## Cross-Asset Signals
+## Commodities and Crypto
 
-The tech rally occurred despite narrow breadth—only 35% of S&P constituents were positive. Reports of an AI-focused hedge fund implosion suggested capitulation may have cleared the way for the rebound. Credit market stress persisted, with spreads widening on riskier AI/hyperscaler debt, though equity momentum appeared undeterred. Oil rose 0.57%, and the dollar strengthened slightly against the yen.
+Crude oil declined 1.46% to $82.37, while gold was nearly flat at $4,156. Bitcoin advanced 1.37% to $65,070, continuing its recent climb amid risk-on sentiment. Currency markets were relatively quiet, with the dollar modestly firmer against the euro and sterling.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.36  →  **Bullish**
-**Trend (5-day EMA):** -0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.35  →  **Bullish**
+**Trend (5-day EMA):** -0.01  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.55 |
-| News headlines | 20% | -0.06 |
+| News headlines | 20% | -0.13 |
 | Fed (rate expectations) | 10% | -0.11 |
 
-_Equities rose with Nasdaq +3.4%, S&P 500 +1.7%, VIX -17.3%. Sector breadth: 5/11 sectors up. 10Y yield +0.9%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Today's overall market tone: Bullish._
+_Equities rose with Nasdaq +3.4%, S&P 500 +1.7%, VIX -17.3%. Sector breadth: 5/11 sectors up. 10Y yield +0.9%. News headlines read slightly bearish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.7bp). Today's overall market tone: Bullish._
 
 <sub>News scored with: finbert</sub>
 
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
 **Standout headlines:**
-- 🟢 Most bullish (+0.92): Micron, Sandisk and other chip stocks get major boosts in the wake of Microsoft’s earnings
-- 🔴 Most bearish (-0.96): Apple revenue forecast lags Wall Street targets as iPhone maker struggles with supply chain"
+- 🟢 Most bullish (+0.62): Amazon lifts investment plans after strong cloud sales; shares jump
+- 🔴 Most bearish (-0.93): Apple disappoints with forecast dogged by supply chain struggles"
