@@ -1791,29 +1791,33 @@ _Equities rose with Nasdaq +3.4%, S&P 500 +1.7%, VIX -17.3%. Sector breadth: 5/1
 **Standout headlines:**
 - 🟢 Most bullish (+0.62): Amazon lifts investment plans after strong cloud sales; shares jump
 - 🔴 Most bearish (-0.93): Apple disappoints with forecast dogged by supply chain struggles"
-2026-07-31,Neutral,3,"## Major Indices Advance as Big Tech Diverges Sharply
+2026-07-31,Neutral,3,"> **Note:** No US trading session on 2026-08-01. Figures are from the last session (2026-07-31).
 
-U.S. equities finished higher on Friday, closing out a volatile July with the S&P 500 rising 0.70% to 7,489.72 and the Nasdaq 100 gaining 0.60%. The Dow Jones added 0.53%, while small-caps lagged with the Russell 2000 down 0.50%. The VIX dropped 6.44% to 15.99, reflecting easing near-term volatility concerns despite month-end turbulence.
+## Market Overview
 
-The session marked the end of a tumultuous month that saw the S&P 500 post its first July decline since 2014, finishing essentially flat despite Friday's gains. Underlying the headline calm was extreme sector dispersion: semiconductor stocks suffered their worst monthly performance since October 2008 (-20%), while hyperscalers posted their best month since 2007.
+U.S. equities advanced on Friday, with major indices closing higher despite a rocky end to July. The S&P 500 gained 0.70% to 7,489.72, while the Nasdaq 100 added 0.60% and the Dow rose 0.53%. However, the session masked significant divergence: small-cap stocks fell 0.50% as measured by the Russell 2000, pressured by rising interest rates and waning risk appetite. The VIX declined 6.44% to 15.99, suggesting diminished near-term concern despite ongoing volatility.
 
-## Amazon Soars, Apple Crumbles on Earnings
+The session's gains came against a challenging backdrop. According to Bloomberg, the S&P 500 ended July essentially flat despite significant intraday swings—marking the index's first July decline since 2014. The month saw considerable stress in momentum strategies and semiconductors, with the chip sector posting its worst monthly performance since October 2008.
 
-Amazon led mega-cap tech and topped the day's gainers with a stunning 15.32% surge following blowout cloud earnings, demonstrating tangible AI monetization that investors rewarded. The rally helped push Hyperscalers & Neoclouds up 3.02% as a group, with Microsoft gaining 3.02% and Meta advancing 3.28%. Alphabet jumped 6.88%, though the company faced scrutiny after rolling back AI image generation in Google Earth over policy violations.
+## Big Tech Divergence and Top Gainers
 
-In stark contrast, Apple plummeted 7.35% on weak iPhone sales forecasts driven by supply chain constraints, with reports suggesting the company could lose nearly $500 billion in market value. The divergence underscored a market increasingly demanding proof of AI revenue, not just spending promises.
+Technology stocks delivered wildly divergent results. **Amazon surged 15.32%**, the day's standout mega-cap performer and the fifth-largest daily gainer across the market, driven by cloud strength and better-than-expected AWS results. **Apple tumbled 7.35%**, its worst day since April 2025, on supply chain constraints and services growth deceleration. Reports suggest the iPhone maker is set to lose nearly $500 billion in market value following a weak forecast.
 
-Memory stocks faced continued pressure, with Micron down 5.90% and SanDisk falling 5.09% as the Memory sector dropped 2.29%. The segment's low put/call ratio (0.43) suggests sellers remain composed despite the decline.
+Elsewhere in tech, **Microsoft** rallied 3.02% and **Meta** gained 3.28%, while **Alphabet** soared 6.88% despite reports it rolled back AI image generation in Google Earth over policy violations. Memory stocks struggled, with **Micron** down 5.90% and **SanDisk** falling 5.09%, reflecting broader weakness in the Memory (DRAM/NAND/HBM) sector, which declined 2.29% for the day.
 
-## Fed Credibility Concerns Drive Rates Higher
+Among the market's top gainers, **IES Holdings** led with a 30.27% surge following its addition to the S&P 500, while **AXT Inc** (+28.74%), **Integer Holdings** (+20.18%), and **Ambarella** (+16.07%) rounded out the standout performers.
 
-Treasury yields continued their climb, with the 10-year rising 8 basis points to 4.75%—the highest level in years. The move extended July's dramatic repricing following Fed Chair Kevin Warsh's Wednesday press conference, which sparked credibility concerns after the central bank held rates steady despite elevated inflation. Three Fed officials who dissented in favor of hiking warned that action is needed now against inflation, further pressuring bond markets. The 30-year yield reportedly hit its highest level since 2007, with the biggest monthly jump since 2024.
+## Rate Concerns and Fed Credibility
 
-## Cross-Asset Signals and Positioning
+Interest rates remained a dominant theme. The 10-year Treasury yield rose 8 basis points to 4.75%, extending July's sharp climb. According to Bloomberg's reporting, the 30-year Treasury yield hit its highest level since 2007 during the month, with the biggest monthly jump since 2024. Bond traders are demanding higher term premiums following Fed Chair Kevin Warsh's recent press conference, which lacked clarity on the inflation-fighting reaction function and saw three dissenters publicly advocate for a tougher stance.
 
-Oil surged 3.84% to $86.80, capping a roughly 20% monthly gain driven by Middle East tensions. Gold retreated 1.49%, while Bitcoin fell 2.88% to $62,855. The dollar weakened against the yen (-1.38%), reflecting continued Fed credibility concerns.
+UBS analyst Phoebe White noted the Fed will likely stay on hold through year-end, with elevated term premiums justified by uncertainty and reduced forward guidance. Wells Fargo's Veronica Willis suggested stocks can handle current rate levels but cautioned that 10-year yields above 5% could pressure equities. The USD/JPY fell 1.38% to 157.40, reflecting shifting rate differentials.
 
-Positioning data shows Hyperscalers heavily hedged (P/C 1.64) despite strong gains, while Networking stocks (P/C 0.76, +2.32%) appear driven by a short-squeeze dynamic. The broader market's balanced put/call ratio (0.90) suggests measured sentiment amid rising rate uncertainty.
+## Commodities and Cross-Asset Signals
+
+Crude oil rallied 3.84% to $86.80, benefiting from strong earnings from energy giants Chevron and Exxon, which posted record quarterly profits as Brent crude averaged $100/barrel in July. Gold declined 1.49% to $4,098.60, while Bitcoin fell 2.46% to $62,909.61.
+
+Sector performance reflected the rate-sensitive environment: Hyperscalers & Neoclouds led with a 3.02% gain, while Banking (+0.22%) and Networking/Interconnect (+2.32%) posted solid advances. The SaaS sector rose 1.01% with notably strong 89% breadth. Positioning data revealed a potential short-squeeze dynamic in Networking, with elevated short interest (4.3%) fueling the 2.3% rally.
 
 ## Market Tone — Today's Session
 
