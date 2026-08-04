@@ -314,12 +314,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-07-31,Pharma / Healthcare,1.063,25028,23555,8,8,0.0177,1.019,-0.16,-1.09,drifting,Bearish,orderly decline; positioning unremarkable
 2026-07-31,SaaS,0.486,53709,110471,9,9,0.054,0.936,1.01,11.24,rising,Bullish,broad advance; positioning unremarkable
 2026-07-31,Semiconductors / Compute,0.714,264026,369585,10,10,0.0243,0.997,0.3,-3.19,stabilizing,Bullish,broad advance; positioning unremarkable
-2026-08-03,All tracked,0.879,1605878,1826301,58,58,0.0239,0.974,1.21,1.18,drifting,Bullish,broad advance; positioning unremarkable
+2026-08-03,All tracked,0.757,1404958,1855537,58,58,0.0239,0.974,1.21,1.18,drifting,Bullish,broad advance; positioning unremarkable
 2026-08-03,Banking,1.66,38871,23414,8,8,0.0002,0.992,0.85,0.46,at highs,Bullish,"advance, but heavily hedged — protection still bid"
 2026-08-03,Consumer,0.565,43537,77062,8,8,0.02,0.999,1.14,0.25,drifting,Bullish,broad advance; positioning unremarkable
-2026-08-03,Hyperscalers & Neoclouds,0.671,391255,583342,7,7,0.0172,1.077,6.02,18.31,rising,Bullish,broad advance; positioning unremarkable
-2026-08-03,Memory (DRAM/NAND/HBM),1.095,285230,260445,4,4,0.0566,0.87,-1.07,1.24,stabilizing,Bearish,orderly decline; positioning unremarkable
-2026-08-03,Networking / Interconnect,1.039,68872,66265,7,7,0.0434,0.958,3.31,6.2,rising,Bullish,broad advance; positioning unremarkable
+2026-08-03,Hyperscalers & Neoclouds,0.668,395108,591916,7,7,0.0172,1.077,6.02,18.31,rising,Bullish,broad advance; positioning unremarkable
+2026-08-03,Memory (DRAM/NAND/HBM),0.963,169192,175758,4,4,0.0566,0.87,-1.07,1.24,stabilizing,Bearish,orderly decline; positioning unremarkable
+2026-08-03,Networking / Interconnect,0.774,57976,74923,7,7,0.0434,0.958,3.31,6.2,rising,Bullish,broad advance; positioning unremarkable
 2026-08-03,Pharma / Healthcare,1.242,60693,48875,8,8,0.0177,1.019,-1.19,-1.42,drifting,Bearish,orderly decline; positioning unremarkable
 2026-08-03,SaaS,0.567,191765,338299,9,9,0.054,0.936,2.1,7.58,rising,Bullish,broad advance; positioning unremarkable
-2026-08-03,Semiconductors / Compute,1.217,579465,476043,10,10,0.0243,0.997,1.33,0.51,stabilizing,Bullish,"advance, but heavily hedged — protection still bid"
+2026-08-03,Semiconductors / Compute,0.844,490730,581392,10,10,0.0243,0.997,1.33,0.51,stabilizing,Bullish,broad advance; positioning unremarkable
