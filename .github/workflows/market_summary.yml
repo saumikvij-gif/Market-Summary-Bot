@@ -32,8 +32,8 @@ jobs:
   market-summary:
     name: Generate Market Summary
     runs-on: ubuntu-latest
-    timeout-minutes: 30   # FinBERT (torch) install + model + Chromium (Bloomberg
-                          # transcript scrape) can take a few minutes combined
+    timeout-minutes: 45   # FinBERT (torch) install + model + Chromium (three
+                          # Bloomberg transcript scrapes) take several minutes
 
     permissions:
       contents: write   # needed to commit the summary back to the repo

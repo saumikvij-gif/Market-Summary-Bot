@@ -10,6 +10,25 @@ def test_title_regex_matches_real_pattern():
     assert not bc.TITLE_RE.search("Closing bell recap")   # 'Close' alone isn't the show
 
 
+def test_show_regexes_do_not_cross_match():
+    # Real titles seen on the channel 2026-08 — each show's regex must match
+    # its own episodes and nothing else (two shows end in "Trade").
+    titles = {
+        "close": "Stocks & Bonds Rose as US-Iran Hopes Spur Oil Drop | The Close 8/3/2026",
+        "opening_trade": "Europe's Key Rivers Are Drying Up | The Opening Trade 8/3/2026",
+        "asia_trade": "Yen Rally Loses Steam | The Asia Trade 8/4/2026",
+    }
+    for show, cfg in bc.SHOWS.items():
+        for other, title in titles.items():
+            assert bool(cfg["regex"].search(title)) == (show == other), \
+                f"{show} regex vs {other} title"
+    # Neighbouring shows that share words must not match anyone's regex.
+    for stray in ("\"Bull Market Could Last Through 2030\" | Open Interest 8/3/2026",
+                  "New Models Take On OpenAI | The China Show | 8/3/2026",
+                  "Iran Peace Talks to Restart, Deal Could Be Close"):
+        assert not any(cfg["regex"].search(stray) for cfg in bc.SHOWS.values()), stray
+
+
 def test_date_from_title_and_grid_title_cleanup():
     assert bc._date_from_title("Stocks Slide | The Close 7/27/2026") == "2026-07-27"
     assert bc._date_from_title("Bloomberg The Close 12/3/2026") == "2026-12-03"
@@ -67,19 +86,20 @@ def test_fetch_transcript_chain_api_then_browser_then_none(monkeypatch):
 def test_build_summary_falls_back_to_rundown(monkeypatch):
     episode = {"video_id": "abc123", "title": "Markets Rally | The Close 7/27/2026",
                "published": "2026-07-27", "description": "Today's guests are X, Y."}
-    monkeypatch.setattr(bc, "find_latest_close", lambda: episode)
+    monkeypatch.setattr(bc, "find_latest_episode", lambda show: episode)
     monkeypatch.setattr(bc, "fetch_transcript", lambda vid: None)   # blocked
     monkeypatch.setattr(bc, "summarize_rundown", lambda ep: "### On the show\n- X\n- Y")
     info = bc.build_bloomberg_summary()
     assert info["mode"] == "rundown"
     assert info["url"].endswith("abc123")
     assert "On the show" in info["summary_md"]
+    assert info["show"] == "The Close"          # default show unchanged
 
 
 def test_build_summary_uses_transcript_when_available(monkeypatch):
     episode = {"video_id": "abc123", "title": "Markets Rally | The Close 7/27/2026",
                "published": "2026-07-27", "description": "guests"}
-    monkeypatch.setattr(bc, "find_latest_close", lambda: episode)
+    monkeypatch.setattr(bc, "find_latest_episode", lambda show: episode)
     monkeypatch.setattr(bc, "fetch_transcript", lambda vid: "lots of words " * 100)
     captured = {}
     def fake_sum(ep, tr):
@@ -93,8 +113,25 @@ def test_build_summary_uses_transcript_when_available(monkeypatch):
 
 
 def test_build_summary_none_when_no_episode(monkeypatch):
-    monkeypatch.setattr(bc, "find_latest_close", lambda: None)
+    monkeypatch.setattr(bc, "find_latest_episode", lambda show: None)
     assert bc.build_bloomberg_summary() is None
+
+
+def test_build_summary_other_show_carries_identity(monkeypatch):
+    episode = {"video_id": "xyz789", "title": "Yen Rallies | The Asia Trade 8/4/2026",
+               "published": "2026-08-04", "description": "guests",
+               "show": "The Asia Trade", "show_desc": "Asia market-open morning show"}
+    seen = {}
+    def fake_find(show):
+        seen["show"] = show
+        return episode
+    monkeypatch.setattr(bc, "find_latest_episode", fake_find)
+    monkeypatch.setattr(bc, "fetch_transcript", lambda vid: None)
+    monkeypatch.setattr(bc, "summarize_rundown", lambda ep: "### On the show\n- A")
+    info = bc.build_bloomberg_summary("asia_trade")
+    assert seen["show"] == "asia_trade"
+    assert info["show"] == "The Asia Trade"
+    assert "Bloomberg: The Asia Trade" in bc.render_md(info)
 
 
 def test_render_md_labels_mode_and_handles_none():
@@ -110,11 +147,21 @@ def test_render_md_labels_mode_and_handles_none():
 
 def test_pdf_block_renders_and_omits_cleanly():
     import pdf_report
-    info = {"title": "Markets Rally | The Close 7/27/2026", "published": "2026-07-27",
-            "url": "https://www.youtube.com/watch?v=x", "mode": "rundown",
-            "summary_md": "### On the show\n- Jane Doe — Example Capital CIO"}
-    html = pdf_report._bloomberg_block(info)
-    assert "Bloomberg News Summary" in html
-    assert "Episode rundown" in html and "Jane Doe" in html
+    close = {"show": "The Close", "title": "Markets Rally | The Close 7/27/2026",
+             "published": "2026-07-27", "url": "https://www.youtube.com/watch?v=x",
+             "mode": "rundown",
+             "summary_md": "### On the show\n- Jane Doe — Example Capital CIO"}
+    asia = {"show": "The Asia Trade", "title": "Yen Jumps | The Asia Trade 7/28/2026",
+            "published": "2026-07-28", "url": "https://www.youtube.com/watch?v=y",
+            "mode": "transcript", "summary_md": "### Key takeaways\n- yen rallied"}
+    html = pdf_report._bloomberg_block([close, asia])
+    assert html.count("Bloomberg News Summary") == 1     # one section header
+    assert "The Close" in html and "The Asia Trade" in html
+    assert "Episode rundown" in html and "Full-transcript summary" in html
+    assert "Jane Doe" in html and "yen rallied" in html
+    # Original single-dict shape still accepted; empties omit cleanly.
+    assert "Jane Doe" in pdf_report._bloomberg_block(close)
     assert pdf_report._bloomberg_block(None) == ""
     assert pdf_report._bloomberg_block({}) == ""
+    assert pdf_report._bloomberg_block([]) == ""
+    assert pdf_report._bloomberg_block([{}, None]) == ""

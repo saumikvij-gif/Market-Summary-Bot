@@ -446,18 +446,22 @@ def main():
     except Exception as exc:
         print(f"  ⚠️  Could not build options positioning: {exc}")
 
-    # Bloomberg News Summary: the latest episode of Bloomberg TV's "The Close",
-    # summarised (full transcript when fetchable, honest guest rundown when
-    # not). Display-only — a new briefing section; feeds no scores. Fail-safe.
-    print("\nBuilding Bloomberg 'The Close' summary…")
-    bloomberg = None
-    try:
-        bloomberg = bloomberg_close.build_bloomberg_summary()
-        bb_block = bloomberg_close.render_md(bloomberg)
-        if bb_block:
-            data_block += "\n" + bb_block + "\n"
-    except Exception as exc:
-        print(f"  ⚠️  Could not build Bloomberg summary: {exc}")
+    # Bloomberg News Summary: the latest episode of each Bloomberg TV daily
+    # show (The Close, The Opening Trade, The Asia Trade), summarised (full
+    # transcript when fetchable, honest guest rundown when not). Display-only —
+    # feeds no scores. Fail-safe per show: one failing show never drops the rest.
+    bloomberg = []
+    for show_key, show_cfg in bloomberg_close.SHOWS.items():
+        print(f"\nBuilding Bloomberg '{show_cfg['name']}' summary…")
+        try:
+            info = bloomberg_close.build_bloomberg_summary(show_key)
+            if info:
+                bloomberg.append(info)
+                bb_block = bloomberg_close.render_md(info)
+                if bb_block:
+                    data_block += "\n" + bb_block + "\n"
+        except Exception as exc:
+            print(f"  ⚠️  Could not build Bloomberg summary ({show_cfg['name']}): {exc}")
 
     # Compute the quantitative sentiment dashboard (reproducible, NLP-based).
     # This is the score of record — it drives the DB and the daily chart.

@@ -26,12 +26,13 @@ See [`Pipeline_Overview.md`](Pipeline_Overview.md) for the end-to-end design.
    data), and the price state, combined via the classic agreement/divergence
    playbook (bearish-confirmed / squeeze setup / complacent / hedged rally).
    Under evaluation: logged daily to `history_options.csv` and drives no scores.
-6. Builds a **Bloomberg News Summary** — the latest episode of Bloomberg TV's
-   "The Close" (found via the channel RSS), summarised by Claude from the full
+6. Builds a **Bloomberg News Summary** — the latest episode of each of
+   Bloomberg TV's daily shows ("The Close", "The Opening Trade", "The Asia
+   Trade"; found via the channel RSS), each summarised by Claude from the full
    episode transcript. Transcript fetch is layered: caption API → headless-
    Chromium scrape of the watch page's transcript panel (works where the API is
    IP-blocked) → an honest episode rundown (guest lineup) labelled as such.
-   Display-only; fail-safe.
+   Display-only; fail-safe per show.
 7. Asks Claude for a ~300–400 word analyst narrative grounded in the data + news.
 8. Records the run to CSV history, regenerates trend charts, and builds a PDF.
 9. Emails the PDF (separate, decoupled delivery stage).
