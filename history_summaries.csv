@@ -1929,43 +1929,41 @@ _Equities rose with Nasdaq +3.3%, S&P 500 +1.8%, VIX +4.0%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.32): Stocks making the biggest moves after the bell: SpaceX, AMD, Pinterest, Arista Networks, Wynn Resorts & more
 - 🔴 Most bearish (-0.92): AMD shares slide after SpaceX commits to rival Nvidia; What are the implications?"
-2026-08-05,Slightly Bearish,-11,"## Market Overview
+2026-08-05,Slightly Bearish,-12,"> **Note:** No US trading session on 2026-08-06. Figures are from the last session (2026-08-05).
 
-U.S. equities diverged Tuesday as sector rotation continued to dominate price action, with the Dow Jones Industrial Average adding 0.49% to notch a fresh record while the Nasdaq 100 fell 0.83% and the S&P 500 slipped 0.17%. The VIX declined 4.18% to 15.81, suggesting benign risk appetite despite headline weakness in technology. The bifurcated session underscored an ongoing shift away from mega-cap tech concentration toward cyclicals, materials, and healthcare.
+## Market Overview
 
-## Fed Policy Takes Center Stage
+U.S. equities diverged sharply on Thursday as a rotation out of technology stocks pushed the Nasdaq 100 down 0.83%, while defensive and value sectors lifted the Dow Jones to a fresh record, up 0.49%. The S&P 500 dipped 0.17%, snapping a four-day winning streak, while the VIX fell 4.2% to 15.81, suggesting the selloff was orderly rather than panic-driven. The Russell 2000 declined 0.59%, pressured by sector-specific weakness.
 
-Federal Reserve developments loomed large over the session. Fed Governor Cook stated she is ""prepared to act"" on a rate hike to address persistent inflation, a notably hawkish signal that appeared to weigh on duration-sensitive growth stocks. Meanwhile, reports that Fed Chair Warsh and the board are contemplating fewer policy meetings in the future introduced an additional layer of uncertainty, with markets bracing for potential volatility if communication cadence shifts. The 10-year Treasury yield edged down just 1 basis point to 4.62%, suggesting bond markets are taking a wait-and-see approach.
+## Semiconductor Divergence and AI Spending Concerns
 
-## Tech Bifurcation: Memory Weakness, Nvidia Strength
+Technology was the session's clear laggard, driven by mounting concerns over AI capital expenditure and memory chip demand. **AMD plunged 7.04%** following earnings, while **Alphabet dropped 4.05%** amid reports of another key AI executive departure. **SanDisk tumbled 5.40%** despite crushing Q4 earnings expectations, as its current-quarter revenue guidance of $10.8B missed the $11.16B consensus—signaling potential demand normalization after quarters of explosive pricing growth.
 
-The semiconductor complex faced severe bifurcation. Memory stocks plummeted, with the DRAM/NAND/HBM sector down 3.14% and posting 0% breadth—a striking underperformance versus the Nasdaq. SanDisk tumbled 5.40% and Western Digital reportedly fell 9% after hours despite earnings beats, as lighter-than-expected guidance highlighted supply constraints expected through 2027. AMD cratered 7.04% following its quarterly results, while Alphabet shed 4.05% after losing another key AI executive.
-
-In stark contrast, Nvidia rallied 3.43% on what MarketWatch described as a ""high-profile endorsement,"" illustrating the stock-specific nature of AI sentiment. Hyperscalers and Neoclouds fell 1.72%, with Amazon down 1.72% and Microsoft off 1.09%.
+In stark contrast, **Nvidia surged 3.43%** on news of an exclusive chip supply deal with SpaceX, though reports suggest **SpaceX itself declined** on Wall Street concerns about the magnitude of its AI infrastructure spending. The Memory sector overall fell 3.14% with 0% breadth, while Semiconductors/Compute dropped 1.44%, both exhibiting bearish trends. Notably, put/call ratios remained subdued across tech sectors (0.54–0.64), indicating declines occurred without panic hedging—a sign of controlled profit-taking rather than capitulation.
 
 ## Standout Gainers and Sector Strength
 
-Outside tech, strength was broad. Among the day's top gainers, **Materion Corporation (MTRN)** surged 30.81%, **Select Water Solutions (WTTR)** jumped 20.32%, and **Shopify (SHOP)** soared 16.98% on robust guidance that eased AI disruption fears. **Bending Spoons (BSP)** and **UroGen Pharma (URGN)** also posted double-digit gains, rising 16.82% and 16.31%, respectively.
+Among the market's top gainers, **Materion Corporation (MTRN) soared 30.81%**, **Select Water Solutions (WTTR) jumped 20.32%**, and **Shopify (SHOP) surged 16.98%** on revenue growth exceeding 30% for the sixth consecutive quarter. **UroGen Pharma (URGN)** climbed 16.31%, reflecting strength in the Healthcare sector, which advanced 1.16% and showed a bullish sentiment profile (P/C 1.10, +59 positioning score).
 
-Pharma and healthcare led sectors with a 1.16% advance, bolstered by Eli Lilly's continued Zepbound momentum. Consumer stocks rose 0.92%, and banking gained 0.56% with bullish positioning metrics (put/call ratio 1.37, indicating heavy hedging despite the advance).
+Banking (+0.56%) and Consumer (+0.92%) sectors also outperformed, both displaying bullish trends with strong breadth (94% and 69%, respectively). Banking's elevated put/call ratio (1.37) suggests investors remain heavily hedged despite the advance, reflecting caution around rate policy.
 
-## Cross-Asset Signals
+## Monetary Policy and Cross-Asset Signals
 
-Gold climbed 0.69% to $4,334.80, reflecting ongoing geopolitical hedging (reports cited ""Mideast optimism,"" suggesting recent tensions). Bitcoin added 0.83%, while crude oil dipped 0.32%. The dollar was mixed, with EUR/USD and GBP/USD barely budging and USD/JPY slipping 0.08%.
+**Fed Governor Cook's comments** that she is ""prepared to act"" on rate hikes to address inflation kept yields in focus, though the 10-year Treasury yield edged down just 1 basis point to 4.62%. The dollar remained largely flat against major currencies, while **gold rallied 1.17%** to $4,355—a classic defensive bid amid equity volatility and rate uncertainty.
 
-Positioning data revealed a notable divergence: bearish tech sectors (semiconductors, hyperscalers, SaaS) showed low put/call ratios, suggesting declines occurred without panic hedging, while banking exhibited heavy hedging despite rallying—a sign of cautious optimism.
+Oil slipped 0.62%, and Bitcoin gained a modest 0.38%, suggesting risk appetite remains intact but cautious. The combination of falling VIX, rising gold, and tech weakness points to a quality rotation rather than broad risk-off sentiment.
 
 ## Market Tone — Today's Session
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.11  →  **Slightly Bearish**
+**Today's Score:** -0.12  →  **Slightly Bearish**
 **Trend (5-day EMA):** +0.08  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.06 |
-| News headlines | 20% | -0.34 |
+| News headlines | 20% | -0.42 |
 | Fed (rate expectations) | 10% | +0.03 |
 
 _Equities fell with Nasdaq -0.8%, S&P 500 -0.2%, VIX -4.2%. Sector breadth: 5/11 sectors up. 10Y yield -0.2%. News headlines read bearish. Fed-policy expectations eased (13-Week T-Bill Yield -0.5bp). Today's overall market tone: Slightly Bearish._
