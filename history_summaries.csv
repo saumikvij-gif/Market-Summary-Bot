@@ -1999,7 +1999,9 @@ _Equities fell with Nasdaq -0.4%, S&P 500 -0.2%, VIX -4.2%. Sector breadth: 3/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.62): Traders on Kalshi now think it's likely that the S&P 500 will hit 8,000 in 2026
 - 🔴 Most bearish (-0.96): Fujifilm shares slide 18% on weak Q1 earnings; considers partial spinoff"
-2026-08-07,Slightly Bullish,23,"## Market Summary
+2026-08-07,Slightly Bullish,27,"> **Note:** No US trading session on 2026-08-08. Figures are from the last session (2026-08-07).
+
+## Market Summary
 
 _The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
 
@@ -2007,21 +2009,19 @@ _The AI narrative was unavailable today; market data and the quantitative sentim
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.23  →  **Slightly Bullish**
-**Trend (5-day EMA):** +0.08  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.27  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.37 |
-| News headlines | 20% | -0.21 |
+| News headlines | 20% | -0.01 |
 | Fed (rate expectations) | 10% | +0.15 |
 
-_Equities rose with Nasdaq +1.2%, S&P 500 +0.6%, VIX -1.6%. Sector breadth: 9/11 sectors up. 10Y yield -0.2%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -2.2bp). Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +1.2%, S&P 500 +0.6%, VIX -1.6%. Sector breadth: 9/11 sectors up. 10Y yield -0.2%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -2.2bp). Today's overall market tone: Slightly Bullish._
 
 <sub>News scored with: finbert</sub>
 
-**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
-
 **Standout headlines:**
 - 🟢 Most bullish (+0.74): Two reasons why Nvidia’s stock saw its biggest weekly surge in more than a year
-- 🔴 Most bearish (-0.95): Mortgage and refinance interest rates today, Friday, August 7, 2026: Rates fall ahead of jobs report"
+- 🔴 Most bearish (-0.48): Trump is trying to fire Lisa Cook again. He still wants to stack the Fed with his allies."
