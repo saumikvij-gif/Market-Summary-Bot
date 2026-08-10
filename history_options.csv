@@ -359,3 +359,12 @@ run_date,basket,otm_put_call,put_vol,call_vol,covered,total,short_pct_float,si_m
 2026-08-07,Pharma / Healthcare,1.488,42883,28811,8,8,0.0177,1.019,0.88,0.11,at highs,Bullish,"advance, but heavily hedged — protection still bid"
 2026-08-07,SaaS,0.912,154760,169772,9,9,0.054,0.936,3.96,7.63,rising,Bullish,broad advance; positioning unremarkable
 2026-08-07,Semiconductors / Compute,0.902,247904,274732,10,10,0.0243,0.997,1.78,10.72,bouncing,Bullish,broad advance; positioning unremarkable
+2026-08-10,All tracked,0.402,1017744,2529149,58,58,0.0239,0.974,0.5,2.75,rising,Bullish,broad advance; positioning unremarkable
+2026-08-10,Banking,1.567,36235,23125,8,8,0.0002,0.992,0.24,0.98,at highs,Bullish,"advance, but heavily hedged — protection still bid"
+2026-08-10,Consumer,0.818,41045,50185,8,8,0.02,0.999,0.12,1.77,drifting,Neutral,quiet session
+2026-08-10,Hyperscalers & Neoclouds,0.449,206306,459178,7,7,0.0172,1.077,0.91,0.79,drifting,Bullish,broad advance; positioning unremarkable
+2026-08-10,Memory (DRAM/NAND/HBM),0.268,108198,404310,4,4,0.0566,0.87,-0.26,-3.75,falling,Bearish,decline without hedging demand — flows not panicked
+2026-08-10,Networking / Interconnect,0.488,62551,128261,7,7,0.0434,0.958,-4.65,4.31,rising,Bearish,decline without hedging demand — flows not panicked
+2026-08-10,Pharma / Healthcare,1.855,95814,51640,8,8,0.0177,1.019,1.04,2.69,at highs,Bullish,"advance, but heavily hedged — protection still bid"
+2026-08-10,SaaS,0.626,195417,312262,9,9,0.054,0.936,2.59,8.83,at highs,Bullish,broad advance; positioning unremarkable
+2026-08-10,Semiconductors / Compute,0.255,306432,1202369,10,10,0.0243,0.997,-2.86,7.08,rising,Bearish,decline without hedging demand — flows not panicked
