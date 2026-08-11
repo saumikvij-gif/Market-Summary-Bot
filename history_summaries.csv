@@ -2053,3 +2053,29 @@ _Equities fell with Nasdaq -0.3%, S&P 500 -0.1%, VIX +3.8%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): This Nvidia change could spell good news for Micron
 - 🔴 Most bearish (-0.97): Rocket Lab reveals some big plans, but its stock is dropping on mixed earnings"
+2026-08-11,Neutral,-5,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.05  →  **Neutral**
+**Trend (5-day EMA):** +0.01  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.11 |
+| News headlines | 20% | +0.17 |
+| Fed (rate expectations) | 10% | -0.08 |
+
+_Equities fell with Nasdaq -0.3%, S&P 500 -0.3%, VIX -1.2%. Sector breadth: 4/11 sectors up. 10Y yield -0.3%. News headlines read slightly bullish. Fed-policy expectations tightened (13-Week T-Bill Yield +1.2bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices fell but the news mood is positive — headlines are upbeat against a down tape.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.90): Super Micro’s earnings report brings more good news, and the stock is climbing
+- 🔴 Most bearish (-0.59): CoreWeave’s stock soars as earnings show major AI momentum"
