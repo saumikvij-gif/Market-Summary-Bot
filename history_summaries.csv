@@ -2081,7 +2081,9 @@ _Equities fell with Nasdaq -0.3%, S&P 500 -0.3%, VIX -1.2%. Sector breadth: 4/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.90): Super Micro’s earnings report brings more good news, and the stock is climbing
 - 🔴 Most bearish (-0.59): CoreWeave’s stock soars as earnings show major AI momentum"
-2026-08-12,Slightly Bullish,24,"## Market Summary
+2026-08-12,Slightly Bullish,19,"> **Note:** No US trading session on 2026-08-13. Figures are from the last session (2026-08-12).
+
+## Market Summary
 
 _The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
 
@@ -2089,19 +2091,21 @@ _The AI narrative was unavailable today; market data and the quantitative sentim
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** +0.24  →  **Slightly Bullish**
-**Trend (5-day EMA):** +0.09  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Today's Score:** +0.19  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.07  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | +0.28 |
-| News headlines | 20% | +0.16 |
+| News headlines | 20% | -0.11 |
 | Fed (rate expectations) | 10% | +0.15 |
 
-_Equities rose with Nasdaq +0.7%, S&P 500 +0.3%, VIX -4.8%. Sector breadth: 8/11 sectors up. 10Y yield -0.0%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -2.3bp). Today's overall market tone: Slightly Bullish._
+_Equities rose with Nasdaq +0.7%, S&P 500 +0.3%, VIX -4.8%. Sector breadth: 8/11 sectors up. 10Y yield -0.0%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -2.3bp). Today's overall market tone: Slightly Bullish._
 
 <sub>News scored with: finbert</sub>
 
+**⚠️ Divergence: prices rose but the news mood is negative — the tape is climbing a wall of worry.**
+
 **Standout headlines:**
-- 🟢 Most bullish (+0.88): Mortgage and refinance interest rates today, Wednesday, August 12, 2026: Fixed rates move higher
+- 🟢 Most bullish (+0.85): Nebius adds to the excitement around neocloud stocks with upbeat earnings of its own
 - 🔴 Most bearish (-0.97): Treasury Wine hurt by weak Americas business, posts 42% drop in annual profit"
