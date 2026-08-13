@@ -2109,3 +2109,27 @@ _Equities rose with Nasdaq +0.7%, S&P 500 +0.3%, VIX -4.8%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.85): Nebius adds to the excitement around neocloud stocks with upbeat earnings of its own
 - 🔴 Most bearish (-0.97): Treasury Wine hurt by weak Americas business, posts 42% drop in annual profit"
+2026-08-13,Bullish,34,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.34  →  **Bullish**
+**Trend (5-day EMA):** +0.16  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.31 |
+| News headlines | 20% | +0.62 |
+| Fed (rate expectations) | 10% | +0.01 |
+
+_Equities rose with Nasdaq +1.1%, S&P 500 +0.7%, VIX +0.6%. Sector breadth: 8/11 sectors up. 10Y yield -0.9%. News headlines read bullish. Fed-policy expectations held steady. Today's overall market tone: Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.92): Iran looks to ramp up economic alliance with BRICS nations as war with U.S. drags on
+- 🔴 Most bearish (+0.04): Reddit is joining the S&P 500 after months of speculation. Analysts have these concerns."
