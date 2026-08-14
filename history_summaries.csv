@@ -2135,3 +2135,27 @@ _Equities rose with Nasdaq +1.1%, S&P 500 +0.7%, VIX +0.6%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): Iran looks to ramp up economic alliance with BRICS nations as war with U.S. drags on
 - 🔴 Most bearish (+0.04): Reddit is joining the S&P 500 after months of speculation. Analysts have these concerns."
+2026-08-14,Neutral,10,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.10  →  **Neutral**
+**Trend (5-day EMA):** +0.14  →  **Slightly Bullish**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.04 |
+| News headlines | 20% | +0.32 |
+| Fed (rate expectations) | 10% | +0.05 |
+
+_Equities rose with Nasdaq -0.1%, S&P 500 -0.2%, VIX -2.6%. Sector breadth: 7/11 sectors up. 10Y yield +1.2%. News headlines read bullish. Fed-policy expectations eased (13-Week T-Bill Yield -0.8bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.86): Silver prices today, Friday, August 14, 2026: Silver over $65 following soft inflation data this week
+- 🔴 Most bearish (-0.53): Amazon reinstates binding arbitration, bars class-action lawsuits"
