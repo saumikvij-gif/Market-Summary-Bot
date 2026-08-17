@@ -2161,3 +2161,29 @@ _Equities rose with Nasdaq -0.1%, S&P 500 -0.2%, VIX -2.6%. Sector breadth: 7/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.86): Nvidia scales back $250 billion OpenAI data center guarantee, WSJ reports
 - 🔴 Most bearish (-0.53): Amazon reinstates binding arbitration, bars class-action lawsuits"
+2026-08-17,Slightly Bearish,-20,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.20  →  **Slightly Bearish**
+**Trend (5-day EMA):** +0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.33 |
+| News headlines | 20% | +0.20 |
+| Fed (rate expectations) | 10% | -0.04 |
+
+_Equities fell with Nasdaq -0.2%, S&P 500 -0.5%, VIX +6.6%. Sector breadth: 2/11 sectors up. 10Y yield +0.6%. News headlines read slightly bullish. Fed-policy expectations tightened (13-Week T-Bill Yield +0.6bp). Today's overall market tone: Slightly Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**⚠️ Divergence: prices fell but the news mood is positive — headlines are upbeat against a down tape.**
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.93): SpaceX’s stock is rising, and that’s a good sign for Nvidia and Google
+- 🔴 Most bearish (-0.95): Bitcoin and ethereum prices today, Monday, August 17, 2026: Crypto prices down slightly as analysts question timing of bear market bottom"
