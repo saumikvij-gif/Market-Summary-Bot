@@ -2189,3 +2189,27 @@ _Equities fell with Nasdaq -0.2%, S&P 500 -0.5%, VIX +6.6%. Sector breadth: 2/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.93): SpaceX’s stock is rising, and that’s a good sign for Nvidia and Google
 - 🔴 Most bearish (-0.95): Bitcoin and ethereum prices today, Monday, August 17, 2026: Crypto prices down slightly as analysts question timing of bear market bottom"
+2026-08-18,Bearish,-35,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.35  →  **Bearish**
+**Trend (5-day EMA):** -0.10  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.35 |
+| News headlines | 20% | -0.49 |
+| Fed (rate expectations) | 10% | -0.01 |
+
+_Equities fell with Nasdaq -1.7%, S&P 500 -0.7%, VIX +4.3%. Sector breadth: 4/11 sectors up. 10Y yield -0.4%. News headlines read bearish. Fed-policy expectations held steady. Today's overall market tone: Bearish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.17): Meta is facing its ‘Big Tobacco’ moment — and investors can profit
+- 🔴 Most bearish (-0.93): Analysis: Bond market pressure is squeezing Main Street as Wall Street waits on Warsh"
