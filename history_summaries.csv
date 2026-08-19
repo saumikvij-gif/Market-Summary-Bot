@@ -2213,3 +2213,27 @@ _Equities fell with Nasdaq -1.7%, S&P 500 -0.7%, VIX +4.3%. Sector breadth: 4/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.17): Meta is facing its ‘Big Tobacco’ moment — and investors can profit
 - 🔴 Most bearish (-0.93): Analysis: Bond market pressure is squeezing Main Street as Wall Street waits on Warsh"
+2026-08-19,Neutral,10,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.10  →  **Neutral**
+**Trend (5-day EMA):** -0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.16 |
+| News headlines | 20% | -0.07 |
+| Fed (rate expectations) | 10% | +0.01 |
+
+_Equities rose with Nasdaq -0.2%, S&P 500 +0.2%, VIX -6.0%. Sector breadth: 6/11 sectors up. 10Y yield -1.1%. News headlines read neutral. Fed-policy expectations eased (13-Week T-Bill Yield -0.5bp). Fresh Fed communications read neutral. Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.52): Mortgage and refinance interest rates today, Wednesday, August 19, 2026:  Surprisingly calm amid bond market volatility
+- 🔴 Most bearish (-0.68): Treasury Secretary Bessent doubles US long-bond buybacks in the face of surging yields"
