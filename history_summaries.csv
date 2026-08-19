@@ -2198,12 +2198,12 @@ _The AI narrative was unavailable today; market data and the quantitative sentim
 _A recap of how the market traded today — not a forecast._
 
 **Today's Score:** -0.35  →  **Bearish**
-**Trend (5-day EMA):** -0.10  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+**Trend (5-day EMA):** -0.10  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.35 |
-| News headlines | 20% | -0.49 |
+| News headlines | 20% | -0.53 |
 | Fed (rate expectations) | 10% | -0.01 |
 
 _Equities fell with Nasdaq -1.7%, S&P 500 -0.7%, VIX +4.3%. Sector breadth: 4/11 sectors up. 10Y yield -0.4%. News headlines read bearish. Fed-policy expectations held steady. Today's overall market tone: Bearish._
