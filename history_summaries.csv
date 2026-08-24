@@ -2293,3 +2293,27 @@ _Equities rose with Nasdaq +0.3%, S&P 500 +0.4%, VIX -5.5%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.92): Mortgage and refinance interest rates today, Friday, August 21, 2026: Rates stand on high ground despite bond market buybacks
 - 🔴 Most bearish (-0.01): Former JPMorgan exec takes on Social Security advisory role"
+2026-08-24,Neutral,-1,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.01  →  **Neutral**
+**Trend (5-day EMA):** +0.00  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.05 |
+| News headlines | 20% | +0.12 |
+| Fed (rate expectations) | 10% | +0.05 |
+
+_Equities fell with Nasdaq -1.0%, S&P 500 -0.3%, VIX +4.8%. Sector breadth: 8/11 sectors up. 10Y yield -0.7%. News headlines read slightly bullish. Fed-policy expectations eased (13-Week T-Bill Yield -0.7bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.88): Crypto extends gains after biggest 3-day rally since 2023
+- 🔴 Most bearish (-0.96): Fast-fashion giant Shein shrinks value to up to $27 billion in Hong Kong IPO"
