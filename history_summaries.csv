@@ -2319,3 +2319,27 @@ _Equities fell with Nasdaq -1.0%, S&P 500 -0.3%, VIX +4.8%. Sector breadth: 8/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.88): Crypto extends gains after biggest 3-day rally since 2023
 - 🔴 Most bearish (-0.96): Fast-fashion giant Shein shrinks value to up to $27 billion in Hong Kong IPO"
+2026-08-25,Slightly Bullish,22,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** +0.22  →  **Slightly Bullish**
+**Trend (5-day EMA):** +0.08  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.22 |
+| News headlines | 20% | +0.38 |
+| Fed (rate expectations) | 10% | -0.03 |
+
+_Equities rose with Nasdaq +0.6%, S&P 500 +0.3%, VIX -2.5%. Sector breadth: 6/11 sectors up. 10Y yield -1.4%. News headlines read bullish. Fed-policy expectations held steady. Fresh Fed communications read neutral. Today's overall market tone: Slightly Bullish._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.89): Gold prices today, Tuesday, August 25, 2026: Gold hits 3-month high this morning
+- 🔴 Most bearish (-0.32): Mortgage and refinance interest rates today, Tuesday, August 25, 2026: Rates mixed this morning"
