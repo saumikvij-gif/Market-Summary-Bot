@@ -2345,3 +2345,27 @@ _Equities rose with Nasdaq +0.6%, S&P 500 +0.3%, VIX -2.5%. Sector breadth: 6/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.89): Gold prices today, Tuesday, August 25, 2026: Gold hits 3-month high this morning
 - 🔴 Most bearish (-0.32): Mortgage and refinance interest rates today, Tuesday, August 25, 2026: Rates mixed this morning"
+2026-08-26,Neutral,-3,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.03  →  **Neutral**
+**Trend (5-day EMA):** +0.04  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | -0.02 |
+| News headlines | 20% | -0.14 |
+| Fed (rate expectations) | 10% | +0.10 |
+
+_Equities fell with Nasdaq +0.1%, S&P 500 -0.0%, VIX -1.6%. Sector breadth: 5/11 sectors up. 10Y yield +0.5%. News headlines read slightly bearish. Fed-policy expectations eased (13-Week T-Bill Yield -1.5bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.67): Gold price today, Wednesday, August 26, 2026: Gold pulls back from morning's high over $4,700
+- 🔴 Most bearish (-0.93): Mortgage and refinance interest rates today, Wednesday, August 26, 2026: Rates down across the board"
