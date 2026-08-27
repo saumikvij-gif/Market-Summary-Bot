@@ -6819,7 +6819,7 @@ run_date,section,name,price,change,pct_change
 2026-08-26,stocks,Amazon,260.28,-0.78,-0.3
 2026-08-26,stocks,Apple,313.45,3.55,1.15
 2026-08-26,stocks,Arm,251.06,9.5,3.93
-2026-08-26,commodities,Bitcoin,79093.14,566.3516,0.72
+2026-08-26,commodities,Bitcoin,78651.11,-428.1406,-0.54
 2026-08-26,stocks,Broadcom,355.59,-1.15,-0.32
 2026-08-26,stocks,Coherent,294.37,6.23,2.16
 2026-08-26,sectors,Communication Svc,112.61,-0.57,-0.5
@@ -6827,17 +6827,17 @@ run_date,section,name,price,change,pct_change
 2026-08-26,sectors,Consumer Staples,86.27,-0.25,-0.29
 2026-08-26,commodities,Crude Oil,81.84,-0.39,-0.47
 2026-08-26,indices,Dow Jones,53463.88,-113.5195,-0.21
-2026-08-26,fx,EUR/USD,1.17,0.0003,0.02
+2026-08-26,fx,EUR/USD,1.17,0.0001,0.01
 2026-08-26,sectors,Energy,62.43,0.37,0.6
 2026-08-26,sectors,Financials,58.26,-0.05,-0.09
-2026-08-26,fx,GBP/USD,1.36,0.0002,0.02
-2026-08-26,commodities,Gold,4674.3,21.0,0.45
+2026-08-26,fx,GBP/USD,1.36,-0.0008,-0.06
+2026-08-26,commodities,Gold,4674.4,21.1001,0.45
 2026-08-26,sectors,Health Care,173.54,-1.75,-1.0
 2026-08-26,sectors,Industrials,180.34,1.94,1.09
 2026-08-26,stocks,Intel,88.24,0.76,0.87
 2026-08-26,sectors,Materials,53.67,0.09,0.17
 2026-08-26,stocks,Meta,576.14,6.09,1.07
-2026-08-26,stocks,Micron,938.4,5.4301,0.58
+2026-08-26,stocks,Micron,938.4,5.43,0.58
 2026-08-26,stocks,Microsoft,496.37,4.66,0.95
 2026-08-26,indices,Nasdaq 100,29224.52,15.293,0.05
 2026-08-26,stocks,Nvidia,209.66,-3.39,-1.59
@@ -6846,6 +6846,6 @@ run_date,section,name,price,change,pct_change
 2026-08-26,indices,S&P 500,7675.7,-1.5796,-0.02
 2026-08-26,stocks,SanDisk,1499.37,18.6,1.26
 2026-08-26,sectors,Technology,182.84,1.1,0.61
-2026-08-26,fx,USD/JPY,159.25,-0.018,-0.01
+2026-08-26,fx,USD/JPY,159.36,0.093,0.06
 2026-08-26,sectors,Utilities,43.51,0.2,0.46
 2026-08-26,indices,VIX,15.21,-0.24,-1.55
