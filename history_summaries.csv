@@ -2371,3 +2371,27 @@ _Equities fell with Nasdaq +0.1%, S&P 500 -0.0%, VIX -1.6%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.82): Meta agrees to pay $18 billion to settle US lawsuits over children’s social media addiction
 - 🔴 Most bearish (-0.71): Asian chip stocks rise as Nvidia outlook reinforces AI demand"
+2026-08-27,Neutral,-1,"## Market Summary
+
+_The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
+
+## Market Tone — Today's Session
+
+_A recap of how the market traded today — not a forecast._
+
+**Today's Score:** -0.01  →  **Neutral**
+**Trend (5-day EMA):** +0.03  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
+
+| Component | Weight | Score |
+| --- | --- | --- |
+| Market data | 70% | +0.07 |
+| News headlines | 20% | -0.33 |
+| Fed (rate expectations) | 10% | +0.08 |
+
+_Equities rose with Nasdaq +1.4%, S&P 500 +0.7%, VIX -4.6%. Sector breadth: 1/11 sectors up. 10Y yield +0.2%. News headlines read bearish. Fed-policy expectations eased (13-Week T-Bill Yield -1.2bp). Today's overall market tone: Neutral._
+
+<sub>News scored with: finbert</sub>
+
+**Standout headlines:**
+- 🟢 Most bullish (+0.49): CrowdStrike’s stock jumps after record-breaking earnings. Wall Street is lapping it up.
+- 🔴 Most bearish (-0.91): Bank of America doubles down on Nvidia stock"
