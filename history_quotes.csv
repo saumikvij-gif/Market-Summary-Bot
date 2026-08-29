@@ -6893,7 +6893,7 @@ run_date,section,name,price,change,pct_change
 2026-08-28,stocks,Amazon,266.43,10.17,3.97
 2026-08-28,stocks,Apple,319.7,5.12,1.63
 2026-08-28,stocks,Arm,239.05,-16.16,-6.33
-2026-08-28,commodities,Bitcoin,77651.82,-2623.5312,-3.27
+2026-08-28,commodities,Bitcoin,77601.63,-2047.5938,-2.57
 2026-08-28,stocks,Broadcom,368.79,-2.75,-0.74
 2026-08-28,stocks,Coherent,279.2,-16.19,-5.48
 2026-08-28,sectors,Communication Svc,112.99,1.58,1.42
@@ -6905,7 +6905,7 @@ run_date,section,name,price,change,pct_change
 2026-08-28,sectors,Energy,62.68,0.39,0.63
 2026-08-28,sectors,Financials,58.1,0.22,0.38
 2026-08-28,fx,GBP/USD,1.35,-0.0055,-0.41
-2026-08-28,commodities,Gold,4504.1,-159.8999,-3.43
+2026-08-28,commodities,Gold,4529.9,-134.1001,-2.88
 2026-08-28,sectors,Health Care,171.16,-0.42,-0.24
 2026-08-28,sectors,Industrials,177.14,-1.66,-0.93
 2026-08-28,stocks,Intel,89.47,-2.62,-2.85
