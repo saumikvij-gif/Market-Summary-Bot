@@ -2423,7 +2423,9 @@ _Equities fell with Nasdaq -0.7%, S&P 500 -0.2%, VIX -0.6%. Sector breadth: 5/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.24): Microsoft’s stock seals its longest winning streak of the year as AI software fears fade
 - 🔴 Most bearish (-0.75): War weighs on Iran’s economy as US intensifies sanctions"
-2026-08-31,Slightly Bearish,-20,"## Market Summary
+2026-08-31,Slightly Bearish,-18,"> **Note:** No US trading session on 2026-09-01. Figures are from the last session (2026-08-31).
+
+## Market Summary
 
 _The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
 
@@ -2431,16 +2433,16 @@ _The AI narrative was unavailable today; market data and the quantitative sentim
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.20  →  **Slightly Bearish**
+**Today's Score:** -0.18  →  **Slightly Bearish**
 **Trend (5-day EMA):** -0.08  →  **Neutral**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.25 |
-| News headlines | 20% | -0.13 |
+| News headlines | 20% | -0.01 |
 | Fed (rate expectations) | 10% | -0.01 |
 
-_Equities fell with Nasdaq +0.1%, S&P 500 -0.3%, VIX +3.4%. Sector breadth: 2/11 sectors up. 10Y yield +0.8%. News headlines read slightly bearish. Fed-policy expectations held steady. Today's overall market tone: Slightly Bearish._
+_Equities fell with Nasdaq +0.1%, S&P 500 -0.3%, VIX +3.4%. Sector breadth: 2/11 sectors up. 10Y yield +0.8%. News headlines read neutral. Fed-policy expectations held steady. Today's overall market tone: Slightly Bearish._
 
 <sub>News scored with: finbert</sub>
 
