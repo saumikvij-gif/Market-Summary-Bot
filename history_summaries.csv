@@ -2449,7 +2449,9 @@ _Equities fell with Nasdaq +0.1%, S&P 500 -0.3%, VIX +3.4%. Sector breadth: 2/11
 **Standout headlines:**
 - 🟢 Most bullish (+0.85): Best high-yield savings interest rates today, Monday, August 31, 2026: Earn up to 4.15% APY
 - 🔴 Most bearish (-0.95): Amazon’s stock slips as the FTC alleges billions of dollars in hidden ad fees"
-2026-09-01,Bearish,-31,"## Market Summary
+2026-09-01,Bearish,-34,"> **Note:** No US trading session on 2026-09-02. Figures are from the last session (2026-09-01).
+
+## Market Summary
 
 _The AI narrative was unavailable today; market data and the quantitative sentiment score are shown below._
 
@@ -2457,13 +2459,13 @@ _The AI narrative was unavailable today; market data and the quantitative sentim
 
 _A recap of how the market traded today — not a forecast._
 
-**Today's Score:** -0.31  →  **Bearish**
+**Today's Score:** -0.34  →  **Bearish**
 **Trend (5-day EMA):** -0.16  →  **Slightly Bearish**  <sub>(smoothed — the readable day-over-day signal)</sub>
 
 | Component | Weight | Score |
 | --- | --- | --- |
 | Market data | 70% | -0.42 |
-| News headlines | 20% | +0.03 |
+| News headlines | 20% | -0.08 |
 | Fed (rate expectations) | 10% | -0.27 |
 
 _Equities fell with Nasdaq -1.3%, S&P 500 -0.7%, VIX +9.5%. Sector breadth: 4/11 sectors up. 10Y yield +0.8%. News headlines read neutral. Fed-policy expectations tightened (13-Week T-Bill Yield +4.0bp). Today's overall market tone: Bearish._
@@ -2472,4 +2474,4 @@ _Equities fell with Nasdaq -1.3%, S&P 500 -0.7%, VIX +9.5%. Sector breadth: 4/11
 
 **Standout headlines:**
 - 🟢 Most bullish (+0.94): Dell’s AI servers drive a stellar earnings performance, and a raised outlook
-- 🔴 Most bearish (-0.87): Dow drops below a key chart level, warning of more trouble ahead"
+- 🔴 Most bearish (-0.95): Bitcoin and ethereum prices today, Tuesday, September 1, 2026: Crypto prices falling as inflation concerns persist"
